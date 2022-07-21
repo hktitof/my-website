@@ -1,7 +1,28 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;900&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+@layer utilities {
+  body::-webkit-scrollbar {
+    width: 0.4em;
+    background-color: #0b192f;
+    
+  }
 
+  
+
+  body::-webkit-scrollbar-thumb {
+    background-color: #4c5474;
+    scrollbar-gutter: stable;
+    border-radius: 40px;
+    
+  }
+}
 html,
 body {
   padding: 0;
