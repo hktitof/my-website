@@ -30,6 +30,8 @@ const Header = () => {
   }
   const [rotate, setRotate] = useState<boolean>(false);
   console.log("retate stuatus : ", rotate);
+
+  rotate?document.body.style.overflow = "hidden":document.body.style.overflow = "auto";
   
   return (
     <>
