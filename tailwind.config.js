@@ -13,11 +13,12 @@ module.exports = {
         AAprimary: "#0b192f",
         AAsecondary: "#64ffda",
         ResumeButtonHover: "#153040",
+        MobileNavBarColor: "#112340",
       },
     },
   },
-  plugins: [require('tailwind-scrollbar')],
-    variants: {
-        scrollbar: ['rounded']
-    }
+  plugins: [require("tailwind-scrollbar")],
+  variants: {
+    scrollbar: ["rounded"],
+  },
 };
