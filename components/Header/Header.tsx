@@ -30,23 +30,45 @@ const Header = () => {
   }
   const [rotate, setRotate] = useState<boolean>(false);
   console.log("retate stuatus : ", rotate);
+  //veify document for serverSide rendering
+  if (typeof document !== "undefined") {
+    rotate
+      ? (document.body.style.overflow = "hidden")
+      : (document.body.style.overflow = "auto");
+  }
 
-  rotate?document.body.style.overflow = "hidden":document.body.style.overflow = "auto";
-  
   return (
     <>
       {/* Mobile visible Navbar */}
-
       <motion.div
         initial={{ x: "100%" }}
         animate={rotate ? { x: "0" } : { x: "100%" }}
-        className="w-full fixed h-screen flex"
+        transition={{ x: { duration: 0.4 } }}
+        className="w-full fixed h-screen flex md:hidden"
       >
         <div
           onClick={() => setRotate(!rotate)}
           className="w-1/4 h-full backdrop-blur-sm bg-MobileNavColor/30 hover:cursor-pointer"
         ></div>
-        <div className="w-3/4 h-full bg-MobileNavBarColor"></div>
+        <div className="w-3/4 h-full bg-MobileNavBarColor flex flex-col justify-center items-center space-y-8 font-sans">
+          <div className="flex flex-col text-center space-y-2">
+            <span className="text-AAsecondary text-xs font-mono">01.</span>
+            <span className="text-white font-Text2 hover:text-AAsecondary hover:cursor-pointer duration-300">About</span>
+          </div>
+          <div className="flex flex-col text-center space-y-2">
+            <span className="text-AAsecondary text-xs font-mono hover:cursor-pointer">02.</span>
+            <span className="text-white font-Text2 hover:text-AAsecondary hover:cursor-pointer duration-300">Experience</span>
+          </div>
+          <div className="flex flex-col text-center space-y-2">
+            <span className="text-AAsecondary text-xs font-mono">03.</span>
+            <span className="text-white font-Text2 hover:text-AAsecondary hover:cursor-pointer duration-300">Work</span>
+          </div>
+          <div className="flex flex-col text-center space-y-2">
+            <span className="text-AAsecondary text-xs font-mono">04.</span>
+            <span className="text-white font-Text2 hover:text-AAsecondary hover:cursor-pointer duration-300">Contact</span>
+          </div>
+          <button className="rounded border font-Text2 border-AAsecondary hover:bg-ResumeButtonHover py-4 px-10 text-xs text-AAsecondary">Resume</button>
+        </div>
       </motion.div>
 
       <div

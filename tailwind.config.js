@@ -8,6 +8,7 @@ module.exports = {
     extend: {
       fontFamily: {
         Header: ["Lato", "sans-serif"],
+        Text2: ["Lato", "sans-serif"],
       },
       colors: {
         AAprimary: "#0b192f",
