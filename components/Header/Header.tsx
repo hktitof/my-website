@@ -53,21 +53,33 @@ const Header = () => {
         <div className="w-3/4 h-full bg-MobileNavBarColor flex flex-col justify-center items-center space-y-8 font-sans">
           <div className="flex flex-col text-center space-y-2">
             <span className="text-AAsecondary text-xs font-mono">01.</span>
-            <span className="text-white font-Text2 hover:text-AAsecondary hover:cursor-pointer duration-300">About</span>
+            <span className="text-white font-Text2 hover:text-AAsecondary hover:cursor-pointer duration-300">
+              About
+            </span>
           </div>
           <div className="flex flex-col text-center space-y-2">
-            <span className="text-AAsecondary text-xs font-mono hover:cursor-pointer">02.</span>
-            <span className="text-white font-Text2 hover:text-AAsecondary hover:cursor-pointer duration-300">Experience</span>
+            <span className="text-AAsecondary text-xs font-mono hover:cursor-pointer">
+              02.
+            </span>
+            <span className="text-white font-Text2 hover:text-AAsecondary hover:cursor-pointer duration-300">
+              Experience
+            </span>
           </div>
           <div className="flex flex-col text-center space-y-2">
             <span className="text-AAsecondary text-xs font-mono">03.</span>
-            <span className="text-white font-Text2 hover:text-AAsecondary hover:cursor-pointer duration-300">Work</span>
+            <span className="text-white font-Text2 hover:text-AAsecondary hover:cursor-pointer duration-300">
+              Work
+            </span>
           </div>
           <div className="flex flex-col text-center space-y-2">
             <span className="text-AAsecondary text-xs font-mono">04.</span>
-            <span className="text-white font-Text2 hover:text-AAsecondary hover:cursor-pointer duration-300">Contact</span>
+            <span className="text-white font-Text2 hover:text-AAsecondary hover:cursor-pointer duration-300">
+              Contact
+            </span>
           </div>
-          <button className="rounded border font-Text2 border-AAsecondary hover:bg-ResumeButtonHover py-4 px-10 text-xs text-AAsecondary">Resume</button>
+          <button className="rounded border font-Text2 border-AAsecondary hover:bg-ResumeButtonHover py-4 px-10 text-xs text-AAsecondary">
+            Resume
+          </button>
         </div>
       </motion.div>
 
@@ -76,10 +88,46 @@ const Header = () => {
         className="w-full fixed bg-opacity-75  flex 
       justify-between px-12 py-4 drop-shadow-lg transition duration-4000 translate-y-0"
       >
-        <span className="text-AAsecondary">Logo</span>
+        {/* Logo A */}
+        <motion.div
+          initial={{ y: -40, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ type: "spring", duration: 1 }}
+          className=" relative h-12 w-10 "
+        >
+          <span className="absolute h-full w-full flex justify-center items-center text-lg font-Header text-AAsecondary">
+            A
+          </span>
+          {/* Logo A */}
+          <motion.div
+            animate={{ rotate: -30, y: 5 }}
+            className="h-1 w-6 rounded bg-AAsecondary"
+          ></motion.div>
+          <motion.div
+            animate={{ rotate: 90, x: -10, y: 18 }}
+            className="h-1 w-6 rounded bg-AAsecondary"
+          ></motion.div>
+          <motion.div
+            animate={{ rotate: 30, y: 31 }}
+            className="h-1 w-6 rounded bg-AAsecondary"
+          ></motion.div>
+          <motion.div
+            animate={{ rotate: -30, y: 27, x: 19 }}
+            className="h-1 w-6 rounded bg-AAsecondary"
+          ></motion.div>
+          <motion.div
+            animate={{ rotate: 30, x: 19, y: -10 }}
+            className="h-1 w-6 rounded bg-AAsecondary"
+          ></motion.div>
+          <motion.div
+            animate={{ rotate: 90, x: 28, y: 2 }}
+            className="h-1 w-6 rounded bg-AAsecondary"
+          ></motion.div>
+        </motion.div>
+
         {/* Hide icon Designed by me */}
         <div
-          className="md:hidden  text-white space-y-2 left-0 hover:cursor-pointer"
+          className="md:hidden  text-white space-y-2 left-0 hover:cursor-pointer mt-2"
           onClick={() => setRotate(!rotate)}
         >
           <div className="flex justify-end">
@@ -116,8 +164,7 @@ const Header = () => {
             ></motion.div>
           </div>
         </div>
-        {/* Mobile Menu by Titof */}
-
+        {/* ? Desktop Menu by Titof */}
         <div className="font-mono text-xs md:flex hidden flex-row items-center space-x-8 ">
           <motion.span
             initial={{ y: -40, opacity: 0 }}
@@ -133,7 +180,7 @@ const Header = () => {
           <motion.span
             initial={{ y: -40, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
-            transition={{ type: "spring", duration: 1.2, delay: 0.1 }}
+            transition={{ type: "spring", duration: 1.2, delay: 0.2 }}
             className="text-AAsecondary"
           >
             &gt; 02.{" "}
@@ -144,7 +191,7 @@ const Header = () => {
           <motion.span
             initial={{ y: -40, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
-            transition={{ type: "spring", duration: 1.2, delay: 0.2 }}
+            transition={{ type: "spring", duration: 1.2, delay: 0.3 }}
             className="text-AAsecondary"
           >
             &gt; 03.{" "}
@@ -155,7 +202,7 @@ const Header = () => {
           <motion.span
             initial={{ y: -40, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
-            transition={{ type: "spring", duration: 1.2, delay: 0.3 }}
+            transition={{ type: "spring", duration: 1.2, delay: 0.4 }}
             className="text-AAsecondary"
           >
             &gt; 04.{" "}
@@ -166,7 +213,7 @@ const Header = () => {
           <motion.button
             initial={{ y: -40, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
-            transition={{ type: "spring", duration: 1.2, delay: 0.4 }}
+            transition={{ type: "spring", duration: 1.2, delay: 0.5 }}
             className="text-AAsecondary border border-spacing-2 py-2 px-3 rounded-sm border-AAsecondary hover:bg-ResumeButtonHover"
           >
             Resume
