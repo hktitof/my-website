@@ -4,9 +4,9 @@ export default function Logo() {
   return (
     <>
       <motion.div
-        initial={{ y: -40, opacity: 0 }}
+        initial={{ y: 0, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ type: "spring", duration: 1 }}
+        transition={{ type: "spring", y:{delay:5,duration:0},opacity:{delay:5,duration:0} }}
         className=" relative h-12 w-10 "
       >
         <span className="absolute h-full w-full flex justify-center items-center text-lg font-Header text-AAsecondary">
