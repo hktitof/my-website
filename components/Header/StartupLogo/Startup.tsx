@@ -7,6 +7,9 @@ const Startup = () => {
     if (window.innerWidth > 768) {
       WidthBy2 = window.innerWidth / 2 - 48 - 20;
       HeightBy2 = window.innerHeight / 2-44;
+    }else{
+      WidthBy2 = window.innerWidth / 2 -30;
+      HeightBy2 = window.innerHeight / 2-44;
     }
 
     console.log("width by 2: ", WidthBy2);
