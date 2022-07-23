@@ -1,8 +1,8 @@
 import React, { useRef, useState } from "react";
-import Logo from "../Headercomp/Logo";
-import DesktopMenu from "../Headercomp/DesktopMenu";
-import IconMenu from "../Headercomp/IconMenu";
-import MobileMenu from "../Headercomp/MobileMenu";
+import Logo from "./Headercomp/Logo";
+import DesktopMenu from "./Headercomp/DesktopMenu";
+import IconMenu from "./Headercomp/IconMenu";
+import MobileMenu from "./Headercomp/MobileMenu";
 const addClass = (ref: any, myclass: string) => {
   ref.current?.classLIst.add(myclass);
 };

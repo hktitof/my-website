@@ -6,8 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "build-css": "npx tailwindcss-cli@latest build tailwind.css styles/"
+    "lint": "next lint"
   },
   "dependencies": {
     "framer-motion": "^4.1.17",

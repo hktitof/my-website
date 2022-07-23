@@ -1,5 +1,5 @@
 import React from "react";
-import { motion } from "../../node_modules/framer-motion/dist/framer-motion";
+import { motion } from "../../../node_modules/framer-motion/dist/framer-motion";
 export default function Logo() {
   return (
     <>

@@ -1,5 +1,5 @@
 import React from "react";
-import { motion } from "../../node_modules/framer-motion/dist/framer-motion";
+import { motion } from "../../../node_modules/framer-motion/dist/framer-motion";
 
 export default function DesktopMenu() {
   return (
@@ -16,6 +16,7 @@ export default function DesktopMenu() {
         transition={{
           type: "spring",
           duration: 1,
+          delay:4.5
         }}
         className=" text-AAsecondary"
       >
@@ -36,7 +37,7 @@ export default function DesktopMenu() {
         transition={{
           type: "spring",
           duration: 1.2,
-          delay: 0.2,
+          delay: 4.7,
         }}
         className="text-AAsecondary"
       >
@@ -57,7 +58,7 @@ export default function DesktopMenu() {
         transition={{
           type: "spring",
           duration: 1.2,
-          delay: 0.3,
+          delay: 4.9,
         }}
         className="text-AAsecondary"
       >
@@ -78,7 +79,7 @@ export default function DesktopMenu() {
         transition={{
           type: "spring",
           duration: 1.2,
-          delay: 0.4,
+          delay: 5.1,
         }}
         className="text-AAsecondary"
       >
@@ -99,7 +100,7 @@ export default function DesktopMenu() {
         transition={{
           type: "spring",
           duration: 1.2,
-          delay: 0.5,
+          delay: 5.3,
         }}
         className="text-AAsecondary border border-spacing-2 py-2 px-3 rounded-sm border-AAsecondary hover:bg-ResumeButtonHover"
       >

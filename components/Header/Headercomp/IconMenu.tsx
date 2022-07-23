@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {motion} from "../../node_modules/framer-motion/dist/framer-motion"
+import {motion} from "../../../node_modules/framer-motion/dist/framer-motion"
 const IconMenu=(props)=> {
     console.log("rotate value here ",props.rotate)
   return (
