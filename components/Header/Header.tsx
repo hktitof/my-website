@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState ,useEffect} from "react";
 import Logo from "./Headercomp/Logo";
 import DesktopMenu from "./Headercomp/DesktopMenu";
 import IconMenu from "./Headercomp/IconMenu";
@@ -8,6 +8,12 @@ const addClass = (ref: any, myclass: string) => {
 };
 const Header = () => {
   const RefNavBar = useRef<HTMLDivElement>(null);
+  const [ShowElement, setShowElement] = useState(false);
+  useEffect(() => {
+    setTimeout(()=>{
+      setShowElement(true);
+    },4900);
+  },[]);
   let scrollSizeY = 0;
   //Hide when scroll down & show when scroll up
   if (typeof window !== "undefined") {
@@ -55,7 +61,8 @@ const Header = () => {
         
 
         {/* Hide icon Designed by me */}
-        <IconMenu rotate={rotate} setRotate={setRotate}/>
+        
+        {ShowElement?<IconMenu rotate={rotate} setRotate={setRotate}/>:<></>}
        
         {/* ? Desktop Menu by Titof */}
         <DesktopMenu     />
