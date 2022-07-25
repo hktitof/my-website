@@ -2,6 +2,7 @@ import Header from "../components/Header/Header";
 import Startup from "../components/Header/StartupLogo/Startup";
 import MyName from "../components/Home/MyName/MyName";
 import { useEffect, useState } from "react";
+import SocialMediaEmail from "../components/Home/SocialMediaArround/SocialMediaEmail";
 export default function Home() {
   const [ShowElement,setShowElement] = useState(true);
   useEffect(()=>{
@@ -14,6 +15,7 @@ export default function Home() {
       {ShowElement ? <Startup/>:<></>}
       <Header />
       <MyName />
+      <SocialMediaEmail />
     </div>
   );
 }
