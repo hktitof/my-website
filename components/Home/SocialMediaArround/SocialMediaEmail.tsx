@@ -5,9 +5,9 @@ export default function SocialMediaEmail() {
   return (
     <>
       <motion.div
-        // initial={{ y: "100%" }}
-        // animate={{ y: "0%" }}
-        // transition={{ y: { delay: 7.4, duration: 0.5 } }}
+        initial={{ y: "100%" }}
+        animate={{ y: "0%" }}
+        transition={{ y: { delay: 7.4, duration: 0.5 } }}
         className="fixed bottom-0 left-0 right-0 hidden md:flex flex-row px-12 items-center justify-between  "
       >
         <div className="flex flex-col space-y-8 justify-center items-center">
@@ -124,9 +124,9 @@ export default function SocialMediaEmail() {
       </motion.div>
 
       <motion.div
-        // initial={{ y: "130%" }}
-        // animate={{ y: "0%" }}
-        // transition={{ y: { delay: 7.4, duration: 0.5 } }}
+        initial={{ y: "130%" }}
+        animate={{ y: "0%" }}
+        transition={{ y: { delay: 7.4, duration: 0.5 } }}
         className="fixed bottom-0 right-0 hidden md:flex flex-row px-12items-center justify-between"
       >
         <div className="flex flex-col space-y-20 justify-center items-center">

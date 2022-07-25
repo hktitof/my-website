@@ -12,9 +12,9 @@ export default function Home() {
   },[])
   return (
     <div className="relative h-screen bg-AAprimary w-full ">
-      {/* {ShowElement ? <Startup/>:<></>}
+      {ShowElement ? <Startup/>:<></>}
       <Header />
-      <MyName /> */}
+      <MyName />
       <SocialMediaEmail />
     </div>
   );
