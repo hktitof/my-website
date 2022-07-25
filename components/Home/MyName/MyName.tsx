@@ -45,7 +45,7 @@ export default function MyName() {
             opacity: { delay: 7, duration: 0.2 },
             y: { delay: 7, duration: 0.2 },
           }}
-          className="text-gray-00 font-Header text-sm md:text-lg sm:text-md mt-10 tracking-wider"
+          className="text-gray-400 font-Header text-sm md:text-lg sm:text-md mt-10 tracking-wider"
         >
           I&apos;m a software engineer skilled in problem-solving and
           specializing in building
