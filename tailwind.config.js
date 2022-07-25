@@ -26,6 +26,7 @@ module.exports = {
         AAsecondary: "#64ffda",
         ResumeButtonHover: "#153040",
         MobileNavBarColor: "#112340",
+        StartupBackground: "#020c1b",
       },
     },
   },

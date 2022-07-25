@@ -15,7 +15,7 @@ export default function DesktopMenu() {
         }}
         transition={{
           type: "spring",
-          duration: 1,
+          duration: 1.2,
           delay:4.5
         }}
         className=" text-AAsecondary"
@@ -37,7 +37,7 @@ export default function DesktopMenu() {
         transition={{
           type: "spring",
           duration: 1.2,
-          delay: 4.7,
+          delay: 4.9,
         }}
         className="text-AAsecondary"
       >
@@ -58,7 +58,7 @@ export default function DesktopMenu() {
         transition={{
           type: "spring",
           duration: 1.2,
-          delay: 4.9,
+          delay: 5.1,
         }}
         className="text-AAsecondary"
       >
@@ -79,7 +79,7 @@ export default function DesktopMenu() {
         transition={{
           type: "spring",
           duration: 1.2,
-          delay: 5.1,
+          delay: 5.3,
         }}
         className="text-AAsecondary"
       >
@@ -100,7 +100,7 @@ export default function DesktopMenu() {
         transition={{
           type: "spring",
           duration: 1.2,
-          delay: 5.3,
+          delay: 5.5,
         }}
         className="text-AAsecondary border border-spacing-2 py-2 px-3 rounded-sm border-AAsecondary hover:bg-ResumeButtonHover"
       >

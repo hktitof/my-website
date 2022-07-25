@@ -48,7 +48,7 @@ const Header = () => {
       <div
         ref={RefNavBar}
         className="w-full fixed bg-opacity-75  flex 
-      justify-between px-2 sm:px-12 py-4 drop-shadow-lg transition duration-4000 translate-y-0"
+      justify-between px-6 sm:px-12 py-4 drop-shadow-lg transition duration-4000 translate-y-0"
       >
         {/* Logo A */}
         <Logo/>
