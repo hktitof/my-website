@@ -9,9 +9,11 @@ export default function Logo() {
         transition={{ type: "spring", y:{delay:5,duration:0},opacity:{delay:5,duration:0} }}
         className=" relative h-12 w-10 "
       >
-        <span className="absolute h-full w-full flex justify-center items-center text-lg font-Header text-AAsecondary">
+        <motion.span 
+        initial={{x:1}}
+        className="absolute h-full w-full flex justify-center items-center text-lg font-Header text-AAsecondary">
           A
-        </span>
+        </motion.span>
 
         <motion.div
           animate={{ rotate: -30, y: 5 }}

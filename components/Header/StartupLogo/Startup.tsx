@@ -18,11 +18,12 @@ const Startup = () => {
   }
 
   return (
-    <motion.div 
+
+  <motion.div 
     initial={{opacity:1}}
     animate={{opacity:0}}
     transition={{opacity:{delay:4.9,duration:0}}}
-    className="absolute h-full w-full flex justify-center items-center">
+    className="absolute h-full w-full flex justify-center items-center bg-AAprimary">
       <motion.div
         initial={{ opacity: 0, x: 0, y: 0, scale: "100%" }}
         animate={{ opacity: [1, 0, 1], x: -WidthBy2, y:-HeightBy2,scale: greaterThanSmall?"57%":"50%" }}
@@ -103,7 +104,7 @@ const Startup = () => {
           className="absolute h-2 w-12 bg-AAsecondary rounded "
         ></motion.div>
         <motion.span
-          initial={{ scale: 0, y: -4 }}
+          initial={{ scale: 0, y: -4 ,x:-1}}
           animate={{ scale: 1 }}
           transition={{ scale: { delay: 1.5, duration: 1.5 } }}
           className="text-AAsecondary font-Text2 text-4xl"
