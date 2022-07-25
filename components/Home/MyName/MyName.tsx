@@ -3,7 +3,9 @@ import { motion } from "../../../node_modules/framer-motion/dist/framer-motion";
 export default function MyName() {
   return (
     <>
-      <section className="px-8 2xl:px-72 xl:px-56 lg:px-32  md:px-20 sm:px-8 py-32 sm:py-52 flex flex-col">
+      <section className="absolute h-full flex flex-col justify-center
+      px-8 2xl:px-72 xl:px-56 lg:px-32  md:px-20 sm:px-8 py-32 sm:py-52  ">
+        <>
         <motion.span
           initial={{ y: 10, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
@@ -69,6 +71,8 @@ export default function MyName() {
             Check out my resume!
           </button>
         </motion.div>
+        </>
+        
       </section>
     </>
   );
