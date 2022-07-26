@@ -1,11 +1,27 @@
 import React from "react";
-
+const ArrowIcon = () => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      className="h-3 w-3 text-AAsecondary"
+      viewBox="0 0 20 20"
+      fill="currentColor"
+    >
+      <path
+        fillRule="evenodd"
+        d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+        clipRule="evenodd"
+      />
+    </svg>
+  );
+};
 export default function AboutMe() {
   return (
     <>
       <div className="flex flex-col justify-center items-center py-24">
         {/* 0.1 About Me */}
-        <div className="flex flex-col space-y-8 px-9 sm:px-0 w-full sm:w-[500px] md:w-[700px] lg:w-[900px] bg-gray-800">
+        <div className="flex flex-col space-y-8 px-9 sm:px-0 w-full sm:w-[500px] 
+        md:w-[700px] lg:w-[900px] bg-gray-800">
           <div className="flex items-center space-x-4 ">
             <div className="flex flex-row space-x-4 items-end ">
               <span className="text-AAsecondary font-mono text-xl">
@@ -19,7 +35,7 @@ export default function AboutMe() {
           </div>
           {/* Paragraphs */}
 
-          <div className="w-full">
+          <div className="w-full flex flex-row">
             <div className="sm:w-7/12 space-y-4">
               <div className="font-Header tracking-wide">
                 <span className="text-gray-400  ">
@@ -37,14 +53,76 @@ export default function AboutMe() {
                 <span className="text-gray-400  ">
                   Fast-forward to today, and I&apos;ve had the privilege of
                   working at
-                  <br />a start-up, a huge corporation, and a student-led design
-                  studio. My main focus these days is building accessible,
-                  inclusive products and digital experiences at Upstatement for
-                  a variety of clients. that time!
+                  <br />a start-up, a corporation, and a Google Developer
+                  Student clubs Lead. My main focus these days is creating and
+                  developing Smart Contracts. that time!
                 </span>
+              </div>
+              <div className="font-Header tracking-wide">
+                <span className="text-gray-400  ">
+                  I also recently Developed these Four projects that you&apos;ll
+                  find below using Node & Next js.
+                </span>
+              </div>
+              <div className="font-Header tracking-wide">
+                <span className="text-gray-400  ">
+                  Here are a few technologies I’ve been working with recently:
+                </span>
+              </div>
+              <div className="font-Header tracking-wide flex flex-row space-x-16">
+                <div className="flex flex-row space-x-2 items-center">
+                  <div className="flex flex-col space-y-4">
+                    <div className="flex flex-row items-center space-x-2">
+                      <ArrowIcon />
+                      <span className="text-gray-400 text-sm">
+                        Solidity
+                      </span>
+                    </div>
+                    <div className="flex flex-row items-center space-x-2">
+                      <ArrowIcon />
+                      <span className="text-gray-400 text-sm">
+                        Node
+                      </span>
+                    </div>
+                    <div className="flex flex-row items-center space-x-2">
+                      <ArrowIcon />
+                      <span className="text-gray-400 text-sm">
+                        JavaScript (ES6+)
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div className="flex flex-row space-x-2 items-center">
+                  <div className="flex flex-col space-y-4">
+                    <div className="flex flex-row items-center space-x-2">
+                      <ArrowIcon />
+                      <span className="text-gray-400 text-sm">
+                        TypeScript
+                      </span>
+                    </div>
+                    <div className="flex flex-row items-center space-x-2">
+                      <ArrowIcon />
+                      <span className="text-gray-400 text-sm">
+                        Next js
+                      </span>
+                    </div>
+                    <div className="flex flex-row items-center space-x-2">
+                      <ArrowIcon />
+                      <span className="text-gray-400 text-sm">
+                        Tailwind CSS
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="sm:w-5/12 ">
+              <div className="w-full border h-2/3">
+                <div className="">w-10/12</div>
               </div>
             </div>
           </div>
+          
         </div>
       </div>
     </>
