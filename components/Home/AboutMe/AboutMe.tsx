@@ -1,4 +1,5 @@
 import React from "react";
+import {motion} from "../../../node_modules/framer-motion/dist/framer-motion";
 const ArrowIcon = () => {
   return (
     <svg
@@ -35,8 +36,8 @@ export default function AboutMe() {
           </div>
           {/* Paragraphs */}
 
-          <div className="w-full flex flex-row">
-            <div className="sm:w-7/12 space-y-4">
+          <div className="w-full flex flex-col md:flex-row">
+            <div className="w-full md:w-7/12 space-y-4">
               <div className="font-Header tracking-wide">
                 <span className="text-gray-400  ">
                   Hello! My name is Abdellatif and I enjoy solving problems and
@@ -116,9 +117,13 @@ export default function AboutMe() {
                 </div>
               </div>
             </div>
-            <div className="sm:w-5/12 ">
-              <div className="w-full border h-2/3">
-                <div className="">w-10/12</div>
+            
+            <div className="w-72 h-72 md:w-5/12 md:5/12">
+              <div className="relative w-full border border-red-200 h-full md:h-2/3">
+                <div className="relative bg-white w-full md:w-10/12 h-full">
+                  <div className="absolute border-AAsecondary border-2 w-full md:w-11/12 h-full md:h-3/6 lg:h-5/6 translate-x-4 translate-y-4 rounded"></div>
+                  <div className="absolute bg-gray-300 w-11/12 h-3/6 lg:h-5/6 border"></div>
+                </div>
               </div>
             </div>
           </div>
