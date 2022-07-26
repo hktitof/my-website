@@ -3,6 +3,7 @@ import Startup from "../components/Header/StartupLogo/Startup";
 import MyName from "../components/Home/MyName/MyName";
 import { useEffect, useState } from "react";
 import SocialMediaEmail from "../components/Home/SocialMediaArround/SocialMediaEmail";
+import AboutMe from "../components/Home/AboutMe/AboutMe";
 export default function Home() {
   const [ShowElement,setShowElement] = useState(true);
   useEffect(()=>{
@@ -12,11 +13,11 @@ export default function Home() {
   },[])
   return (
     <div className="relative h-screen bg-AAprimary w-full ">
-      {ShowElement ? <Startup/>:<></>}
-       {/* <Startup/> */}
+      {/* {ShowElement ? <Startup/>:<></>}
       <Header />
       <MyName />
-      <SocialMediaEmail />
+      <SocialMediaEmail /> */}
+      <AboutMe />
     </div>
   );
 }
