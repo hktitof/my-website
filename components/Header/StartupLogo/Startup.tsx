@@ -37,7 +37,7 @@ const Startup = () => {
       >
         <motion.div
           initial={{ scale: 0, x: 0 }}
-          animate={{ scale: 1, rotate: 90, x: 34 }}
+          animate={{ scale: 1, rotate: 90, x: 38 }}
           transition={{
             scale: { duration: 1.5 },
             rotate: { delay: 0.5, duration: 0.5 },
@@ -47,7 +47,7 @@ const Startup = () => {
         ></motion.div>
         <motion.div
           initial={{ scale: 0, x: 0 }}
-          animate={{ scale: 1, rotate: 90, x: -34 }}
+          animate={{ scale: 1, rotate: 90, x: -39 }}
           transition={{
             scale: { duration: 1.5 },
             rotate: { delay: 0.5, duration: 0.5 },
@@ -57,7 +57,7 @@ const Startup = () => {
         ></motion.div>
         <motion.div
           initial={{ opacity: 0, scale: 0, x: 0, y: 0 }}
-          animate={{ opacity: 1, scale: 1, rotate: 35, x: 16, y: -34 }}
+          animate={{ opacity: 1, scale: 1.05, rotate: 35, x: 18, y: -34 }}
           transition={{
             opacity: { delay: 2, duration: 0 },
             scale: { duration: 2.5 },
@@ -69,7 +69,7 @@ const Startup = () => {
         ></motion.div>
         <motion.div
           initial={{ opacity: 0, scale: 0, x: 0, y: 0 }}
-          animate={{ opacity: 1, scale: 1, rotate: -35, x: -16, y: -34 }}
+          animate={{ opacity: 1, scale: 1.05, rotate: -35, x: -18, y: -34 }}
           transition={{
             opacity: { delay: 2, duration: 0 },
             scale: { duration: 2.5 },
@@ -81,7 +81,7 @@ const Startup = () => {
         ></motion.div>
         <motion.div
           initial={{ opacity: 0, scale: 0, x: 0, y: 0 }}
-          animate={{ opacity: 1, scale: 1, rotate: -35, x: 16, y: 34 }}
+          animate={{ opacity: 1, scale: 1.05, rotate: -35, x: 18, y: 34 }}
           transition={{
             opacity: { delay: 2, duration: 0 },
             scale: { duration: 2.5 },
@@ -93,7 +93,7 @@ const Startup = () => {
         ></motion.div>
         <motion.div
           initial={{ opacity: 0, scale: 0, x: 0, y: 0 }}
-          animate={{ opacity: 1, scale: 1, rotate: 35, x: -16, y: 34 }}
+          animate={{ opacity: 1, scale: 1.05, rotate: 35, x: -18, y: 34 }}
           transition={{
             opacity: { delay: 2, duration: 0 },
             scale: { duration: 2.5 },
