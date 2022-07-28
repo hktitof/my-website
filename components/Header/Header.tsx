@@ -3,6 +3,7 @@ import Logo from "./Headercomp/Logo";
 import DesktopMenu from "./Headercomp/DesktopMenu";
 import IconMenu from "./Headercomp/IconMenu";
 import MobileMenu from "./Headercomp/MobileMenu";
+import {motion} from "../../node_modules/framer-motion/dist/framer-motion";
 const addClass = (ref: any, myclass: string) => {
   ref.current?.classLIst.add(myclass);
 };
@@ -49,12 +50,15 @@ const Header = () => {
   return (
     <>
       {/* Mobile visible Navbar */}
-      <MobileMenu rotate={rotate} setRotate={setRotate}/>
+      <MobileMenu rotate={rotate} setRotate={setRotate} setShowElement={setShowElement} ShowElement={ShowElement}/>
       {/* This parent element for Menu */}
       <div
-        ref={RefNavBar}
-        className="w-full fixed bg-opacity-75  flex 
-      justify-between px-6 sm:px-12 py-4 drop-shadow-lg transition duration-4000 translate-y-0"
+        // ref={RefNavBar}
+        // initial={{opacity:0}}
+        // animate={{opacity:1}}
+        // transition={{opacity:{delay:4.7,duration:0}}}
+        className={`w-full fixed ${ShowElement?`bg-opacity-0`:`bg-opacity-70`} bg-AAprimary flex 
+      justify-between px-6 sm:px-12 py-2 sm:py-4 drop-shadow-lg transition duration-4000 translate-y-0`}
       >
         {/* Logo A */}
         <Logo/>
@@ -62,7 +66,7 @@ const Header = () => {
 
         {/* Hide icon Designed by me */}
         
-        {ShowElement?<IconMenu rotate={rotate} setRotate={setRotate}/>:<></>}
+        <IconMenu rotate={rotate} setRotate={setRotate} setShowElement={setShowElement} ShowElement={ShowElement}/>
        
         {/* ? Desktop Menu by Titof */}
         <DesktopMenu     />

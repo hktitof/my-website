@@ -10,7 +10,10 @@ const MobileMenu=(props)=>{
         className="w-full fixed h-screen flex md:hidden duration-300"
       >
         <div
-          onClick={() => props.setRotate(!props.rotate)}
+          onClick={() => {
+            props.setRotate(!props.rotate)
+            props.setShowElement(!props.ShowElement)
+          }}
           className="w-1/4 h-full backdrop-blur-sm bg-MobileNavColor/30 hover:cursor-pointer"
         ></div>
         <div className="w-3/4 h-full bg-MobileNavBarColor flex flex-col 

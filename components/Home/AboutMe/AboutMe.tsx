@@ -40,7 +40,7 @@ export default function AboutMe() {
 
           <div className="w-full flex flex-col md:flex-row space-y-8 md:space-y-0 md:space-x-8 sm:space-x-2">
             <div className="w-full md:w-7/12 space-y-4">
-              <div className="font-Header tracking-wider">
+              <div className="font-Header tracking-widest">
                 <span className="text-gray-400  ">
                   Hello! My name is Abdellatif and I enjoy solving problems and
                   creating codes that live on the internet. My interest in
@@ -52,27 +52,27 @@ export default function AboutMe() {
                   from that time!
                 </span>
               </div>
-              <div className="font-Header tracking-wider">
+              <div className="font-Header tracking-widest">
                 <span className="text-gray-400  ">
-                  Fast-forward to today, and I&apos;ve had the privilege of
+                  Fast-forward to today, I&apos;ve had the privilege of
                   working at
-                  <br />a start-up, a corporation, and a Google Developer
+                  <br /><span className="text-AAsecondary">a start-up</span>, a corporation, and a Google Developer
                   Student clubs Lead. My main focus these days is creating and
                   developing Smart Contracts. that time!
                 </span>
               </div>
-              <div className="font-Header tracking-wider">
-                <span className="text-gray-400  ">
+              <div className="font-Header tracking-widest">
+                <span className="text-gray-400 ">
                   I also recently Developed these Four projects that you&apos;ll
                   find below using Node & Next js.
                 </span>
               </div>
-              <div className="font-Header tracking-wide">
+              <div className="font-Header tracking-widest">
                 <span className="text-gray-400  ">
                   Here are a few technologies I’ve been working with recently:
                 </span>
               </div>
-              <div className="font-Header tracking-wide flex flex-row space-x-16">
+              <div className="font-Header tracking-widest flex flex-row space-x-16">
                 <div className="flex flex-row space-x-2 items-center">
                   <div className="flex flex-col space-y-4">
                     <div className="flex flex-row items-center space-x-2">
@@ -120,7 +120,7 @@ export default function AboutMe() {
               ></div>
 
               <div className="absolute w-5/6 h-5/6  rounded overflow-hidden">
-                <div className="absolute w-full h-full group-hover:opacity-0 bg-AAsecondary opacity-60 duration-300 rounded overflow-hidden"></div>
+                <div className="absolute w-full h-full group-hover:opacity-0 bg-AAsecondary opacity-40 duration-300 rounded overflow-hidden"></div>
                 {/* <div className="bg-scroll bg-[url('/img/titof.jpg')] h-full w-full fill"></div> */}
                 <img
                   className="object-contain rounded-lg"

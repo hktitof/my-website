@@ -11,7 +11,7 @@ export default function SocialMediaEmail() {
         className="fixed bottom-0 left-0 right-0 hidden md:flex flex-row px-12 items-center justify-between  "
       >
         <div className="flex flex-col space-y-8 justify-center items-center">
-          <div className="flex flex-col justify-center items-center space-y-4">
+          <div className="flex flex-col justify-center items-center space-y-5">
             <motion.div className="">
               <a href="" className="" target={"_blank"} rel="noreferrer"></a>
             </motion.div>
@@ -129,7 +129,7 @@ export default function SocialMediaEmail() {
         transition={{ y: { delay: 7.1, duration: 0.5 } }}
         className="fixed bottom-0 right-0 hidden md:flex flex-row px-12items-center justify-between"
       >
-        <div className="flex flex-col space-y-20 justify-center items-center">
+        <div className="flex flex-col space-y-24 justify-center items-center">
           {/* Open Email on click */}
           <motion.div
             initial={{ rotate: 90 }}
