@@ -113,8 +113,13 @@ export default function AboutMe() {
             </div>
             <div className="relative lg:w-96 lg:h-96 md:w-72 md:h-72 md:block hidden ">
               <div className="absolute w-5/6 h-5/6 border-2 border-AAsecondary translate-x-5 translate-y-5 rounded"></div>
-              <div className="absolute w-5/6 h-5/6  rounded ">
-                <div className="h-full w-full bg-white"></div>
+              <div className="absolute w-5/6 h-5/6  rounded overflow-hidden">
+                {/* <div className="bg-scroll bg-[url('/img/titof.jpg')] h-full w-full fill"></div> */}
+                <img
+                  className="object-contain rounded-lg"
+                  src={"/img/titof.jpg"}
+                  alt="My Image Not Found"
+                />
               </div>
             </div>
             {/* <div className="relative w-full h-60 md:hidden bg-white flex justify-center items-center">
