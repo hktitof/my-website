@@ -1,5 +1,5 @@
 import React from "react";
-import {motion} from "../../../node_modules/framer-motion/dist/framer-motion";
+import { motion } from "../../../node_modules/framer-motion/dist/framer-motion";
 const ArrowIcon = () => {
   return (
     <svg
@@ -21,8 +21,10 @@ export default function AboutMe() {
     <>
       <div className="flex flex-col justify-center items-center py-24 ">
         {/* 0.1 About Me */}
-        <div className="flex flex-col space-y-8 px-9 sm:px-0 w-full sm:w-[500px] 
-        md:w-[700px] lg:w-[900px] bg-gray-800">
+        <div
+          className="flex flex-col space-y-8 px-9 sm:px-0 w-full sm:w-[500px] 
+        md:w-[700px] lg:w-[900px] bg-gray-800"
+        >
           <div className="flex items-center space-x-4 ">
             <div className="flex flex-row space-x-4 items-end ">
               <span className="text-AAsecondary font-mono text-xl">
@@ -36,7 +38,7 @@ export default function AboutMe() {
           </div>
           {/* Paragraphs */}
 
-          <div className="w-full flex flex-col md:flex-row space-y-8">
+          <div className="w-full flex flex-col md:flex-row space-y-8 md:space-y-0">
             <div className="w-full md:w-7/12 space-y-4">
               <div className="font-Header tracking-wide">
                 <span className="text-gray-400  ">
@@ -75,15 +77,11 @@ export default function AboutMe() {
                   <div className="flex flex-col space-y-4">
                     <div className="flex flex-row items-center space-x-2">
                       <ArrowIcon />
-                      <span className="text-gray-400 text-sm">
-                        Solidity
-                      </span>
+                      <span className="text-gray-400 text-sm">Solidity</span>
                     </div>
                     <div className="flex flex-row items-center space-x-2">
                       <ArrowIcon />
-                      <span className="text-gray-400 text-sm">
-                        Node
-                      </span>
+                      <span className="text-gray-400 text-sm">Node</span>
                     </div>
                     <div className="flex flex-row items-center space-x-2">
                       <ArrowIcon />
@@ -97,15 +95,11 @@ export default function AboutMe() {
                   <div className="flex flex-col space-y-4">
                     <div className="flex flex-row items-center space-x-2">
                       <ArrowIcon />
-                      <span className="text-gray-400 text-sm">
-                        TypeScript
-                      </span>
+                      <span className="text-gray-400 text-sm">TypeScript</span>
                     </div>
                     <div className="flex flex-row items-center space-x-2">
                       <ArrowIcon />
-                      <span className="text-gray-400 text-sm">
-                        Next js
-                      </span>
+                      <span className="text-gray-400 text-sm">Next js</span>
                     </div>
                     <div className="flex flex-row items-center space-x-2">
                       <ArrowIcon />
@@ -117,12 +111,16 @@ export default function AboutMe() {
                 </div>
               </div>
             </div>
-            <div className="lg:w-96 lg:h-96 md:w-72 md:h-72 md:block hidden bg-white">
-
+            <div className="relative lg:w-96 lg:h-96 md:w-72 md:h-72 md:block hidden ">
+              <div className="absolute w-5/6 h-5/6 border-2 border-AAsecondary translate-x-5 translate-y-5 rounded"></div>
+              <div className="absolute w-5/6 h-5/6  rounded ">
+                <div className="h-full w-full bg-white"></div>
+              </div>
             </div>
-            <div className="w-full h-60 md:hidden bg-white flex justify-center items-center">
-              <div className="w-64 h-full bg-red-300"></div>
-            </div>
+            {/* <div className="relative w-full h-60 md:hidden bg-white flex justify-center items-center">
+              <div className="absolute w-64 h-full bg-blue-300 translate-x-4 translate-y-4 border-2 border-x-AAsecondary rounded"></div>
+              <div className="absolute w-64 h-full bg-red-300 rounded"></div>
+            </div> */}
             {/* <div className="w-5/12">
               <div className="relative w-full border border-red-200 h-2/3">
                 <div className="relative bg-white w-10/12 h-full">
@@ -131,9 +129,7 @@ export default function AboutMe() {
                 </div>
               </div>
             </div> */}
-
           </div>
-          
         </div>
       </div>
     </>
