@@ -20,21 +20,80 @@ export default function ThisCantBeReached() {
 
           {/* Left Eye */}
 
-          <div className="absolute left-2 top-3 h-1.5 w-[3.5px] bg-gray-600"></div>
+          <motion.div
+            
+            animate={{
+              scaleY: [
+                "100%",
+                "0%",
+                "100%",
+                "0%",
+                "100%",
+                "0%",
+                "100%",
+                "0%",
+                "100%"
+              ],
+            }}
+            transition={{ scaleY:{delay: 2.5, duration: 1.5} }}
+            className="absolute left-2 top-3 h-1.5 w-[3.5px] bg-gray-600"
+          ></motion.div>
 
           {/* Right Eye */}
-          {/* <div className="absolute right-2 top-3 h-1.5 w-[3.5px] bg-gray-600"></div> */}
+          <motion.div
+            initial={{ opacity: 0, scaleY: "100%" }}
+            animate={{
+              opacity: 1,
+              scaleY: [
+                "100%",
+                "0%",
+                "100%",
+                "0%",
+                "100%",
+                "0%",
+                "100%",
+                "0%",
+                "100%"
+              ],
+            }}
+            transition={{
+              opacity: { delay: 2.5, duration: 0 },
+              scaleY: { delay: 2.5, duration: 1.5 },
+            }}
+            className="absolute right-2 top-3 h-1.5 w-[3.5px] bg-gray-600"
+          ></motion.div>
 
           {/* Corner */}
 
-          <div
-          className="absolute right-4 top-0 h-[18px] w-1 bg-gray-600"></div>
-          <div className="absolute right-0 top-[14px] h-1 w-4 bg-gray-600"></div>
-          <div className="absolute right-3 top-0 h-1 w-1 bg-gray-600"></div>
-          <div className="absolute right-0 top-[10px] h-1 w-1 bg-gray-600"></div>
-          <div className="absolute right-1 top-[7px] h-[4px] w-[4px] bg-gray-600"></div>
-          <div className="absolute right-2 top-[4px] h-[4px] w-[4px] bg-gray-600"></div>
-          
+          <motion.div
+            animate={{ rotate: -90, x: 9, y: -7 }}
+            transition={{
+              rotate: { delay: 2, duration: 0.5 },
+              x: { delay: 2, duration: 0.5 },
+              y: { delay: 2, duration: 0.5 },
+            }}
+            className="absolute right-4 top-0 h-[18px] w-1 bg-gray-600"
+          ></motion.div>
+          <motion.div
+            animate={{ rotate: 90, x: 6, y: -7 }}
+            transition={{
+              rotate: { delay: 2, duration: 0.5 },
+              x: { delay: 2, duration: 0.5 },
+              y: { delay: 2, duration: 0.5 },
+            }}
+            className="absolute right-0 top-[14px] h-1 w-4 bg-gray-600"
+          ></motion.div>
+          <motion.div
+            initial={{ opacity: "100%" }}
+            animate={{ opacity: "0%" }}
+            transition={{ opacity: { delay: 2, duration: 0 } }}
+            className=""
+          >
+            <div className="absolute right-3 top-0 h-1 w-1 bg-gray-600"></div>
+            <div className="absolute right-0 top-[10px] h-1 w-1 bg-gray-600"></div>
+            <div className="absolute right-1 top-[7px] h-[4px] w-[4px] bg-gray-600"></div>
+            <div className="absolute right-2 top-[4px] h-[4px] w-[4px] bg-gray-600"></div>
+          </motion.div>
 
           {/* Smile */}
 
@@ -75,11 +134,10 @@ export default function ThisCantBeReached() {
         </div>
       </div>
       <div className="">
-      <button className="px-4 py-2 bg-blue-500 rounded text-white sm:text-base text-sm">
-        Reload
-      </button>
+        <button className="px-4 py-2 bg-blue-500 rounded text-white sm:text-base text-sm">
+          Reload
+        </button>
       </div>
-      
     </div>
   );
 }
