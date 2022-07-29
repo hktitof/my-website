@@ -52,13 +52,13 @@ const Header = () => {
       {/* Mobile visible Navbar */}
       <MobileMenu rotate={rotate} setRotate={setRotate} setShowElement={setShowElement} ShowElement={ShowElement}/>
       {/* This parent element for Menu */}
-      <div
-        // ref={RefNavBar}
-        // initial={{opacity:0}}
-        // animate={{opacity:1}}
-        // transition={{opacity:{delay:4.7,duration:0}}}
-        className={`w-full fixed ${ShowElement?`bg-opacity-0`:`bg-opacity-70`} bg-AAprimary flex 
-      justify-between px-6 sm:px-12 py-2 sm:py-4 drop-shadow-lg transition duration-4000 translate-y-0`}
+      <motion.div
+        ref={RefNavBar}
+        initial={{opacity:0}}
+        animate={{opacity:1}}
+        transition={{opacity:{delay:4.7,duration:0}}}
+        className={`w-full fixed ${ShowElement?`bg-opacity-70`:`bg-opacity-0`} bg-AAprimary flex 
+      justify-between px-6 sm:px-12 py-2 sm:py-4 shadow-xl transition duration-4000 translate-y-0`}
       >
         {/* Logo A */}
         <Logo/>
@@ -70,7 +70,7 @@ const Header = () => {
        
         {/* ? Desktop Menu by Titof */}
         <DesktopMenu     />
-      </div>
+      </motion.div>
     </>
   );
 };

@@ -4,7 +4,7 @@ const ArrowIcon = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      className="h-3 w-3 text-AAsecondary"
+      className="h-3 w-3 text-AAsecondary "
       viewBox="0 0 20 20"
       fill="currentColor"
     >
@@ -27,7 +27,7 @@ export default function AboutMe() {
         >
           <div className="flex items-center space-x-4 ">
             <div className="flex flex-row space-x-4 items-end ">
-              <span className="text-AAsecondary font-mono text-lg sm:text-xl">
+              <span className="text-AAsecondary font-mono text-md sm:text-xl">
                 &gt; 0.1
               </span>
               <span className="text-gray-300 font-mono text-xl sm:text-2xl">
@@ -39,7 +39,7 @@ export default function AboutMe() {
           {/* Paragraphs */}
 
           <div className="w-full flex flex-col md:flex-row space-y-8 md:space-y-0 md:space-x-8 sm:space-x-2">
-            <div className="w-full md:w-7/12 space-y-4">
+            <div className="w-full md:w-7/12 space-y-4 sm:text-base text-sm ">
               <div className="font-Header tracking-widest">
                 <span className="text-gray-400  ">
                   Hello! My name is Abdellatif and I enjoy solving problems and
@@ -52,7 +52,7 @@ export default function AboutMe() {
                   from that time!
                 </span>
               </div>
-              <div className="font-Header tracking-widest">
+              <div className="">
                 <span className="text-gray-400  ">
                   Fast-forward to today, I&apos;ve had the privilege of
                   working at
@@ -74,36 +74,36 @@ export default function AboutMe() {
               </div>
               <div className="font-Header tracking-widest flex flex-row space-x-16">
                 <div className="flex flex-row space-x-2 items-center">
-                  <div className="flex flex-col space-y-4">
+                  <div className="flex flex-col space-y-4 sm:text-base text-sm">
                     <div className="flex flex-row items-center space-x-2">
                       <ArrowIcon />
-                      <span className="text-gray-400 text-sm">Solidity</span>
+                      <span className="text-gray-400 ">Solidity</span>
                     </div>
                     <div className="flex flex-row items-center space-x-2">
                       <ArrowIcon />
-                      <span className="text-gray-400 text-sm">Node</span>
+                      <span className="text-gray-400 ">Node</span>
                     </div>
                     <div className="flex flex-row items-center space-x-2">
                       <ArrowIcon />
-                      <span className="text-gray-400 text-sm">
+                      <span className="text-gray-400 ">
                         JavaScript (ES6+)
                       </span>
                     </div>
                   </div>
                 </div>
                 <div className="flex flex-row space-x-2 items-center">
-                  <div className="flex flex-col space-y-4">
+                  <div className="flex flex-col space-y-4 sm:text-base text-sm">
                     <div className="flex flex-row items-center space-x-2">
                       <ArrowIcon />
-                      <span className="text-gray-400 text-sm">TypeScript</span>
+                      <span className="text-gray-400 ">TypeScript</span>
                     </div>
                     <div className="flex flex-row items-center space-x-2">
                       <ArrowIcon />
-                      <span className="text-gray-400 text-sm">Next js</span>
+                      <span className="text-gray-400 ">Next js</span>
                     </div>
                     <div className="flex flex-row items-center space-x-2">
                       <ArrowIcon />
-                      <span className="text-gray-400 text-sm">
+                      <span className="text-gray-400 ">
                         Tailwind CSS
                       </span>
                     </div>
