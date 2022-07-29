@@ -1,6 +1,10 @@
 import React from "react";
 import { motion } from "../../../node_modules/framer-motion/dist/framer-motion";
 export default function ThisCantBeReached() {
+    const [ShowText,setShowText]=React.useState(false);
+    React.useEffect(()=>{
+        setTimeout( function() { setShowText(true) }, 1000);
+    },[])
   return (
     <div
       className="absolute h-screen w-full bg-white 
@@ -21,7 +25,6 @@ export default function ThisCantBeReached() {
           {/* Left Eye */}
 
           <motion.div
-            
             animate={{
               scaleY: [
                 "100%",
@@ -32,10 +35,16 @@ export default function ThisCantBeReached() {
                 "0%",
                 "100%",
                 "0%",
-                "100%"
+                "100%",
+                "0%",
+                "100%",
+                "0%",
+                "100%",
+                "0%",
+                "100%",
               ],
             }}
-            transition={{ scaleY:{delay: 2.5, duration: 1.5} }}
+            transition={{ scaleY: { delay: 2.5, duration: 1.5 } }}
             className="absolute left-2 top-3 h-1.5 w-[3.5px] bg-gray-600"
           ></motion.div>
 
@@ -53,7 +62,13 @@ export default function ThisCantBeReached() {
                 "0%",
                 "100%",
                 "0%",
-                "100%"
+                "100%",
+                "0%",
+                "100%",
+                "0%",
+                "100%",
+                "0%",
+                "100%",
               ],
             }}
             transition={{
@@ -98,8 +113,16 @@ export default function ThisCantBeReached() {
           {/* Smile */}
 
           <div className="absolute left-3 bottom-[10px] w-3 h-[3px] bg-gray-600"></div>
-          <div className="absolute left-[9px] bottom-[7px] w-[3px] h-[3px] bg-gray-600"></div>
-          <div className="absolute right-[9px] bottom-[7px] w-[3px] h-[3px] bg-gray-600"></div>
+          <motion.div
+            animate={{ y: [0, -5, 0, -5, 0, -5, 0, -5, 0, -5, 0, -5] }}
+            transition={{ y: { delay: 4, duration: 1 } }}
+            className="absolute left-[9px] bottom-[7px] w-[3px] h-[3px] bg-gray-600"
+          ></motion.div>
+          <motion.div
+            animate={{ y: [0, -5, 0, -5, 0, -5, 0, -5, 0, -5, 0, -5] }}
+            transition={{ y: { delay: 4, duration: 1 } }}
+            className="absolute right-[9px] bottom-[7px] w-[3px] h-[3px] bg-gray-600"
+          ></motion.div>
           {/* <div className="absolute right-6 bottom-6 w-2 h-2 bg-gray-600"></div> */}
         </div>
 
@@ -107,7 +130,11 @@ export default function ThisCantBeReached() {
 
         <div className="w-full  flex flex-col space-y-8">
           <span className="text-gray-600 font-Header text-2xl">
-            This site can&apos;t be reached
+            This site {ShowText?<motion.span
+            animate={{scale:["100%","120%"]}}
+            transition={{scale:{delay:4,duration:0.5}}}
+            className=""
+            >actually can</motion.span>:<span>can&apos;t</span>} be reached
           </span>
           <span className="text-gray-500 text-md">
             <span className="font-bold">www.anaflous.com </span>
