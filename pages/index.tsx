@@ -4,6 +4,7 @@ import MyName from "../components/Home/MyName/MyName";
 import { useEffect, useState } from "react";
 import SocialMediaEmail from "../components/Home/SocialMediaArround/SocialMediaEmail";
 import AboutMe from "../components/Home/AboutMe/AboutMe";
+import ThisCantBeReached from "../components/Home/ThisSiteCantBeReached/ThisCantBeReached";
 export default function Home() {
   const [ShowElement,setShowElement] = useState(true);
   useEffect(()=>{
@@ -13,11 +14,12 @@ export default function Home() {
   },[])
   return (
     <div className="relative h-screen bg-AAprimary w-full ">
-      {ShowElement ? <Startup/>:<></>}
+      <ThisCantBeReached/>
+      {/* {ShowElement ? <Startup/>:<></>}
       <Header />
       <MyName />
       <SocialMediaEmail />
-      <AboutMe />
+      <AboutMe /> */}
     </div>
   );
 }
