@@ -172,7 +172,7 @@ export default function ThisCantBeReached() {
                 transition={{ scale: { delay: 4, duration: 0.5 } }}
                 className="font-bold"
               >
-                can
+                actually can
               </motion.span>
             ) : (
               <span>can&apos;t</span>
