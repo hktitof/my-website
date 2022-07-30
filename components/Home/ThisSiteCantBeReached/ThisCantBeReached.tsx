@@ -38,9 +38,10 @@ export default function ThisCantBeReached() {
       flex flex-col space-y-5 sm:space-y-10
       "
     >
-      <div className="relative w-full  flex flex-col space-y-12">
+      <div className="relative w-full  flex flex-col space-y-4">
         {/* Put here you This site can't be reached content */}
         {/* Icon for Desktop and Table */}
+        
         <motion.div 
         animate={{y:CenterHeight,x:CenterWidth,scale:2}}
         transition={{delay:4,duration:1}}
@@ -155,6 +156,15 @@ export default function ThisCantBeReached() {
           ></motion.div>
           {/* <div className="absolute right-6 bottom-6 w-2 h-2 bg-gray-600"></div> */}
         </motion.div>
+
+        {/* //* ! BUG need to find solution why it is showing a line in Mobile version */}
+        {/* <motion.div 
+        initial={{y:CenterHeight+10-6,x:CenterWidth-26,opacity:0}}
+        animate={{y:CenterHeight+10+6,opacity:1}}
+        transition={{y:{delay:5.2,duration:1},opacity:{delay:5.2,duration:1}}}
+        className=" text-black">
+          <span className="absolute font-bold text-gray-600 text-2xl">I&apos;m alive</span>
+        </motion.div> */}
 
         {/* Text start from here */}
 
