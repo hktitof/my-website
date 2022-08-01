@@ -10,8 +10,8 @@ export default function MyName() {
           initial={{ y: 10, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{
-            opacity: { delay: 6.5, duration: 0.2 },
-            y: { delay: 6.5, duration: 0.2 },
+            opacity: { delay: 10.4, duration: 0.2 },
+            y: { delay: 10.4, duration: 0.2 },
           }}
           className="text-AAsecondary font-mono"
         >
@@ -21,8 +21,8 @@ export default function MyName() {
           initial={{ y: 10, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{
-            opacity: { delay: 6.6, duration: 0.2 },
-            y: { delay: 6.6, duration: 0.2 },
+            opacity: { delay: 10.5, duration: 0.2 },
+            y: { delay: 10.5, duration: 0.2 },
           }}
           className="text-gray-300 font-bold text-3xl lg:text-7xl sm:text-5xl md:text-6xl mt-4"
         >
@@ -32,8 +32,8 @@ export default function MyName() {
           initial={{ y: 10, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{
-            opacity: { delay: 6.7, duration: 0.2 },
-            y: { delay: 6.7, duration: 0.2 },
+            opacity: { delay: 10.6, duration: 0.2 },
+            y: { delay: 10.6, duration: 0.2 },
           }}
           className="text-gray-400 font-bold text-3xl lg:text-7xl sm:text-5xl md:text-6xl mt-4"
         >
@@ -44,8 +44,8 @@ export default function MyName() {
           initial={{ y: 10, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{
-            opacity: { delay: 6.8, duration: 0.2 },
-            y: { delay: 6.8, duration: 0.2 },
+            opacity: { delay: 10.7, duration: 0.2 },
+            y: { delay: 10.7, duration: 0.2 },
           }}
           className="text-gray-400 font-Header text-sm md:text-lg sm:text-md mt-10 tracking-wider"
         >
@@ -62,8 +62,8 @@ export default function MyName() {
           initial={{ y: 10, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{
-            opacity: { delay: 6.9, duration: 0.2 },
-            y: { delay: 6.9, duration: 0.2 },
+            opacity: { delay: 10.8, duration: 0.2 },
+            y: { delay: 10.8, duration: 0.2 },
           }}
           className="mt-12"
         >

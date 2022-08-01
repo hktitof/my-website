@@ -1,9 +1,9 @@
-import React, { useRef, useState ,useEffect} from "react";
+import React, { useRef, useState, useEffect } from "react";
 import Logo from "./Headercomp/Logo";
 import DesktopMenu from "./Headercomp/DesktopMenu";
 import IconMenu from "./Headercomp/IconMenu";
 import MobileMenu from "./Headercomp/MobileMenu";
-import {motion} from "../../node_modules/framer-motion/dist/framer-motion";
+import { motion } from "../../node_modules/framer-motion/dist/framer-motion";
 const addClass = (ref: any, myclass: string) => {
   ref.current?.classLIst.add(myclass);
 };
@@ -11,10 +11,10 @@ const Header = () => {
   const RefNavBar = useRef<HTMLDivElement>(null);
   const [ShowElement, setShowElement] = useState(false);
   useEffect(() => {
-    setTimeout(()=>{
+    setTimeout(() => {
       setShowElement(true);
-    },4900);
-  },[]);
+    }, 10400);
+  }, []);
   let scrollSizeY = 0;
   //Hide when scroll down & show when scroll up
   if (typeof window !== "undefined") {
@@ -49,32 +49,41 @@ const Header = () => {
 
   return (
     <>
-      {/* Mobile visible Navbar */}
-      <MobileMenu rotate={rotate} setRotate={setRotate} setShowElement={setShowElement} ShowElement={ShowElement}/>
+      {/* Mobile visible Navbar component, controlling ShowElement state to hide itself and rotate itself */}
+      <MobileMenu
+        rotate={rotate}
+        setRotate={setRotate}
+        setShowElement={setShowElement}
+        ShowElement={ShowElement}
+      />
       {/* This parent element for Menu */}
       <motion.div
         ref={RefNavBar}
-        initial={{opacity:0}}
-        animate={{opacity:1}}
-        transition={{opacity:{delay:4.7,duration:0}}}
-        className={`w-full fixed ${ShowElement?`bg-opacity-70`:`bg-opacity-0`} bg-AAprimary flex 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        // changed from 10.4 to 1
+        transition={{ opacity: { delay: 9.4, duration: 0 } }}
+        className={`w-full fixed ${
+          ShowElement ? `bg-opacity-70` : `bg-opacity-0`
+        } bg-AAprimary flex 
       justify-between px-6 sm:px-12 py-2 sm:py-4 shadow-xl transition duration-4000 translate-y-0`}
       >
         {/* Logo A */}
-        <Logo/>
-        
+        <Logo />
 
         {/* Hide icon Designed by me */}
-        
-        <IconMenu rotate={rotate} setRotate={setRotate} setShowElement={setShowElement} ShowElement={ShowElement}/>
-       
+
+        <IconMenu
+          rotate={rotate}
+          setRotate={setRotate}
+          setShowElement={setShowElement}
+          ShowElement={ShowElement}
+        />
+
         {/* ? Desktop Menu by Titof */}
-        <DesktopMenu     />
+        <DesktopMenu />
       </motion.div>
     </>
   );
 };
 export default Header;
-
-    
-  

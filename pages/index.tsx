@@ -6,19 +6,22 @@ import SocialMediaEmail from "../components/Home/SocialMediaArround/SocialMediaE
 import AboutMe from "../components/Home/AboutMe/AboutMe";
 import ThisCantBeReached from "../components/Home/ThisSiteCantBeReached/ThisCantBeReached";
 export default function Home() {
-  const [ShowElement,setShowElement] = useState(true);
+  const [ShowElement,setShowElement] = useState(false);
   useEffect(()=>{
     setTimeout(()=>{
+      setShowElement(true);
+    },4500);
+    setTimeout(()=>{
       setShowElement(false);
-    },4900);
+    },10400);
   },[])
   return (
     <div className="relative h-screen bg-AAprimary w-full ">
       <ThisCantBeReached/>
-      {/* {ShowElement ? <Startup/>:<></>}
+      {ShowElement ? <Startup/>:<></>}
       <Header />
       <MyName />
-      <SocialMediaEmail />
+      {/* <SocialMediaEmail />
       <AboutMe /> */}
     </div>
   );
