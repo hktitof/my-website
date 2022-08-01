@@ -154,18 +154,18 @@ export default function ThisCantBeReached() {
             transition={{ y: { delay: 5, duration: 1 } }}
             className="absolute right-[9px] bottom-[7px] w-[3px] h-[3px] bg-gray-600"
           ></motion.div>
-          {/* <div className="absolute right-6 bottom-6 w-2 h-2 bg-gray-600"></div> */}
+        {/* ! Hello animation text */}
         </motion.div>
+            <motion.span
+            initial={{y:CenterHeight+50-20,x:CenterWidth-13,opacity:0}}
+            animate={{y:CenterHeight+50,opacity:1}}
+            transition={{delay:5.5,duration:0.3}}
+            className="absolute font-bold text-gray-600 text-2xl">
+              Hello!
+            </motion.span>
 
-        {/* //* ! BUG need to find solution why it is showing a line in Mobile version */}
-        {/* <motion.div 
-        initial={{y:CenterHeight+10-6,x:CenterWidth-26,opacity:0}}
-        animate={{y:CenterHeight+10+6,opacity:1}}
-        transition={{y:{delay:5.2,duration:1},opacity:{delay:5.2,duration:1}}}
-        className=" text-black">
-          <span className="absolute font-bold text-gray-600 text-2xl">I&apos;m alive</span>
-        </motion.div> */}
-
+        
+        
         {/* Text start from here */}
 
         <motion.div
