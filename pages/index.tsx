@@ -8,6 +8,7 @@ import ThisCantBeReached from "../components/Home/ThisSiteCantBeReached/ThisCant
 export default function Home() {
   const [ShowElement,setShowElement] = useState(false);
   const [ShowThisCantBeReached,setShowThisCantBeReached] = useState(true);
+  const [ShowAboutMe,setShowAboutMe] = useState(false);
 
   useEffect(()=>{
     setTimeout(()=>{
@@ -19,6 +20,9 @@ export default function Home() {
     setTimeout(()=>{
       setShowThisCantBeReached(false);
     },5400);
+    setTimeout(()=>{
+      setShowAboutMe(true);
+    },5400);
   },[])
   return (
     <div className="relative h-screen bg-AAprimary w-full ">
@@ -27,7 +31,7 @@ export default function Home() {
       <Header />
       <MyName />
       <SocialMediaEmail />
-      {/* <AboutMe /> */}
+      {ShowAboutMe?<AboutMe />:<></>}
     </div>
   );
 }
