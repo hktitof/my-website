@@ -1,22 +1,33 @@
 import React from "react";
 import ArrowIcon from "../../Icons/ArrowIcon";
+import GoogleDesc from "./Descriptions/GoogleDesc";
+import FacebookDesc from "./Descriptions/FacebookDesc";
 export default function WhatIHaveWorked() {
   const barRef = React.useRef<HTMLDivElement>(null);
-  // ? INFORMATIONAL control the green position using px, 
+  // ? INFORMATIONAL control the green position using px,
   // ? INFORMATIONAL the default value of barRef's class should be at the beginning translate-y-[0px]
   const barPositions: string[] = [
     "translate-y-[0px]",
     "translate-y-[34px]",
     "translate-y-[69px]",
-    "translate-y-[105px]"
+    "translate-y-[105px]",
   ];
-  let barCurrentPosition:string = barPositions[0];
+  let barCurrentPosition: string = barPositions[0];
   // ! FIXME: Bar animation needs to be fixed when clicking multiple times to change the position
   const barTranslateY = (position: number) => {
     barRef.current?.classList.remove(barCurrentPosition.toString());
     barRef.current?.classList.add(barPositions[position].toString());
     barCurrentPosition = barPositions[position];
   };
+  const GetDescription = () => {
+    switch (DescriptionJob) {
+      case "Google":
+        return <GoogleDesc />;
+      case "Facebook":
+        return <FacebookDesc />;
+    }
+  };
+  const [DescriptionJob, setDescriptionJob] = React.useState("Google");
   return (
     <div className="flex flex-col items-center justify-center py-24 space-y-12">
       {/* Title "Where I've Worked" */}
@@ -39,10 +50,14 @@ export default function WhatIHaveWorked() {
             transition translate-y-0 duration-300`}
             ></div>
           </div>
+          {/* // ! FIXME transition is off when changing the state */}
           {/* Companies name as buttons */}
           <div className="flex flex-col">
             <button
-              onClick={() => barTranslateY(0)}
+              onClick={() => {
+                barTranslateY(0);
+                setDescriptionJob("Google");
+              }}
               className="text-sm text-left hover:text-AAsecondary
              hover:bg-ResumeButtonHover rounded text-gray-400 font-mono  
              py-2 pl-6 px-4 w-32"
@@ -50,7 +65,10 @@ export default function WhatIHaveWorked() {
               Google
             </button>
             <button
-              onClick={() => barTranslateY(1)}
+              onClick={() => {
+                barTranslateY(1);
+                setDescriptionJob("Facebook");
+              }}
               className="text-sm text-left hover:text-AAsecondary
              hover:bg-ResumeButtonHover rounded text-gray-400 font-mono
               py-2 pl-6 px-4 w-32"
@@ -73,30 +91,10 @@ export default function WhatIHaveWorked() {
             >
               Discord
             </button>
-            
           </div>
         </div>
         {/* Description for The job */}
-        <div className="flex flex-col space-y-5 max-w-xl">
-          <div className="flex flex-col spacey-y-2">
-            {/* Title */}
-          <span className="text-gray-100 text-lg font-mono">Studio Developer <span 
-          className="text-AAsecondary">@ Scout</span></span>
-          {/* Date */}
-          <span className="font-mono text-xs text-gray-500">January - June 2017</span>
-          </div>
-          
-          {/* Desctiption 1 */}
-          <div className="flex flex-row space-x-4">
-            <ArrowIcon className={" h-5 w-8 text-AAsecondary"} />
-            <span className="text-gray-500 text-sm">Collaborated with a small team of student designers to spearhead a new brand and design system for Scout’s inaugural student-led design conference at Northeastern</span>
-          </div>
-          {/* Desctiption 1 */}
-          <div className="flex flex-row space-x-4">
-            <ArrowIcon className={" h-5 w-8 text-AAsecondary"} />
-            <span className="text-gray-500 text-sm">Collaborated with a small team of student designers to spearhead a new brand and design system for Scout’s inaugural student-led design conference at Northeastern</span>
-          </div>
-        </div>
+        {GetDescription()}
       </section>
     </div>
   );
