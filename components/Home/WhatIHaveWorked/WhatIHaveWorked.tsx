@@ -54,7 +54,8 @@ const CompaniesBar = props => {
   const [barPosition, setBarPosition] = React.useState<Number>(0);
   return (
     <>
-      <div className="flex flex-col md:flex-row space-x-4 w-screen overflow-auto pb-8 md:pb-0">
+      <div className="flex flex-col md:flex-row space-x-4 w-screen md:w-auto 
+      overflow-auto md:overflow-hidden pb-4 md:pb-0 md:justify-center md:items-center">
         {/* left bar Holder */}
         <div className="hidden md:block relative h-0.5 w-34 md:h-34 md:w-0.5 bg-gray-500 rounded md:order-1 order-2 ">
           {/* animated left bar */}
@@ -66,8 +67,8 @@ const CompaniesBar = props => {
         </div>
         {/* // ! FIXME transition is off when changing the state */}
         {/* Companies name as buttons */}
-        <div className="flex flex-row md:flex-col md:order-2 order-1 ">
-          
+        <div className="flex flex-col md:order-2 order-1 space-y-2">
+          <div className="flex flex-row md:flex-col pl-0 md:pl-8 ">
           <button
             id="button-1"
             onClick={() => {
@@ -77,9 +78,9 @@ const CompaniesBar = props => {
               // console.log("current value after executing the function ")
               props.setDescriptionJob("Google");
             }}
-            className="flex-none text-sm text-left hover:text-AAsecondary
+            className="flex-none text-sm text-center md:text-left  hover:text-AAsecondary
              hover:bg-ResumeButtonHover rounded text-gray-400 font-mono  
-             w-32"
+             py-2 md:pl-6 md:px-4 md:w-44 w-32"
           >
             Google
           </button>
@@ -90,9 +91,9 @@ const CompaniesBar = props => {
               // barTranslateY(1);
               props.setDescriptionJob("Facebook");
             }}
-            className="flex-none text-sm text-left hover:text-AAsecondary
+            className="flex-none text-sm text-center md:text-left hover:text-AAsecondary
              hover:bg-ResumeButtonHover rounded text-gray-400 font-mono
-             w-32"
+             md:py-2 md:pl-6 md:px-4 md:w-44 w-32"
           >
             Facebook
           </button>
@@ -102,9 +103,9 @@ const CompaniesBar = props => {
               setBarPosition(69);
               // barTranslateY(2)
             }}
-            className="flex-none text-sm text-left hover:text-AAsecondary
+            className="flex-none text-sm text-center md:text-left hover:text-AAsecondary
              hover:bg-ResumeButtonHover rounded text-gray-400 font-mono
-             w-32"
+             md:py-2 md:pl-6 md:px-4 md:w-44 w-32"
           >
             Twitter
           </button>
@@ -114,12 +115,16 @@ const CompaniesBar = props => {
               setBarPosition(107);
               // barTranslateY(3)
             }}
-            className="flex-none text-sm text-left hover:text-AAsecondary
+            className="flex-none text-sm text-center md:text-left hover:text-AAsecondary
              hover:bg-ResumeButtonHover rounded text-gray-400 font-mono
-             w-32"
+             md:py-2 md:pl-6 md:px-4 md:w-44 w-32"
           >
             Discord
           </button>
+          </div>
+          <div className="block md:hidden w-[522px] h-0.5 rounded bg-gray-500">
+
+          </div>
         </div>
       </div>
     </>
