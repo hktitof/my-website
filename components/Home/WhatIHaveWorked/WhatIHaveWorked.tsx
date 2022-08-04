@@ -1,5 +1,5 @@
 import React from "react";
-import {motion} from "../../../node_modules/framer-motion/dist/framer-motion";
+import { motion } from "../../../node_modules/framer-motion/dist/framer-motion";
 import ArrowIcon from "../../Icons/ArrowIcon";
 import GoogleDesc from "./Descriptions/GoogleDesc";
 import FacebookDesc from "./Descriptions/FacebookDesc";
@@ -13,7 +13,7 @@ export default function WhatIHaveWorked() {
   //   "translate-y-[69px]",
   //   "translate-y-[105px]",
   // ];
-  const [barPosition, setBarPosition] = React.useState<Number>(0)
+  const [barPosition, setBarPosition] = React.useState<Number>(0);
   // let barCurrentPosition: string = barPositions[0];
   // ! FIXME: Bar animation needs to be fixed when clicking multiple times to change the position
   // const barTranslateY = (position: number) => {
@@ -40,9 +40,9 @@ export default function WhatIHaveWorked() {
         <div className="bg-gray-400 h-[0.2px] w-28 sm:w-80"></div>
       </section>
       {/* Where I've Worked Content */}
-      <section className="flex flex-row items-start justify-start">
+      <section className="flex flex-col md:flex-row space-y-4 md:space-y-0 items-start justify-start ">
         {/* Left side of Where I've Worked, contains the bar and name of companies */}
-        <CompaniesBar setDescriptionJob={setDescriptionJob}/>
+        <CompaniesBar setDescriptionJob={setDescriptionJob} />
         {/* Description for The job */}
         {GetDescription()}
       </section>
@@ -50,78 +50,78 @@ export default function WhatIHaveWorked() {
   );
 }
 
-const CompaniesBar=(props)=>{
-  const [barPosition, setBarPosition] = React.useState<Number>(0)
-  return(
+const CompaniesBar = props => {
+  const [barPosition, setBarPosition] = React.useState<Number>(0);
+  return (
     <>
-    <div className="hidden md:flex flex-row space-x-4">
-          {/* left bar Holder */}
-          <div className="relative h-34 w-0.5 bg-gray-500 rounded">
-            {/* animated left bar */}
-            <motion.div
-              animate={{y:barPosition}}
-              // ref={barRef}
-              className={`absolute w-0.5 h-10 rounded bg-AAsecondary`}
-            ></motion.div>
-          </div>
-          {/* // ! FIXME transition is off when changing the state */}
-          {/* Companies name as buttons */}
-          <div className="flex flex-col">
-            <button
-              id="button-1"
-              onClick={() => {
-                setBarPosition(0)
-                // barTranslateY(0);
-                // console.log("clicked on Google : ")
-                // console.log("current value after executing the function ")
-                props.setDescriptionJob("Google");
-              }}
-              className="text-sm text-left hover:text-AAsecondary
-             hover:bg-ResumeButtonHover rounded text-gray-400 font-mono  
-             py-2 pl-6 px-4 w-32"
-            >
-              Google
-            </button>
-            <button
-            id="button-2"
-              onClick={() => {
-                setBarPosition(34)
-                // barTranslateY(1);
-                props.setDescriptionJob("Facebook");
-              }}
-              className="text-sm text-left hover:text-AAsecondary
-             hover:bg-ResumeButtonHover rounded text-gray-400 font-mono
-              py-2 pl-6 px-4 w-32"
-            >
-              Facebook
-            </button>
-            <button
-            id="button-3"
-              onClick={() => {
-                setBarPosition(69)
-                // barTranslateY(2)
-              }
-            }
-              className="text-sm text-left hover:text-AAsecondary
-             hover:bg-ResumeButtonHover rounded text-gray-400 font-mono
-              py-2 pl-6 px-4 w-32"
-            >
-              Twitter
-            </button>
-            <button
-            id="button-4"
-              onClick={() => {
-                setBarPosition(107)
-                // barTranslateY(3)
-              }}
-              className="text-sm text-left hover:text-AAsecondary
-             hover:bg-ResumeButtonHover rounded text-gray-400 font-mono
-              py-2 pl-6 px-4 w-32"
-            >
-              Discord
-            </button>
-          </div>
+      <div className="flex flex-col md:flex-row space-x-4 w-screen overflow-auto pb-8 md:pb-0">
+        {/* left bar Holder */}
+        <div className="hidden md:block relative h-0.5 w-34 md:h-34 md:w-0.5 bg-gray-500 rounded md:order-1 order-2 ">
+          {/* animated left bar */}
+          <motion.div
+            animate={{ y: barPosition }}
+            // ref={barRef}
+            className={`absolute w-10 h-0.5 md:w-0.5 md:h-10 rounded bg-AAsecondary `}
+          ></motion.div>
         </div>
+        {/* // ! FIXME transition is off when changing the state */}
+        {/* Companies name as buttons */}
+        <div className="flex flex-row md:flex-col md:order-2 order-1 ">
+          
+          <button
+            id="button-1"
+            onClick={() => {
+              setBarPosition(0);
+              // barTranslateY(0);
+              // console.log("clicked on Google : ")
+              // console.log("current value after executing the function ")
+              props.setDescriptionJob("Google");
+            }}
+            className="flex-none text-sm text-left hover:text-AAsecondary
+             hover:bg-ResumeButtonHover rounded text-gray-400 font-mono  
+             w-32"
+          >
+            Google
+          </button>
+          <button
+            id="button-2"
+            onClick={() => {
+              setBarPosition(34);
+              // barTranslateY(1);
+              props.setDescriptionJob("Facebook");
+            }}
+            className="flex-none text-sm text-left hover:text-AAsecondary
+             hover:bg-ResumeButtonHover rounded text-gray-400 font-mono
+             w-32"
+          >
+            Facebook
+          </button>
+          <button
+            id="button-3"
+            onClick={() => {
+              setBarPosition(69);
+              // barTranslateY(2)
+            }}
+            className="flex-none text-sm text-left hover:text-AAsecondary
+             hover:bg-ResumeButtonHover rounded text-gray-400 font-mono
+             w-32"
+          >
+            Twitter
+          </button>
+          <button
+            id="button-4"
+            onClick={() => {
+              setBarPosition(107);
+              // barTranslateY(3)
+            }}
+            className="flex-none text-sm text-left hover:text-AAsecondary
+             hover:bg-ResumeButtonHover rounded text-gray-400 font-mono
+             w-32"
+          >
+            Discord
+          </button>
+        </div>
+      </div>
     </>
-  )
-}
+  );
+};
