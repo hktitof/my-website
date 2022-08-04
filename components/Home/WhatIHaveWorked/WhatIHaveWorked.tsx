@@ -15,8 +15,8 @@ export default function WhatIHaveWorked() {
   let barCurrentPosition: string = barPositions[0];
   // ! FIXME: Bar animation needs to be fixed when clicking multiple times to change the position
   const barTranslateY = (position: number) => {
-    barRef.current?.classList.remove(barCurrentPosition.toString());
-    barRef.current?.classList.add(barPositions[position].toString());
+    barRef.current?.classList.remove(barCurrentPosition);
+    barRef.current?.classList.add(barPositions[position]);
     barCurrentPosition = barPositions[position];
   };
   const GetDescription = () => {
@@ -47,16 +47,19 @@ export default function WhatIHaveWorked() {
             <div
               ref={barRef}
               className={`absolute w-0.5 h-10 rounded bg-AAsecondary
-            transition translate-y-0 duration-300`}
+            transition translate-y-[0px] duration-300`}
             ></div>
           </div>
           {/* // ! FIXME transition is off when changing the state */}
           {/* Companies name as buttons */}
           <div className="flex flex-col">
             <button
+              id="button-1"
               onClick={() => {
                 barTranslateY(0);
-                setDescriptionJob("Google");
+                console.log("clicked on Google : ")
+                console.log("current value after executing the function ")
+                // setDescriptionJob("Google");
               }}
               className="text-sm text-left hover:text-AAsecondary
              hover:bg-ResumeButtonHover rounded text-gray-400 font-mono  
@@ -65,9 +68,10 @@ export default function WhatIHaveWorked() {
               Google
             </button>
             <button
+            id="button-2"
               onClick={() => {
                 barTranslateY(1);
-                setDescriptionJob("Facebook");
+                // setDescriptionJob("Facebook");
               }}
               className="text-sm text-left hover:text-AAsecondary
              hover:bg-ResumeButtonHover rounded text-gray-400 font-mono
@@ -76,6 +80,7 @@ export default function WhatIHaveWorked() {
               Facebook
             </button>
             <button
+            id="button-3"
               onClick={() => barTranslateY(2)}
               className="text-sm text-left hover:text-AAsecondary
              hover:bg-ResumeButtonHover rounded text-gray-400 font-mono
@@ -84,6 +89,7 @@ export default function WhatIHaveWorked() {
               Twitter
             </button>
             <button
+            id="button-4"
               onClick={() => barTranslateY(3)}
               className="text-sm text-left hover:text-AAsecondary
              hover:bg-ResumeButtonHover rounded text-gray-400 font-mono
