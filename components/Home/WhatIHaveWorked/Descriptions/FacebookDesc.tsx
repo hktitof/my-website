@@ -3,7 +3,7 @@ import ArrowIcon from '../../../Icons/ArrowIcon'
 export default function FacebookDesc() {
   return (
 <>
-   <div className="flex flex-col space-y-5 max-w-xl">
+   <div className="flex flex-col space-y-5 max-w-xl ">
           <div className="flex flex-col spacey-y-2">
             {/* Title */}
           <span className="text-gray-100 text-lg font-mono">Software Developer <span 
