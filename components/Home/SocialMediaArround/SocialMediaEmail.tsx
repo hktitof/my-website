@@ -9,7 +9,7 @@ export default function SocialMediaEmail() {
         animate={{ y: "0%" }}
         // ! change delay from 0 to 11
         transition={{ y: { delay: 11, duration: 0.5 } }}
-        className="fixed bottom-0 left-0  hidden md:flex flex-row px-12 items-center justify-between  "
+        className="fixed bottom-0 left-0  hidden lg:flex flex-row px-12 items-center justify-between  "
       >
         <div className="flex flex-col space-y-8 justify-center items-center">
           <div className="flex flex-col justify-center items-center space-y-5">
@@ -131,7 +131,7 @@ export default function SocialMediaEmail() {
         animate={{ y: "0%" }}
         // ! change delay from 0 to 11
         transition={{ y: { delay: 11, duration: 0.5 } }}
-        className="fixed bottom-0 right-0 hidden md:flex flex-row items-center justify-between"
+        className="fixed bottom-0 right-0 hidden lg:flex flex-row items-center justify-between"
       >
         <div className="flex flex-col space-y-24 justify-center items-center">
           {/* Open Email on click */}
