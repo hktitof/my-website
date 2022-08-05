@@ -17,7 +17,7 @@ export default function WhatIHaveWorked() {
   };
   const [DescriptionJob, setDescriptionJob] = React.useState("Google");
   return (
-    <div className="flex flex-col items-center justify-center py-24 space-y-12">
+    <div className="flex flex-col items-center justify-center py-24 space-y-12 bg-AAprimary">
       {/* Title "Where I've Worked" */}
       <section className="flex flex-row space-x-3 items-center px-2 md:px-0">
         <ArrowIcon className={"h-6 w-6 text-AAsecondary"} />

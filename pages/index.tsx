@@ -9,7 +9,7 @@ import WhatIHaveWorked from "../components/Home/WhatIHaveWorked/WhatIHaveWorked"
 export default function Home() {
   const [ShowElement,setShowElement] = useState(false);
   const [ShowThisCantBeReached,setShowThisCantBeReached] = useState(true);
-  const [ShowAboutMe,setShowAboutMe] = useState(false);
+  const [ShowMe,setShowMe] = useState(false);
 
   useEffect(()=>{
     setTimeout(()=>{
@@ -21,22 +21,24 @@ export default function Home() {
     setTimeout(()=>{
       setShowThisCantBeReached(false);
     },5400);
+    // ? INFORMATIONAL next function will show the component after changing the state of ShowMe
     setTimeout(()=>{
-      setShowAboutMe(true);
-    },5400);
+      setShowMe(true);
+    },10400);
   },[])
   return (
     // ? h-screen is changed to be deleted 
     // ? because it's making it fixed for the whole page
-    <div className="relative  bg-AAprimary w-full ">
-      {/* {ShowThisCantBeReached?<ThisCantBeReached/>:<></>}
+    <div className="relative h-screen bg-AAprimary w-full ">
+      {ShowThisCantBeReached?<ThisCantBeReached/>:<></>}
       {ShowElement ? <Startup/>:<></>}
       <Header />
       <MyName />
-      <SocialMediaEmail /> */}
-      {/* {ShowAboutMe?<AboutMe />:<></>} */}
-      <AboutMe />
-      <WhatIHaveWorked />
+      <SocialMediaEmail />
+      {ShowMe?<AboutMe />:<></>}
+      {ShowMe?<WhatIHaveWorked />:<></>}
+      
+      
     </div>
   );
 }
