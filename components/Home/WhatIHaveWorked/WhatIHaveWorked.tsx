@@ -7,20 +7,6 @@ export default function WhatIHaveWorked() {
   const barRef = React.useRef<HTMLDivElement>(null);
   // ? INFORMATIONAL control the green position using px,
   // ? INFORMATIONAL the default value of barRef's class should be at the beginning translate-y-[0px]
-  // const barPositions: string[] = [
-  //   "translate-y-[0px]",
-  //   "translate-y-[34px]",
-  //   "translate-y-[69px]",
-  //   "translate-y-[105px]",
-  // ];
-  const [barPosition, setBarPosition] = React.useState<Number>(0);
-  // let barCurrentPosition: string = barPositions[0];
-  // ! FIXME: Bar animation needs to be fixed when clicking multiple times to change the position
-  // const barTranslateY = (position: number) => {
-  //   barRef.current?.classList.remove(barCurrentPosition);
-  //   barRef.current?.classList.add(barPositions[position]);
-  //   barCurrentPosition = barPositions[position];
-  // };
   const GetDescription = () => {
     switch (DescriptionJob) {
       case "Google":
@@ -40,7 +26,8 @@ export default function WhatIHaveWorked() {
         <div className="bg-gray-400 h-[0.2px] w-16 sm:w-44 md:w-80"></div>
       </section>
       {/* Where I've Worked Content */}
-      <section className="flex flex-col md:flex-row space-y-4 md:space-y-0 justify-center md:justify-start items-center md:items-start ">
+      <section className="flex flex-col md:flex-row space-y-4 md:space-y-0
+      justify-center md:justify-center items-center md:items-start ">
         {/* Left side of Where I've Worked, contains the bar and name of companies */}
         <CompaniesBar setDescriptionJob={setDescriptionJob} />
         {/* Description for The job */}
@@ -53,12 +40,13 @@ export default function WhatIHaveWorked() {
 const CompaniesBar = props => {
   const [barPosition, setBarPosition] = React.useState<Number>(0);
   const [barAbovePosition, setBarAbovePosition] = React.useState<Number>(0);
+  const [companyNameBackgroundColorGreen, setCompanyNameBackgroundColorGreen] = React.useState<boolean[]>([true,false,false,false])
   return (
     <>
       <div className="flex flex-col md:flex-row w-screen md:w-auto 
-      overflow-auto md:overflow-hidden pb-4 md:pb-0 justify-center md:justify-start items-center md:items-start">
+      overflow-auto md:overflow-hidden pb-4 md:pb-0 justify-start sm:justify-center items-start sm:items-center">
         {/* left bar Holder */}
-        <div className="hidden md:block relative h-0.5 w-34 md:h-34 md:w-0.5  rounded md:order-1 order-2 ">
+        <div className="hidden md:block relative h-0.5 w-34 md:h-36 md:w-0.5  rounded md:order-1 order-2 ">
           {/* animated left bar */}
           <motion.div
             animate={{ y: barPosition }}
@@ -68,61 +56,61 @@ const CompaniesBar = props => {
         </div>
         {/* // ! FIXME transition is off when changing the state */}
         {/* Companies name as buttons */}
-        <div className="flex flex-col md:order-2 order-1 space-y-2 pl-8 md:pl-0 justify-start">
+        <div className="flex flex-col md:order-2 order-1 space-y-2 pl-8 md:pl-0 ">
           <div className="flex flex-row md:flex-col  ">
           <button
-            id="button-1"
             onClick={() => {
-              setBarPosition(0);
+              setBarPosition(-2);
               setBarAbovePosition(1)
-              // barTranslateY(0);
-              // console.log("clicked on Google : ")
-              // console.log("current value after executing the function ")
               props.setDescriptionJob("Google");
+              setCompanyNameBackgroundColorGreen([true,false,false,false]);
             }}
-            className="flex-none text-sm text-center md:text-left  hover:text-AAsecondary
-             hover:bg-ResumeButtonHover rounded text-gray-400 font-mono  
-             py-2 md:pl-6 md:px-4 md:w-44 w-32"
+            className={`flex-none text-sm text-center md:text-left  hover:text-AAsecondary
+             hover:bg-ResumeButtonHover rounded  font-mono  
+             py-2 md:pl-6 md:px-4 md:w-44 w-32 
+             ${companyNameBackgroundColorGreen[0]? "bg-ResumeButtonHover text-AAsecondary": "text-gray-400"}`}
           >
             Google
           </button>
           <button
-            id="button-2"
             onClick={() => {
               setBarPosition(34);
               setBarAbovePosition(129);
-              // barTranslateY(1);
               props.setDescriptionJob("Facebook");
+              setCompanyNameBackgroundColorGreen([false,true,false,false]);
             }}
-            className="flex-none text-sm text-center md:text-left hover:text-AAsecondary
-             hover:bg-ResumeButtonHover rounded text-gray-400 font-mono
-             md:py-2 md:pl-6 md:px-4 md:w-44 w-32"
+            className={`flex-none text-sm text-center md:text-left hover:text-AAsecondary
+             hover:bg-ResumeButtonHover rounded font-mono
+             md:py-2 md:pl-6 md:px-4 md:w-44 w-32 
+             ${companyNameBackgroundColorGreen[1]? "bg-ResumeButtonHover text-AAsecondary": "text-gray-400"}`}
           >
             Facebook
           </button>
           <button
-            id="button-3"
             onClick={() => {
-              setBarPosition(69);
+              setBarPosition(70);
               setBarAbovePosition(257);
-              // barTranslateY(2)
+              setCompanyNameBackgroundColorGreen([false,false,true,false]);
+
             }}
-            className="flex-none text-sm text-center md:text-left hover:text-AAsecondary
-             hover:bg-ResumeButtonHover rounded text-gray-400 font-mono
-             md:py-2 md:pl-6 md:px-4 md:w-44 w-32"
+            className={`flex-none text-sm text-center md:text-left hover:text-AAsecondary
+            hover:bg-ResumeButtonHover rounded font-mono
+            md:py-2 md:pl-6 md:px-4 md:w-44 w-32 
+            ${companyNameBackgroundColorGreen[2]? "bg-ResumeButtonHover text-AAsecondary": "text-gray-400"}`}
           >
             Twitter
           </button>
           <button
-            id="button-4"
             onClick={() => {
               setBarPosition(107);
               setBarAbovePosition(385);
-              // barTranslateY(3)
+              setCompanyNameBackgroundColorGreen[2]=true;
+              setCompanyNameBackgroundColorGreen([false,false,false,true]);
             }}
-            className="flex-none text-sm text-center md:text-left hover:text-AAsecondary
-             hover:bg-ResumeButtonHover rounded text-gray-400 font-mono
-             md:py-2 md:pl-6 md:px-4 md:w-44 w-32"
+            className={`flex-none text-sm text-center md:text-left hover:text-AAsecondary
+            hover:bg-ResumeButtonHover rounded font-mono
+            md:py-2 md:pl-6 md:px-4 md:w-44 w-32 
+            ${companyNameBackgroundColorGreen[3]? "bg-ResumeButtonHover text-AAsecondary": "text-gray-400"}`}
           >
             Discord
           </button>
