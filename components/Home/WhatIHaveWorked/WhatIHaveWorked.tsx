@@ -21,7 +21,7 @@ export default function WhatIHaveWorked() {
       {/* Title "Where I've Worked" */}
       <section className="flex flex-row space-x-3 items-center px-2 md:px-0">
         <ArrowIcon className={"h-6 w-6 text-AAsecondary"} />
-        <span className="text-AAsecondary font-mono text-xl"> 02.</span>
+        <span className="text-AAsecondary font-mono text-lg sm:text-xl"> 02.</span>
         <span className="text-gray-200 text-xl md:text-2xl">
           Where I&apos;ve Worked
         </span>
