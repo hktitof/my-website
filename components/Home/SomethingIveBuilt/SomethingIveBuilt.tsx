@@ -3,7 +3,7 @@ import ArrowIcon from "../../Icons/ArrowIcon";
 export default function SomethingIveBuilt() {
   return (
     <section
-      className="h-screen bg-AAprimary w-full 2xl:px-64 lg:px-24 md:px-16 sm:px-16 px-8 py-32
+      className="h-screen bg-AAprimary w-full 2xl:px-72 lg:px-24 md:px-16 sm:px-16 px-8 py-32
      flex flex-col space-y-12"
     >
       <main className=" flex flex-row space-x-3 items-center px-2 md:px-0">
@@ -21,19 +21,23 @@ export default function SomethingIveBuilt() {
         <div className="bg-gray-400 h-[0.2px] w-full xl:w-1/3 md:w-1/2"></div>
       </main>
       <ul className=" bg-red-400  w-full">
-        <li className="relative grid grid-cols-12  w-full">
+        <li className="relative grid grid-cols-12  w-full   ">
           {/* Left image */}
-          <div className="bg-AAprimary py-4 absolute grid grid-cols-12 w-full  content-center">
+          <div className="bg-AAprimary py-4 absolute grid grid-cols-12 w-full h-96 content-center">
+            
+           
             <img
               src="/image.jpg"
               alt="Project Screen shot"
-              className="rounded col-span-7 "
+              className="rounded col-span-7 h-full hover:cursor-pointer"
             />
+            
           </div>
           {/* right Content */}
-          <div className="py-4 absolute grid grid-cols-12 w-full">
-            <div className="xl:col-span-6 col-span-4"></div>
-            <div className="xl:col-span-6 col-span-8 flex flex-col items-end space-y-6">
+          <div className="flex justify-">
+          <div className="py-4 absolute grid grid-cols-12 w-full h-96  content-center">
+            {/* <div className="xl:col-span-6 col-span-4"></div> */}
+            <div className="xl:col-span-6 xl:col-start-7 col-start-5 col-span-8 flex flex-col items-end space-y-6">
               <div className="flex flex-col space-y-1 items-end">
                 <span className="text-AAsecondary text-base">
                   Featured Project
@@ -126,6 +130,8 @@ export default function SomethingIveBuilt() {
               </div>
             </div>
           </div>
+          </div>
+          
         </li>
       </ul>
     </section>
