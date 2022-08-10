@@ -20,33 +20,36 @@ export default function SomethingIveBuilt() {
         </div>
         <div className="bg-gray-400 h-[0.2px] w-full xl:w-1/3 md:w-1/2"></div>
       </main>
-      <ul className=" bg-red-400  w-full">
-        <li className="relative grid grid-cols-12  w-full   ">
+      <ul className="bg-red-400 w-full">
+        <li className="relative grid grid-cols-12 w-full  ">
           {/* Left image */}
-          <div className="bg-AAprimary py-4 absolute grid grid-cols-12 w-full h-96 content-center">
-            
-           
-            <img
+          <div className=" bg-AAprimary py-4 absolute grid grid-cols-12 w-full h-96 content-center">
+            {/* This div gonna wrap image and the other right content */}
+           {/* <div className="w-full h-full col-span-7 hover:cursor-pointer"> */}
+           <img
               src="/image.jpg"
               alt="Project Screen shot"
-              className="rounded col-span-7 h-full hover:cursor-pointer"
+              className="z-10 rounded col-span-7  hover:cursor-pointer"
             />
+           {/* </div> */}
+           
             
           </div>
           {/* right Content */}
-          <div className="flex justify-">
-          <div className="py-4 absolute grid grid-cols-12 w-full h-96  content-center">
+          
+          <div className=" absolute py-4  grid grid-cols-12 w-full h-96  content-center ">
             {/* <div className="xl:col-span-6 col-span-4"></div> */}
-            <div className="xl:col-span-6 xl:col-start-7 col-start-5 col-span-8 flex flex-col items-end space-y-6">
+            <div className="xl:col-span-6 xl:col-start-7 col-start-5 col-span-8
+             flex flex-col items-end space-y-6">
               <div className="flex flex-col space-y-1 items-end">
                 <span className="text-AAsecondary text-base">
                   Featured Project
                 </span>
-                <span className="text-white font-mono text-xl">
+                <span className=" text-white font-mono text-xl">
                   Halcyon Theme
                 </span>
               </div>
-              <div className="w-full  bg-AAtertiary rounded-md p-6 ">
+              <div className="w-full bg-AAtertiary rounded-md p-6  z-10">
                 <p className="text-gray-400 text-right">
                   A minimal, dark blue theme for VS Code, Sublime Text, Atom,
                   iTerm, and more. Available on{" "}
@@ -88,7 +91,7 @@ export default function SomethingIveBuilt() {
                   .
                 </p>
               </div>
-              <div className="flex flex-row space-x-4 text-gray-400 text-sm font-Text2">
+              <div className="z-10 flex flex-row space-x-4 text-gray-400 text-sm font-Text2">
                 <span className="text">VS CODE</span>
                 <span className="text">Sublime Text</span>
                 <span className="text">Atom</span>
@@ -130,7 +133,7 @@ export default function SomethingIveBuilt() {
               </div>
             </div>
           </div>
-          </div>
+          
           
         </li>
       </ul>
