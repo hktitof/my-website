@@ -28,21 +28,13 @@ export default function SomethingIveBuilt() {
            {/* <div className="w-full h-full col-span-7 hover:cursor-pointer"> */}
            <div className="relative rounded col-span-7">
            <div className="absolute w-full h-full rounded bg-AAsecondary 
-           transition-opacity opacity-40 hover:opacity-0 duration-300"></div>
+           transition-opacity opacity-20 hover:opacity-0 duration-300"></div>
            <img
               src="/image.jpg"
               alt="Project Screen shot"
               className=" "
             />
            </div>
-           
-            
-           
-           
-           
-           {/* </div> */}
-           
-            
           </div>
           {/* right Content */}
           
