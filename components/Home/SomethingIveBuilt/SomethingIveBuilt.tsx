@@ -23,14 +23,23 @@ export default function SomethingIveBuilt() {
       <ul className="bg-red-400 w-full">
         <li className="relative grid grid-cols-12 w-full  ">
           {/* Left image */}
-          <div className=" bg-AAprimary py-4 absolute grid grid-cols-12 w-full h-96 content-center">
+          <div className=" z-10 bg-AAprimary py-4 absolute grid grid-cols-12 w-full h-96 content-center">
             {/* This div gonna wrap image and the other right content */}
            {/* <div className="w-full h-full col-span-7 hover:cursor-pointer"> */}
+           <div className="relative rounded col-span-7">
+           <div className="absolute w-full h-full rounded bg-AAsecondary 
+           transition-opacity opacity-40 hover:opacity-0 duration-300"></div>
            <img
               src="/image.jpg"
               alt="Project Screen shot"
-              className="z-10 rounded col-span-7  hover:cursor-pointer"
+              className=" "
             />
+           </div>
+           
+            
+           
+           
+           
            {/* </div> */}
            
             
@@ -98,7 +107,7 @@ export default function SomethingIveBuilt() {
                 <span className="text">iTerm2</span>
                 <span className="text">Hyper</span>
               </div>
-              <div className="flex fle-row space-x-5 ">
+              <div className="z-10 flex fle-row space-x-5 ">
               <svg
                   xmlns="http://www.w3.org/2000/svg"
                   role="img"
