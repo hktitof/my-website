@@ -1,21 +1,4 @@
-/*
-{
-    "status": "success",
-    "country": "Morocco",
-    "countryCode": "MA",
-    "region": "06",
-    "regionName": "Casablanca-Settat",
-    "city": "Casablanca",
-    "zip": "",
-    "lat": 33.5922,
-    "lon": -7.6184,
-    "timezone": "Africa/Casablanca",
-    "isp": "MEDITELECOM",
-    "org": "Meditel",
-    "as": "AS36925 MEDITELECOM",
-    "query": "41.92.114.84"
-}
-*/
+
 import React from "react";
 import Startup from "../../components/Header/StartupLogo/Startup";
 export default function test() {
@@ -50,89 +33,10 @@ export default function test() {
       .catch(err => console.log(err));
   };
 
-  /*{
-    "address_components": [
-        {
-            "long_name": "FJ2H+VH",
-            "short_name": "FJ2H+VH",
-            "types": [
-                "plus_code"
-            ]
-        },
-        {
-            "long_name": "el bazzaza",
-            "short_name": "el bazzaza",
-            "types": [
-                "locality",
-                "political"
-            ]
-        },
-        {
-            "long_name": "Province de Béni-Mellal",
-            "short_name": "Province de Béni-Mellal",
-            "types": [
-                "administrative_area_level_2",
-                "political"
-            ]
-        },
-        {
-            "long_name": "Béni Mellal-Khénifra",
-            "short_name": "Béni Mellal-Khénifra",
-            "types": [
-                "administrative_area_level_1",
-                "political"
-            ]
-        },
-        {
-            "long_name": "Morocco",
-            "short_name": "MA",
-            "types": [
-                "country",
-                "political"
-            ]
-        }
-    ],
-    "formatted_address": "FJ2H+VH el bazzaza, Morocco",
-    "geometry": {
-        "bounds": {
-            "northeast": {
-                "lat": 32.45225,
-                "lng": -6.371
-            },
-            "southwest": {
-                "lat": 32.452125,
-                "lng": -6.371125
-            }
-        },
-        "location": {
-            "lat": 32.452175,
-            "lng": -6.371086
-        },
-        "location_type": "GEOMETRIC_CENTER",
-        "viewport": {
-            "northeast": {
-                "lat": 32.4535364802915,
-                "lng": -6.369713519708498
-            },
-            "southwest": {
-                "lat": 32.4508385197085,
-                "lng": -6.372411480291501
-            }
-        }
-    },
-    "place_id": "GhIJzojS3uA5QEARigPo9_17GcA",
-    "plus_code": {
-        "compound_code": "FJ2H+VH el bazzaza, Morocco",
-        "global_code": "8C4MFJ2H+VH"
-    },
-    "types": [
-        "plus_code"
-    ]
-}*/
 
   const getcoding = async () => {
-    const lat = "31.510843";
-    const lon = "-9.759152";
+    const lat = "34.002663";
+    const lon = "-6.848167";
     return fetch(
       `https://maps.googleapis.com/maps/api/geocode/json?latlng=` +
         lat +
@@ -143,8 +47,8 @@ export default function test() {
       .then(res => res.json())
       .then(data => {
         const result = data.results;
-        // return HasZipCode(result);
-        return result;
+        return HasZipCode(result);
+        // return data;
       })
       .catch(err => "00000");
   };
