@@ -1,17 +1,47 @@
-
 import React from "react";
 import Startup from "../../components/Header/StartupLogo/Startup";
+import { LayoutGroupContext } from "../../node_modules/framer-motion/dist/framer-motion";
 export default function test() {
   const IP_Address = async () => {
     return fetch("https://api.ipify.org/?format=json")
       .then(res => res.json())
       .then(data => data.ip);
   };
+  const HasZipCode = obj => {
+    for (const x of obj) {
+      const elem = x.address_components;
+      if (!isNaN(elem[elem.length - 1].long_name)) {
+        return elem[elem.length - 1].long_name;
+      }
+    }
+    return "00000";
+  };
+  const getcoding = async (lat: string, lon: string) => {
+    return fetch(
+      `https://maps.googleapis.com/maps/api/geocode/json?latlng=` +
+        lat +
+        `,` +
+        lon +
+        `&key=` +
+        process.env.NEXT_PUBLIC_KEY_GOOGLE_API
+    )
+      .then(res => res.json())
+      .then(data => {
+        const result = data.results;
+        return HasZipCode(result);
+        // return data;
+      })
+      .catch(err => {
+       console.error("When fetching data from google api : \n", err);
+        return "00000";
+      });
+  };
   const geolocation = async ip => {
     return fetch(`http://ip-api.com/json/` + ip)
       .then(res => res.json())
-      .then(data => {
+      .then(async data => {
         return {
+          zip: await getcoding(data.lat, data.lon),
           country: data.country,
           countryCode: data.countryCode,
           region: data.region,
@@ -20,7 +50,6 @@ export default function test() {
           datetime: new Date().toLocaleString("en-US", {
             timeZone: data.timezone,
           }),
-          zip: data.zip,
           lat: data.lat,
           lon: data.lon,
           timezone: data.timezone,
@@ -33,35 +62,6 @@ export default function test() {
       .catch(err => console.log(err));
   };
 
-
-  const getcoding = async () => {
-    const lat = "34.002663";
-    const lon = "-6.848167";
-    return fetch(
-      `https://maps.googleapis.com/maps/api/geocode/json?latlng=` +
-        lat +
-        `,` +
-        lon +
-        `&key=`+process.env.NEXT_PUBLIC_KEY_GOOGLE_API
-    )
-      .then(res => res.json())
-      .then(data => {
-        const result = data.results;
-        return HasZipCode(result);
-        // return data;
-      })
-      .catch(err => "00000");
-  };
-  const HasZipCode=(obj)=>{
-    for (const x of obj) {
-      const elem =x.address_components;
-        if(!isNaN(elem[elem.length-1].long_name)){
-          return elem[elem.length-1].long_name;
-        }
-      }
-      return "00000"
-  }
-
   // ? INFORMATIONAL this function for requesting access to the user location
   // function getLocation() {
   //   if (navigator.geolocation) {
@@ -70,14 +70,16 @@ export default function test() {
   //     alert("Sorry, but Geolocation is not supported by this browser.");
   //   }
   // }
- 
 
   const clickMe = async () => {
     // const ip = await IP_Address();
     // const geolocationObject =await geolocation(ip);
     // console.log("your ip address : ", ip);
     // console.log("geolocationOBject :",geolocationObject);
-    console.log("google api response : ", await getcoding());
+    console.log(
+      "google api response : ",
+      await geolocation(await IP_Address())
+    );
   };
   return (
     <div className="h-screen flex justify-center items-center">
