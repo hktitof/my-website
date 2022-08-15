@@ -13,7 +13,8 @@
     "next": "12.2.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "request-ip": "^3.3.0"
+    "request-ip": "^3.3.0",
+    "systeminformation": "^5.12.5"
   },
   "devDependencies": {
     "@types/node": "^18.0.6",

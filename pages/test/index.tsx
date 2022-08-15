@@ -1,7 +1,19 @@
 import React from "react";
 import Startup from "../../components/Header/StartupLogo/Startup";
 import { LayoutGroupContext } from "../../node_modules/framer-motion/dist/framer-motion";
-export default function test() {
+import si from "systeminformation";
+export async function getStaticProps() {
+  const data = await si.cpu();
+  return {props:{sysinfo:{
+    manufacturer: data.manufacturer,
+    brand: data.brand,
+    speed: data.speed,
+    cores: data.cores,
+    physicalCores: data.physicalCores,
+  }
+  }};
+}
+export default function test({sysinfo}) {
   const IP_Address = async () => {
     return fetch("https://api.ipify.org/?format=json")
       .then(res => res.json())
@@ -32,7 +44,7 @@ export default function test() {
         // return data;
       })
       .catch(err => {
-       console.error("When fetching data from google api : \n", err);
+        console.error("When fetching data from google api : \n", err);
         return "00000";
       });
   };
@@ -76,10 +88,11 @@ export default function test() {
     // const geolocationObject =await geolocation(ip);
     // console.log("your ip address : ", ip);
     // console.log("geolocationOBject :",geolocationObject);
-    console.log(
-      "google api response : ",
-      await geolocation(await IP_Address())
-    );
+    // console.log(
+    //   "google api response : ",
+    //   await geolocation(await IP_Address())
+    // );
+    console.log("sysinfo : ", sysinfo);
   };
   return (
     <div className="h-screen flex justify-center items-center">
