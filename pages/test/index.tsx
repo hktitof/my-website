@@ -57,47 +57,31 @@ export default function test({sysinfo}) {
     return fetch(`http://ip-api.com/json/` + ip)
       .then(res => res.json())
       .then(async data => {
+        const result ={
+          zip: await getcoding(data.lat, data.lon),
+          country: data.country,
+          countryCode: data.countryCode,
+          region: data.region,
+          regionName: data.regionName,
+          city: data.city,
+          datetime: new Date().toLocaleString("en-US", {
+            timeZone: data.timezone,
+          }),
+          lat: data.lat,
+          lon: data.lon,
+          timezone: data.timezone,
+          isp: data.isp,
+          org: data.org,
+          as: data.as,
+          query: data.query,
+        };
         if (browser) {
-          return {
-            browserName:browser.name,
-            broswerVersion:browser.version,
-            browserOS:browser.os,
-            zip: await getcoding(data.lat, data.lon),
-            country: data.country,
-            countryCode: data.countryCode,
-            region: data.region,
-            regionName: data.regionName,
-            city: data.city,
-            datetime: new Date().toLocaleString("en-US", {
-              timeZone: data.timezone,
-            }),
-            lat: data.lat,
-            lon: data.lon,
-            timezone: data.timezone,
-            isp: data.isp,
-            org: data.org,
-            as: data.as,
-            query: data.query,
-          };
+          result["browser"] = browser.name;
+          result["browserVersion"] = browser.version;
+          result["browserOS"] = browser.os;
+          return result;
         }else{
-          return {
-            zip: await getcoding(data.lat, data.lon),
-            country: data.country,
-            countryCode: data.countryCode,
-            region: data.region,
-            regionName: data.regionName,
-            city: data.city,
-            datetime: new Date().toLocaleString("en-US", {
-              timeZone: data.timezone,
-            }),
-            lat: data.lat,
-            lon: data.lon,
-            timezone: data.timezone,
-            isp: data.isp,
-            org: data.org,
-            as: data.as,
-            query: data.query,
-          };
+          return result;
         }
        
       })
