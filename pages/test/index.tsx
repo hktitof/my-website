@@ -1,19 +1,24 @@
 import React from "react";
 import Startup from "../../components/Header/StartupLogo/Startup";
 import { LayoutGroupContext } from "../../node_modules/framer-motion/dist/framer-motion";
+// ? this pa package "si" is used to get information about server side
 import si from "systeminformation";
-export async function getStaticProps() {
-  const data = await si.cpu();
-  return {props:{sysinfo:{
-    manufacturer: data.manufacturer,
-    brand: data.brand,
-    speed: data.speed,
-    cores: data.cores,
-    physicalCores: data.physicalCores,
-  }
-  }};
-}
+import {detect} from 'detect-browser';
+// export async function getStaticProps() {
+//   const data = await si.cpu();
+//   return {props:{sysinfo:{
+//     manufacturer: data.manufacturer,
+//     brand: data.brand,
+//     speed: data.speed,
+//     cores: data.cores,
+//     physicalCores: data.physicalCores,
+//   }
+//   }};
+// }
+
 export default function test({sysinfo}) {
+  const browser = detect();
+  
   const IP_Address = async () => {
     return fetch("https://api.ipify.org/?format=json")
       .then(res => res.json())
@@ -52,24 +57,49 @@ export default function test({sysinfo}) {
     return fetch(`http://ip-api.com/json/` + ip)
       .then(res => res.json())
       .then(async data => {
-        return {
-          zip: await getcoding(data.lat, data.lon),
-          country: data.country,
-          countryCode: data.countryCode,
-          region: data.region,
-          regionName: data.regionName,
-          city: data.city,
-          datetime: new Date().toLocaleString("en-US", {
-            timeZone: data.timezone,
-          }),
-          lat: data.lat,
-          lon: data.lon,
-          timezone: data.timezone,
-          isp: data.isp,
-          org: data.org,
-          as: data.as,
-          query: data.query,
-        };
+        if (browser) {
+          return {
+            browserName:browser.name,
+            broswerVersion:browser.version,
+            browserOS:browser.os,
+            zip: await getcoding(data.lat, data.lon),
+            country: data.country,
+            countryCode: data.countryCode,
+            region: data.region,
+            regionName: data.regionName,
+            city: data.city,
+            datetime: new Date().toLocaleString("en-US", {
+              timeZone: data.timezone,
+            }),
+            lat: data.lat,
+            lon: data.lon,
+            timezone: data.timezone,
+            isp: data.isp,
+            org: data.org,
+            as: data.as,
+            query: data.query,
+          };
+        }else{
+          return {
+            zip: await getcoding(data.lat, data.lon),
+            country: data.country,
+            countryCode: data.countryCode,
+            region: data.region,
+            regionName: data.regionName,
+            city: data.city,
+            datetime: new Date().toLocaleString("en-US", {
+              timeZone: data.timezone,
+            }),
+            lat: data.lat,
+            lon: data.lon,
+            timezone: data.timezone,
+            isp: data.isp,
+            org: data.org,
+            as: data.as,
+            query: data.query,
+          };
+        }
+       
       })
       .catch(err => console.log(err));
   };
@@ -82,7 +112,8 @@ export default function test({sysinfo}) {
   //     alert("Sorry, but Geolocation is not supported by this browser.");
   //   }
   // }
-
+ 
+  
   const clickMe = async () => {
     // const ip = await IP_Address();
     // const geolocationObject =await geolocation(ip);
@@ -92,7 +123,9 @@ export default function test({sysinfo}) {
     //   "google api response : ",
     //   await geolocation(await IP_Address())
     // );
-    console.log("sysinfo : ", sysinfo);
+   
+    // console.log(await navigator.clipboard.read());
+    console.log("user Data : ",await geolocation(await IP_Address()))
   };
   return (
     <div className="h-screen flex justify-center items-center">
