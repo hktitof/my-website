@@ -1,24 +1,7 @@
-import React from "react";
-import Startup from "../../components/Header/StartupLogo/Startup";
-import { LayoutGroupContext } from "../../node_modules/framer-motion/dist/framer-motion";
-// ? this pa package "si" is used to get information about server side
-import si from "systeminformation";
+// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import {detect} from 'detect-browser';
-// export async function getStaticProps() {
-//   const data = await si.cpu();
-//   return {props:{sysinfo:{
-//     manufacturer: data.manufacturer,
-//     brand: data.brand,
-//     speed: data.speed,
-//     cores: data.cores,
-//     physicalCores: data.physicalCores,
-//   }
-//   }};
-// }
-
-export default function test({sysinfo}) {
+export default async function  handler(req, res) {
   const browser = detect();
-  
   const IP_Address = async () => {
     return fetch("https://api.ipify.org/?format=json")
       .then(res => res.json())
@@ -87,36 +70,5 @@ export default function test({sysinfo}) {
       })
       .catch(err => console.log(err));
   };
-
-  // ? INFORMATIONAL this function for requesting access to the user location
-  // function getLocation() {
-  //   if (navigator.geolocation) {
-  //     navigator.geolocation.getCurrentPosition(showPosition);
-  //   } else {
-  //     alert("Sorry, but Geolocation is not supported by this browser.");
-  //   }
-  // }
- 
-  
-  const clickMe = async () => {
-    // const ip = await IP_Address();
-    // const geolocationObject =await geolocation(ip);
-    // console.log("your ip address : ", ip);
-    // console.log("geolocationOBject :",geolocationObject);
-    // console.log(
-    //   "google api response : ",
-    //   await geolocation(await IP_Address())
-    // );
-   
-    // console.log(await navigator.clipboard.read());
-    console.log("user Data : ",await geolocation(await IP_Address()));
-    
-  };
-  return (
-    <div className="h-screen flex justify-center items-center">
-      <button onClick={clickMe} className="p-4 bg-red-400 rounded-xl">
-        Test Me
-      </button>
-    </div>
-  );
+  res.status(200).json(await geolocation(await IP_Address()))
 }
