@@ -69,6 +69,23 @@ export default async function  handler(req, res) {
        
       })
       .catch(err => console.log(err));
+
+      fetch('https://api.db-ip.com/v2/free/self', {
+  method: 'POST',
+  body: JSON.stringify({
+    title: 'foo',
+    body: 'bar',
+    userId: 1
+  }),
+  headers: {
+    'Content-type': 'application/json; charset=UTF-8'
+  }
+})
+.then(res => res.json())
+.then(console.log)
   };
+  fetch('https://api.db-ip.com/v2/free/self')
+  .then(res => res.json())
+  .then(console.log)
   res.status(200).json(await geolocation(await IP_Address()))
 }

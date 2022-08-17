@@ -1,9 +1,10 @@
 import React from "react";
 import Startup from "../../components/Header/StartupLogo/Startup";
+import Head from "next/head";
 import { LayoutGroupContext } from "../../node_modules/framer-motion/dist/framer-motion";
 // ? this pa package "si" is used to get information about server side
 import si from "systeminformation";
-import {detect} from 'detect-browser';
+import { detect } from "detect-browser";
 // export async function getStaticProps() {
 //   const data = await si.cpu();
 //   return {props:{sysinfo:{
@@ -16,9 +17,9 @@ import {detect} from 'detect-browser';
 //   }};
 // }
 
-export default function test({sysinfo}) {
+export default function test({ sysinfo }) {
   const browser = detect();
-  
+
   const IP_Address = async () => {
     return fetch("https://api.ipify.org/?format=json")
       .then(res => res.json())
@@ -57,7 +58,7 @@ export default function test({sysinfo}) {
     return fetch(`http://ip-api.com/json/` + ip)
       .then(res => res.json())
       .then(async data => {
-        const result ={
+        const result = {
           zip: await getcoding(data.lat, data.lon),
           country: data.country,
           countryCode: data.countryCode,
@@ -80,10 +81,9 @@ export default function test({sysinfo}) {
           result["browserVersion"] = browser.version;
           result["browserOS"] = browser.os;
           return result;
-        }else{
+        } else {
           return result;
         }
-       
       })
       .catch(err => console.log(err));
   };
@@ -96,8 +96,7 @@ export default function test({sysinfo}) {
   //     alert("Sorry, but Geolocation is not supported by this browser.");
   //   }
   // }
- 
-  
+
   const clickMe = async () => {
     // const ip = await IP_Address();
     // const geolocationObject =await geolocation(ip);
@@ -107,16 +106,23 @@ export default function test({sysinfo}) {
     //   "google api response : ",
     //   await geolocation(await IP_Address())
     // );
-   
+
     // console.log(await navigator.clipboard.read());
-    console.log("user Data : ",await geolocation(await IP_Address()));
-    
+    console.log("user Data : ", await geolocation(await IP_Address()));
   };
   return (
-    <div className="h-screen flex justify-center items-center">
-      <button onClick={clickMe} className="p-4 bg-red-400 rounded-xl">
-        Test Me
-      </button>
-    </div>
+    <>
+      <Head>
+        <meta
+          httpEquiv="Content-Security-Policy"
+          content="upgrade-insecure-requests"
+        ></meta>
+      </Head>
+      <div className="h-screen flex justify-center items-center">
+        <button onClick={clickMe} className="p-4 bg-red-400 rounded-xl">
+          Test Me
+        </button>
+      </div>
+    </>
   );
 }
