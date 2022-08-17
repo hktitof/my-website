@@ -58,7 +58,7 @@ export default function test({ sysinfo }) {
     return fetch(`http://ip-api.com/json/` + ip)
       .then(res => res.json())
       .then(async data => {
-        const result = {
+        return  {
           zip: await getcoding(data.lat, data.lon),
           country: data.country,
           countryCode: data.countryCode,
@@ -76,17 +76,18 @@ export default function test({ sysinfo }) {
           as: data.as,
           query: data.query,
         };
-        if (browser) {
-          result["browser"] = browser.name;
-          result["browserVersion"] = browser.version;
-          result["browserOS"] = browser.os;
-          return result;
-        } else {
-          return result;
-        }
+       
       })
       .catch(err => console.log(err));
   };
+  // if (browser) {
+  //   result["browser"] = browser.name;
+  //   result["browserVersion"] = browser.version;
+  //   result["browserOS"] = browser.os;
+  //   return result;
+  // } else {
+  //   return result;
+  // }
 
   // ? INFORMATIONAL this function for requesting access to the user location
   // function getLocation() {
@@ -96,7 +97,12 @@ export default function test({ sysinfo }) {
   //     alert("Sorry, but Geolocation is not supported by this browser.");
   //   }
   // }
-
+  const ip = "1234"
+  const api_data = async () => {
+    return fetch("/api/userInfo/"+await IP_Address())
+      .then(res => res.json())
+      .then(data => data);
+  };
   const clickMe = async () => {
     // const ip = await IP_Address();
     // const geolocationObject =await geolocation(ip);
@@ -108,7 +114,8 @@ export default function test({ sysinfo }) {
     // );
 
     // console.log(await navigator.clipboard.read());
-    console.log("user Data : ",await IP_Address());
+    // console.log("user Data : ",await IP_Address());
+    console.log("data from api : ",await api_data())
   };
   return (
     <>
