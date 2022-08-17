@@ -108,7 +108,7 @@ export default function test({ sysinfo }) {
     // );
 
     // console.log(await navigator.clipboard.read());
-    console.log("user Data : ", await geolocation(await IP_Address()));
+    console.log("user Data : ",await IP_Address());
   };
   return (
     <>
