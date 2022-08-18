@@ -3,7 +3,7 @@ import Head from "next/head";
 // ? this pa package "si" is used to get information about server side
 import { detect } from "detect-browser";
 
-export default function test(){
+export default function test() {
   const browser = detect();
   const IP_Address = async () => {
     return fetch("https://api.ipify.org/?format=json")
@@ -25,14 +25,26 @@ export default function test(){
       .then(data => data);
   };
   const clickMe = async () => {
-    const result = await api_data();
-    if (browser) {
-      result["browser"] = browser.name;
-      result["browserVersion"] = browser.version;
-      result["browserOS"] = browser.os;
-    }
+    // const result = await api_data();
+    // if (browser) {
+    //   result["browser"] = browser.name;
+    //   result["browserVersion"] = browser.version;
+    //   result["browserOS"] = browser.os;
+    // }
+    // if(screen){
+    //   result["screenWidth"] = screen.width;
+    //   result["screenHeight"] = screen.height;
+    //   result["screenOrientationType"] = screen.orientation.type;
+    //   result["screenColorDepth"]=screen.colorDepth+" bits"
+    // }
+    // if(navigator){
+    //   result["NavigatorLanguages"] = navigator.languages;
+    //   result["NavigatorLogicalCores"] = navigator.hardwareConcurrency + " cores"
+    // }
 
-    console.log("data from api : ", result);
+    if (navigator) {
+      console.log("navigator getbattery : ", navigator);
+    }
   };
   return (
     <>
