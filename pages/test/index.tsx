@@ -11,22 +11,15 @@ import dynamic from 'next/dynamic'
 
 export default function Test() {
   
-  const [location,setLocation] = useState<number[]>([0,0]);
+  // this api will return current ip address of the user
   const IP_Address = async () => {
     return fetch("https://api.ipify.org/?format=json")
       .then(res => res.json())
       .then(data => data.ip);
   };
+  // this will be used to determine lan and lon of the user
+  const [location,setLocation] = useState<number[]>([0,0]);
 
-  // ? INFORMATIONAL this function for requesting access to the user location
-  // function getLocation() {
-  //   if (navigator.geolocation) {
-  //     navigator.geolocation.getCurrentPosition(showPosition);
-  //   } else {
-  //     alert("Sorry, but Geolocation is not supported by this browser.");
-  //   }
-  // }
-  
    useEffect( ()=>{
     // these function is used by next async function
     const api_data = async () => {
@@ -34,12 +27,11 @@ export default function Test() {
         .then(res => res.json())
         .then(data => data);
     };
+    // browser will be used to determine the browser info
     const browser = detect();
-
-    console.log("testing")
     // async function for getting user location
     const userInfo = async ()=>{
-      const result = await api_data();
+      const result =await api_data();
       if (browser) {
         result["browser"] = browser.name;
         result["browserVersion"] = browser.version;
@@ -66,20 +58,24 @@ export default function Test() {
           });
         }
       }
-      setLocation([result.lat, result.lon]);
-      console.log("lat : "+result.lat+" lon : "+result.lon);
+      setLocation([result.lat,result.lan])
       console.log("data :",result);
     }
     userInfo();
     
   },[])
+
+  
   const clickMe = async () => { 
     if ("geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition(function(position) {
         setLocation([position.coords.latitude, position.coords.longitude]);
         console.log("Longitude:", position.coords.longitude, "Latitude:", position.coords.latitude);
       });
-    }
+    }else{
+        alert("Sorry, but Geolocation is not supported by this browser.");
+      }
+    
   };
 
 
