@@ -68,10 +68,10 @@ export default function Test() {
       }
       setLocation([result.lat, result.lon]);
       console.log("lat : "+result.lat+" lon : "+result.lon);
-      return result;
+      console.log("data :",result);
     }
-    const data = userInfo();
-    console.log("user info : ",data)
+    userInfo();
+    
   },[])
   const clickMe = async () => { 
     if ("geolocation" in navigator) {
