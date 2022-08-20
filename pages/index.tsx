@@ -38,7 +38,7 @@ export default function Home() {
       <SocialMediaEmail /> */}
       {/* {ShowMe?<AboutMe />:<></>} */}
       {/* <AboutMe /> */}
-      <WhatIHaveWorked />
+      {/* <WhatIHaveWorked /> */}
       <SomethingIveBuilt/>
       {/* {ShowMe?<WhatIHaveWorked />:<></>} */}
       
