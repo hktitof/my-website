@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "../../../node_modules/framer-motion/dist/framer-motion";
-import Link from "../../../node_modules/next/dist/client/link";
+import Link from "next/dist/client/link";
 export default function SocialMediaEmail() {
   return (
     <>

@@ -99,7 +99,7 @@ export default function SomethingIveBuilt() {
                 <Img
                   src={"/image.jpg"}
                   alt={"Project Screen shot"}
-                  className={`w-full h-full`}
+                  className={`w-full h-full `}
                 />
               </div>
             </div>

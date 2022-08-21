@@ -64,9 +64,9 @@ const Header = () => {
         // changed from 10.4 to 1
         transition={{ opacity: { delay: 9.4, duration: 0 } }}
         className={`w-full fixed ${
-          ShowElement ? `bg-opacity-70` : `bg-opacity-0`
+          ShowElement ? `bg-opacity-70 shadow-xl` : `bg-opacity-0 `
         } bg-AAprimary flex 
-      justify-between px-6 sm:px-12 py-2 sm:py-4 shadow-xl transition duration-4000 translate-y-0`}
+      justify-between px-6 sm:px-12 py-2 sm:py-4  transition duration-4000 translate-y-0 z-20`}
       >
         {/* Logo A */}
         <Logo />
