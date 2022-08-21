@@ -20,7 +20,7 @@ export default function GetInTouch() {
       <span className="text-gray-300 text-3xl sm:text-4xl font-bold">
         Get In Touch
       </span>
-      <p className="flex text-gray-400 text-center px-6 sm:px-16 md:px-0 md:w-[600px]">
+      <p className="flex font-sans text-gray-400 text-center px-6 sm:px-16 md:px-0 md:w-[600px]">
         Although I’m not currently looking for any new opportunities, my inbox
         is always open. Whether you have a question or just want to say hi, I’ll
         try my best to get back to you!
