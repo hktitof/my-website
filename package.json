@@ -19,7 +19,8 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-leaflet": "^4.0.1",
-    "systeminformation": "^5.12.5"
+    "systeminformation": "^5.12.5",
+    "tailwind-scrollbar-hide": "^1.1.7"
   },
   "devDependencies": {
     "@types/leaflet": "^1.7.11",

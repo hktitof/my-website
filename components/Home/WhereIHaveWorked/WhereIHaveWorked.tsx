@@ -79,7 +79,7 @@ const CompaniesBar = props => {
     <>
       <div
         className="flex flex-col md:flex-row  w-screen md:w-auto 
-      overflow-auto md:overflow-hidden pb-4 md:pb-0 justify-start
+      overflow-auto scrollbar-hide md:overflow-hidden pb-4 md:pb-0 justify-start
        sm:justify-center items-start sm:items-center">
         {/* // ? left bar Holder */}
         <div className="hidden md:block relative h-0.5 w-34 md:h-36 md:w-0.5  
