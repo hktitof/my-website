@@ -33,7 +33,7 @@ export default function Home() {
     // ? h-screen is changed to be deleted 
     // ? because it's making it fixed for the whole page
     <div className="relative h-screen bg-AAprimary w-full ">
-      {ShowThisCantBeReached?<ThisCantBeReached/>:<></>}
+      {/* {ShowThisCantBeReached?<ThisCantBeReached/>:<></>}
       {ShowElement ? <Startup/>:<></>}
       <Header />
       <MyName />
@@ -42,11 +42,13 @@ export default function Home() {
       {ShowMe? <WhereIHaveWorked />:<></>}
       {ShowMe? <SomethingIveBuilt/>:<></>}
       {ShowMe? <GetInTouch/>:<></>}
-      {ShowMe? <Footer />:<></>}
+      {ShowMe? <Footer />:<></>} */}
       {/* <AboutMe /> */}
       {/* <WhereIHaveWorked /> */}
-      
-
+      <WhereIHaveWorked />
+      <SomethingIveBuilt/>
+      <GetInTouch/>
+      <Footer />
       
       
       
