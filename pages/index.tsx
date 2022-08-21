@@ -7,6 +7,7 @@ import AboutMe from "../components/Home/AboutMe/AboutMe";
 import ThisCantBeReached from "../components/Home/ThisSiteCantBeReached/ThisCantBeReached";
 import WhereIHaveWorked from "../components/Home/WhereIHaveWorked/WhereIHaveWorked";
 import SomethingIveBuilt from "../components/Home/SomethingIveBuilt/SomethingIveBuilt";
+import GetInTouch from "../components/Home/GetInTouch/GetInTouch";
 export default function Home() {
   const [ShowElement,setShowElement] = useState(false);
   const [ShowThisCantBeReached,setShowThisCantBeReached] = useState(true);
@@ -40,7 +41,7 @@ export default function Home() {
       <AboutMe />
       <WhereIHaveWorked />
       <SomethingIveBuilt/>
-      
+      <GetInTouch/>
       {/* {ShowMe?<WhatIHaveWorked />:<></>} */}
       
       
