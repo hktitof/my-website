@@ -26,7 +26,7 @@
     "@types/leaflet": "^1.7.11",
     "@types/node": "^18.0.6",
     "@types/react": "^18.0.15",
-    "autoprefixer": "10.4.5",
+    "autoprefixer": "10.4.7",
     "eslint": "8.20.0",
     "eslint-config-next": "12.2.2",
     "postcss": "^8.4.14",
