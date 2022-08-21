@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import SocialMediaEmail from "../components/Home/SocialMediaArround/SocialMediaEmail";
 import AboutMe from "../components/Home/AboutMe/AboutMe";
 import ThisCantBeReached from "../components/Home/ThisSiteCantBeReached/ThisCantBeReached";
-import WhatIHaveWorked from "../components/Home/WhatIHaveWorked/WhatIHaveWorked";
+import WhereIHaveWorked from "../components/Home/WhereIHaveWorked/WhereIHaveWorked";
 import SomethingIveBuilt from "../components/Home/SomethingIveBuilt/SomethingIveBuilt";
 export default function Home() {
   const [ShowElement,setShowElement] = useState(false);
@@ -37,8 +37,8 @@ export default function Home() {
       <MyName />
       <SocialMediaEmail /> */}
       {/* {ShowMe?<AboutMe />:<></>} */}
-      {/* <AboutMe /> */}
-      {/* <WhatIHaveWorked /> */}
+      <AboutMe />
+      <WhereIHaveWorked />
       <SomethingIveBuilt/>
       
       {/* {ShowMe?<WhatIHaveWorked />:<></>} */}

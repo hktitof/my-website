@@ -55,12 +55,12 @@ export default function SomethingIveBuilt() {
         <ArrowIcon
           className={"flex-none h-5 md:h-6 w-5 md:w-5 text-AAsecondary"}
         />
-        <div className="flex flex-row space-x-2 items-center pr-2">
+        <div className="flex-none flex-row space-x-2 items-center pr-2">
           <span className="text-AAsecondary font-sans text-sm  sm:text-xl">
             {" "}
             03.
           </span>
-          <span className="font-sans text-gray-200 text-xl md:text-2xl w-44 md:w-56">
+          <span className=" font-semibold text-gray-200 text-xl md:text-2xl w-44 md:w-56">
             {" "}
             Something I&apos;ve Built
           </span>
