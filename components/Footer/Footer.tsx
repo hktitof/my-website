@@ -3,6 +3,13 @@ import GithubIcon from "../Icons/GithubIcon";
 import LinkedinIcon from "../Icons/LinkedinIcon";
 import InstagramIcon from "../Icons/InstagramIcon";
 import YoutubeIcon from "../Icons/YoutubeIcon";
+const ClickableIcon=(props)=>{
+  return(
+    <a href={props.href} className="" target={"_blank"} rel="noreferrer">
+      <props.Icon className={"w-6 h-6 text-gray-400 hover:text-AAsecondary fill-current hover:cursor-pointer"}/>
+    </a>
+  )
+}
 export default function Fotter() {
   return (
     <>
@@ -10,10 +17,10 @@ export default function Fotter() {
       <div className="bg-AAprimary flex flex-col justify-center items-center py-8 space-y-8">
         {/* // ? Reach me at */}
         <div className="flex flex-row space-x-8 lg:hidden">
-          <GithubIcon className={"w-6 h-6 text-gray-400 hover:text-AAsecondary fill-current hover:cursor-pointer"}/>
-          <LinkedinIcon className={"w-6 h-6 text-gray-400 hover:text-AAsecondary fill-current hover:cursor-pointer"}/>
-          <InstagramIcon className={"w-6 h-6 text-gray-400 hover:text-AAsecondary fill-current hover:cursor-pointer"}/>
-          <YoutubeIcon className={"w-6 h-6 text-gray-400 hover:text-AAsecondary fill-current hover:cursor-pointer"}/>
+          <ClickableIcon href={"https://github.com/hktitof"} Icon={GithubIcon}/>
+          <ClickableIcon href={"https://www.linkedin.com/in/abdellatif-anaflous/"} Icon={LinkedinIcon}/>
+          <ClickableIcon href={"https://www.instagram.com/titof_abdo/"} Icon={InstagramIcon}/>
+          <ClickableIcon href={"https://www.youtube.com/c/NTTFT"} Icon={YoutubeIcon}/>
         </div>
         <a
           href="https://github.com/hktitof/my-website"
