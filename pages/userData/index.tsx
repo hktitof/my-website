@@ -87,7 +87,9 @@ export default function Page() {
           );
       }
       function error() {
-        setUpdatingLocatinResult(true)
+        setUpdatingLocatinResult(true);
+        //Show Map after failed to update location
+        setUpdatingLocation(false);
       }
       navigator.geolocation.getCurrentPosition(success, error);
 
@@ -109,12 +111,12 @@ export default function Page() {
           content="upgrade-insecure-requests"
         ></meta>
       </Head>
-      <div className="h-screen w-full bg-AAprimary text-white pt-44 2xl:px-64 xl:px-44 lg:px-24 md:px-16">
-        <div className="h-full w-full bg-AAtertiary py-16 lg:px-24 md:px-12">
-          <div className="h-full w-full bg-gray-800 flex flex-row">
-            <div className="h-full md:w-2/3 bg-blue-200"></div>
-            <div className="h-full md:w-1/3 bg-gray-800 flex flex-col space-y-8 items-center">
-              <div className="relative h-96 w-full">
+      <div className="h-screen w-full bg-AAprimary text-white pt-44 2xl:px-64 xl:px-44 lg:px-24 md:px-16 px-4">
+        <div className="h-full w-full bg-AAtertiary py-16 sm:px-12 px-4">
+          <div className="h-full w-full bg-gray-800 flex md:flex-row flex-col">
+            <div className="h-full md:w-2/3 md:order-1 order-2 border-2"></div>
+            <div className="h-full w-full md:w-1/3 bg-gray-800 flex flex-col space-y-8 items-center md:order-2 order-1">
+              <div className="relative md:h-96 h-64 w-full">
                 <div className={`${updatingLocation?"":"hidden"} absolute h-full w-full border-[1px] border-white z-10 flex justify-center items-center`}>
                   <svg
                     aria-hidden="true"
@@ -146,7 +148,7 @@ export default function Page() {
                 >
                   Update My IP Location
                 </span>
-                {updatingLocatinResult?<span className="text-sm">Unable to retrieve your location!!</span>:<></>}
+                {updatingLocatinResult?<span className="text-sm">Unable to retrieve your location!!<br/> Please Allow location permission</span>:<></>}
               </div>
             </div>
           </div>
