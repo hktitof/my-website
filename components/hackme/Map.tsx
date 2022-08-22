@@ -13,7 +13,7 @@ const Map = ({ lat = 30.4301, lon = -9.5912 }: position) => {
       center={[position[0], position[1]]}
       zoom={13}
       scrollWheelZoom={true}
-      style={{ height: 400, width: 400 }}
+      style={{ height: "100%", width: "100%" }}
       attributionControl={false}
     >
       <TileLayer
