@@ -131,13 +131,13 @@ export default function Page() {
   console.log("user data : ", userData.current);
   const BlockElem = props => {
     return (
-      <div className="flex flex-row ">
+      <div className="flex-none flex-row ">
         <span
-          className={`text-gray-200 font-semibold text-lg flex-none ${props.size}`}
+          className={`text-gray-200 font-semibold text-lg flex-none ${props.size} text-sm md:text-base`}
         >
           {props.title}
         </span>
-        <span className="text-AAsecondary font-semibold text-lg">
+        <span className="text-AAsecondary font-semibold text-sm md:text-base">
           {props.value}
         </span>
       </div>
@@ -146,8 +146,8 @@ export default function Page() {
   const TableRow = props => {
   return(
     <tr className="border-2 border-gray-300">
-    <td className="border-2 border-gray-300 pl-4 py-3">{props.title}</td>
-    <td className="pl-4 text-AAsecondary">{props.value}</td>
+    <td className=" border-2 border-gray-300 md:pl-4 py-3 text-xs md:text-base">{props.title}</td>
+    <td className="pl-4 text-AAsecondary text-xs md:text-base">{props.value}</td>
   </tr>
   );
   }
@@ -160,16 +160,16 @@ export default function Page() {
         ></meta>
       </Head>
       <div className=" w-full bg-AAprimary text-white pt-44 2xl:px-64 xl:px-44 lg:px-24 md:px-16 px-4 ">
-        <div className="h-full w-full bg-AAtertiary py-16 sm:px-12 px-4">
+        <div className="h-full w-full  py-16 sm:px-12 ">
           <div className="h-full w-full  flex md:flex-row flex-col ">
             {/* // ? User Data */}
             <div className="h-full md:w-2/3 md:order-1 order-2  md:pr-10 flex flex-col space-y-3 ">
               <div className="pb-2 sm:pt-0 pt-4">
-                <span className="text-xl sm:text-2xl font-bold pb-8">
+                <span className="text-xl sm:text-2xl font-bold pb-8 underline">
                   General Information :
                 </span>
               </div>
-              <table className="border-2 border-gray-300 w-full">
+              <table className="border-2 border-gray-300 w-full font-mono">
                 <tbody>
                 <TableRow
                 size="w-32"
@@ -221,13 +221,13 @@ export default function Page() {
               </table>
               
               <div className="pb-2 sm:pt-0 pt-4">
-                <span className="text-xl sm:text-2xl font-bold">
+                <span className="text-xl sm:text-2xl font-bold underline">
                   Additional Information :
                 </span>
               </div>
-              <section className="flex flex-col lg:flex-row lg:space-y-0 space-y-3 lg:space-x-4">
+              <section className="flex flex-col lg:flex-row lg:space-y-0 space-y-3 lg:space-x-4 font-mono">
                 {/* // ? Additional Information Section 1*/}
-                <div className="flex flex-col space-y-3">
+                <div className="flex-none flex-col space-y-3 ">
                   <BlockElem
                     size="w-32"
                     title="Browser :"
@@ -239,10 +239,10 @@ export default function Page() {
                     value={userData.current?.browserVersion || "Checking..."}
                   />
                   <div className="flex flex-row ">
-                    <span className="text-gray-200 font-semibold text-lg flex-none w-32">
+                    <span className="text-gray-200 font-semibold  flex-none w-32 text-sm md:text-base">
                       Languages:
                     </span>
-                    <span className="text-AAsecondary font-semibold text-lg">
+                    <span className="text-AAsecondary font-semibold  text-sm md:text-base">
                       {userData.current?.NavigatorLanguages.toString().replace(
                         ",",
                         ", "
@@ -264,9 +264,9 @@ export default function Page() {
                 </div>
 
                 {/* // ? Additional Information Section 2 */}
-                <div className="flex flex-col space-y-3">
+                <div className="flex-none flex-col space-y-3">
                   <BlockElem
-                    size="w-44"
+                    size="md:w-52 w-44"
                     title=" Screen orientation :"
                     value={userData.current?.screenOrientationType || ""}
                   />
@@ -281,10 +281,10 @@ export default function Page() {
                   />
 
                   <div className="flex flex-row ">
-                    <span className="text-gray-200 font-semibold text-lg flex-none w-32">
+                    <span className="text-gray-200 font-semibold flex-none w-32 text-sm md:text-base">
                       Window size :
                     </span>
-                    <span className="text-AAsecondary font-semibold text-lg">
+                    <span className="text-AAsecondary font-semibold  text-sm md:text-base">
                       <span ref={windowWidth} className="text-AAsecondary">
                         {userData.current?.screenWidth || ""}
                       </span>
@@ -295,11 +295,11 @@ export default function Page() {
                     </span>
                   </div>
 
-                  <div className="flex flex-row ">
-                    <span className="text-gray-200 font-semibold text-lg flex-none w-36">
+                  <div className="flex-none flex-row ">
+                    <span className="text-gray-200 font-semibold flex-none w-36 text-sm md:text-base">
                       Mouse position :
                     </span>
-                    <span className="text-AAsecondary font-semibold text-lg">
+                    <span className="text-AAsecondary font-semibold text-sm md:text-base">
                       <span className="text-gray-300">X - </span>
                       <span ref={mouseX} className="text-AAsecondary">
                         {0}

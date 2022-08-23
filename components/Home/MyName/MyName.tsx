@@ -1,6 +1,9 @@
 import React from "react";
 import { motion } from "../../../node_modules/framer-motion/dist/framer-motion";
+import Link from "next/link";
+import { useRouter } from "next/router";
 export default function MyName() {
+  const router = useRouter();
   return (
     <>
       <section className="h-full flex flex-col justify-center
@@ -67,9 +70,12 @@ export default function MyName() {
           }}
           className="mt-12"
         >
-          <button className="bg-AAprimary text-AAsecondary border rounded px-4 sm:px-8 py-3 sm:py-4 border-AAsecondary">
+
+          <button onClick={()=> router.push("/userData")} className="bg-AAprimary text-AAsecondary border rounded px-4 sm:px-8 py-3 sm:py-4 border-AAsecondary">
             Check out my resume!
           </button>
+
+          
         </motion.div>
         </>
         
