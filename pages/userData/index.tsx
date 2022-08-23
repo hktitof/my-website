@@ -20,13 +20,25 @@ export default function Page() {
   const userData = useRef<any>(null);
   let windowWidth = useRef<HTMLSpanElement>(null);
   let windowHeight = useRef<HTMLSpanElement>(null);
+  let mouseX=useRef<HTMLSpanElement>(null);
+  let mouseY=useRef<HTMLSpanElement>(null);
   // ? Window size Tracker
   useEffect(() => {
+    // Apply this event Listener on Client
     if (typeof window !== "undefined") {
       window.addEventListener("resize", function (event) {
-        windowWidth.current.innerText=String(window.innerWidth);
-        windowHeight.current.innerText=String(window.innerHeight);
+        windowWidth.current.innerText = String(window.innerWidth);
+        windowHeight.current.innerText = String(window.innerHeight);
       });
+
+      window.addEventListener(
+        "mousemove",
+        e => {
+          mouseX.current.innerText = String(e.pageX);
+          mouseY.current.innerText = String(e.pageY);
+        },
+        false
+      );
     }
 
     // these function is used by next async function
@@ -117,7 +129,18 @@ export default function Page() {
     // }
   };
   console.log("user data : ", userData.current);
-
+  const BlockElem = (props)=>{
+    return(
+      <div className="flex flex-row ">
+      <span className={`text-gray-200 font-semibold text-lg flex-none ${props.size}`}>
+        {props.title}
+      </span>
+      <span className="text-AAsecondary font-semibold text-lg">
+        {props.value}
+      </span>
+    </div>
+    )
+  }
   return (
     <>
       <Head>
@@ -136,118 +159,24 @@ export default function Page() {
                   General Information :
                 </span>
               </div>
-              <div className="flex flex-row ">
-                <span className="text-gray-200 font-semibold text-lg flex-none w-48">
-                 Tracking window size :
-                </span>
-                <span className="text-AAsecondary font-semibold text-lg">
-                  <span ref={windowWidth} className="text-AAsecondary">{}</span>
-                  <span className="text-gray-300">x</span>
-                  <span ref={windowHeight} className="text-AAsecondary">{}</span>
-                </span>
-              </div>
-              <div className="flex flex-row ">
-                <span className="text-gray-200 font-semibold text-lg flex-none w-32">
-                  Ip Address :
-                </span>
-                <span className="text-AAsecondary font-semibold text-lg">
-                  {userData.current?.query || "Checking..."}
-                </span>
-              </div>
-              <div className="flex flex-row ">
-                <span className="text-gray-200 font-semibold text-lg flex-none w-32">
-                  Isp :
-                </span>
-                <span className="text-AAsecondary font-semibold text-lg ">
-                  {userData.current?.isp || "Checking..."}
-                </span>
-              </div>
-              <div className="flex flex-row ">
-                <span className="text-gray-200 font-semibold text-lg flex-none w-32">
-                  City :
-                </span>
-                <span className="text-AAsecondary font-semibold text-lg">
-                  {userData.current?.city || "Checking..."}
-                </span>
-              </div>
-              <div className="flex flex-row ">
-                <span className="text-gray-200 font-semibold text-lg flex-none w-32">
-                  Zip Code :
-                </span>
-                <span className="text-AAsecondary font-semibold text-lg">
-                  {userData.current?.zip || "Checking..."}
-                </span>
-              </div>
-              <div className="flex flex-row ">
-                <span className="text-gray-200 font-semibold text-lg flex-none w-32">
-                  Region :
-                </span>
-                <span className="text-AAsecondary font-semibold text-lg">
-                  {userData.current?.regionName || "Checking..."}
-                </span>
-              </div>
-              <div className="flex flex-row ">
-                <span className="text-gray-200 font-semibold text-lg flex-none w-32">
-                  Region Code :
-                </span>
-                <span className="text-AAsecondary font-semibold text-lg">
-                  {userData.current?.region || "Checking..."}
-                </span>
-              </div>
-              <div className="flex flex-row ">
-                <span className="text-gray-200 font-semibold text-lg flex-none w-32">
-                  Country :
-                </span>
-                <span className="text-AAsecondary font-semibold text-lg">
-                  {userData.current?.country || "Checking..."}
-                </span>
-              </div>
-              <div className="flex flex-row ">
-                <span className="text-gray-200 font-semibold text-lg flex-none w-44">
-                  Current Date/time :
-                </span>
-                <span className="text-AAsecondary font-semibold text-lg">
-                  {userData.current?.datetime || "Checking..."}
-                </span>
-              </div>
-              <div className="flex flex-row ">
-                <span className="text-gray-200 font-semibold text-lg flex-none w-32">
-                  Timezone :
-                </span>
-                <span className="text-AAsecondary font-semibold text-lg">
-                  {userData.current?.timezone || "Checking..."}
-                </span>
-              </div>
-              <div className="flex flex-row ">
-                <span className="text-gray-200 font-semibold text-lg flex-none w-32">
-                  As :
-                </span>
-                <span className="text-AAsecondary font-semibold text-lg">
-                  {userData.current?.as || "Checking..."}
-                </span>
-              </div>
+              <BlockElem size="w-32" title="IP Address" value={userData.current?.query || "Checking..."} />
+              <BlockElem size="w-32" title="Browser" value={userData.current?.browser || "Checking..."} />
+              <BlockElem size="w-32" title="City :" value={userData.current?.city || "Checking..."} />
+              <BlockElem size="w-32" title="Zip Code :" value={userData.current?.zip || "Checking..."} />
+              <BlockElem size="w-32" title="Region :" value={userData.current?.regionName || "Checking..."} />
+              <BlockElem size="w-32" title=" Region Code :" value={userData.current?.region || "Checking..."} />
+              <BlockElem size="w-32" title="Country :" value={userData.current?.country || "Checking..."} />
+              <BlockElem size="w-44" title="Current Date/time :" value={userData.current?.datetime || "Checking..."} />
+              <BlockElem size="w-32" title="Timezone :" value={userData.current?.timezone || "Checking..."} />
+              <BlockElem size="w-32" title="As :" value={userData.current?.as || "Checking..."} />
               {/* // ? Additional Information */}
               <div className="pb-2">
                 <span className="text-2xl font-bold">
                   Additional Information :
                 </span>
               </div>
-              <div className="flex flex-row ">
-                <span className="text-gray-200 font-semibold text-lg flex-none w-32">
-                  Browser :
-                </span>
-                <span className="text-AAsecondary font-semibold text-lg">
-                  {userData.current?.browser || "Checking..."}
-                </span>
-              </div>
-              <div className="flex flex-row ">
-                <span className="text-gray-200 font-semibold text-lg flex-none w-32">
-                  version:
-                </span>
-                <span className="text-AAsecondary font-semibold text-lg">
-                  {userData.current?.browserVersion || "Checking..."}
-                </span>
-              </div>
+              <BlockElem size="w-32" title="Browser :" value={userData.current?.browser || "Checking..."} />
+              <BlockElem size="w-32" title="version :" value={userData.current?.browserVersion || "Checking..."} />
               <div className="flex flex-row ">
                 <span className="text-gray-200 font-semibold text-lg flex-none w-32">
                   Languages:
@@ -259,41 +188,45 @@ export default function Page() {
                   ) || "Checking..."}
                 </span>
               </div>
-              <div className="flex flex-row ">
-                <span className="text-gray-200 font-semibold text-lg flex-none w-32">
-                  OS :
-                </span>
-                <span className="text-AAsecondary font-semibold text-lg">
-                  {userData.current?.browserOS || "Checking..."}
-                </span>
-              </div>
-              <div className="flex flex-row ">
-                <span className="text-gray-200 font-semibold text-lg flex-none w-32">
-                  CPU cores :
-                </span>
-                <span className="text-AAsecondary font-semibold text-lg">
-                  {userData.current?.NavigatorLogicalCores || "Checking..."}
-                </span>
-              </div>
-              <div className="flex flex-row ">
-                <span className="text-gray-200 font-semibold text-lg flex-none w-32">
-                  Screen size :
-                </span>
-                <span className="text-AAsecondary font-semibold text-lg">
-                  {(userData.current?.screenWidth || "") +
+              <BlockElem size="w-32" title="OS :" value={userData.current?.browserOS || "Checking..."} />
+              <BlockElem size="w-32" title="CPU cores :" value={userData.current?.NavigatorLogicalCores || "Checking..."} />
+              <BlockElem size="w-32" title=" Screen orientation :" value={userData.current?.screenOrientationType || ""} />
+              <BlockElem size="w-32" title="Screen size :" value={(userData.current?.screenWidth || "") +
                     " x " +
-                    (userData.current?.screenHeight || "")}
-                </span>
-              </div>
+                    (userData.current?.screenHeight || "")} />
+              
+              
               <div className="flex flex-row ">
-                <span className="text-gray-200 font-semibold text-lg flex-none w-44">
-                  Screen Color Depth :
+                <span className="text-gray-200 font-semibold text-lg flex-none w-32">
+                  Window size :
                 </span>
                 <span className="text-AAsecondary font-semibold text-lg">
-                  {userData.current?.screenColorDepth || "Checking..."}
+                  <span ref={windowWidth} className="text-AAsecondary">
+                    {userData.current?.screenWidth || ""}
+                  </span>
+                  <span className="text-gray-300"> x </span>
+                  <span ref={windowHeight} className="text-AAsecondary">
+                    {userData.current?.screenHeight || ""}
+                  </span>
                 </span>
               </div>
-              
+
+              <div className="flex flex-row ">
+                <span className="text-gray-200 font-semibold text-lg flex-none w-36">
+                  Mouse position :
+                </span>
+                <span className="text-AAsecondary font-semibold text-lg">
+                <span className="text-gray-300">X - </span>
+                  <span ref={mouseX} className="text-AAsecondary">
+                    {0}
+                  </span>
+                  <span className="text-gray-300">, Y - </span>
+                  <span ref={mouseY} className="text-AAsecondary">
+                    {0}
+                  </span>
+                </span>
+              </div>
+              <BlockElem size="w-44" title="Screen Color Depth :" value={userData.current?.screenColorDepth || "Checking..."} />
             </div>
             {/* // ? Map  */}
             <div className="h-full w-full md:w-1/3 bg-gray-800 flex flex-col space-y-8 items-center md:order-2 order-1">
