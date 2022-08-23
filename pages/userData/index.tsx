@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Head from "next/head";
 // ? this pa package "si" is used to get information about server side
 import { detect } from "detect-browser";
@@ -8,6 +8,7 @@ import MyComponent from "../../components/hackme/Map";
 import dynamic from "next/dynamic";
 
 export default function Page() {
+  console.log("Page rendered..");
   // this api will return current ip address of the user
   const IP_Address = async () => {
     return fetch("https://api.ipify.org/?format=json")
@@ -16,8 +17,18 @@ export default function Page() {
   };
   // this will be used to determine lan and lon of the user
   const [location, setLocation] = useState<number[]>([0, 0]);
-
+  const userData = useRef<any>(null);
+  let windowWidth = useRef<HTMLSpanElement>(null);
+  let windowHeight = useRef<HTMLSpanElement>(null);
+  // ? Window size Tracker
   useEffect(() => {
+    if (typeof window !== "undefined") {
+      window.addEventListener("resize", function (event) {
+        windowWidth.current.innerText=String(window.innerWidth);
+        windowHeight.current.innerText=String(window.innerHeight);
+      });
+    }
+
     // these function is used by next async function
     const api_data = async () => {
       return fetch("/api/userInfo/" + (await IP_Address()))
@@ -56,7 +67,8 @@ export default function Page() {
         }
       }
       setLocation([result.lat, result.lan]);
-      console.log("data :", result);
+      console.log("useEffect data :", result);
+      userData.current = result;
     };
     userInfo();
   }, []);
@@ -64,34 +76,35 @@ export default function Page() {
     () => import("../../components/hackme/Map"), // replace '@components/map' with your component's location
     { ssr: false } // This line is important. It's what prevents server-side render
   );
-  const [updatingLocation,setUpdatingLocation]=useState<boolean>(false)
-  const [updatingLocatinResult,setUpdatingLocatinResult]=useState<boolean>(false)
+  const [updatingLocation, setUpdatingLocation] = useState<boolean>(false);
+  const [updatingLocatinResult, setUpdatingLocatinResult] =
+    useState<boolean>(false);
   const clickUpdateLocation = () => {
     //Hide Map when updating location
     setUpdatingLocation(true);
     // Hide Unable to retieve location message
     setUpdatingLocatinResult(false);
-    if (!navigator.geolocation){
-        alert("Geolocation is not supported by your browser");
-         return;
-       }
-       function success(position) {
-        setLocation([position.coords.latitude, position.coords.longitude]);
-        // ? success Show Map
-        setUpdatingLocation(false);
-        console.log(
-            "Longitude:",
-            position.coords.longitude,
-            "Latitude:",
-            position.coords.latitude
-          );
-      }
-      function error() {
-        setUpdatingLocatinResult(true);
-        //Show Map after failed to update location
-        setUpdatingLocation(false);
-      }
-      navigator.geolocation.getCurrentPosition(success, error);
+    if (!navigator.geolocation) {
+      alert("Geolocation is not supported by your browser");
+      return;
+    }
+    function success(position) {
+      setLocation([position.coords.latitude, position.coords.longitude]);
+      // ? success Show Map
+      setUpdatingLocation(false);
+      console.log(
+        "Longitude:",
+        position.coords.longitude,
+        "Latitude:",
+        position.coords.latitude
+      );
+    }
+    function error() {
+      setUpdatingLocatinResult(true);
+      //Show Map after failed to update location
+      setUpdatingLocation(false);
+    }
+    navigator.geolocation.getCurrentPosition(success, error);
 
     // if ("geolocation" in navigator) {
     //   navigator.geolocation.getCurrentPosition(function (position) {
@@ -103,6 +116,8 @@ export default function Page() {
     //   alert("Sorry, but Geolocation is not supported by this browser.");
     // }
   };
+  console.log("user data : ", userData.current);
+
   return (
     <>
       <Head>
@@ -111,13 +126,183 @@ export default function Page() {
           content="upgrade-insecure-requests"
         ></meta>
       </Head>
-      <div className="h-screen w-full bg-AAprimary text-white pt-44 2xl:px-64 xl:px-44 lg:px-24 md:px-16 px-4">
+      <div className=" w-full bg-AAprimary text-white pt-44 2xl:px-64 xl:px-44 lg:px-24 md:px-16 px-4 ">
         <div className="h-full w-full bg-AAtertiary py-16 sm:px-12 px-4">
-          <div className="h-full w-full bg-gray-800 flex md:flex-row flex-col">
-            <div className="h-full md:w-2/3 md:order-1 order-2 border-2"></div>
+          <div className="h-full w-full bg-gray-800 flex md:flex-row flex-col ">
+            {/* // ? User Data */}
+            <div className="h-full md:w-2/3 md:order-1 order-2 border-2 pr-10 flex flex-col space-y-3 ">
+              <div className="pb-2">
+                <span className="text-2xl font-bold">
+                  General Information :
+                </span>
+              </div>
+              <div className="flex flex-row ">
+                <span className="text-gray-200 font-semibold text-lg flex-none w-48">
+                 Tracking window size :
+                </span>
+                <span className="text-AAsecondary font-semibold text-lg">
+                  <span ref={windowWidth} className="text-AAsecondary">{}</span>
+                  <span className="text-gray-300">x</span>
+                  <span ref={windowHeight} className="text-AAsecondary">{}</span>
+                </span>
+              </div>
+              <div className="flex flex-row ">
+                <span className="text-gray-200 font-semibold text-lg flex-none w-32">
+                  Ip Address :
+                </span>
+                <span className="text-AAsecondary font-semibold text-lg">
+                  {userData.current?.query || "Checking..."}
+                </span>
+              </div>
+              <div className="flex flex-row ">
+                <span className="text-gray-200 font-semibold text-lg flex-none w-32">
+                  Isp :
+                </span>
+                <span className="text-AAsecondary font-semibold text-lg ">
+                  {userData.current?.isp || "Checking..."}
+                </span>
+              </div>
+              <div className="flex flex-row ">
+                <span className="text-gray-200 font-semibold text-lg flex-none w-32">
+                  City :
+                </span>
+                <span className="text-AAsecondary font-semibold text-lg">
+                  {userData.current?.city || "Checking..."}
+                </span>
+              </div>
+              <div className="flex flex-row ">
+                <span className="text-gray-200 font-semibold text-lg flex-none w-32">
+                  Zip Code :
+                </span>
+                <span className="text-AAsecondary font-semibold text-lg">
+                  {userData.current?.zip || "Checking..."}
+                </span>
+              </div>
+              <div className="flex flex-row ">
+                <span className="text-gray-200 font-semibold text-lg flex-none w-32">
+                  Region :
+                </span>
+                <span className="text-AAsecondary font-semibold text-lg">
+                  {userData.current?.regionName || "Checking..."}
+                </span>
+              </div>
+              <div className="flex flex-row ">
+                <span className="text-gray-200 font-semibold text-lg flex-none w-32">
+                  Region Code :
+                </span>
+                <span className="text-AAsecondary font-semibold text-lg">
+                  {userData.current?.region || "Checking..."}
+                </span>
+              </div>
+              <div className="flex flex-row ">
+                <span className="text-gray-200 font-semibold text-lg flex-none w-32">
+                  Country :
+                </span>
+                <span className="text-AAsecondary font-semibold text-lg">
+                  {userData.current?.country || "Checking..."}
+                </span>
+              </div>
+              <div className="flex flex-row ">
+                <span className="text-gray-200 font-semibold text-lg flex-none w-44">
+                  Current Date/time :
+                </span>
+                <span className="text-AAsecondary font-semibold text-lg">
+                  {userData.current?.datetime || "Checking..."}
+                </span>
+              </div>
+              <div className="flex flex-row ">
+                <span className="text-gray-200 font-semibold text-lg flex-none w-32">
+                  Timezone :
+                </span>
+                <span className="text-AAsecondary font-semibold text-lg">
+                  {userData.current?.timezone || "Checking..."}
+                </span>
+              </div>
+              <div className="flex flex-row ">
+                <span className="text-gray-200 font-semibold text-lg flex-none w-32">
+                  As :
+                </span>
+                <span className="text-AAsecondary font-semibold text-lg">
+                  {userData.current?.as || "Checking..."}
+                </span>
+              </div>
+              {/* // ? Additional Information */}
+              <div className="pb-2">
+                <span className="text-2xl font-bold">
+                  Additional Information :
+                </span>
+              </div>
+              <div className="flex flex-row ">
+                <span className="text-gray-200 font-semibold text-lg flex-none w-32">
+                  Browser :
+                </span>
+                <span className="text-AAsecondary font-semibold text-lg">
+                  {userData.current?.browser || "Checking..."}
+                </span>
+              </div>
+              <div className="flex flex-row ">
+                <span className="text-gray-200 font-semibold text-lg flex-none w-32">
+                  version:
+                </span>
+                <span className="text-AAsecondary font-semibold text-lg">
+                  {userData.current?.browserVersion || "Checking..."}
+                </span>
+              </div>
+              <div className="flex flex-row ">
+                <span className="text-gray-200 font-semibold text-lg flex-none w-32">
+                  Languages:
+                </span>
+                <span className="text-AAsecondary font-semibold text-lg">
+                  {userData.current?.NavigatorLanguages.toString().replace(
+                    ",",
+                    ", "
+                  ) || "Checking..."}
+                </span>
+              </div>
+              <div className="flex flex-row ">
+                <span className="text-gray-200 font-semibold text-lg flex-none w-32">
+                  OS :
+                </span>
+                <span className="text-AAsecondary font-semibold text-lg">
+                  {userData.current?.browserOS || "Checking..."}
+                </span>
+              </div>
+              <div className="flex flex-row ">
+                <span className="text-gray-200 font-semibold text-lg flex-none w-32">
+                  CPU cores :
+                </span>
+                <span className="text-AAsecondary font-semibold text-lg">
+                  {userData.current?.NavigatorLogicalCores || "Checking..."}
+                </span>
+              </div>
+              <div className="flex flex-row ">
+                <span className="text-gray-200 font-semibold text-lg flex-none w-32">
+                  Screen size :
+                </span>
+                <span className="text-AAsecondary font-semibold text-lg">
+                  {(userData.current?.screenWidth || "") +
+                    " x " +
+                    (userData.current?.screenHeight || "")}
+                </span>
+              </div>
+              <div className="flex flex-row ">
+                <span className="text-gray-200 font-semibold text-lg flex-none w-44">
+                  Screen Color Depth :
+                </span>
+                <span className="text-AAsecondary font-semibold text-lg">
+                  {userData.current?.screenColorDepth || "Checking..."}
+                </span>
+              </div>
+              
+            </div>
+            {/* // ? Map  */}
             <div className="h-full w-full md:w-1/3 bg-gray-800 flex flex-col space-y-8 items-center md:order-2 order-1">
               <div className="relative md:h-96 h-64 w-full">
-                <div className={`${updatingLocation?"":"hidden"} absolute h-full w-full border-[1px] border-white z-10 flex justify-center items-center`}>
+                <div
+                  className={`${
+                    updatingLocation ? "" : "hidden"
+                  } absolute h-full w-full border-[1px] border-white z-10 flex justify-center items-center`}
+                >
                   <svg
                     aria-hidden="true"
                     className="mr-2 w-8 h-8 text-gray-200 animate-spin dark:text-gray-600
@@ -136,7 +321,11 @@ export default function Page() {
                     />
                   </svg>
                 </div>
-                <div className={`${updatingLocation?"hidden":""} h-full w-full z-10`}>
+                <div
+                  className={`${
+                    updatingLocation ? "hidden" : ""
+                  } h-full w-full z-10`}
+                >
                   <Map lat={location[0]} lon={location[1]} />
                 </div>
               </div>
@@ -148,7 +337,14 @@ export default function Page() {
                 >
                   Update My IP Location
                 </span>
-                {updatingLocatinResult?<span className="text-sm">Unable to retrieve your location!!<br/> Please Allow location permission</span>:<></>}
+                {updatingLocatinResult ? (
+                  <span className="text-sm">
+                    Unable to retrieve your location!!
+                    <br /> Please Allow location permission
+                  </span>
+                ) : (
+                  <></>
+                )}
               </div>
             </div>
           </div>
