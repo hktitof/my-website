@@ -40,9 +40,9 @@ export default function Page() {
       );
     }
 
-    // call api by passing the IP address of the requester & store in api_data 
+    // call api by passing the IP address of the requester & store in api_data
     const api_data = async () => {
-      return fetch("/api/userInfo/" + (await IP_Address()))
+      return fetch("/api/userInfoByIP/" + (await IP_Address()))
         .then(res => res.json())
         .then(data => data);
     };
@@ -161,7 +161,7 @@ export default function Page() {
       </tr>
     );
   };
-  // data for the table 
+  // data for the table
   const Table_data = [
     { title: "IP Address :", value: userData.current?.query || "Checking..." },
     { title: "City :", value: userData.current?.city || "Checking..." },
@@ -198,6 +198,13 @@ export default function Page() {
     },
   ];
   console.log("location : ", location[1]);
+  const clickMe = async (lat,lon) => {
+    return fetch("/api/userInfoByLatLon/"+lat+"/"+lon)
+      .then(res => res.json())
+      .then(data => {
+        console.log(data)
+      });
+  };
   return (
     <>
       <Head>
@@ -211,7 +218,12 @@ export default function Page() {
           {/* // ? Ip Address, (Latitude & Longitude) ==> only > md */}
           <div className="w-full pb-6 flex md:flex-row flex-col space-y-4 justify-around items-center">
             <span className="font-bold md:text-4xl text-lg text-AAsecondary">
-              <span className="text-white">IP :</span>{" "}
+              <span
+                onClick={async () => await clickMe(location[0],location[1])}
+                className="text-white hover:cursor-pointer"
+              >
+                IP :
+              </span>{" "}
               {userData.current?.query || "Checking..."}
             </span>
 
@@ -258,8 +270,15 @@ export default function Page() {
               <section className="flex flex-col lg:flex-row lg:space-y-0 space-y-3 lg:space-x-4 font-mono">
                 {/* // ? Additional Information Section 1*/}
                 <div className="flex-none flex-col space-y-3 ">
-                  {Additional_data.map((item,index)=>{
-                    return <BlockElem key={index} size="32" title={item.title} value={item.value} />
+                  {Additional_data.map((item, index) => {
+                    return (
+                      <BlockElem
+                        key={index}
+                        size="32"
+                        title={item.title}
+                        value={item.value}
+                      />
+                    );
                   })}
                 </div>
 
