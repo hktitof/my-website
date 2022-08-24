@@ -97,7 +97,7 @@ export default function Page() {
   const [updatingLocation, setUpdatingLocation] = useState<boolean>(false);
   const [updatingLocatinResult, setUpdatingLocatinResult] =
     useState<boolean>(false);
-  const clickUpdateLocation = () => {
+  const clickUpdateLocation = async () => {
     //Hide Map when updating location
     setUpdatingLocation(true);
     // Hide Unable to retieve location message
@@ -112,9 +112,19 @@ export default function Page() {
       const temp_array_location = [];
       temp_array_location.push(position.coords.latitude);
       temp_array_location.push(position.coords.longitude);
+      // set new lat and lon
       setLocation([...temp_array_location]);
-      // ? success Show Map
+      // Show Map
       setUpdatingLocation(false);
+
+      // * FIXME continue here update zipcode when clickingon update m;y ip locaiton
+      const clickMe = async (lat, lon) => {
+        return fetch("/api/userInfoByLatLon/" + lat + "/" + lon)
+          .then(res => res.json())
+          .then(data => {
+            console.log(data);
+          });
+      };
       console.log(
         "Longitude:",
         position.coords.longitude,
@@ -198,11 +208,11 @@ export default function Page() {
     },
   ];
   console.log("location : ", location[1]);
-  const clickMe = async (lat,lon) => {
-    return fetch("/api/userInfoByLatLon/"+lat+"/"+lon)
+  const clickMe = async (lat, lon) => {
+    return fetch("/api/userInfoByLatLon/" + lat + "/" + lon)
       .then(res => res.json())
       .then(data => {
-        console.log(data)
+        console.log(data);
       });
   };
   return (
@@ -219,7 +229,7 @@ export default function Page() {
           <div className="w-full pb-6 flex md:flex-row flex-col space-y-4 justify-around items-center">
             <span className="font-bold md:text-4xl text-lg text-AAsecondary">
               <span
-                onClick={async () => await clickMe(location[0],location[1])}
+                onClick={async () => await clickMe(location[0], location[1])}
                 className="text-white hover:cursor-pointer"
               >
                 IP :

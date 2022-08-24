@@ -21,8 +21,8 @@ export default async function handler(req, res) {
       .then(res => res.json())
       .then(data => {
         const result = data.results;
-        //    return HasZipCode(result);
-        return data;
+           return HasZipCode(result);
+        // return data;
       })
       .catch(err => {
         console.error("When fetching data from google api : \n", err);
