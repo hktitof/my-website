@@ -2,7 +2,7 @@ export default async function handler(req, res) {
    const HasZipCode = obj => {
       for (const x of obj) {
         const elem = x.address_components;
-        if (!isNaN(elem[elem.length - 1].long_name)) {
+        if (!isNaN(elem[elem.length - 1].long_name.replaceAll(' ', ''))) {
           return elem[elem.length - 1].long_name;
         }
       }
