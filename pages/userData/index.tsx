@@ -1,36 +1,35 @@
 import React from "react";
 import { useState, useEffect, useRef } from "react";
 import Head from "next/head";
-// ? this pa package "si" is used to get information about server side
 import { detect } from "detect-browser";
-import { GoogleMap, useJsApiLoader } from "@react-google-maps/api";
-import MyComponent from "../../components/hackme/Map";
 import dynamic from "next/dynamic";
 
 export default function Page() {
   console.log("Page rendered..");
-  // this api will return current ip address of the user
+  // this api will return current ip address of the requester
   const IP_Address = async () => {
     return fetch("https://api.ipify.org/?format=json")
       .then(res => res.json())
       .then(data => data.ip);
   };
-  // this will be used to determine lan and lon of the user
+  // location[latitude, longitude]
   const [location, setLocation] = useState<number[]>([0, 0]);
+  // userData Ref holder
   const userData = useRef<any>(null);
-  let windowWidth = useRef<HTMLSpanElement>(null);
-  let windowHeight = useRef<HTMLSpanElement>(null);
-  let mouseX = useRef<HTMLSpanElement>(null);
-  let mouseY = useRef<HTMLSpanElement>(null);
+  const windowWidth = useRef<HTMLSpanElement>(null);
+  const windowHeight = useRef<HTMLSpanElement>(null);
+  const mouseX = useRef<HTMLSpanElement>(null);
+  const mouseY = useRef<HTMLSpanElement>(null);
   // ? Window size Tracker
   useEffect(() => {
     // Apply this event Listener on Client
     if (typeof window !== "undefined") {
+      // window size tracker
       window.addEventListener("resize", function (event) {
         windowWidth.current.innerText = String(window.innerWidth);
         windowHeight.current.innerText = String(window.innerHeight);
       });
-
+      // mouse position tracker
       window.addEventListener(
         "mousemove",
         e => {
@@ -41,17 +40,19 @@ export default function Page() {
       );
     }
 
-    // these function is used by next async function
+    // call api by passing the IP address of the requester & store in api_data 
     const api_data = async () => {
       return fetch("/api/userInfo/" + (await IP_Address()))
         .then(res => res.json())
         .then(data => data);
     };
-    // browser will be used to determine the browser info
+    //to determine the browser info
     const browser = detect();
     // async function for getting user location
     const userInfo = async () => {
+      // get user Data from the api
       const result = await api_data();
+      // Client side checks
       if (browser) {
         result["browser"] = browser.name;
         result["browserVersion"] = browser.version;
@@ -78,14 +79,19 @@ export default function Page() {
           });
         }
       }
-      setLocation([result.lat, result.lan]);
+      const temp_array_location = [];
+      temp_array_location.push(result.lat);
+      temp_array_location.push(result.lon);
+      setLocation([...temp_array_location]);
       console.log("useEffect data :", result);
       userData.current = result;
     };
+    // call the userInfo inside the useEffect async function
     userInfo();
   }, []);
+  // import Dynamically the Map component from the hackme package, cus it's using some client side objects
   const Map = dynamic(
-    () => import("../../components/hackme/Map"), // replace '@components/map' with your component's location
+    () => import("../../components/hackme/Map"),
     { ssr: false } // This line is important. It's what prevents server-side render
   );
   const [updatingLocation, setUpdatingLocation] = useState<boolean>(false);
@@ -100,8 +106,13 @@ export default function Page() {
       alert("Geolocation is not supported by your browser");
       return;
     }
+    // function will be executed after permission is authorized
     function success(position) {
       setLocation([position.coords.latitude, position.coords.longitude]);
+      const temp_array_location = [];
+      temp_array_location.push(position.coords.latitude);
+      temp_array_location.push(position.coords.longitude);
+      setLocation([...temp_array_location]);
       // ? success Show Map
       setUpdatingLocation(false);
       console.log(
@@ -111,29 +122,23 @@ export default function Page() {
         position.coords.latitude
       );
     }
+    // function will be executed after permission is denied
     function error() {
+      // error Show Unable to retieve location message
       setUpdatingLocatinResult(true);
       //Show Map after failed to update location
       setUpdatingLocation(false);
     }
+    // ask for permission to access location
     navigator.geolocation.getCurrentPosition(success, error);
-
-    // if ("geolocation" in navigator) {
-    //   navigator.geolocation.getCurrentPosition(function (position) {
-    //     setLocation([position.coords.latitude, position.coords.longitude]);
-
-    //     setUpdatingLocation(false);
-    //   });
-    // } else {
-    //   alert("Sorry, but Geolocation is not supported by this browser.");
-    // }
   };
   console.log("user data : ", userData.current);
+  // repeted code for setting Additional Data user location
   const BlockElem = props => {
     return (
-      <div className="flex-none flex-row ">
+      <div className="flex-none flex-row space-x-2">
         <span
-          className={`text-gray-200 font-semibold text-lg flex-none ${props.size} text-sm md:text-base`}
+          className={`text-gray-200 font-semibold flex-none ${props.size} text-sm md:text-base`}
         >
           {props.title}
         </span>
@@ -143,14 +148,56 @@ export default function Page() {
       </div>
     );
   };
+  // repeated code for table data
   const TableRow = props => {
-  return(
-    <tr className="border-2 border-gray-300">
-    <td className=" border-2 border-gray-300 md:pl-4 py-3 text-xs md:text-base">{props.title}</td>
-    <td className="pl-4 text-AAsecondary text-xs md:text-base">{props.value}</td>
-  </tr>
-  );
-  }
+    return (
+      <tr className="border-2 border-gray-300">
+        <td className=" border-2 border-gray-300 pl-2 md:pl-4 py-3 text-xs md:text-base w-28 md:w-auto">
+          {props.title}
+        </td>
+        <td className="pl-4 text-AAsecondary text-xs md:text-base">
+          {props.value}
+        </td>
+      </tr>
+    );
+  };
+  // data for the table 
+  const Table_data = [
+    { title: "IP Address :", value: userData.current?.query || "Checking..." },
+    { title: "City :", value: userData.current?.city || "Checking..." },
+    { title: "Zip Code :", value: userData.current?.zip || "Checking..." },
+    { title: "Region :", value: userData.current?.regionName || "Checking..." },
+    {
+      title: "Region Code :",
+      value: userData.current?.region || "Checking...",
+    },
+    { title: "Country :", value: userData.current?.country || "Checking..." },
+    {
+      title: "Current Date/time :",
+      value: userData.current?.datetime || "Checking...",
+    },
+    { title: "As :", value: userData.current?.as || "Checking..." },
+  ];
+  // data for Additional Information Section 1
+  const Additional_data = [
+    { title: "Browser :", value: userData.current?.browser || "Checking..." },
+    {
+      title: "Browser Version :",
+      value: userData.current?.browserVersion || "Checking...",
+    },
+    {
+      title: "Languages :",
+      value:
+        userData.current?.NavigatorLanguages.toString().replace(",", ", ") ||
+        "Checking...",
+    },
+    { title: "OS :", value: userData.current?.browserOS || "Checking..." },
+    {
+      title: "CPU cores :",
+      value: userData.current?.NavigatorLogicalCores || "Checking...",
+    },
+  ];
+  console.log("location : ", location[1]);
   return (
     <>
       <Head>
@@ -159,8 +206,28 @@ export default function Page() {
           content="upgrade-insecure-requests"
         ></meta>
       </Head>
-      <div className=" w-full bg-AAprimary text-white pt-44 2xl:px-64 xl:px-44 lg:px-24 md:px-16 px-4 ">
-        <div className="h-full w-full  py-16 sm:px-12 ">
+      <div className="min-h-screen w-full bg-AAprimary text-white 2xl:px-64 xl:px-44 lg:px-24 md:px-16 px-4 ">
+        <div className="h-full w-full  py-16 sm:px-12">
+          {/* // ? Ip Address, (Latitude & Longitude) ==> only > md */}
+          <div className="w-full pb-6 flex md:flex-row flex-col space-y-4 justify-around items-center">
+            <span className="font-bold md:text-4xl text-lg text-AAsecondary">
+              <span className="text-white">IP :</span>{" "}
+              {userData.current?.query || "Checking..."}
+            </span>
+
+            <table className="md:hidden block font-mono">
+              <tbody className="border-2  md:text-xl text-xs">
+                <tr className=" border-2 ">
+                  <td className="border-2 py-1 px-8 ">Latitude :</td>
+                  <td className="text-AAsecondary px-8">{location[0]}</td>
+                </tr>
+                <tr>
+                  <td className="border-2 py-1 px-8">Longitude :</td>
+                  <td className="text-AAsecondary px-8">{location[1]}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
           <div className="h-full w-full  flex md:flex-row flex-col ">
             {/* // ? User Data */}
             <div className="h-full md:w-2/3 md:order-1 order-2  md:pr-10 flex flex-col space-y-3 ">
@@ -171,55 +238,18 @@ export default function Page() {
               </div>
               <table className="border-2 border-gray-300 w-full font-mono">
                 <tbody>
-                <TableRow
-                size="w-32"
-                title="IP Address"
-                value={userData.current?.query || "Checking..."}
-              />
-
-              <TableRow
-                size="w-32"
-                title="City :"
-                value={userData.current?.city || "Checking..."}
-              />
-              <TableRow
-                size="w-32"
-                title="Zip Code :"
-                value={userData.current?.zip || "Checking..."}
-              />
-              <TableRow
-                size="w-32"
-                title="Region :"
-                value={userData.current?.regionName || "Checking..."}
-              />
-              <TableRow
-                size="w-32"
-                title=" Region Code :"
-                value={userData.current?.region || "Checking..."}
-              />
-              <TableRow
-                size="w-32"
-                title="Country :"
-                value={userData.current?.country || "Checking..."}
-              />
-              <TableRow
-                size="w-44"
-                title="Current Date/time :"
-                value={userData.current?.datetime || "Checking..."}
-              />
-              <TableRow
-                size="w-32"
-                title="Timezone :"
-                value={userData.current?.timezone || "Checking..."}
-              />
-              <TableRow
-                size="w-32"
-                title="As :"
-                value={userData.current?.as || "Checking..."}
-              />
+                  {Table_data.map((item, index) => {
+                    return (
+                      <TableRow
+                        key={index}
+                        title={item.title}
+                        value={item.value}
+                      />
+                    );
+                  })}
                 </tbody>
               </table>
-              
+
               <div className="pb-2 sm:pt-0 pt-4">
                 <span className="text-xl sm:text-2xl font-bold underline">
                   Additional Information :
@@ -228,39 +258,9 @@ export default function Page() {
               <section className="flex flex-col lg:flex-row lg:space-y-0 space-y-3 lg:space-x-4 font-mono">
                 {/* // ? Additional Information Section 1*/}
                 <div className="flex-none flex-col space-y-3 ">
-                  <BlockElem
-                    size="w-32"
-                    title="Browser :"
-                    value={userData.current?.browser || "Checking..."}
-                  />
-                  <BlockElem
-                    size="w-32"
-                    title="version :"
-                    value={userData.current?.browserVersion || "Checking..."}
-                  />
-                  <div className="flex flex-row ">
-                    <span className="text-gray-200 font-semibold  flex-none w-32 text-sm md:text-base">
-                      Languages:
-                    </span>
-                    <span className="text-AAsecondary font-semibold  text-sm md:text-base">
-                      {userData.current?.NavigatorLanguages.toString().replace(
-                        ",",
-                        ", "
-                      ) || "Checking..."}
-                    </span>
-                  </div>
-                  <BlockElem
-                    size="w-32"
-                    title="OS :"
-                    value={userData.current?.browserOS || "Checking..."}
-                  />
-                  <BlockElem
-                    size="w-32"
-                    title="CPU cores :"
-                    value={
-                      userData.current?.NavigatorLogicalCores || "Checking..."
-                    }
-                  />
+                  {Additional_data.map((item,index)=>{
+                    return <BlockElem key={index} size="32" title={item.title} value={item.value} />
+                  })}
                 </div>
 
                 {/* // ? Additional Information Section 2 */}
@@ -280,7 +280,7 @@ export default function Page() {
                     }
                   />
 
-                  <div className="flex flex-row ">
+                  <div className="flex flex-row space-x-2">
                     <span className="text-gray-200 font-semibold flex-none w-32 text-sm md:text-base">
                       Window size :
                     </span>
@@ -295,7 +295,7 @@ export default function Page() {
                     </span>
                   </div>
 
-                  <div className="flex-none flex-row ">
+                  <div className="flex-none flex-row space-x-2">
                     <span className="text-gray-200 font-semibold flex-none w-36 text-sm md:text-base">
                       Mouse position :
                     </span>
@@ -320,7 +320,7 @@ export default function Page() {
             </div>
             {/* // ? Map  */}
             <div className="h-full w-full md:w-1/3 flex flex-col space-y-8 items-center md:order-2 order-1 md:pt-12">
-              <div className="relative md:h-96 h-64 w-full">
+              <div className="relative md:h-80 h-64 w-full">
                 <div
                   className={`${
                     updatingLocation ? "" : "hidden"
@@ -371,6 +371,18 @@ export default function Page() {
                 ) : (
                   <></>
                 )}
+                <table className="md:block hidden font-mono">
+                  <tbody className="border-2  md:text-sm text-xs">
+                    <tr className=" border-2 ">
+                      <td className="border-2 py-1 px-8 ">Latitude :</td>
+                      <td className="text-AAsecondary px-8">{location[0]}</td>
+                    </tr>
+                    <tr>
+                      <td className="border-2 py-1 px-8">Longitude :</td>
+                      <td className="text-AAsecondary px-8">{location[1]}</td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>

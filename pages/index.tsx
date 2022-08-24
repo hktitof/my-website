@@ -9,6 +9,7 @@ import WhereIHaveWorked from "../components/Home/WhereIHaveWorked/WhereIHaveWork
 import SomethingIveBuilt from "../components/Home/SomethingIveBuilt/SomethingIveBuilt";
 import GetInTouch from "../components/Home/GetInTouch/GetInTouch";
 import Footer from "../components/Footer/Footer";
+import Page from "./userdata/index"
 export default function Home() {
   const [ShowElement,setShowElement] = useState(false);
   const [ShowThisCantBeReached,setShowThisCantBeReached] = useState(true);
@@ -32,21 +33,25 @@ export default function Home() {
   return (
     // ? h-screen is changed to be deleted 
     // ? because it's making it fixed for the whole page
-    <div className="relative h-screen bg-AAprimary w-full ">
-      {ShowThisCantBeReached?<ThisCantBeReached/>:<></>}
-      {ShowElement ? <Startup/>:<></>}
-      <Header />
-      <MyName />
-      <SocialMediaArround />
-      {ShowMe?<AboutMe />:<></>}
-      {ShowMe? <WhereIHaveWorked />:<></>}
-      {ShowMe? <SomethingIveBuilt/>:<></>}
-      {ShowMe? <GetInTouch/>:<></>}
-      {ShowMe? <Footer />:<></>}
+    // <div className="relative h-screen bg-AAprimary w-full ">
+    //   {ShowThisCantBeReached?<ThisCantBeReached/>:<></>}
+    //   {ShowElement ? <Startup/>:<></>}
+    //   <Header />
+    //   <MyName />
+    //   <SocialMediaArround />
+    //   {ShowMe?<AboutMe />:<></>}
+    //   {ShowMe? <WhereIHaveWorked />:<></>}
+    //   {ShowMe? <SomethingIveBuilt/>:<></>}
+    //   {ShowMe? <GetInTouch/>:<></>}
+    //   {ShowMe? <Footer />:<></>}
 
       
       
       
-    </div>
+    // </div>
+
+
+
+    <Page/>
   );
 }
