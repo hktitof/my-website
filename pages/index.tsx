@@ -9,7 +9,7 @@ import WhereIHaveWorked from "../components/Home/WhereIHaveWorked/WhereIHaveWork
 import SomethingIveBuilt from "../components/Home/SomethingIveBuilt/SomethingIveBuilt";
 import GetInTouch from "../components/Home/GetInTouch/GetInTouch";
 import Footer from "../components/Footer/Footer";
-import Page from "./userdata/index"
+import Page from "../pages/userdata/index";
 export default function Home() {
   const [ShowElement,setShowElement] = useState(false);
   const [ShowThisCantBeReached,setShowThisCantBeReached] = useState(true);
