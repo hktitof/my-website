@@ -1,6 +1,37 @@
+import { Cookies } from "next/dist/server/web/spec-extension/cookies";
 import React from "react";
+import { useEffect,useRef } from "react";
+import { useCookies } from "react-cookie";
+import { useTime } from 'react-timer-hook';
 
-export default function index() {
+const cookies = new Cookies();
+export default function Page() {
+    function MyTime() {
+        const {
+          seconds,
+          minutes,
+          hours,
+          ampm,
+        } = useTime({ format: '12-hour'});
+      
+        return (
+          <div style={{textAlign: 'center'}}>
+            <h1>react-timer-hook </h1>
+            <p>Current Time Demo</p>
+            <div style={{fontSize: '100px'}}>
+              <span>{hours}</span>:<span>{minutes}</span>:<span>{seconds}</span><span>{ampm}</span>
+            </div>
+          </div>
+        );
+      }
+const timer = useRef<number>();
+  useEffect(() => {
+    console.log("useEffect rendered..");
+
+    console.log("result to check cookie existance: ", cookies.get("timer"));
+
+  }, []);
+
   return (
     // ? INFORMATIONAL : Remove items-center and justify-center
     <div
@@ -23,9 +54,10 @@ export default function index() {
             It&apos;s no secret that sites want to know as much as possible
             about their visitors, whether it&apos;s to show them targeted ads or
             improve their user experience. The goal of this simple project is to
-            give you an idea about types of information that websites can collect
-            and access from their visitors.
+            give you an idea about types of information that websites can
+            collect and access from their visitors.
           </span>
+          <MyTime/>
         </div>
       </div>
     </div>

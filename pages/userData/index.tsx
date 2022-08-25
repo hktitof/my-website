@@ -4,8 +4,11 @@ import Head from "next/head";
 import { detect } from "detect-browser";
 import dynamic from "next/dynamic";
 import { ReactDOM } from "react-dom";
+import { Cookies } from "next/dist/server/web/spec-extension/cookies";
+import cookieCutter from "cookie-cutter";
 
 export default function Page() {
+  const cookies = new Cookies();
   // this api will return current ip address of the requester
   const IP_Address = async () => {
     return fetch("https://api.ipify.org/?format=json")
@@ -25,8 +28,40 @@ export default function Page() {
   const windowHeight = useRef<HTMLSpanElement>(null);
   const mouseX = useRef<HTMLSpanElement>(null);
   const mouseY = useRef<HTMLSpanElement>(null);
+  //timer ref holder
+  const secUnits = useRef<HTMLSpanElement>(null);
+  const secTens = useRef<HTMLSpanElement>(null);
+  const minUnits = useRef<HTMLSpanElement>(null);
+  const minTens = useRef<HTMLSpanElement>(null);
+  // ! FIX ME
   // ? Window size Tracker
+  const counter =()=>{
+    if(typeof window != undefined){
+      window.setInterval(function() {
+        const countSec = Number(cookieCutter.get("timer"))+1;
+        cookieCutter.set("timer", String(countSec));
+        let getMinTens=0;
+        let getMinUnits=0;
+        let getSecUnits=0;
+        let getSecTens=0;
+        if(countSec>60){
+          getMinUnits = Math.floor(countSec/60);
+          getSecUnits = countSec - getMinUnits*60;
+        }
+        if(getSecUnits>10){
+          getSecTens = Math.floor(getSecUnits/10);
+        }
+      }, 1000);
+    }
+
+  }
   useEffect(() => {
+    if (cookieCutter.get("timer")) {
+      console.log("current cookie value in useEffect: ", cookieCutter.get("timer"));
+    } else {
+      console.log("timer cookie not exist");
+      cookieCutter.set('timer', '0',)
+    }
     // Apply this event Listener on Client
     if (typeof window !== "undefined") {
       // window size tracker
@@ -82,7 +117,7 @@ export default function Page() {
             result["batteryLevel"] = battery.level + " %";
             console.log("battery level : ", battery.level + " %");
           });
-        }else{
+        } else {
           result["batteryLevel"] = "Not supported";
         }
       }
@@ -286,7 +321,7 @@ export default function Page() {
 
               <div className="pb-2 sm:pt-8 pt-4">
                 <span className="text-xl sm:text-2xl font-bold underline">
-                  Additional Information :
+                  Additional Information &#58;
                 </span>
               </div>
               <section className="flex flex-col lg:flex-row lg:space-y-0 space-y-3 lg:space-x-4 font-mono">
@@ -430,11 +465,51 @@ export default function Page() {
                     </tr>
                   </tbody>
                 </table>
+                {/* //Timer */}
+                <div className="w-full h-24 flex flex-row space-x-4 justify-center pt-4">
+                  <div className="flex flex-col spacey-y-1 items-center">
+                    <div className="flex flex-row space-x-1">
+                      <div className="flex flex-col space-y-1 items-center">
+                        <div className="w-8 h-10 border-[1.5px] border-AAsecondary rounded flex justify-center items-center">
+                          <span ref={minTens} className="text-white font-mono text-2xl">
+                            0
+                          </span>
+                        </div>
+                      </div>
+                      <div className="flex flex-col space-y-1 items-center">
+                        <div className="w-8 h-10 border-[1.5px] border-AAsecondary rounded flex justify-center items-center">
+                          <span  ref={minUnits} className="text-white font-mono text-2xl">
+                            0
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    <span className="">Minutes</span>
+                  </div>
+                  <div className="flex flex-col spacey-y-1 items-center">
+                    <div className="flex flex-row space-x-1">
+                      <div className="flex flex-col space-y-1 items-center">
+                        <div className="w-8 h-10 border-[1.5px] border-AAsecondary rounded flex justify-center items-center">
+                          <span ref={secTens} className="text-white font-mono text-2xl">
+                            0
+                          </span>
+                        </div>
+                      </div>
+                      <div className="flex flex-col space-y-1 items-center">
+                        <div className="w-8 h-10 border-[1.5px] border-AAsecondary rounded flex justify-center items-center">
+                          <span ref={secUnits} className="text-white font-mono text-2xl">
+                            0
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    <span className="">Seconds</span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
-        
       </div>
     </>
   );
