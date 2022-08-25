@@ -284,7 +284,7 @@ export default function Page() {
                 </tbody>
               </table>
 
-              <div className="pb-2 sm:pt-0 pt-4">
+              <div className="pb-2 sm:pt-8 pt-4">
                 <span className="text-xl sm:text-2xl font-bold underline">
                   Additional Information :
                 </span>
@@ -434,6 +434,7 @@ export default function Page() {
             </div>
           </div>
         </div>
+        
       </div>
     </>
   );

@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;900&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Lato&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,400&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -14,16 +15,12 @@
   body::-webkit-scrollbar {
     width: 0.4em;
     background-color: #0b192f;
-    
   }
-
-  
 
   body::-webkit-scrollbar-thumb {
     background-color: #4c5474;
     scrollbar-gutter: stable;
     border-radius: 40px;
-    
   }
 }
 html,
