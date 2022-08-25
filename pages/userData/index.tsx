@@ -3,9 +3,9 @@ import { useState, useEffect, useRef } from "react";
 import Head from "next/head";
 import { detect } from "detect-browser";
 import dynamic from "next/dynamic";
+import { ReactDOM } from "react-dom";
 
 export default function Page() {
-  console.log("Page rendered..");
   // this api will return current ip address of the requester
   const IP_Address = async () => {
     return fetch("https://api.ipify.org/?format=json")
@@ -14,6 +14,9 @@ export default function Page() {
   };
   // location[latitude, longitude]
   const [location, setLocation] = useState<number[]>([0, 0]);
+  const [updatingLocation, setUpdatingLocation] = useState<boolean>(false);
+  const [updatingLocatinResult, setUpdatingLocatinResult] =
+    useState<boolean>(false);
   // zip code holder
   const [zipCode, setZipCode] = useState<string>(undefined);
   // userData Ref holder
@@ -79,32 +82,30 @@ export default function Page() {
             result["batteryLevel"] = battery.level + " %";
             console.log("battery level : ", battery.level + " %");
           });
+        }else{
+          result["batteryLevel"] = "Not supported";
         }
       }
       const temp_array_location = [];
       temp_array_location.push(result.lat);
       temp_array_location.push(result.lon);
       setLocation([...temp_array_location]);
-      console.log("useEffect data :", result);
+      console.log("useEffect run, data :", result);
       setZipCode(result.zip);
       userData.current = result;
     };
     // call the userInfo inside the useEffect async function
     userInfo();
   }, []);
+
   // import Dynamically the Map component from the hackme package, cus it's using some client side objects
   const Map = dynamic(
     () => import("../../components/hackme/Map"),
     { ssr: false } // This line is important. It's what prevents server-side render
   );
-  const [updatingLocation, setUpdatingLocation] = useState<boolean>(false);
-  const [updatingLocatinResult, setUpdatingLocatinResult] =
-    useState<boolean>(false);
-  const clickUpdateLocation = async () => {
-    //Hide Map when updating location
-    setUpdatingLocation(true);
-    // Hide Unable to retieve location message
-    setUpdatingLocatinResult(false);
+
+  //
+  const onClickUpdateLocation = async () => {
     if (!navigator.geolocation) {
       alert("Geolocation is not supported by your browser");
       return;
@@ -119,6 +120,8 @@ export default function Page() {
       setLocation([...temp_array_location]);
       // Show Map
       setUpdatingLocation(false);
+      // Hide "Unable to retieve location" message
+      setUpdatingLocatinResult(false);
 
       // call the api by passing new lat and lon
       const api_get_zip = async (lat, lon) => {
@@ -130,7 +133,9 @@ export default function Page() {
       };
       // change zipcode useState
       const setNewZip = async () =>
-      setZipCode(await api_get_zip(position.coords.latitude, position.coords.longitude));
+        setZipCode(
+          await api_get_zip(position.coords.latitude, position.coords.longitude)
+        );
       setNewZip();
 
       console.log(
@@ -139,7 +144,6 @@ export default function Page() {
         "Latitude:",
         position.coords.latitude
       );
-      
     }
     // function will be executed after permission is denied
     function error() {
@@ -151,6 +155,8 @@ export default function Page() {
     // ask for permission to access location
     navigator.geolocation.getCurrentPosition(success, error);
   };
+
+  console.log("Page rendered..");
   console.log("user data : ", userData.current);
   // repeted code for setting Additional Data user location
   const BlockElem = props => {
@@ -183,8 +189,24 @@ export default function Page() {
       title: "Current Date/time :",
       value: userData.current?.datetime || "Checking...",
     },
+    {
+      title: "Battery :",
+      value: userData.current?.batteryLevel || "Checking...",
+    },
     { title: "As :", value: userData.current?.as || "Checking..." },
   ];
+  const TableRow = props => {
+    return (
+      <tr className="border-2 border-gray-300">
+        <td className=" border-2 border-gray-300 pl-2 md:pl-4 py-3 text-xs md:text-base w-28 md:w-auto">
+          {props.item.title}
+        </td>
+        <td className="pl-4 text-AAsecondary text-xs md:text-base">
+          {props.item.value}
+        </td>
+      </tr>
+    );
+  };
   // data for Additional Information Section 1
   const Additional_data = [
     { title: "Browser :", value: userData.current?.browser || "Checking..." },
@@ -204,7 +226,6 @@ export default function Page() {
       value: userData.current?.NavigatorLogicalCores || "Checking...",
     },
   ];
-  console.log("location : ", location[1]);
   const clickMe = async (lat, lon) => {
     return fetch("/api/userInfoByLatLon/" + lat + "/" + lon)
       .then(res => res.json())
@@ -258,16 +279,7 @@ export default function Page() {
               <table className="border-2 border-gray-300 w-full font-mono">
                 <tbody>
                   {tableData.map((item, index) => {
-                    return (
-                      <tr key={index} className="border-2 border-gray-300">
-                        <td className=" border-2 border-gray-300 pl-2 md:pl-4 py-3 text-xs md:text-base w-28 md:w-auto">
-                          {item.title}
-                        </td>
-                        <td className="pl-4 text-AAsecondary text-xs md:text-base">
-                          {item.value}
-                        </td>
-                      </tr>
-                    );
+                    return <TableRow item={item} key={index} />;
                   })}
                 </tbody>
               </table>
@@ -387,7 +399,13 @@ export default function Page() {
               <div className="flex flex-col space-y-2 items-center text-center">
                 <span className="">Location not accurate?</span>
                 <span
-                  onClick={clickUpdateLocation}
+                  onClick={() => {
+                    //Hide Map when updating location
+                    setUpdatingLocation(true);
+
+                    // Update lat & lon
+                    onClickUpdateLocation();
+                  }}
                   className="text-AAsecondary underline text-sm hover:cursor-pointer"
                 >
                   Update My IP Location
