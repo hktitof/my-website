@@ -14,6 +14,8 @@ export default function Page() {
   };
   // location[latitude, longitude]
   const [location, setLocation] = useState<number[]>([0, 0]);
+  // zip code holder
+  const [zipCode, setZipCode] = useState<string>(undefined);
   // userData Ref holder
   const userData = useRef<any>(null);
   const windowWidth = useRef<HTMLSpanElement>(null);
@@ -84,11 +86,12 @@ export default function Page() {
       temp_array_location.push(result.lon);
       setLocation([...temp_array_location]);
       console.log("useEffect data :", result);
+      setZipCode(result.zip);
       userData.current = result;
     };
     // call the userInfo inside the useEffect async function
     userInfo();
-  }, []);
+  }, [zipCode]);
   // import Dynamically the Map component from the hackme package, cus it's using some client side objects
   const Map = dynamic(
     () => import("../../components/hackme/Map"),
@@ -107,7 +110,7 @@ export default function Page() {
       return;
     }
     // function will be executed after permission is authorized
-    function success(position) {
+    async function success(position) {
       setLocation([position.coords.latitude, position.coords.longitude]);
       const temp_array_location = [];
       temp_array_location.push(position.coords.latitude);
@@ -117,16 +120,18 @@ export default function Page() {
       // Show Map
       setUpdatingLocation(false);
 
-      // * FIXME continue here update zipcode when clickingon update m;y ip locaiton
-      const clickMe = async (lat, lon) => {
+      // call the api by passing new lat and lon
+      const getZipCode = async (lat, lon) => {
         return fetch("/api/userInfoByLatLon/" + lat + "/" + lon)
           .then(res => res.json())
           .then(data => {
-            console.log(data);
+            return data;
           });
       };
+      // change zipcode useState
+       setZipCode(await getZipCode(position.coords.latitude, position.coords.longitude)); 
       console.log(
-        "Longitude:",
+        "Updated == > Longitude:",
         position.coords.longitude,
         "Latitude:",
         position.coords.latitude
@@ -158,24 +163,12 @@ export default function Page() {
       </div>
     );
   };
-  // repeated code for table data
-  const TableRow = props => {
-    return (
-      <tr className="border-2 border-gray-300">
-        <td className=" border-2 border-gray-300 pl-2 md:pl-4 py-3 text-xs md:text-base w-28 md:w-auto">
-          {props.title}
-        </td>
-        <td className="pl-4 text-AAsecondary text-xs md:text-base">
-          {props.value}
-        </td>
-      </tr>
-    );
-  };
+
   // data for the table
-  const Table_data = [
+  const tableData = [
     { title: "IP Address :", value: userData.current?.query || "Checking..." },
     { title: "City :", value: userData.current?.city || "Checking..." },
-    { title: "Zip Code :", value: userData.current?.zip || "Checking..." },
+    { title: "Zip Code :", value: zipCode || "Checking..." },
     { title: "Region :", value: userData.current?.regionName || "Checking..." },
     {
       title: "Region Code :",
@@ -260,13 +253,16 @@ export default function Page() {
               </div>
               <table className="border-2 border-gray-300 w-full font-mono">
                 <tbody>
-                  {Table_data.map((item, index) => {
+                  {tableData.map((item, index) => {
                     return (
-                      <TableRow
-                        key={index}
-                        title={item.title}
-                        value={item.value}
-                      />
+                      <tr key={index} className="border-2 border-gray-300">
+                        <td className=" border-2 border-gray-300 pl-2 md:pl-4 py-3 text-xs md:text-base w-28 md:w-auto">
+                          {item.title}
+                        </td>
+                        <td className="pl-4 text-AAsecondary text-xs md:text-base">
+                          {item.value}
+                        </td>
+                      </tr>
                     );
                   })}
                 </tbody>
