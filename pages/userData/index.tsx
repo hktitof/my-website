@@ -91,7 +91,7 @@ export default function Page() {
     };
     // call the userInfo inside the useEffect async function
     userInfo();
-  }, [zipCode]);
+  }, []);
   // import Dynamically the Map component from the hackme package, cus it's using some client side objects
   const Map = dynamic(
     () => import("../../components/hackme/Map"),
@@ -110,7 +110,7 @@ export default function Page() {
       return;
     }
     // function will be executed after permission is authorized
-    async function success(position) {
+    function success(position) {
       setLocation([position.coords.latitude, position.coords.longitude]);
       const temp_array_location = [];
       temp_array_location.push(position.coords.latitude);
@@ -121,7 +121,7 @@ export default function Page() {
       setUpdatingLocation(false);
 
       // call the api by passing new lat and lon
-      const getZipCode = async (lat, lon) => {
+      const api_get_zip = async (lat, lon) => {
         return fetch("/api/userInfoByLatLon/" + lat + "/" + lon)
           .then(res => res.json())
           .then(data => {
@@ -129,13 +129,17 @@ export default function Page() {
           });
       };
       // change zipcode useState
-       setZipCode(await getZipCode(position.coords.latitude, position.coords.longitude)); 
+      const setNewZip = async () =>
+      setZipCode(await api_get_zip(position.coords.latitude, position.coords.longitude));
+      setNewZip();
+
       console.log(
         "Updated == > Longitude:",
         position.coords.longitude,
         "Latitude:",
         position.coords.latitude
       );
+      
     }
     // function will be executed after permission is denied
     function error() {
