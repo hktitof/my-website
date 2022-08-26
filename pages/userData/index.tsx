@@ -6,6 +6,7 @@ import dynamic from "next/dynamic";
 import { ReactDOM } from "react-dom";
 import { Cookies } from "next/dist/server/web/spec-extension/cookies";
 import cookieCutter from "cookie-cutter";
+import Footer from "../../components/Footer/Footer";
 
 export default function Page() {
   const cookies = new Cookies();
@@ -34,34 +35,49 @@ export default function Page() {
   const minUnits = useRef<HTMLSpanElement>(null);
   const minTens = useRef<HTMLSpanElement>(null);
   // ! FIX ME
-  // ? Window size Tracker
-  const counter =()=>{
-    if(typeof window != undefined){
-      window.setInterval(function() {
-        const countSec = Number(cookieCutter.get("timer"))+1;
-        cookieCutter.set("timer", String(countSec));
-        let getMinTens=0;
-        let getMinUnits=0;
-        let getSecUnits=0;
-        let getSecTens=0;
-        if(countSec>60){
-          getMinUnits = Math.floor(countSec/60);
-          getSecUnits = countSec - getMinUnits*60;
+
+  // ? Page time spent Tracker
+  const counter = () => {
+    if (typeof window != undefined) {
+      window.setInterval(function () {
+        const countSec = Number(cookieCutter.get("timer-sec-units")) + 1;
+        cookieCutter.set("timer-sec-units", String(countSec));
+
+        if(countSec>9){
+          cookieCutter.set("timer-sec-units", "0");
+          cookieCutter.set("timer-sec-tens", String(Number(cookieCutter.get("timer-sec-tens"))+1));
+          const countSecTens = Number(cookieCutter.get("timer-sec-tens"));    
+          if(countSecTens>5){
+            cookieCutter.set("timer-sec-tens", "0");
+            cookieCutter.set("timer-min-units", String(Number(cookieCutter.get("timer-min-units"))+1));
+            const countMinUnits = Number(cookieCutter.get("timer-min-units"));    
+            if(countMinUnits>9){
+              cookieCutter.set("timer-min-units", "0");
+              cookieCutter.set("timer-min-tens", String(Number(cookieCutter.get("timer-min-tens"))+1));
+            }
+          }
         }
-        if(getSecUnits>10){
-          getSecTens = Math.floor(getSecUnits/10);
-        }
+        secUnits.current.innerText = cookieCutter.get("timer-sec-units");
+        secTens.current.innerText = cookieCutter.get("timer-sec-tens");
+        minUnits.current.innerText = cookieCutter.get("timer-min-units");
+        minTens.current.innerText = cookieCutter.get("timer-min-tens");
       }, 1000);
     }
-
-  }
+  };
   useEffect(() => {
-    if (cookieCutter.get("timer")) {
-      console.log("current cookie value in useEffect: ", cookieCutter.get("timer"));
+    if (cookieCutter.get("timer-sec-units")) {
+      console.log(
+        "current cookie value in useEffect: ",
+        cookieCutter.get("timer")
+      );
     } else {
       console.log("timer cookie not exist");
-      cookieCutter.set('timer', '0',)
+      cookieCutter.set("timer-sec-units", "0");
+      cookieCutter.set("timer-sec-tens", "0");
+      cookieCutter.set("timer-min-units", "0");
+      cookieCutter.set("timer-min-tens", "0");
     }
+    counter();
     // Apply this event Listener on Client
     if (typeof window !== "undefined") {
       // window size tracker
@@ -466,51 +482,96 @@ export default function Page() {
                   </tbody>
                 </table>
                 {/* //Timer */}
-                <div className="w-full h-24 flex flex-row space-x-4 justify-center pt-4">
-                  <div className="flex flex-col spacey-y-1 items-center">
+                <div className="w-full">
+                  <div className="flex flex-col space-y-1">
+                    <span className="sm:text-xl">Time you spent</span>
+                    <div className="flex flex-row space-x-4 justify-center ">
+                    <div className="flex flex-col spacey-y-1 items-center">
                     <div className="flex flex-row space-x-1">
                       <div className="flex flex-col space-y-1 items-center">
-                        <div className="w-8 h-10 border-[1.5px] border-AAsecondary rounded flex justify-center items-center">
-                          <span ref={minTens} className="text-white font-mono text-2xl">
+                        <div className="sm:w-8 w-6 sm:h-10 h-8 border-[1.5px] border-AAsecondary rounded flex justify-center items-center">
+                          <span
+                            ref={minTens}
+                            className="text-white font-mono sm:text-2xl text-sm"
+                          >
                             0
                           </span>
                         </div>
                       </div>
                       <div className="flex flex-col space-y-1 items-center">
-                        <div className="w-8 h-10 border-[1.5px] border-AAsecondary rounded flex justify-center items-center">
-                          <span  ref={minUnits} className="text-white font-mono text-2xl">
+                        <div className="sm:w-8 w-6 sm:h-10 h-8 border-[1.5px] border-AAsecondary rounded flex justify-center items-center">
+                          <span
+                            ref={minUnits}
+                            className="text-white font-mono sm:text-2xl text-sm"
+                          >
                             0
                           </span>
                         </div>
                       </div>
                     </div>
-                    <span className="">Minutes</span>
+                    <span className="m:text-base text-sm">Minutes</span>
                   </div>
                   <div className="flex flex-col spacey-y-1 items-center">
                     <div className="flex flex-row space-x-1">
                       <div className="flex flex-col space-y-1 items-center">
-                        <div className="w-8 h-10 border-[1.5px] border-AAsecondary rounded flex justify-center items-center">
-                          <span ref={secTens} className="text-white font-mono text-2xl">
+                        <div className="sm:w-8 w-6 sm:h-10 h-8 border-[1.5px] border-AAsecondary rounded flex justify-center items-center">
+                          <span
+                            ref={secTens}
+                            className="text-white font-mono sm:text-2xl text-sm"
+                          >
                             0
                           </span>
                         </div>
                       </div>
                       <div className="flex flex-col space-y-1 items-center">
-                        <div className="w-8 h-10 border-[1.5px] border-AAsecondary rounded flex justify-center items-center">
-                          <span ref={secUnits} className="text-white font-mono text-2xl">
+                        <div className="sm:w-8 w-6 sm:h-10 h-8 border-[1.5px] border-AAsecondary rounded flex justify-center items-center">
+                          <span
+                            ref={secUnits}
+                            className="text-white font-mono sm:text-2xl text-sm"
+                          >
                             0
                           </span>
                         </div>
                       </div>
                     </div>
-                    <span className="">Seconds</span>
+                    <span className="sm:text-base text-sm">Seconds</span>
                   </div>
+                    </div>
+                  </div>
+                 
                 </div>
               </div>
             </div>
           </div>
         </div>
+        {/* // ? About */}
+        <div className="w-full h-full py-8 md:px-8 flex flex-row md:space-x-12">
+        <div className="flex-none hidden md:block sm:w-36 lg:w-44">
+          <img
+            src="titofCercle.png"
+            alt="About picture"
+            className="opacity-80"
+          />
+        </div>
+        <div className="flex flex-col space-y-8 md:items-start items-center">
+          <span className="font-About lg:text-5xl md:text-5xl text-4xl sm:text-4xl text-gray-300">
+            About
+          </span>
+          <span className="font-sans italic  sm:text-base text-sm text-gray-400 md:text-start text-center">
+            It&apos;s no secret that sites want to know as much as possible
+            about their visitors, whether it&apos;s to show them targeted ads or
+            improve their user experience. The goal of this project is to give
+            you an idea about types of information that websites can collect and
+            access from you. No matter what the privacy settings of your browser
+            are, certain information about you is inevitably revealed to the
+            sites you visit. For example, you start sharing your IP address as
+            soon as you go online, which can be used to pinpoint your
+            approximate location.
+          </span>
+        </div>
       </div>
+      </div>
+      <Footer/>
     </>
   );
 }

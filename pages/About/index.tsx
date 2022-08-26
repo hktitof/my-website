@@ -1,35 +1,16 @@
 import { Cookies } from "next/dist/server/web/spec-extension/cookies";
 import React from "react";
-import { useEffect,useRef } from "react";
+import { useEffect, useRef } from "react";
 import { useCookies } from "react-cookie";
-import { useTime } from 'react-timer-hook';
+import { useTime } from "react-timer-hook";
 
 const cookies = new Cookies();
 export default function Page() {
-    function MyTime() {
-        const {
-          seconds,
-          minutes,
-          hours,
-          ampm,
-        } = useTime({ format: '12-hour'});
-      
-        return (
-          <div style={{textAlign: 'center'}}>
-            <h1>react-timer-hook </h1>
-            <p>Current Time Demo</p>
-            <div style={{fontSize: '100px'}}>
-              <span>{hours}</span>:<span>{minutes}</span>:<span>{seconds}</span><span>{ampm}</span>
-            </div>
-          </div>
-        );
-      }
-const timer = useRef<number>();
+  const timer = useRef<number>();
   useEffect(() => {
     console.log("useEffect rendered..");
 
     console.log("result to check cookie existance: ", cookies.get("timer"));
-
   }, []);
 
   return (
@@ -53,11 +34,14 @@ const timer = useRef<number>();
           <span className="font-sans italic  sm:text-base text-sm text-gray-400">
             It&apos;s no secret that sites want to know as much as possible
             about their visitors, whether it&apos;s to show them targeted ads or
-            improve their user experience. The goal of this simple project is to
-            give you an idea about types of information that websites can
-            collect and access from their visitors.
+            improve their user experience. The goal of this project is to give
+            you an idea about types of information that websites can collect and
+            access from you. No matter what the privacy settings of your browser
+            are, certain information about you is inevitably revealed to the
+            sites you visit. For example, you start sharing your IP address as
+            soon as you go online, which can be used to pinpoint your
+            approximate location.
           </span>
-          <MyTime/>
         </div>
       </div>
     </div>
