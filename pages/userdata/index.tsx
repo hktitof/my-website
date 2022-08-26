@@ -548,11 +548,6 @@ export default function Page() {
         <div className="w-full h-full py-8 md:px-8 flex flex-row md:space-x-12">
         <div className="flex-none hidden md:block sm:w-36 lg:w-44">
           <Img src="titofCercle.png" alt="About picture" className="opacity-80"/>
-          <img
-            src="titofCercle.png"
-            alt="About picture"
-            className="opacity-80"
-          />
         </div>
         <div className="flex flex-col space-y-8 md:items-start items-center">
           <span className="font-About lg:text-5xl md:text-5xl text-4xl sm:text-4xl text-gray-300">
