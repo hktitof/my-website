@@ -71,7 +71,7 @@ export default function MyName() {
           className="mt-12"
         >
 
-          <button onClick={()=> router.push("/userData")} className="bg-AAprimary text-AAsecondary border rounded px-4 sm:px-8 py-3 sm:py-4 border-AAsecondary">
+          <button onClick={()=> router.push("/userdata")} className="bg-AAprimary text-AAsecondary border rounded px-4 sm:px-8 py-3 sm:py-4 border-AAsecondary">
             Check out my resume!
           </button>
 
