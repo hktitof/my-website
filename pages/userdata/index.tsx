@@ -7,7 +7,7 @@ import { ReactDOM } from "react-dom";
 import { Cookies } from "next/dist/server/web/spec-extension/cookies";
 import cookieCutter from "cookie-cutter";
 import Footer from "../../components/Footer/Footer";
-
+import Img from "../../components/smallComp/image/Img";
 export default function Page() {
   const cookies = new Cookies();
   // this api will return current ip address of the requester
@@ -547,6 +547,7 @@ export default function Page() {
         {/* // ? About */}
         <div className="w-full h-full py-8 md:px-8 flex flex-row md:space-x-12">
         <div className="flex-none hidden md:block sm:w-36 lg:w-44">
+          <Img src="titofCercle.png" alt="About picture" className="opacity-80"/>
           <img
             src="titofCercle.png"
             alt="About picture"
