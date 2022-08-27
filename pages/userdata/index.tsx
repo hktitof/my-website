@@ -8,6 +8,7 @@ import { Cookies } from "next/dist/server/web/spec-extension/cookies";
 import cookieCutter from "cookie-cutter";
 import Footer from "../../components/Footer/Footer";
 import Img from "../../components/smallComp/image/Img";
+import { getGPUTier } from "detect-gpu";
 export default function Page() {
   const cookies = new Cookies();
   // this api will return current ip address of the requester
@@ -34,9 +35,11 @@ export default function Page() {
   const secTens = useRef<HTMLSpanElement>(null);
   const minUnits = useRef<HTMLSpanElement>(null);
   const minTens = useRef<HTMLSpanElement>(null);
-// First vist and Last visit ref holder
-let firstVisit_Ref = useRef<HTMLSpanElement>(null);
+  // First vist and Last visit ref holder
+  let firstVisit_Ref = useRef<HTMLSpanElement>(null);
   let lastVisit_Ref = useRef<HTMLSpanElement>(null);
+  // gpu Detector ref holder
+  const gpuTier = useRef<any>(null);
   // ? Page time spent Tracker
   const counter = () => {
     if (typeof window != undefined) {
@@ -154,7 +157,7 @@ let firstVisit_Ref = useRef<HTMLSpanElement>(null);
       console.log("useEffect run, data :", result);
       setZipCode(result.zip);
       userData.current = result;
-      // first & last visit tracker with conditional statement using cookies. 
+      // first & last visit tracker with conditional statement using cookies.
       //it's inside userInfo function to get the current time by the ip Address
       if (cookieCutter.get("first-visit")) {
         lastVisit_Ref.current.innerText = cookieCutter.get("last-visit");
@@ -165,12 +168,13 @@ let firstVisit_Ref = useRef<HTMLSpanElement>(null);
         cookieCutter.set("last-visit", result.datetime);
       }
       firstVisit_Ref.current.innerText = cookieCutter.get("first-visit");
+      // set up gpuTier ref value
+      gpuTier.current =await getGPUTier();
+
     };
-    // call the userInfo inside the useEffect async function
+    // call the async function "userInfo"  inside the useEffect 
     userInfo();
     // ! FIX ME Continue here, add first visit and last visit functionality
-    
-    ;
   }, []);
 
   // import Dynamically the Map component from the hackme package, cus it's using some client side objects
@@ -299,6 +303,10 @@ let firstVisit_Ref = useRef<HTMLSpanElement>(null);
     {
       title: "CPU cores :",
       value: userData.current?.NavigatorLogicalCores || "Checking...",
+    },
+    {
+      title: "GPU :",
+      value: gpuTier.current?.gpu || "Checking...",
     },
   ];
   const clickMe = async (lat, lon) => {
@@ -431,24 +439,35 @@ let firstVisit_Ref = useRef<HTMLSpanElement>(null);
                     title="Screen Color Depth :"
                     value={userData.current?.screenColorDepth || "Checking..."}
                   />
+                  <BlockElem
+                    size="w-44"
+                    title="fps :"
+                    value={gpuTier.current?.fps || "Checking..."}
+                  />
                 </div>
               </section>
             </div>
             {/* // ? Map  */}
             <div className="h-full w-full md:w-1/3 flex flex-col  items-center md:order-2 order-1 md:pt-12">
               {/* // Visit Data */}
-                <div className="w-full pb-5">
-                  <div className="w-full flex flex-col space-y-2 items-center">
-                    <div className="flex flex-row space-x-1 text-sm">
-                      <span className="">First visit :</span>
-                      <span ref={firstVisit_Ref} className="text-AAsecondary"></span>
-                    </div>
-                    <div className="flex flex-row space-x-1 text-sm">
-                      <span className="">Last visit :</span>
-                      <span ref={lastVisit_Ref} className="text-AAsecondary"></span>
-                    </div>
+              <div className="w-full pb-5">
+                <div className="w-full flex flex-col space-y-2 items-center">
+                  <div className="flex flex-row space-x-1 text-sm">
+                    <span className="">First visit :</span>
+                    <span
+                      ref={firstVisit_Ref}
+                      className="text-AAsecondary"
+                    ></span>
+                  </div>
+                  <div className="flex flex-row space-x-1 text-sm">
+                    <span className="">Last visit :</span>
+                    <span
+                      ref={lastVisit_Ref}
+                      className="text-AAsecondary"
+                    ></span>
                   </div>
                 </div>
+              </div>
               <div className="relative md:h-80 h-64 w-full pb-8">
                 <div
                   className={`${
@@ -576,7 +595,6 @@ let firstVisit_Ref = useRef<HTMLSpanElement>(null);
                     </div>
                   </div>
                 </div>
-                
               </div>
             </div>
           </div>
