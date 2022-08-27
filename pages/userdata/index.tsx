@@ -34,8 +34,9 @@ export default function Page() {
   const secTens = useRef<HTMLSpanElement>(null);
   const minUnits = useRef<HTMLSpanElement>(null);
   const minTens = useRef<HTMLSpanElement>(null);
-  // ! FIX ME
-
+// First vist and Last visit ref holder
+let firstVisit_Ref = useRef<HTMLSpanElement>(null);
+  let lastVisit_Ref = useRef<HTMLSpanElement>(null);
   // ? Page time spent Tracker
   const counter = () => {
     if (typeof window != undefined) {
@@ -44,21 +45,21 @@ export default function Page() {
         cookieCutter.set("timer-sec-units", String(countSec));
 
         if (countSec > 9) {
-          cookieCutter.set("timer-sec-units", "0");
+          cookieCutter.set("timer-sec-units", String("0"));
           cookieCutter.set(
             "timer-sec-tens",
             String(Number(cookieCutter.get("timer-sec-tens")) + 1)
           );
           const countSecTens = Number(cookieCutter.get("timer-sec-tens"));
           if (countSecTens > 5) {
-            cookieCutter.set("timer-sec-tens", "0");
+            cookieCutter.set("timer-sec-tens", String("0"));
             cookieCutter.set(
               "timer-min-units",
               String(Number(cookieCutter.get("timer-min-units")) + 1)
             );
             const countMinUnits = Number(cookieCutter.get("timer-min-units"));
             if (countMinUnits > 9) {
-              cookieCutter.set("timer-min-units", "0");
+              cookieCutter.set("timer-min-units", String("0"));
               cookieCutter.set(
                 "timer-min-tens",
                 String(Number(cookieCutter.get("timer-min-tens")) + 1)
@@ -74,18 +75,17 @@ export default function Page() {
     }
   };
   useEffect(() => {
-    // cookies checker
     if (cookieCutter.get("timer-sec-units")) {
       console.log(
         "current cookie value in useEffect: ",
         cookieCutter.get("timer")
       );
     } else {
-      
-      cookieCutter.set("timer-sec-units", "0");
-      cookieCutter.set("timer-sec-tens", "0");
-      cookieCutter.set("timer-min-units", "0");
-      cookieCutter.set("timer-min-tens", "0");
+      console.log("timer cookie not exist");
+      cookieCutter.set("timer-sec-units", String("0"));
+      cookieCutter.set("timer-sec-tens", String("0"));
+      cookieCutter.set("timer-min-units", String("0"));
+      cookieCutter.set("timer-min-tens", String("0"));
     }
     counter();
     // Apply this event Listener on Client
@@ -154,16 +154,23 @@ export default function Page() {
       console.log("useEffect run, data :", result);
       setZipCode(result.zip);
       userData.current = result;
+      // first & last visit tracker with conditional statement using cookies. 
+      //it's inside userInfo function to get the current time by the ip Address
+      if (cookieCutter.get("first-visit")) {
+        lastVisit_Ref.current.innerText = cookieCutter.get("last-visit");
+        cookieCutter.set("last-visit", result.datetime);
+      } else {
+        lastVisit_Ref.current.innerText = "Now";
+        cookieCutter.set("first-visit", result.datetime);
+        cookieCutter.set("last-visit", result.datetime);
+      }
+      firstVisit_Ref.current.innerText = cookieCutter.get("first-visit");
     };
     // call the userInfo inside the useEffect async function
     userInfo();
     // ! FIX ME Continue here, add first visit and last visit functionality
-    if(cookieCutter.get("first-visit")){
-
-    }else{
-      cookieCutter.set("first-visit", userData.current?.datetime);
-      cookieCutter.set("last-visit",userData.current?.datetime);
-    }
+    
+    ;
   }, []);
 
   // import Dynamically the Map component from the hackme package, cus it's using some client side objects
@@ -430,15 +437,15 @@ export default function Page() {
             {/* // ? Map  */}
             <div className="h-full w-full md:w-1/3 flex flex-col  items-center md:order-2 order-1 md:pt-12">
               {/* // Visit Data */}
-                <div className="w-full bg-gray-800 pb-5">
+                <div className="w-full pb-5">
                   <div className="w-full flex flex-col space-y-2 items-center">
                     <div className="flex flex-row space-x-1 text-sm">
                       <span className="">First visit :</span>
-                      <span className="">Date and time</span>
+                      <span ref={firstVisit_Ref} className="text-AAsecondary"></span>
                     </div>
                     <div className="flex flex-row space-x-1 text-sm">
                       <span className="">Last visit :</span>
-                      <span className="">Date and time</span>
+                      <span ref={lastVisit_Ref} className="text-AAsecondary"></span>
                     </div>
                   </div>
                 </div>
