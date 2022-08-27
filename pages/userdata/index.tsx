@@ -4,13 +4,11 @@ import Head from "next/head";
 import { detect } from "detect-browser";
 import dynamic from "next/dynamic";
 import { ReactDOM } from "react-dom";
-import { Cookies } from "next/dist/server/web/spec-extension/cookies";
 import cookieCutter from "cookie-cutter";
 import Footer from "../../components/Footer/Footer";
 import Img from "../../components/smallComp/image/Img";
 import { getGPUTier } from "detect-gpu";
 export default function Page() {
-  const cookies = new Cookies();
   // this api will return current ip address of the requester
   const IP_Address = async () => {
     return fetch("https://api.ipify.org/?format=json")
@@ -26,6 +24,8 @@ export default function Page() {
   const [zipCode, setZipCode] = useState<string>(undefined);
   // userData Ref holder
   const userData = useRef<any>(null);
+  // gpu Detector ref holder
+  const [gpuTier,setGpuTier]=useState(null);
   const windowWidth = useRef<HTMLSpanElement>(null);
   const windowHeight = useRef<HTMLSpanElement>(null);
   const mouseX = useRef<HTMLSpanElement>(null);
@@ -38,8 +38,7 @@ export default function Page() {
   // First vist and Last visit ref holder
   let firstVisit_Ref = useRef<HTMLSpanElement>(null);
   let lastVisit_Ref = useRef<HTMLSpanElement>(null);
-  // gpu Detector ref holder
-  const gpuTier = useRef<any>(null);
+
   // ? Page time spent Tracker
   const counter = () => {
     if (typeof window != undefined) {
@@ -168,8 +167,9 @@ export default function Page() {
         cookieCutter.set("last-visit", result.datetime);
       }
       firstVisit_Ref.current.innerText = cookieCutter.get("first-visit");
-      // set up gpuTier ref value
-      gpuTier.current =await getGPUTier();
+      // set up gpuTier state value
+      setGpuTier(await getGPUTier());
+      console.log("gpuTier from UserInfo function : ", gpuTier);
 
     };
     // call the async function "userInfo"  inside the useEffect 
@@ -237,6 +237,7 @@ export default function Page() {
 
   console.log("Page rendered..");
   console.log("user data : ", userData.current);
+  console.log("gpu data, ", gpuTier);
   // repeted code for setting Additional Data user location
   const BlockElem = props => {
     return (
@@ -306,7 +307,7 @@ export default function Page() {
     },
     {
       title: "GPU :",
-      value: gpuTier.current?.gpu || "Checking...",
+      value: gpuTier?.gpu || "Checking...",
     },
   ];
   const clickMe = async (lat, lon) => {
@@ -442,7 +443,7 @@ export default function Page() {
                   <BlockElem
                     size="w-44"
                     title="fps :"
-                    value={gpuTier.current?.fps || "Checking..."}
+                    value={gpuTier?.fps || "Checking..."}
                   />
                 </div>
               </section>
