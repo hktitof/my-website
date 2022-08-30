@@ -68,10 +68,12 @@ export default function Page() {
             }
           }
         }
-        secUnits.current.innerText = cookieCutter.get("timer-sec-units");
-        secTens.current.innerText = cookieCutter.get("timer-sec-tens");
-        minUnits.current.innerText = cookieCutter.get("timer-min-units");
-        minTens.current.innerText = cookieCutter.get("timer-min-tens");
+        if(secUnits.current){
+          secUnits.current.innerText = cookieCutter.get("timer-sec-units");
+          secTens.current.innerText = cookieCutter.get("timer-sec-tens");
+          minUnits.current.innerText = cookieCutter.get("timer-min-units");
+          minTens.current.innerText = cookieCutter.get("timer-min-tens");
+        }
       }, 1000);
     }
   };
@@ -93,15 +95,20 @@ export default function Page() {
     if (typeof window !== "undefined") {
       // window size tracker
       window.addEventListener("resize", function (event) {
-        windowWidth.current.innerText = String(window.innerWidth);
-        windowHeight.current.innerText = String(window.innerHeight);
+        if(windowWidth.current){
+
+          windowWidth.current.innerText = String(window.innerWidth);
+          windowHeight.current.innerText = String(window.innerHeight);
+        }
       });
       // mouse position tracker
       window.addEventListener(
         "mousemove",
         e => {
-          mouseX.current.innerText = String(e.pageX);
-          mouseY.current.innerText = String(e.pageY);
+          if(mouseX.current){
+            mouseX.current.innerText = String(e.pageX);
+            mouseY.current.innerText = String(e.pageY);
+          }
         },
         false
       );

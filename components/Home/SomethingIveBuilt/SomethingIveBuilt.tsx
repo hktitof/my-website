@@ -1,9 +1,12 @@
+import Link from "next/link";
+import { useRouter } from "next/router";
 import React from "react";
 import ArrowIcon from "../../Icons/ArrowIcon";
 import Img from "../../smallComp/image/Img";
-const GithubIcon = () => {
+const GithubIcon = (props) => {
   return (
-    <svg
+    <a href={props.link} target="_blank" rel="noreferrer" >
+       <svg
       xmlns="http://www.w3.org/2000/svg"
       role="img"
       viewBox="0 0 24 24"
@@ -19,11 +22,14 @@ hover:scale-110 duration-200"
       <title>GitHub</title>
       <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
     </svg>
+    </a>
+   
   );
 };
-const ExternalLink = () => {
+const ExternalLink = (props) => {
   return (
     <svg
+      onClick={()=>props.router.push("/userdata")}
       xmlns="http://www.w3.org/2000/svg"
       role="img"
       viewBox="0 0 24 24"
@@ -45,6 +51,7 @@ const ExternalLink = () => {
 };
 
 export default function SomethingIveBuilt() {
+  const router = useRouter()
   return (
     <>
       <div
@@ -69,7 +76,7 @@ export default function SomethingIveBuilt() {
           <div className="bg-gray-400 h-[0.2px] w-full xl:w-1/3 md:w-1/2"></div>
         </div>
 
-        {/* // ? Projects */}
+        {/* // ? Project 1*/}
         <div className="flex flex-col space-y-8 md:space-y-28">
           {/* // ?  Project  */}
           <div className="relative md:grid md:grid-cols-12 w-full h-96">
@@ -79,10 +86,14 @@ export default function SomethingIveBuilt() {
           absolute md:grid grid-cols-12 w-full h-full  content-center"
             >
               <div className="relative rounded w-full h-full col-span-7 ">
+                <Link href={"/userdata"}>
                 <div
+                  // onClick={}
                   className="absolute w-full h-full rounded bg-AAsecondary 
            transition-opacity opacity-20 hover:opacity-0 hover:cursor-pointer duration-300"
                 ></div>
+                </Link>
+                
                 <Img
                   src={"/hackme.jpg"}
                   alt={"Project Screen shot"}
@@ -111,10 +122,10 @@ export default function SomethingIveBuilt() {
               >
                 <div className="flex flex-col space-y-1 md:items-end z-10">
                   <span className="text-AAsecondary text-base">
-                    Featured Project 1
+                    Recent Project
                   </span>
                   <span className=" md:text-gray-200 text-AAsecondary font-bold text-xl">
-                    Halcyon
+                    Data puller
                   </span>
                 </div>
                 <div className="w-full md:bg-AAtertiary rounded-md py-6 md:p-6  z-10">
@@ -141,20 +152,19 @@ export default function SomethingIveBuilt() {
                   <h3 className="pr-4 z-10">Location</h3>
                 </ul>
                 <div className="z-10 flex fle-row space-x-5 ">
-                  <GithubIcon />
-                  <ExternalLink />
+                  <GithubIcon  link="https://github.com/hktitof/DataPuller"/>
+                  <ExternalLink router={router}/>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* // ! FIXME the text on the left should be on the right in this section */}
-          {/* // ?  Project  */}
+          {/* // ?  Project 2 */}
           <div className="relative md:grid md:grid-cols-12 w-full h-96  ">
             {/* Left image */}
             <div
               className="hidden bg-AAprimary z-10  py-4 
-          absolute md:grid grid-cols-12 w-full h-full  content-center"
+          absolute md:grid grid-cols-12 w-full h-full  content-center "
             >
               <div className="relative rounded w-full h-full col-start-6 col-span-7 ">
                 <div
