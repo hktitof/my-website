@@ -10,7 +10,7 @@ const ClickableIcon=(props)=>{
     </a>
   )
 }
-export default function Fotter() {
+export default function Fotter(props) {
   return (
     <>
       {/* // ? Reach me at */}
@@ -23,7 +23,7 @@ export default function Fotter() {
           <ClickableIcon href={"https://www.youtube.com/c/NTTFT"} Icon={YoutubeIcon}/>
         </div>
         <a
-          href="https://github.com/hktitof/my-website"
+          href={props.link}
           className=""
           target={"_blank"}
           rel="noreferrer"
