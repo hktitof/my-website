@@ -18,16 +18,18 @@ export default function Home() {
   const context = useContext(AppContext);
 
   useEffect(() => {
+    // remove the interval Cookie timer setter when 
     clearInterval(context.sharedState.userdata.timerCookieRef.current);
     if (typeof window !== "undefined") {
+      // 
       window.removeEventListener(
         "resize",
         context.sharedState.userdata.windowSizeTracker.current
       );
-      // ! FIXME remove mousePositionTracker event when returning back to Home page
       window.removeEventListener(
         "mousemove",
-        context.sharedState.userdata.mousePositionTracker.current
+        context.sharedState.userdata.mousePositionTracker.current,
+        false
       );
     }
     setTimeout(() => {
@@ -44,9 +46,7 @@ export default function Home() {
       setShowMe(true);
     }, 10400);
   }, [
-    context.sharedState.userdata.timerCookieRef,
-    context.sharedState.userdata.windowSizeTracker,
-    context.sharedState.userdata.mousePositionTracker,
+    context.sharedState
   ]);
   return (
     // ? h-screen is changed to be deleted

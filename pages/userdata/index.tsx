@@ -8,6 +8,114 @@ import Footer from "../../components/Footer/Footer";
 import Img from "../../components/smallComp/image/Img";
 import { getGPUTier } from "detect-gpu";
 import AppContext from "../../components/AppContextFolder/AppContext";
+
+// ? this will update secUnits each second, secTens, minUnits, minTens cookies then update the span from cookies values
+const CookieTimeCounter = ({
+  context,
+  secUnits,
+  secTens,
+  minUnits,
+  minTens,
+  cookieCutter,
+}) => {
+  if (typeof window != undefined) {
+    // Cookie existence verification
+    if (cookieCutter.get("timer-sec-units")) {
+      console.log(
+        "current cookie timer-sec-units value in useEffect: ",
+        cookieCutter.get("timer-sec-units")
+      );
+    } else {
+      console.log("timer cookie not exist");
+      cookieCutter.set("timer-sec-units", String("0"));
+      cookieCutter.set("timer-sec-tens", String("0"));
+      cookieCutter.set("timer-min-units", String("0"));
+      cookieCutter.set("timer-min-tens", String("0"));
+    }
+    // set setInterval for the context.sharedState.userdata.timerCookieRef
+    context.sharedState.userdata.timerCookieRef.current = setInterval(
+      function () {
+        const countSec = Number(cookieCutter.get("timer-sec-units")) + 1;
+        cookieCutter.set("timer-sec-units", String(countSec));
+
+        if (countSec > 9) {
+          cookieCutter.set("timer-sec-units", String("0"));
+          cookieCutter.set(
+            "timer-sec-tens",
+            String(Number(cookieCutter.get("timer-sec-tens")) + 1)
+          );
+          const countSecTens = Number(cookieCutter.get("timer-sec-tens"));
+          if (countSecTens > 5) {
+            cookieCutter.set("timer-sec-tens", String("0"));
+            cookieCutter.set(
+              "timer-min-units",
+              String(Number(cookieCutter.get("timer-min-units")) + 1)
+            );
+            const countMinUnits = Number(cookieCutter.get("timer-min-units"));
+            if (countMinUnits > 9) {
+              cookieCutter.set("timer-min-units", String("0"));
+              cookieCutter.set(
+                "timer-min-tens",
+                String(Number(cookieCutter.get("timer-min-tens")) + 1)
+              );
+            }
+          }
+        }
+        // this checking is to prevent from type checking,
+        // "secUnits.current" will be undefined if it is not yet rendered on the other pages
+        if (secUnits.current) {
+          secUnits.current.innerText = cookieCutter.get("timer-sec-units");
+          secTens.current.innerText = cookieCutter.get("timer-sec-tens");
+          minUnits.current.innerText = cookieCutter.get("timer-min-units");
+          minTens.current.innerText = cookieCutter.get("timer-min-tens");
+        }
+
+        console.log("Cookie Timer Setter...");
+      },
+      1000
+    );
+  }
+};
+
+const MouseWindowEventListners = ({
+  context,
+  windowWidth,
+  windowHeight,
+  mouseX,
+  mouseY,
+}) => {
+  // assign context windowSize Ref here in useEffect once, so to make sure that it only assigned once
+  context.sharedState.userdata.windowSizeTracker.current = () => {
+    if (windowWidth.current) {
+      windowWidth.current.innerText = String(window.innerWidth);
+      windowHeight.current.innerText = String(window.innerHeight);
+    }
+    console.log("Window Size Tracker...");
+  };
+  // assint mousePositionTracker.current here to use in the as fallback function for the event
+  // and to remove the event in the other pages
+  context.sharedState.userdata.mousePositionTracker.current = event => {
+    if (mouseX.current) {
+      mouseX.current.innerText = String(event.pageX);
+      mouseY.current.innerText = String(event.pageY);
+    }
+    console.log("Mouse Position Tracker...");
+  };
+  // Apply this event Listener on Client
+  if (typeof window !== "undefined") {
+    // window size tracker
+    window.addEventListener(
+      "resize",
+      context.sharedState.userdata.windowSizeTracker.current
+    );
+    // mouse position tracker
+    window.addEventListener(
+      "mousemove",
+      context.sharedState.userdata.mousePositionTracker.current,
+      false
+    );
+  }
+};
 export default function Page() {
   // this api will return current ip address of the requester
   const IP_Address = async () => {
@@ -41,94 +149,24 @@ export default function Page() {
   // context for Shared State
   const context = useContext(AppContext);
 
-  // ? Page time spent Tracker, this will update secUnits, secTens, minUnits, minTens cookies
-  const timeCounter = () => {
-    if (typeof window != undefined) {
-      // set setInterval for the context.sharedState.userdata.timerCookieRef
-      context.sharedState.userdata.timerCookieRef.current = setInterval(
-        function () {
-          const countSec = Number(cookieCutter.get("timer-sec-units")) + 1;
-          cookieCutter.set("timer-sec-units", String(countSec));
-
-          if (countSec > 9) {
-            cookieCutter.set("timer-sec-units", String("0"));
-            cookieCutter.set(
-              "timer-sec-tens",
-              String(Number(cookieCutter.get("timer-sec-tens")) + 1)
-            );
-            const countSecTens = Number(cookieCutter.get("timer-sec-tens"));
-            if (countSecTens > 5) {
-              cookieCutter.set("timer-sec-tens", String("0"));
-              cookieCutter.set(
-                "timer-min-units",
-                String(Number(cookieCutter.get("timer-min-units")) + 1)
-              );
-              const countMinUnits = Number(cookieCutter.get("timer-min-units"));
-              if (countMinUnits > 9) {
-                cookieCutter.set("timer-min-units", String("0"));
-                cookieCutter.set(
-                  "timer-min-tens",
-                  String(Number(cookieCutter.get("timer-min-tens")) + 1)
-                );
-              }
-            }
-          }
-          // this checking is to prevent from type checking,
-          // "secUnits.current" will be undefined if it is not yet rendered on the other pages
-          if(secUnits.current){
-            secUnits.current.innerText = cookieCutter.get("timer-sec-units");
-          secTens.current.innerText = cookieCutter.get("timer-sec-tens");
-          minUnits.current.innerText = cookieCutter.get("timer-min-units");
-          minTens.current.innerText = cookieCutter.get("timer-min-tens");
-          }
-
-          console.log("Cookie Timer Setter...");
-        },
-        1000
-      );
-    }
-  };
-  context.sharedState.userdata.windowSizeTracker.current =()=>{
-    if (windowWidth.current) {
-      windowWidth.current.innerText = String(window.innerWidth);
-      windowHeight.current.innerText = String(window.innerHeight);
-    }
-    console.log("Window Size Tracker...");
-  }
-  context.sharedState.userdata.mousePositionTracker.current =(event)=>{
-    if (mouseX.current) {
-      mouseX.current.innerText = String(event.pageX);
-      mouseY.current.innerText = String(event.pageY);
-    }
-    console.log("Mouse Position Tracker...");
-  }
   useEffect(() => {
-    // Cookie existence verification
-    if (cookieCutter.get("timer-sec-units")) {
-      console.log(
-        "current cookie timer-sec-units value in useEffect: ",
-        cookieCutter.get("timer-sec-units")
-      );
-    } else {
-      console.log("timer cookie not exist");
-      cookieCutter.set("timer-sec-units", String("0"));
-      cookieCutter.set("timer-sec-tens", String("0"));
-      cookieCutter.set("timer-min-units", String("0"));
-      cookieCutter.set("timer-min-tens", String("0"));
-    }
-    // call timeCounter function here in useEffect once
-    timeCounter();
-    // Apply this event Listener on Client
-    if (typeof window !== "undefined") {
-      // window size tracker
-      window.addEventListener("resize", context.sharedState.userdata.windowSizeTracker.current );
-      // mouse position tracker
-      window.addEventListener(
-        "mousemove",
-        context.sharedState.userdata.mousePositionTracker.current,
-        false
-      );
-    }
+    // call CookieTimeCounter function here in useEffect once
+    CookieTimeCounter({
+      context,
+      secUnits,
+      secTens,
+      minUnits,
+      minTens,
+      cookieCutter,
+    });
+    // call MouseWindowEventListners function here in useEffect once
+    MouseWindowEventListners({
+      context,
+      windowWidth,
+      windowHeight,
+      mouseX,
+      mouseY,
+    });
 
     // call api by passing the IP address of the requester & store in api_data
     const api_data = async () => {
@@ -195,12 +233,11 @@ export default function Page() {
     };
     // call the async function "userInfo"  inside the useEffect
     userInfo();
-    // ! FIX ME Continue here, add first visit and last visit functionality
   }, []);
 
   // import Dynamically the Map component from the hackme package, cus it's using some client side objects
   const Map = dynamic(
-    () => import("../../components/hackme/Map"),
+    () => import("../../components/DataPullerProject/Map"),
     { ssr: false } // This line is important. It's what prevents server-side render
   );
 
