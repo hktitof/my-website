@@ -168,7 +168,10 @@ export default function Page() {
       mouseY,
     });
 
-    // call api by passing the IP address of the requester & store in api_data
+    
+    // async function for getting user location
+    const userInfo = async () => {
+      // call api by passing the IP address of the requester & store in api_data
     const api_data = async () => {
       return fetch("/api/userInfoByIP/" + (await IP_Address()))
         .then(res => res.json())
@@ -176,8 +179,6 @@ export default function Page() {
     };
     //to determine the browser info
     const browser = detect();
-    // async function for getting user location
-    const userInfo = async () => {
       // get user Data from the api
       const result = await api_data();
       // Client side checks
@@ -235,7 +236,7 @@ export default function Page() {
     userInfo();
   }, []);
 
-  // import Dynamically the Map component from the hackme package, cus it's using some client side objects
+  // import Dynamically the Map component from the DataPuller package, cus it's using some client side objects
   const Map = dynamic(
     () => import("../../components/DataPullerProject/Map"),
     { ssr: false } // This line is important. It's what prevents server-side render
