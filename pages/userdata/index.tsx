@@ -116,13 +116,85 @@ const MouseWindowEventListners = ({
     );
   }
 };
-export default function Page() {
+// async function for getting user information. IP, location, zip code, browser, OS, GPU, etc.
+const userInfo = async ({
+  setLocation,
+  setZipCode,
+  setGpuTier,
+  gpuTier,
+  userData,
+  cookieCutter,
+  lastVisit_Ref,
+  firstVisit_Ref,
+}) => {
   // this api will return current ip address of the requester
   const IP_Address = async () => {
     return fetch("https://api.ipify.org/?format=json")
       .then(res => res.json())
       .then(data => data.ip);
   };
+  // call api by passing the IP address of the requester & store in api_data
+  const api_data = async () => {
+    return fetch("/api/userInfoByIP/" + (await IP_Address()))
+      .then(res => res.json())
+      .then(data => data);
+  };
+  //to determine the browser info
+  const browser = detect();
+  // get user Data from the api
+  const result = await api_data();
+  // Client side checks
+  if (browser) {
+    result["browser"] = browser.name;
+    result["browserVersion"] = browser.version;
+    result["browserOS"] = browser.os;
+  }
+  if (screen) {
+    result["screenWidth"] = screen.width;
+    result["screenHeight"] = screen.height;
+    result["screenOrientationType"] = screen.orientation.type;
+    result["screenColorDepth"] = screen.colorDepth + " bits";
+  }
+  if (navigator) {
+    result["NavigatorLanguages"] = navigator.languages;
+    result["NavigatorLogicalCores"] =
+      navigator.hardwareConcurrency + " cores";
+  }
+  // ? this will add battery level if it's supported on the browser
+  if (navigator) {
+    if (navigator.hasOwnProperty("getBattery")) {
+      //@ts-ignore
+      navigator.getBattery().then(battery => {
+        result["batteryLevel"] = battery.level + " %";
+        console.log("battery level : ", battery.level + " %");
+      });
+    } else {
+      result["batteryLevel"] = "Not supported";
+    }
+  }
+  const temp_array_location = [];
+  temp_array_location.push(result.lat);
+  temp_array_location.push(result.lon);
+  setLocation([...temp_array_location]);
+  console.log("useEffect run, data :", result);
+  setZipCode(result.zip);
+  userData.current = result;
+  // first & last visit tracker with conditional statement using cookies.
+  //it's inside userInfo function to get the current time by the ip Address
+  if (cookieCutter.get("first-visit")) {
+    lastVisit_Ref.current.innerText = cookieCutter.get("last-visit");
+    cookieCutter.set("last-visit", result.datetime);
+  } else {
+    lastVisit_Ref.current.innerText = "Now";
+    cookieCutter.set("first-visit", result.datetime);
+    cookieCutter.set("last-visit", result.datetime);
+  }
+  firstVisit_Ref.current.innerText = cookieCutter.get("first-visit");
+  // set up gpuTier state value
+  setGpuTier(await getGPUTier());
+  console.log("gpuTier from UserInfo function : ", gpuTier);
+};
+export default function Page() {
   // location[latitude, longitude]
   const [location, setLocation] = useState<number[]>([0, 0]);
   const [updatingLocation, setUpdatingLocation] = useState<boolean>(false);
@@ -169,72 +241,19 @@ export default function Page() {
     });
 
     
-    // async function for getting user location
-    const userInfo = async () => {
-      // call api by passing the IP address of the requester & store in api_data
-    const api_data = async () => {
-      return fetch("/api/userInfoByIP/" + (await IP_Address()))
-        .then(res => res.json())
-        .then(data => data);
-    };
-    //to determine the browser info
-    const browser = detect();
-      // get user Data from the api
-      const result = await api_data();
-      // Client side checks
-      if (browser) {
-        result["browser"] = browser.name;
-        result["browserVersion"] = browser.version;
-        result["browserOS"] = browser.os;
-      }
-      if (screen) {
-        result["screenWidth"] = screen.width;
-        result["screenHeight"] = screen.height;
-        result["screenOrientationType"] = screen.orientation.type;
-        result["screenColorDepth"] = screen.colorDepth + " bits";
-      }
-      if (navigator) {
-        result["NavigatorLanguages"] = navigator.languages;
-        result["NavigatorLogicalCores"] =
-          navigator.hardwareConcurrency + " cores";
-      }
-      // ? this will add battery level if it's supported on the browser
-      if (navigator) {
-        if (navigator.hasOwnProperty("getBattery")) {
-          //@ts-ignore
-          navigator.getBattery().then(battery => {
-            result["batteryLevel"] = battery.level + " %";
-            console.log("battery level : ", battery.level + " %");
-          });
-        } else {
-          result["batteryLevel"] = "Not supported";
-        }
-      }
-      const temp_array_location = [];
-      temp_array_location.push(result.lat);
-      temp_array_location.push(result.lon);
-      setLocation([...temp_array_location]);
-      console.log("useEffect run, data :", result);
-      setZipCode(result.zip);
-      userData.current = result;
-      // first & last visit tracker with conditional statement using cookies.
-      //it's inside userInfo function to get the current time by the ip Address
-      if (cookieCutter.get("first-visit")) {
-        lastVisit_Ref.current.innerText = cookieCutter.get("last-visit");
-        cookieCutter.set("last-visit", result.datetime);
-      } else {
-        lastVisit_Ref.current.innerText = "Now";
-        cookieCutter.set("first-visit", result.datetime);
-        cookieCutter.set("last-visit", result.datetime);
-      }
-      firstVisit_Ref.current.innerText = cookieCutter.get("first-visit");
-      // set up gpuTier state value
-      setGpuTier(await getGPUTier());
-      console.log("gpuTier from UserInfo function : ", gpuTier);
-    };
     // call the async function "userInfo"  inside the useEffect
-    userInfo();
-  }, []);
+    userInfo({
+      setLocation,
+      setZipCode,
+      setGpuTier,
+      gpuTier,
+      userData,
+      cookieCutter,
+      lastVisit_Ref,
+      firstVisit_Ref,
+    });
+    // ! FIXME Why including gpuTier in the useEffect dependencies is causing an error ?
+  }, [context]);
 
   // import Dynamically the Map component from the DataPuller package, cus it's using some client side objects
   const Map = dynamic(
