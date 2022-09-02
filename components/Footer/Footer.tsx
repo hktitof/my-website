@@ -3,31 +3,40 @@ import GithubIcon from "../Icons/GithubIcon";
 import LinkedinIcon from "../Icons/LinkedinIcon";
 import InstagramIcon from "../Icons/InstagramIcon";
 import YoutubeIcon from "../Icons/YoutubeIcon";
-const ClickableIcon=(props)=>{
-  return(
+const ClickableIcon = props => {
+  return (
     <a href={props.href} className="" target={"_blank"} rel="noreferrer">
-      <props.Icon className={"w-5 h-5 text-gray-400 hover:text-AAsecondary fill-current hover:cursor-pointer"}/>
+      <props.Icon
+        className={
+          "w-5 h-5 text-gray-400 hover:text-AAsecondary fill-current hover:cursor-pointer"
+        }
+      />
     </a>
-  )
-}
+  );
+};
 export default function Fotter(props) {
   return (
-    <>
-      {/* // ? Reach me at */}
       <div className="bg-AAprimary flex flex-col justify-center items-center py-8 space-y-4">
         {/* // ? Reach me at */}
         <div className="flex flex-row space-x-8 lg:hidden">
-          <ClickableIcon href={"https://github.com/hktitof"} Icon={GithubIcon}/>
-          <ClickableIcon href={"https://www.linkedin.com/in/abdellatif-anaflous/"} Icon={LinkedinIcon}/>
-          <ClickableIcon href={"https://www.instagram.com/titof_abdo/"} Icon={InstagramIcon}/>
-          <ClickableIcon href={"https://www.youtube.com/c/NTTFT"} Icon={YoutubeIcon}/>
+          <ClickableIcon
+            href={"https://github.com/hktitof"}
+            Icon={GithubIcon}
+          />
+          <ClickableIcon
+            href={"https://www.linkedin.com/in/abdellatif-anaflous/"}
+            Icon={LinkedinIcon}
+          />
+          <ClickableIcon
+            href={"https://www.instagram.com/titof_abdo/"}
+            Icon={InstagramIcon}
+          />
+          <ClickableIcon
+            href={"https://www.youtube.com/c/NTTFT"}
+            Icon={YoutubeIcon}
+          />
         </div>
-        <a
-          href={props.link}
-          className=""
-          target={"_blank"}
-          rel="noreferrer"
-        >
+        <a href={props.link} className="" target={"_blank"} rel="noreferrer">
           <div
             className="group flex flex-col font-mono justify-center items-center  text-gray-400 
     text-sm  space-y-2  "
@@ -37,12 +46,15 @@ export default function Fotter(props) {
             </span>
 
             <span className="text-xs flex flex-row items-center space-x-2 group-hover:text-AAsecondary">
-              <GithubIcon className={"w-4 h-4 text-gray-400 fill-current group-hover:text-AAsecondary"} />
+              <GithubIcon
+                className={
+                  "w-4 h-4 text-gray-400 fill-current group-hover:text-AAsecondary"
+                }
+              />
               <span className="">Github</span>
             </span>
           </div>
         </a>
       </div>
-    </>
   );
 }

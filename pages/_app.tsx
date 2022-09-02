@@ -16,7 +16,7 @@ function MyApp({ Component, pageProps }) {
   });
   return (
     <AppContext.Provider value={{ sharedState, setSharedState }}>
-      <Component {...pageProps} />;
+      <Component {...pageProps} />
     </AppContext.Provider>
   );
 }

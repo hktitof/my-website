@@ -191,7 +191,8 @@ const userInfo = async ({
   }
   firstVisit_Ref.current.innerText = cookieCutter.get("first-visit");
   // set up gpuTier state value
-  setGpuTier(await getGPUTier());
+  const gpuTier_data = await getGPUTier();
+  setGpuTier(Object(gpuTier_data));
   console.log("gpuTier from UserInfo function : ", gpuTier);
 };
 export default function Page() {
@@ -252,8 +253,9 @@ export default function Page() {
       lastVisit_Ref,
       firstVisit_Ref,
     });
-    // ! FIXME Why including gpuTier in the useEffect dependencies is causing an error ?
-  }, [context]);
+    // ! FIXME gpuTier problem is here causing re-render, the problem is related to calling gpuTier useState
+    // ! FIXME gpuTier : 
+  }, [context,gpuTier]);
 
   // import Dynamically the Map component from the DataPuller package, cus it's using some client side objects
   const Map = dynamic(
