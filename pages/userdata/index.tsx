@@ -121,7 +121,6 @@ const userInfo = async ({
   setLocation,
   setZipCode,
   setGpuTier,
-  gpuTier,
   userData,
   cookieCutter,
   lastVisit_Ref,
@@ -193,7 +192,6 @@ const userInfo = async ({
   // set up gpuTier state value
   const gpuTier_data = await getGPUTier();
   setGpuTier(Object(gpuTier_data));
-  console.log("gpuTier from UserInfo function : ", gpuTier);
 };
 export default function Page() {
   // location[latitude, longitude]
@@ -204,9 +202,9 @@ export default function Page() {
   // zip code holder
   const [zipCode, setZipCode] = useState<string>(undefined);
   // userData Ref holder
-  const userData = useRef<any>(null);
+  const userData = useRef(null);
   // gpu Detector ref holder
-  const [gpuTier, setGpuTier] = useState(null);
+  const [gpuTier, setGpuTier] = useState({});
   const windowWidth = useRef<HTMLSpanElement>(null);
   const windowHeight = useRef<HTMLSpanElement>(null);
   const mouseX = useRef<HTMLSpanElement>(null);
@@ -247,15 +245,12 @@ export default function Page() {
       setLocation,
       setZipCode,
       setGpuTier,
-      gpuTier,
       userData,
       cookieCutter,
       lastVisit_Ref,
       firstVisit_Ref,
     });
-    // ! FIXME gpuTier problem is here causing re-render, the problem is related to calling gpuTier useState
-    // ! FIXME gpuTier : 
-  }, [context,gpuTier]);
+  }, [context]);
 
   // import Dynamically the Map component from the DataPuller package, cus it's using some client side objects
   const Map = dynamic(
