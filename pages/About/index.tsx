@@ -3,7 +3,7 @@ import React from "react";
 import { useEffect, useRef } from "react";
 import { useCookies } from "react-cookie";
 import { useTime } from "react-timer-hook";
-
+import Img from "../../components/smallComp/image/Img";
 const cookies = new Cookies();
 export default function Page() {
   const timer = useRef<number>();
@@ -21,7 +21,7 @@ export default function Page() {
     >
       <div className="w-full h-full py-8 px-8 flex flex-row space-x-12">
         <div className="flex-none hidden sm:block sm:w-36 lg:w-44">
-          <img
+          <Img
             src="titofCercle.png"
             alt="About picture"
             className="opacity-80"
