@@ -242,3 +242,59 @@ export const onClickUpdateLocation = async (
   // ask for permission to access location
   navigator.geolocation.getCurrentPosition(success, error);
 };
+
+// data for Additional Information Section 1
+export const Additional_data = (userData, gpuTier) => {
+  return [
+    { title: "Browser :", value: userData.current?.browser || "Checking..." },
+    {
+      title: "Browser Version :",
+      value: userData.current?.browserVersion || "Checking...",
+    },
+    {
+      title: "Languages :",
+      value:
+        userData.current?.NavigatorLanguages.toString().replace(",", ", ") ||
+        "Checking...",
+    },
+    { title: "OS :", value: userData.current?.browserOS || "Checking..." },
+    {
+      title: "CPU cores :",
+      value: userData.current?.NavigatorLogicalCores || "Checking...",
+    },
+    {
+      title: "GPU :",
+      value: gpuTier?.gpu || "Checking...",
+    },
+  ];
+};
+
+// data for the table
+export const tableData = (userData, zipCode) => {
+  return [
+    {
+      title: "IP Address :",
+      value: userData.current?.query || "Checking...",
+    },
+    { title: "City :", value: userData.current?.city || "Checking..." },
+    { title: "Zip Code :", value: zipCode || "Checking..." },
+    {
+      title: "Region :",
+      value: userData.current?.regionName || "Checking...",
+    },
+    {
+      title: "Region Code :",
+      value: userData.current?.region || "Checking...",
+    },
+    { title: "Country :", value: userData.current?.country || "Checking..." },
+    {
+      title: "Current Date/time :",
+      value: userData.current?.datetime || "Checking...",
+    },
+    {
+      title: "Battery :",
+      value: userData.current?.batteryLevel || "Checking...",
+    },
+    { title: "As :", value: userData.current?.as || "Checking..." },
+  ];
+};

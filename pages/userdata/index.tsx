@@ -5,19 +5,26 @@ import Head from "next/head";
 import dynamic from "next/dynamic";
 import cookieCutter from "cookie-cutter";
 import Footer from "../../components/Footer/Footer";
-import Img from "../../components/smallComp/image/Img";
 import About from "../../components/DataPullerProject/AboutComp/About";
 import Timer from "../../components/DataPullerProject/TimerComp/Timer";
 import BlockElem from "../../components/DataPullerProject/BlockElem/BlockElem";
 import AppContext from "../../components/AppContextFolder/AppContext";
 import Loader from "../../components/Icons/Loader";
 import TableRow from "../../components/DataPullerProject/TableRow/TableRow";
-// import : functions
-import { CookieTimeCounter } from "../../components/DataPullerProject/FuncVar/foo";
-import { MouseWindowEventListners } from "../../components/DataPullerProject/FuncVar/foo";
-import { onClickUpdateLocation } from "../../components/DataPullerProject/FuncVar/foo";
-import { userInfo } from "../../components/DataPullerProject/FuncVar/foo";
 import LatLonTable from "../../components/DataPullerProject/LatLonTable/LatLonTable";
+// import : functions
+import {
+  CookieTimeCounter,
+  MouseWindowEventListners,
+  onClickUpdateLocation,
+  userInfo,
+} from "../../components/DataPullerProject/FuncVar/foo";
+
+// values
+import {
+  Additional_data,
+  tableData,
+} from "../../components/DataPullerProject/FuncVar/foo";
 
 export default function Page() {
   // location[latitude, longitude]
@@ -83,56 +90,6 @@ export default function Page() {
     { ssr: false } // This line is important. It's what prevents server-side render
   );
 
-  console.log("Page rendered..");
-  console.log("user data : ", userData.current);
-  console.log("gpu data, ", gpuTier);
-
-  // data for the table
-  const tableData = [
-    { title: "IP Address :", value: userData.current?.query || "Checking..." },
-    { title: "City :", value: userData.current?.city || "Checking..." },
-    { title: "Zip Code :", value: zipCode || "Checking..." },
-    { title: "Region :", value: userData.current?.regionName || "Checking..." },
-    {
-      title: "Region Code :",
-      value: userData.current?.region || "Checking...",
-    },
-    { title: "Country :", value: userData.current?.country || "Checking..." },
-    {
-      title: "Current Date/time :",
-      value: userData.current?.datetime || "Checking...",
-    },
-    {
-      title: "Battery :",
-      value: userData.current?.batteryLevel || "Checking...",
-    },
-    { title: "As :", value: userData.current?.as || "Checking..." },
-  ];
-
-  // data for Additional Information Section 1
-  const Additional_data = [
-    { title: "Browser :", value: userData.current?.browser || "Checking..." },
-    {
-      title: "Browser Version :",
-      value: userData.current?.browserVersion || "Checking...",
-    },
-    {
-      title: "Languages :",
-      value:
-        userData.current?.NavigatorLanguages.toString().replace(",", ", ") ||
-        "Checking...",
-    },
-    { title: "OS :", value: userData.current?.browserOS || "Checking..." },
-    {
-      title: "CPU cores :",
-      value: userData.current?.NavigatorLogicalCores || "Checking...",
-    },
-    {
-      title: "GPU :",
-      value: gpuTier?.gpu || "Checking...",
-    },
-  ];
-
   return (
     <>
       <Head>
@@ -162,7 +119,7 @@ export default function Page() {
               </div>
               <table className="border-2 border-gray-300 w-full font-mono">
                 <tbody>
-                  {tableData.map((item, index) => {
+                  {tableData(userData, zipCode).map((item, index) => {
                     return <TableRow item={item} key={index} />;
                   })}
                 </tbody>
@@ -176,7 +133,7 @@ export default function Page() {
               <section className="flex flex-col lg:flex-row lg:space-y-0 space-y-3 lg:space-x-4 font-mono">
                 {/* // ? Additional Information Section 1*/}
                 <div className="flex-none flex-col space-y-3 ">
-                  {Additional_data.map((item, index) => {
+                  {Additional_data(userData, gpuTier).map((item, index) => {
                     return (
                       <BlockElem
                         key={index}
