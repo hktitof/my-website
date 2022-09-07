@@ -1,7 +1,5 @@
-import React, { useContext } from "react";
-import { useState, useEffect, useRef } from "react";
+import React, { useContext,useState, useEffect, useRef } from "react";
 import Head from "next/head";
-
 import dynamic from "next/dynamic";
 import cookieCutter from "cookie-cutter";
 import Footer from "../../components/Footer/Footer";
@@ -36,7 +34,7 @@ export default function Page() {
   const [zipCode, setZipCode] = useState<string>(undefined);
   // userData Ref holder
   const userData = useRef(null);
-  // gpu Detector ref holder
+  // gpu Detector state holder
   const [gpuTier, setGpuTier] = useState(null);
   const windowWidth = useRef<HTMLSpanElement>(null);
   const windowHeight = useRef<HTMLSpanElement>(null);
@@ -72,7 +70,7 @@ export default function Page() {
       mouseY,
     });
 
-    // call the async function "userInfo"  inside the useEffect
+    // call the async function "userInfo"  inside the useEffect to get the user Data and set them in the DOM
     userInfo({
       setLocation,
       setZipCode,
@@ -205,7 +203,7 @@ export default function Page() {
                 </div>
               </section>
             </div>
-            {/* // ? Map  */}
+            {/* // ? Section that contains Maps and the Timer */}
             <div className="h-full w-full md:w-1/3 flex flex-col  items-center md:order-2 order-1 md:pt-12">
               {/* // Visit Data */}
               <div className="w-full pb-5">
