@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 
+type Data = [string[], [{ char: string; charColor: string }?]];
 /**
  * @note use minLength & maxLength to limit the quote length
  * @default_URL : https://api.quotable.io/random?minLength=100&maxLength=140
@@ -10,15 +11,16 @@ const getData = async arg_state => {
     .then(response => response.json())
     .then(data => {
       console.log(data);
-      // ! FIX ME : continue here add list of words in this array, to validate word by word in the input
-      const temArray = [];
+      // ! FIXME : continue here tempArray has now at index 0, an Array containing the words of the quote
+      const temArray: Data = [data.content.split(" "), []];
 
       /**
        * @@explanation for the following action
-       * this will will convert data to array of char then push each char to tempArray as object with background default value ""
+       * this will will convert data to array of char then push each char to the tempArray second Array
+       * as objects with background default value ""
        */
       data.content.split("").forEach((item, index) => {
-        temArray.push({
+        temArray[1].push({
           char: item,
           charColor: "text-gray-600",
         });
@@ -29,7 +31,11 @@ const getData = async arg_state => {
 };
 
 export default function Home() {
-  const [myText, setMyText] = React.useState(null); // ? this will be an array of characters for now
+  /**
+   * the follwwing state will is type of
+   * @type [[string[]],[{char:string,charColor:string}]]
+   */
+  const [myText, setMyText] = React.useState<Data>([[], []]); // ? this will be an array of characters for now
   const [move, setMove] = useState(false);
   const elemRef = useRef<HTMLSpanElement>(null);
   const [elemWidth, setElemWidth] = useState(0);
@@ -61,11 +67,12 @@ export default function Home() {
   useEffect(() => {}, [input]);
   console.log("page re-rendered...");
   console.log("input : ", input);
+  console.log("data : ", myText);
   return (
     <div className="bg-AAprimary h-screen w-full flex items-center">
       <main className="w-full 2xl:px-96 xl:px-80 lg:px-64 md:px-28 px-12 flex flex-col space-y-12">
         <span className="lg:text-3xl md:text-xl sm:text-xl tracking-right">
-          {myText?.map((item, index) => {
+          {myText[1]?.map((item, index) => {
             return (
               <span key={index} className={`${item.charColor}`}>
                 {item.char}
@@ -113,7 +120,6 @@ export default function Home() {
               // handleSelect(true);
               // myText[1].background = "bg-AAsecondary";
               // setMyText([...myText]);
-              myText[1].charColor = "text-AAsecondary";
               setMyText([...myText]);
             }}
             className="w-24 border-2 px-8 py-1 rounded text-sm text-white"
