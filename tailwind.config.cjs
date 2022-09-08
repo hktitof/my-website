@@ -25,6 +25,7 @@ module.exports = {
       colors: {
         AAprimary: "#0b192f",
         AAsecondary: "#64ffda",
+        AAError:"#ff6489",
         AAtertiary: "#112340",
         ResumeButtonHover: "#153040",
         MobileNavBarColor: "#112340",
