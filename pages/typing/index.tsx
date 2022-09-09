@@ -2,7 +2,8 @@ import React, { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 
 type Data = [wordsStatus, [{ char: string; charColor: string }?]];
-type wordsStatus = [{ word: string, typedStatus: boolean }?];
+type wordsStatus = [{ word: string; typedStatus: boolean }?];
+type ActiveWordIndex = { index: number; word: string } | null;
 /**
  * @note use minLength & maxLength to limit the quote length
  * @default_URL : https://api.quotable.io/random?minLength=100&maxLength=140
@@ -13,8 +14,8 @@ const getData = async arg_state => {
     .then(data => {
       console.log(data);
 
-      const wordsAndStatus:wordsStatus =[];// this aaay will hold the words and their status
-      data.content.split(" ").forEach((item:string,index:number) => {
+      const wordsAndStatus: wordsStatus = []; // this aaay will hold the words and their status
+      data.content.split(" ").forEach((item: string, index: number) => {
         wordsAndStatus.push({ word: item, typedStatus: false });
       });
       const temArray: Data = [wordsAndStatus, []];
@@ -24,7 +25,7 @@ const getData = async arg_state => {
        * this will will convert data to array of char then push each char to the tempArray second Array
        * as objects with background default value ""
        */
-      data.content.split("").forEach((item:string, index:number) => {
+      data.content.split("").forEach((item: string, index: number) => {
         temArray[1].push({
           char: item,
           charColor: "text-gray-600",
@@ -41,6 +42,7 @@ export default function Home() {
    * @type [[string[]],[{char:string,charColor:string}]]
    */
   const [myText, setMyText] = React.useState<Data>([[], []]); // ? this will be an array of characters for now
+  const [activeWordIndex, setActiveWordIndex] = useState<ActiveWordIndex>(null);
   const [move, setMove] = useState(false);
   const elemRef = useRef<HTMLSpanElement>(null);
   const [elemWidth, setElemWidth] = useState(0);
@@ -50,8 +52,12 @@ export default function Home() {
   const CounterChar = useRef<number>(0);
   const listRef = useRef([]);
   useEffect(() => {
-    getData(setMyText); // setMyText is the callback function
-  }, []);
+    if (myText[0].length === 0) {
+      getData(setMyText); // setMyText is the callback function
+    } else if (activeWordIndex === null) {
+      setActiveWordIndex({ index: 0, word: myText[0][0].word });// set the first active word as active after Data is loaded
+    }
+  }, [myText,activeWordIndex]);
   useEffect(() => {
     if (!(elemP.length > 0)) {
       // checking if the state is empty meaning not set yet
@@ -71,6 +77,7 @@ export default function Home() {
 
   console.log("page re-rendered...");
   console.log("data : ", myText);
+  console.log("Active Word : ", activeWordIndex);
   return (
     <div className="bg-AAprimary h-screen w-full flex items-center">
       <main className="w-full 2xl:px-96 xl:px-80 lg:px-64 md:px-28 px-12 flex flex-col space-y-12">
@@ -105,6 +112,9 @@ export default function Home() {
           type="text"
           className="w-52 bg-AAprimary text-xl text-center text-gray-600 border-b-2 border-b-gray-600 
               py-2 px-4 focus:outline-none "
+              onChange={(e)=>{
+                
+              }}
           onKeyDown={e => {
             if (e.key === " ") {
               console.log("key pressed : Space");
