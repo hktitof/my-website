@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 
-type Data = [string[], [{ char: string; charColor: string }?]];
+type Data = [wordsStatus, [{ char: string; charColor: string }?]];
+type wordsStatus = [{ word: string, typedStatus: boolean }?];
 /**
  * @note use minLength & maxLength to limit the quote length
  * @default_URL : https://api.quotable.io/random?minLength=100&maxLength=140
@@ -11,15 +12,19 @@ const getData = async arg_state => {
     .then(response => response.json())
     .then(data => {
       console.log(data);
-      // ! FIXME : continue here tempArray has now at index 0, an Array containing the words of the quote
-      const temArray: Data = [data.content.split(" "), []];
+
+      const wordsAndStatus:wordsStatus =[];// this aaay will hold the words and their status
+      data.content.split(" ").forEach((item:string,index:number) => {
+        wordsAndStatus.push({ word: item, typedStatus: false });
+      });
+      const temArray: Data = [wordsAndStatus, []];
 
       /**
        * @@explanation for the following action
        * this will will convert data to array of char then push each char to the tempArray second Array
        * as objects with background default value ""
        */
-      data.content.split("").forEach((item, index) => {
+      data.content.split("").forEach((item:string, index:number) => {
         temArray[1].push({
           char: item,
           charColor: "text-gray-600",
@@ -44,7 +49,6 @@ export default function Home() {
   const [moveCursor, setMoveCursor] = useState(false);
   const CounterChar = useRef<number>(0);
   const listRef = useRef([]);
-  const [input, setInput] = useState("");
   useEffect(() => {
     getData(setMyText); // setMyText is the callback function
   }, []);
@@ -64,9 +68,8 @@ export default function Home() {
     setMoveCursor(status);
     setElemWidth(elemRef?.current?.offsetWidth - 2);
   };
-  useEffect(() => {}, [input]);
+
   console.log("page re-rendered...");
-  console.log("input : ", input);
   console.log("data : ", myText);
   return (
     <div className="bg-AAprimary h-screen w-full flex items-center">
@@ -103,12 +106,11 @@ export default function Home() {
           className="w-52 bg-AAprimary text-xl text-center text-gray-600 border-b-2 border-b-gray-600 
               py-2 px-4 focus:outline-none "
           onKeyDown={e => {
-            if (e.code === "Space") {
+            if (e.key === " ") {
               console.log("key pressed : Space");
             } else {
               console.log("key pressed : ", e.key);
             }
-            setInput(e.target.value);
           }}
           // onChange={e => {
           //   setInput(e.target.value);
@@ -118,8 +120,7 @@ export default function Home() {
           <button
             onClick={() => {
               // handleSelect(true);
-              // myText[1].background = "bg-AAsecondary";
-              // setMyText([...myText]);
+              myText[1][1].charColor = "text-AAsecondary";
               setMyText([...myText]);
             }}
             className="w-24 border-2 px-8 py-1 rounded text-sm text-white"
