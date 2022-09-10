@@ -55,9 +55,9 @@ export default function Home() {
     if (myText[0].length === 0) {
       getData(setMyText); // setMyText is the callback function
     } else if (activeWordIndex === null) {
-      setActiveWordIndex({ index: 0, word: myText[0][0].word });// set the first active word as active after Data is loaded
+      setActiveWordIndex({ index: 0, word: myText[0][0].word }); // set the first active word as active after Data is loaded
     }
-  }, [myText,activeWordIndex]);
+  }, [myText, activeWordIndex]);
   useEffect(() => {
     if (!(elemP.length > 0)) {
       // checking if the state is empty meaning not set yet
@@ -73,6 +73,34 @@ export default function Home() {
   const handleMove = (status: boolean) => {
     setMoveCursor(status);
     setElemWidth(elemRef?.current?.offsetWidth - 2);
+  };
+  const handleOnChangeInput = (input: string) => {
+    const length = input.length;
+    [...input].forEach((char, index) => {
+      if (char === myText[1][index].char) {
+        myText[1][index].charColor = "text-AAsecondary";
+      } else {
+        myText[1][index].charColor = "text-AAError";
+      }
+    });
+    setMyText([...myText]);
+  };
+  const isAllowedKey = (key: number) => {
+    /**
+     * @allowedKeys
+     * check the following URL for allowed Keys :
+     * https://www.freecodecamp.org/news/javascript-keycode-list-keypress-event-key-codes/
+     */
+    if (key >= 48 && key <= 90) {
+      return true;
+    }
+    if (key >= 96 && key <= 111) {
+      return true;
+    }
+    if (key >= 186 && key <= 222) {
+      return true;
+    }
+    return false;
   };
 
   console.log("page re-rendered...");
@@ -112,15 +140,11 @@ export default function Home() {
           type="text"
           className="w-52 bg-AAprimary text-xl text-center text-gray-600 border-b-2 border-b-gray-600 
               py-2 px-4 focus:outline-none "
-              onChange={(e)=>{
-                
-              }}
+          onChange={e => {
+            // handleOnChangeInput(e.target.value);
+          }}
           onKeyDown={e => {
-            if (e.key === " ") {
-              console.log("key pressed : Space");
-            } else {
-              console.log("key pressed : ", e.key);
-            }
+            console.log("code : ",e.key)
           }}
           // onChange={e => {
           //   setInput(e.target.value);
