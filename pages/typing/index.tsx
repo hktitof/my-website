@@ -1,9 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
-
+type ActiveWordWithIndex={wordIndex:number,wordDetail:{ word: string; typedStatus: boolean,indexFrom:number,indexTo:number }};
 type Data = [wordsStatus, [{ char: string; charColor: string }?]];
-type wordsStatus = [{ word: string; typedStatus: boolean }?];
+type wordsStatus = [{ word: string; typedStatus: boolean,indexFrom:number,indexTo:number }?];
 type ActiveWordIndex = { index: number; word: string } | null;
+type InputAndCursorPos = { input: string; cursorPos: number };
 /**
  * @note use minLength & maxLength to limit the quote length
  * @default_URL : https://api.quotable.io/random?minLength=100&maxLength=140
@@ -16,7 +17,19 @@ const getData = async arg_state => {
 
       const wordsAndStatus: wordsStatus = []; // this aaay will hold the words and their status
       data.content.split(" ").forEach((item: string, index: number) => {
-        wordsAndStatus.push({ word: item, typedStatus: false });
+        wordsAndStatus.push({ word: item, typedStatus: false, indexFrom:0, indexTo:0 });
+      });
+      let LastIndex=0;
+      wordsAndStatus.forEach((item, index) => {
+        if(index==0){
+          item.indexFrom=0;
+          item.indexTo=item.word.length-1;
+          LastIndex=item.indexTo;
+        }else{
+          item.indexFrom=LastIndex+2;
+          item.indexTo=item.indexFrom+item.word.length-1;
+          LastIndex=item.indexTo;
+        }
       });
       const temArray: Data = [wordsAndStatus, []];
 
@@ -26,15 +39,19 @@ const getData = async arg_state => {
        * as objects with background default value ""
        */
       data.content.split("").forEach((item: string, index: number) => {
+        // pushing the char to the tempArray second Array
         temArray[1].push({
           char: item,
           charColor: "text-gray-600",
         });
       });
+
       arg_state(temArray); // ? this will set the state as an array of characters
     })
     .catch(err => console.error(err));
 };
+
+// verify if key is a character
 
 export default function Home() {
   /**
@@ -42,62 +59,137 @@ export default function Home() {
    * @type [[string[]],[{char:string,charColor:string}]]
    */
   const [myText, setMyText] = React.useState<Data>([[], []]); // ? this will be an array of characters for now
-  const [activeWordIndex, setActiveWordIndex] = useState<ActiveWordIndex>(null);
-  const [move, setMove] = useState(false);
-  const elemRef = useRef<HTMLSpanElement>(null);
-  const [elemWidth, setElemWidth] = useState(0);
-  const [elemP, setElemP] = useState("");
-  const [selected, setSelected] = useState(false);
-  const [moveCursor, setMoveCursor] = useState(false);
-  const CounterChar = useRef<number>(0);
-  const listRef = useRef([]);
+  const [activeWordWithIndex, setActiveWordWithIndex] = useState<ActiveWordWithIndex>(null);
+  const [inputAndCursorPos, setInputAndCursorPos] = useState<InputAndCursorPos>(
+    { input: "", cursorPos: 0 }// if input is "abc" cursorPos is 3, so to remove b index is 1 that means cursorPos - 2
+  );
+
   useEffect(() => {
     if (myText[0].length === 0) {
       getData(setMyText); // setMyText is the callback function
-    } else if (activeWordIndex === null) {
-      setActiveWordIndex({ index: 0, word: myText[0][0].word }); // set the first active word as active after Data is loaded
+    } else if (activeWordWithIndex === null) {
+      setActiveWordWithIndex({wordIndex:0,wordDetail:myText[0][0]}); // set the first active word as active after Data is loaded
     }
-  }, [myText, activeWordIndex]);
-  useEffect(() => {
-    if (!(elemP.length > 0)) {
-      // checking if the state is empty meaning not set yet
-      console.log("getting Text..");
-      setElemP("P");
-    } else {
-      console.log("getting size per each character..");
+  }, [myText, activeWordWithIndex]);
+  
+  const handleOnChangeInput = (input: string,event:React.ChangeEvent<HTMLInputElement>) => {
+    let targetWordIndexIncrement=activeWordWithIndex.wordDetail.indexFrom;// start validating from this index CharIndex initial 
+    for(let i = 0; i < input.length; i++){
+        console.log("Text index : ",targetWordIndexIncrement);
+        console.log("input Index : ",i)
+        if (input[i] === myText[1][targetWordIndexIncrement].char) {
+          myText[1][targetWordIndexIncrement].charColor = "text-AAsecondary";
+        } else {
+          myText[1][targetWordIndexIncrement].charColor = "text-AAError";
+        }
+        targetWordIndexIncrement++;
+        if(input.slice(0,input.length-1).localeCompare(activeWordWithIndex.wordDetail.word)==0 && input[input.length-1].localeCompare(" ")==0){
+          const nextWordIndex=activeWordWithIndex.wordIndex+1;
+
+          setActiveWordWithIndex({wordIndex:nextWordIndex,wordDetail: myText[0][nextWordIndex]})
+          event.target.value="";
+        }
     }
-  }, [elemP]);
-  const handleSelect = (status: boolean) => {
-    setSelected(status);
-  };
-  const handleMove = (status: boolean) => {
-    setMoveCursor(status);
-    setElemWidth(elemRef?.current?.offsetWidth - 2);
-  };
-  const handleOnChangeInput = (input: string) => {
-    const length = input.length;
-    [...input].forEach((char, index) => {
-      if (char === myText[1][index].char) {
-        myText[1][index].charColor = "text-AAsecondary";
-      } else {
-        myText[1][index].charColor = "text-AAError";
-      }
-    });
+
     setMyText([...myText]);
   };
-  const isAllowedKey = (key: number) => {
-    /**
-     * @allowedKeys
-     * check the following URL for allowed Keys :
-     * https://www.freecodecamp.org/news/javascript-keycode-list-keypress-event-key-codes/
-     */
-    if (key >= 48 && key <= 90) {
-      return true;
-    }
-    if (key >= 96 && key <= 111) {
-      return true;
-    }
-    if (key >= 186 && key <= 222) {
+  const isAllowedKey = (key: string) => {
+    const allowedKeys = [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8",
+      "9",
+      "0",
+      "q",
+      "w",
+      "e",
+      "r",
+      "t",
+      "y",
+      "u",
+      "i",
+      "o",
+      "p",
+      "a",
+      "s",
+      "d",
+      "f",
+      "g",
+      "h",
+      "j",
+      "k",
+      "l",
+      "z",
+      "x",
+      "c",
+      "v",
+      "b",
+      "n",
+      "m",
+      "Q",
+      "W",
+      "E",
+      "R",
+      "T",
+      "Y",
+      "U",
+      "I",
+      "O",
+      "P",
+      "A",
+      "S",
+      "D",
+      "F",
+      "G",
+      "H",
+      "J",
+      "K",
+      "L",
+      "Z",
+      "X",
+      "C",
+      "V",
+      "B",
+      "N",
+      "M",
+      "!",
+      "@",
+      "#",
+      "$",
+      "%",
+      "^",
+      "&",
+      "*",
+      "(",
+      ")",
+      "_",
+      "-",
+      "+",
+      "=",
+      "{",
+      "}",
+      "[",
+      "]",
+      "|",
+      ":",
+      ";",
+      '"',
+      "'",
+      "<",
+      ">",
+      "?",
+      "/",
+      "\\",
+      "~",
+      "`",
+      " ",
+    ];
+    if (allowedKeys.includes(key)) {
       return true;
     }
     return false;
@@ -105,7 +197,9 @@ export default function Home() {
 
   console.log("page re-rendered...");
   console.log("data : ", myText);
-  console.log("Active Word : ", activeWordIndex);
+  console.log("Active Word : ", activeWordWithIndex);
+  console.log("input : ", inputAndCursorPos.input);
+  console.log("CursorPosition : ", inputAndCursorPos.cursorPos);
   return (
     <div className="bg-AAprimary h-screen w-full flex items-center">
       <main className="w-full 2xl:px-96 xl:px-80 lg:px-64 md:px-28 px-12 flex flex-col space-y-12">
@@ -141,21 +235,40 @@ export default function Home() {
           className="w-52 bg-AAprimary text-xl text-center text-gray-600 border-b-2 border-b-gray-600 
               py-2 px-4 focus:outline-none "
           onChange={e => {
-            // handleOnChangeInput(e.target.value);
+            handleOnChangeInput(e.target.value,e);
+            console.log("passed input : ",e.target.value)
           }}
-          onKeyDown={e => {
-            console.log("code : ",e.key)
-          }}
-          // onChange={e => {
-          //   setInput(e.target.value);
+          // onKeyDown={e => {
+          //   console.log("key  : ", e.key);
+          //   if (isAllowedKey(e.key)) {
+          //     setInputAndCursorPos({
+          //       input: inputAndCursorPos.input + e.key,
+          //       cursorPos: inputAndCursorPos.cursorPos + 1,
+          //     });
+          //   } else {
+          //     if (e.key === "Backspace") {
+          //       if(inputAndCursorPos.input.length > 0){
+          //         setInputAndCursorPos({
+          //           input: ()=>{
+          //             if(inputAndCursorPos.input.length<2 && inputAndCursorPos.cursorPos==1){// if input contains only one character
+          //               return "";
+          //             }else{
+                        
+          //             }
+          //           },
+          //           cursorPos: inputAndCursorPos.cursorPos - 1,
+          //         });
+          //       }
+          //     }
+          //   }
           // }}
         />
         <div className="w-full flex justify-center flex-col">
           <button
             onClick={() => {
               // handleSelect(true);
-              myText[1][1].charColor = "text-AAsecondary";
-              setMyText([...myText]);
+              // myText[1][1].charColor = "text-AAsecondary";
+              // setMyText([...myText]);
             }}
             className="w-24 border-2 px-8 py-1 rounded text-sm text-white"
           >
