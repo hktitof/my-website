@@ -88,11 +88,13 @@ export default function Home() {
     { input: "", cursorPos: 0 } // if input is "abc" cursorPos is 3, so to remove b index is 1 that means cursorPos - 2
   );
   const itemRef = useRef([]);
+  const inputRef = useRef<HTMLInputElement>(null);
   useEffect(() => {
     if (myText[0].length === 0) {
       getData(setMyText); // setMyText is the callback function
     } else if (activeWordWithIndex === null) {
       setActiveWordWithIndex({ wordIndex: 0, wordDetail: myText[0][0] }); // set the first active word as active after Data is loaded
+      inputRef.current.focus();
     }
   }, [myText, activeWordWithIndex]);
 
@@ -255,7 +257,11 @@ export default function Home() {
   return (
     <div className="bg-AAprimary h-screen w-full flex items-center">
       <main className="w-full 2xl:px-96 xl:px-80 lg:px-64 md:px-28 px-12 flex flex-col space-y-12">
-        <span className="lg:text-3xl md:text-xl sm:text-xl ">
+        <div
+          key={987987}
+          className="lg:text-3xl md:text-xl sm:text-xl hover:cursor-pointer text-justify "
+          onClick={() => inputRef.current.focus()}
+        >
           {myText[1]?.map((item, index) => {
             if (
               item.char.localeCompare(" ") == 0 &&
@@ -268,36 +274,35 @@ export default function Home() {
               );
             } else {
               return (
-                <>
-                  
-                  <span
-                    key={index}
-                    ref={el => (itemRef.current[index] = el)}
-                    className={`relative  ${item.charColor}`}
-                  >
-                    {myText[2].CursorPosition === index ? (
+                <span
+                  key={index}
+                  ref={el => (itemRef.current[index] = el)}
+                  className={`relative  ${item.charColor}`}
+                >
+                  {item.char}
+                  {myText[2].CursorPosition === index ? (
                     <motion.span
-                      initial={{ opacity: 0 }}
+                      initial={{ opacity: 0, x: 0 }}
                       animate={{ opacity: [1, 0] }}
                       transition={{
                         opacity: { duration: 0.8, repeat: Infinity },
                       }}
-                      className="absolute  z-10 w-[3px] h-8 rounded bg-AAsecondary "
+                      className="absolute left-0 w-[3px] lg:h-8 sm:bottom-0 sm:h-5 h-4 rounded bg-AAsecondary "
                     ></motion.span>
                   ) : (
                     <></>
                   )}
-                    {item.char}
-                  </span>
-                </>
+                  
+                </span>
               );
             }
           }) || <></>}
-        </span>
+        </div>
         {/**
          * @textInput
          */}
         <input
+          ref={inputRef}
           type="text"
           className="w-52 bg-AAprimary text-xl text-center text-gray-600 border-b-2 border-b-gray-600 
               py-2 px-4 focus:outline-none "
