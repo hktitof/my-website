@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 type ActiveWordWithIndex = {
   wordIndex: number;
   wordDetail: {
-    word: string;
+    word: ReturnType<() => string>;
     typedStatus: boolean;
     indexFrom: number;
     indexTo: number;
@@ -31,8 +31,15 @@ const getData = async arg_state => {
 
       const wordsAndStatus: wordsStatus = []; // this aaay will hold the words and their status
       data.content.split(" ").forEach((item: string, index: number) => {
+        const word = () => {
+          if (data.content.split(" ").length - 1 == index) {
+            return item;
+          } else {
+            return item + " ";
+          }
+        };
         wordsAndStatus.push({
-          word: item,
+          word: word(),
           typedStatus: false,
           indexFrom: 0,
           indexTo: 0,
@@ -254,6 +261,9 @@ export default function Home() {
   console.log("Active Word : ", activeWordWithIndex);
   console.log("input : ", inputAndCursorPos.input);
   console.log("CursorPosition : ", myText[2].CursorPosition);
+  const handleWordsAndChars = () => {
+    for (let j = 0; j < myText[0].length; j++) {}
+  };
   const space = " ";
   return (
     <div className="bg-AAprimary h-screen w-full flex items-center">
@@ -263,7 +273,40 @@ export default function Home() {
           className="lg:text-3xl md:text-xl sm:text-xl hover:cursor-pointer  flex flex-wrap"
           onClick={() => inputRef.current.focus()}
         >
-          {myText[1]?.map((item, index) => {
+          {myText[0].map((word, index) => {
+            return (
+              <div key={index} className="flex ">
+                {word.word.split("").map((char, i) => {
+                  if (char.localeCompare(" ") == 0) {
+                    return (
+                      <div key={i} className="relative text-gray-500">
+                        &nbsp;
+                      </div>
+                    );
+                  } else {
+                    return (
+                      <div key={i} className="relative text-gray-500">
+                        {char}
+                        {i == 0 ? (
+                          <motion.span
+                            initial={{ opacity: 0, x: 0 }}
+                            animate={{ opacity: [1, 0] }}
+                            transition={{
+                              opacity: { duration: 0.8, repeat: Infinity },
+                            }}
+                            className="absolute left-0 w-[3px] lg:h-8 sm:bottom-0 sm:h-5 h-4 rounded bg-AAsecondary "
+                          ></motion.span>
+                        ) : (
+                          <></>
+                        )}
+                      </div>
+                    );
+                  }
+                })}
+              </div>
+            );
+          })}
+          {/* {myText[1]?.map((item, index) => {
             if (
               item.char.localeCompare(" ") == 0 &&
               item.charColor.localeCompare("text-AAError") == 0
@@ -324,7 +367,7 @@ export default function Home() {
                 </div>
               );
             }
-          }) || <></>}
+          }) || <></>} */}
         </div>
         {/**
          * @textInput
