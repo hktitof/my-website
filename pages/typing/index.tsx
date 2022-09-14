@@ -254,12 +254,13 @@ export default function Home() {
   console.log("Active Word : ", activeWordWithIndex);
   console.log("input : ", inputAndCursorPos.input);
   console.log("CursorPosition : ", myText[2].CursorPosition);
+  const space = " ";
   return (
     <div className="bg-AAprimary h-screen w-full flex items-center">
       <main className="w-full 2xl:px-96 xl:px-80 lg:px-64 md:px-28 px-12 flex flex-col space-y-12">
         <div
           key={987987}
-          className="lg:text-3xl md:text-xl sm:text-xl hover:cursor-pointer text-justify "
+          className="lg:text-3xl md:text-xl sm:text-xl hover:cursor-pointer  flex flex-wrap"
           onClick={() => inputRef.current.focus()}
         >
           {myText[1]?.map((item, index) => {
@@ -268,13 +269,41 @@ export default function Home() {
               item.charColor.localeCompare("text-AAError") == 0
             ) {
               return (
-                <span key={index} className={`${item.charColor}`}>
+                <div key={index} className={`relative ${item.charColor}`}>
                   _
-                </span>
+                  {myText[2].CursorPosition === index ? (
+                    <motion.span
+                      initial={{ opacity: 0, x: 0 }}
+                      animate={{ opacity: [1, 0] }}
+                      transition={{
+                        opacity: { duration: 0.8, repeat: Infinity },
+                      }}
+                      className="absolute left-0 w-[3px] lg:h-8 sm:bottom-0 sm:h-5 h-4 rounded bg-AAsecondary "
+                    ></motion.span>
+                  ) : (
+                    <></>
+                  )}
+                </div>
               );
+            } else if (item.char.localeCompare(" ") == 0) {
+             return( <div key={index} className={` relative ${item.charColor}`}>
+                &nbsp;
+                {myText[2].CursorPosition === index ? (
+                    <motion.span
+                      initial={{ opacity: 0, x: 0 }}
+                      animate={{ opacity: [1, 0] }}
+                      transition={{
+                        opacity: { duration: 0.8, repeat: Infinity },
+                      }}
+                      className="absolute left-0 w-[3px] lg:h-8 sm:bottom-0 sm:h-5 h-4 rounded bg-AAsecondary "
+                    ></motion.span>
+                  ) : (
+                    <></>
+                  )}
+              </div>);
             } else {
               return (
-                <span
+                <div
                   key={index}
                   ref={el => (itemRef.current[index] = el)}
                   className={`relative  ${item.charColor}`}
@@ -292,8 +321,7 @@ export default function Home() {
                   ) : (
                     <></>
                   )}
-                  
-                </span>
+                </div>
               );
             }
           }) || <></>}
