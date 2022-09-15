@@ -95,7 +95,6 @@ export default function Home() {
   const [inputAndCursorPos, setInputAndCursorPos] = useState<InputAndCursorPos>(
     { input: "", cursorPos: 0 } // if input is "abc" cursorPos is 3, so to remove b index is 1 that means cursorPos - 2
   );
-  const itemRef = useRef([]);
   const inputRef = useRef<HTMLInputElement>(null);
   useEffect(() => {
     if (myText[0].length === 0) {
@@ -132,12 +131,12 @@ export default function Home() {
       targetWordIndexIncrement++;
       if (
         input
-          .slice(0, input.length )
+          .slice(0, input.length)
           .localeCompare(activeWordWithIndex.wordDetail.word) == 0 &&
         input[input.length - 1].localeCompare(" ") == 0
       ) {
         const nextWordIndex = activeWordWithIndex.wordIndex + 1;
-        console.log("here............")
+        console.log("here............");
         setActiveWordWithIndex({
           wordIndex: nextWordIndex,
           wordDetail: myText[0][nextWordIndex],
@@ -154,6 +153,18 @@ export default function Home() {
       }
     }
     setMyText([...myText]);
+    if (
+      activeWordWithIndex.wordIndex == myText[0].length - 1 &&
+      !(myText[1][myText[1].length - 1].charColor === "text-gray-500")
+    ) {
+      console.log("done......");
+      console.log("done......");
+      console.log("done......");
+      console.log("done......");
+      console.log("done......");
+      console.log("done......");
+      console.log("done......");
+    }
   };
   const isAllowedKey = (key: string) => {
     const allowedKeys = [
@@ -278,10 +289,15 @@ export default function Home() {
             return (
               <div key={index} className="flex ">
                 {word.word.split("").map((char, i) => {
-                  if (char.localeCompare(" ") == 0 && myText[1][word.indexFrom+i].charColor.localeCompare("text-AAError")==0) {
+                  if (
+                    char.localeCompare(" ") == 0 &&
+                    myText[1][word.indexFrom + i].charColor.localeCompare(
+                      "text-AAError"
+                    ) == 0
+                  ) {
                     return (
                       <div key={i} className={`relative text-AAError`}>
-                        {(i+word.indexFrom) == myText[2].CursorPosition ? (
+                        {i + word.indexFrom == myText[2].CursorPosition ? (
                           <motion.span
                             initial={{ opacity: 0, x: 0 }}
                             animate={{ opacity: [1, 0] }}
@@ -296,10 +312,10 @@ export default function Home() {
                         _
                       </div>
                     );
-                  }else if(char.localeCompare(" ") == 0){
+                  } else if (char.localeCompare(" ") == 0) {
                     return (
                       <div key={i} className="relative ">
-                        {(i+word.indexFrom) == myText[2].CursorPosition ? (
+                        {i + word.indexFrom == myText[2].CursorPosition ? (
                           <motion.span
                             initial={{ opacity: 0, x: 0 }}
                             animate={{ opacity: [1, 0] }}
@@ -316,9 +332,14 @@ export default function Home() {
                     );
                   } else {
                     return (
-                      <div key={i} className={`relative ${myText[1][word.indexFrom+i].charColor}`}>
+                      <div
+                        key={i}
+                        className={`relative ${
+                          myText[1][word.indexFrom + i].charColor
+                        }`}
+                      >
                         {char}
-                        {(i+word.indexFrom) == myText[2].CursorPosition ? (
+                        {i + word.indexFrom == myText[2].CursorPosition ? (
                           <motion.div
                             initial={{ opacity: 0, x: 0 }}
                             animate={{ opacity: [1, 0] }}
@@ -337,7 +358,6 @@ export default function Home() {
               </div>
             );
           })}
-         
         </div>
         {/**
          * @textInput
@@ -351,50 +371,13 @@ export default function Home() {
             handleOnChangeInput(e.target.value, e);
             console.log("passed input : ", e.target.value);
           }}
-          // onKeyDown={e => {
-          //   console.log("key  : ", e.key);
-          //   if (isAllowedKey(e.key)) {
-          //     setInputAndCursorPos({
-          //       input: inputAndCursorPos.input + e.key,
-          //       cursorPos: inputAndCursorPos.cursorPos + 1,
-          //     });
-          //   } else {
-          //     if (e.key === "Backspace") {
-          //       if(inputAndCursorPos.input.length > 0){
-          //         setInputAndCursorPos({
-          //           input: ()=>{
-          //             if(inputAndCursorPos.input.length<2 && inputAndCursorPos.cursorPos==1){// if input contains only one character
-          //               return "";
-          //             }else{
-
-          //             }
-          //           },
-          //           cursorPos: inputAndCursorPos.cursorPos - 1,
-          //         });
-          //       }
-          //     }
-          //   }
-          // }}
         />
         <div className="w-full flex justify-center flex-col">
           <button
-            onClick={() => {
-              // handleSelect(true);
-              // myText[1][1].charColor = "text-AAsecondary";
-              // setMyText([...myText]);
-            }}
+            onClick={() => {}}
             className="w-24 border-2 px-8 py-1 rounded text-sm text-white"
           >
             Test 1
-          </button>
-          <button
-            onClick={() => handleMove(true)}
-            className="w-24 border-2 px-8 py-1 rounded text-sm text-white"
-          >
-            Test 2
-          </button>
-          <button className="w-24 border-2 px-8 py-1 rounded text-sm text-white">
-            Test 3
           </button>
         </div>
       </main>
