@@ -45,6 +45,7 @@ const getData = async arg_state => {
           indexTo: 0,
         });
       });
+      // getting index of the first char and last char in the text.
       let LastIndex = 0;
       wordsAndStatus.forEach((item, index) => {
         if (index == 0) {
@@ -52,7 +53,7 @@ const getData = async arg_state => {
           item.indexTo = item.word.length - 1;
           LastIndex = item.indexTo;
         } else {
-          item.indexFrom = LastIndex + 2;
+          item.indexFrom = LastIndex + 1;
           item.indexTo = item.indexFrom + item.word.length - 1;
           LastIndex = item.indexTo;
         }
@@ -131,12 +132,12 @@ export default function Home() {
       targetWordIndexIncrement++;
       if (
         input
-          .slice(0, input.length - 1)
+          .slice(0, input.length )
           .localeCompare(activeWordWithIndex.wordDetail.word) == 0 &&
         input[input.length - 1].localeCompare(" ") == 0
       ) {
         const nextWordIndex = activeWordWithIndex.wordIndex + 1;
-
+        console.log("here............")
         setActiveWordWithIndex({
           wordIndex: nextWordIndex,
           wordDetail: myText[0][nextWordIndex],
@@ -277,17 +278,10 @@ export default function Home() {
             return (
               <div key={index} className="flex ">
                 {word.word.split("").map((char, i) => {
-                  if (char.localeCompare(" ") == 0) {
+                  if (char.localeCompare(" ") == 0 && myText[1][word.indexFrom+i].charColor.localeCompare("text-AAError")==0) {
                     return (
-                      <div key={i} className="relative text-gray-500">
-                        &nbsp;
-                      </div>
-                    );
-                  } else {
-                    return (
-                      <div key={i} className="relative text-gray-500">
-                        {char}
-                        {i == 0 ? (
+                      <div key={i} className={`relative text-AAError`}>
+                        {(i+word.indexFrom) == myText[2].CursorPosition ? (
                           <motion.span
                             initial={{ opacity: 0, x: 0 }}
                             animate={{ opacity: [1, 0] }}
@@ -299,6 +293,43 @@ export default function Home() {
                         ) : (
                           <></>
                         )}
+                        _
+                      </div>
+                    );
+                  }else if(char.localeCompare(" ") == 0){
+                    return (
+                      <div key={i} className="relative ">
+                        {(i+word.indexFrom) == myText[2].CursorPosition ? (
+                          <motion.span
+                            initial={{ opacity: 0, x: 0 }}
+                            animate={{ opacity: [1, 0] }}
+                            transition={{
+                              opacity: { duration: 0.8, repeat: Infinity },
+                            }}
+                            className="absolute left-0 w-[3px] lg:h-8 sm:bottom-0 sm:h-5 h-4 rounded bg-AAsecondary "
+                          ></motion.span>
+                        ) : (
+                          <></>
+                        )}
+                        &nbsp;
+                      </div>
+                    );
+                  } else {
+                    return (
+                      <div key={i} className={`relative ${myText[1][word.indexFrom+i].charColor}`}>
+                        {char}
+                        {(i+word.indexFrom) == myText[2].CursorPosition ? (
+                          <motion.div
+                            initial={{ opacity: 0, x: 0 }}
+                            animate={{ opacity: [1, 0] }}
+                            transition={{
+                              opacity: { duration: 0.8, repeat: Infinity },
+                            }}
+                            className="absolute left-0 w-[3px] lg:h-8 sm:bottom-0 sm:h-6 h-4 rounded bg-AAsecondary "
+                          ></motion.div>
+                        ) : (
+                          <></>
+                        )}
                       </div>
                     );
                   }
@@ -306,68 +337,7 @@ export default function Home() {
               </div>
             );
           })}
-          {/* {myText[1]?.map((item, index) => {
-            if (
-              item.char.localeCompare(" ") == 0 &&
-              item.charColor.localeCompare("text-AAError") == 0
-            ) {
-              return (
-                <div key={index} className={`relative ${item.charColor}`}>
-                  _
-                  {myText[2].CursorPosition === index ? (
-                    <motion.span
-                      initial={{ opacity: 0, x: 0 }}
-                      animate={{ opacity: [1, 0] }}
-                      transition={{
-                        opacity: { duration: 0.8, repeat: Infinity },
-                      }}
-                      className="absolute left-0 w-[3px] lg:h-8 sm:bottom-0 sm:h-5 h-4 rounded bg-AAsecondary "
-                    ></motion.span>
-                  ) : (
-                    <></>
-                  )}
-                </div>
-              );
-            } else if (item.char.localeCompare(" ") == 0) {
-             return( <div key={index} className={` relative ${item.charColor}`}>
-                &nbsp;
-                {myText[2].CursorPosition === index ? (
-                    <motion.span
-                      initial={{ opacity: 0, x: 0 }}
-                      animate={{ opacity: [1, 0] }}
-                      transition={{
-                        opacity: { duration: 0.8, repeat: Infinity },
-                      }}
-                      className="absolute left-0 w-[3px] lg:h-8 sm:bottom-0 sm:h-5 h-4 rounded bg-AAsecondary "
-                    ></motion.span>
-                  ) : (
-                    <></>
-                  )}
-              </div>);
-            } else {
-              return (
-                <div
-                  key={index}
-                  ref={el => (itemRef.current[index] = el)}
-                  className={`relative  ${item.charColor}`}
-                >
-                  {item.char}
-                  {myText[2].CursorPosition === index ? (
-                    <motion.span
-                      initial={{ opacity: 0, x: 0 }}
-                      animate={{ opacity: [1, 0] }}
-                      transition={{
-                        opacity: { duration: 0.8, repeat: Infinity },
-                      }}
-                      className="absolute left-0 w-[3px] lg:h-8 sm:bottom-0 sm:h-5 h-4 rounded bg-AAsecondary "
-                    ></motion.span>
-                  ) : (
-                    <></>
-                  )}
-                </div>
-              );
-            }
-          }) || <></>} */}
+         
         </div>
         {/**
          * @textInput
