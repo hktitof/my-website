@@ -361,6 +361,13 @@ export default function Home() {
             handleOnChangeInput(e.target.value, e);
             console.log("passed input : ", e.target.value);
           }}
+          onKeyDownCapture={e => {
+            // prevent cursor in input from jumping two characters
+            if (e.key === "ArrowLeft" || e.key === "ArrowRight") {
+            inputRef.current.setSelectionRange(inputRef.current.value.length,inputRef.current.value.length+1);
+            inputRef.current.focus();
+            }
+          }}
         />
         <div className="w-full flex justify-center flex-col">
           <button onClick={() => {}} className="w-24 border-2 px-8 py-1 rounded text-sm text-white">
