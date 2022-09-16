@@ -9,14 +9,8 @@ type ActiveWordWithIndex = {
     indexTo: number;
   };
 };
-type Data = [
-  wordsStatus,
-  [{ char: string; charColor: string }?],
-  { CursorPosition: number }
-];
-type wordsStatus = [
-  { word: string; typedStatus: boolean; indexFrom: number; indexTo: number }?
-];
+type Data = [wordsStatus, [{ char: string; charColor: string }?], { CursorPosition: number }];
+type wordsStatus = [{ word: string; typedStatus: boolean; indexFrom: number; indexTo: number }?];
 type ActiveWordIndex = { index: number; word: string } | null;
 type InputAndCursorPos = { input: string; cursorPos: number };
 /**
@@ -85,13 +79,9 @@ export default function Home() {
    * the follwwing state will is type of
    * @type [[string[]],[{char:string,charColor:string}]]
    */
-  const [myText, setMyText] = React.useState<Data>([
-    [],
-    [],
-    { CursorPosition: 0 },
-  ]); // ? this will be an array of characters for now
-  const [activeWordWithIndex, setActiveWordWithIndex] =
-    useState<ActiveWordWithIndex>(null);
+  // ? this will be an array of characters for now
+  const [myText, setMyText] = React.useState<Data>([[], [], { CursorPosition: 0 }]);
+  const [activeWordWithIndex, setActiveWordWithIndex] = useState<ActiveWordWithIndex>(null);
   const [inputAndCursorPos, setInputAndCursorPos] = useState<InputAndCursorPos>(
     { input: "", cursorPos: 0 } // if input is "abc" cursorPos is 3, so to remove b index is 1 that means cursorPos - 2
   );
@@ -105,23 +95,18 @@ export default function Home() {
     }
   }, [myText, activeWordWithIndex]);
 
-  const handleOnChangeInput = (
-    input: string,
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
+  const handleOnChangeInput = (input: string, event: React.ChangeEvent<HTMLInputElement>) => {
     /**
      * @nextForLoop
      * this for loop to give the char its default color back, starting from activeWord first char index
      * this for loop will help  when user delete a character
      */
-    for (
-      let j = activeWordWithIndex.wordDetail.indexFrom;
-      j < myText[1].length;
-      j++
-    ) {
+    for (let j = activeWordWithIndex.wordDetail.indexFrom; j < myText[1].length; j++) {
       myText[1][j].charColor = "text-gray-500";
     }
-    let targetWordIndexIncrement = activeWordWithIndex.wordDetail.indexFrom; // start validating from this index CharIndex initial
+
+    // start validating from this index CharIndex initial
+    let targetWordIndexIncrement = activeWordWithIndex.wordDetail.indexFrom;
     for (let i = 0; i < input.length; i++) {
       if (input[i] === myText[1][targetWordIndexIncrement].char) {
         myText[1][targetWordIndexIncrement].charColor = "text-AAsecondary";
@@ -129,21 +114,32 @@ export default function Home() {
         myText[1][targetWordIndexIncrement].charColor = "text-AAError";
       }
       targetWordIndexIncrement++;
-      if (
-        input
-          .slice(0, input.length)
-          .localeCompare(activeWordWithIndex.wordDetail.word) == 0 &&
-        input[input.length - 1].localeCompare(" ") == 0
-      ) {
-        const nextWordIndex = activeWordWithIndex.wordIndex + 1;
-        console.log("here............");
-        setActiveWordWithIndex({
-          wordIndex: nextWordIndex,
-          wordDetail: myText[0][nextWordIndex],
-        });
-        event.target.value = "";
-      }
     }
+    // checks if input es equal to the active word ( true => set inputValue to "" )
+    if (
+      input.localeCompare(activeWordWithIndex.wordDetail.word) == 0 &&
+      input[input.length - 1].localeCompare(" ") == 0
+    ) {
+      const nextWordIndex = activeWordWithIndex.wordIndex + 1;
+      setActiveWordWithIndex({
+        wordIndex: nextWordIndex,
+        wordDetail: myText[0][nextWordIndex],
+      });
+      event.target.value = "";
+    }
+
+    //? INFORMATIONAL : this will set the ActiveWordIndex to next word is the user typed last two words incorrectly
+    // if (
+    //   input.length == activeWordWithIndex.wordDetail.word.length + myText[0][activeWordWithIndex.wordIndex+1].word.length
+    // ) {
+    //   const nextWordIndex = activeWordWithIndex.wordIndex + 1;
+    //   setActiveWordWithIndex({
+    //     wordIndex: nextWordIndex,
+    //     wordDetail: myText[0][nextWordIndex],
+    //   });
+    //   event.target.value = "";
+    // }
+
     // set the cursor position to next target Char that will be typed of the active word
     for (let i = 0; i < myText[1].length; i++) {
       if (myText[1][i].charColor.localeCompare("text-gray-500") == 0) {
@@ -152,6 +148,7 @@ export default function Home() {
         break;
       }
     }
+
     setMyText([...myText]);
     if (
       activeWordWithIndex.wordIndex == myText[0].length - 1 &&
@@ -291,9 +288,7 @@ export default function Home() {
                 {word.word.split("").map((char, i) => {
                   if (
                     char.localeCompare(" ") == 0 &&
-                    myText[1][word.indexFrom + i].charColor.localeCompare(
-                      "text-AAError"
-                    ) == 0
+                    myText[1][word.indexFrom + i].charColor.localeCompare("text-AAError") == 0
                   ) {
                     return (
                       <div key={i} className={`relative text-AAError`}>
@@ -332,12 +327,7 @@ export default function Home() {
                     );
                   } else {
                     return (
-                      <div
-                        key={i}
-                        className={`relative ${
-                          myText[1][word.indexFrom + i].charColor
-                        }`}
-                      >
+                      <div key={i} className={`relative ${myText[1][word.indexFrom + i].charColor}`}>
                         {char}
                         {i + word.indexFrom == myText[2].CursorPosition ? (
                           <motion.div
@@ -373,10 +363,7 @@ export default function Home() {
           }}
         />
         <div className="w-full flex justify-center flex-col">
-          <button
-            onClick={() => {}}
-            className="w-24 border-2 px-8 py-1 rounded text-sm text-white"
-          >
+          <button onClick={() => {}} className="w-24 border-2 px-8 py-1 rounded text-sm text-white">
             Test 1
           </button>
         </div>
