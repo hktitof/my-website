@@ -18,15 +18,15 @@ type InputAndCursorPos = { input: string; cursorPos: number };
  * @default_URL : https://api.quotable.io/random?minLength=100&maxLength=140
  */
 const getData = async arg_state => {
-  fetch("https://api.quotable.io/random?minLength=20")
+  fetch("/api/typing/300")
     .then(response => response.json())
     .then(data => {
       console.log(data);
-      data.content = "People.";
+      // data.content = "People.";
       const wordsAndStatus: wordsStatus = []; // this aaay will hold the words and their status
-      data.content.split(" ").forEach((item: string, index: number) => {
+      data.quote.split(" ").forEach((item: string, index: number) => {
         const word = () => {
-          if (data.content.split(" ").length - 1 == index) {
+          if (data.quote.split(" ").length - 1 == index) {
             return item;
           } else {
             return item + " ";
@@ -59,7 +59,7 @@ const getData = async arg_state => {
        * this will will convert data to array of char then push each char to the tempArray second Array
        * as objects with background default value ""
        */
-      data.content.split("").forEach((item: string, index: number) => {
+      data.quote.split("").forEach((item: string, index: number) => {
         // pushing the char to the tempArray second Array
         temArray[1].push({
           char: item,
@@ -94,6 +94,7 @@ export default function Home() {
       setActiveWordWithIndex({ wordIndex: 0, wordDetail: myText[0][0] }); // set the first active word as active after Data is loaded
       inputRef.current.focus();
     }
+    console.log("useEffect executed...")
   }, [myText, activeWordWithIndex]);
 
   const handleOnChangeInput = (input: string, event: React.ChangeEvent<HTMLInputElement>) => {
@@ -116,7 +117,7 @@ export default function Home() {
       }
       targetWordIndexIncrement++;
     }
-    // checks if input es equal to the active word ( true => set inputValue to "" )
+    // checks if input is equal to the active word ( true => set inputValue to "" )
     if (
       input.localeCompare(activeWordWithIndex.wordDetail.word) == 0 &&
       input[input.length - 1].localeCompare(" ") == 0
@@ -129,7 +130,7 @@ export default function Home() {
       event.target.value = "";
     }
 
-    //? INFORMATIONAL : this will set the ActiveWordIndex to next word is the user typed last two words incorrectly
+    //? INFORMATIONAL : this will set the ActiveWordIndex to next word if user typed last two words incorrectly
     // if (
     //   input.length == activeWordWithIndex.wordDetail.word.length + myText[0][activeWordWithIndex.wordIndex+1].word.length
     // ) {
@@ -149,13 +150,10 @@ export default function Home() {
         break;
       }
     }
-
-    setMyText([...myText]);
-    if (
-      activeWordWithIndex.wordIndex == myText[0].length - 1 &&
-      !(myText[1][myText[1].length - 1].charColor === "text-gray-500")
-    ) {
-      console.log("Player Finished typing!!")
+    setMyText([...myText]); // update the state
+    // Checking if the user finished typing by checking if the last char gray color is changed!
+    if (!(myText[1][myText[1].length - 1].charColor === "text-gray-500")) {
+      console.log("Player Finished typing!!");
       setIsFinished(true);
     }
   };
@@ -165,10 +163,6 @@ export default function Home() {
   console.log("Active Word : ", activeWordWithIndex);
   console.log("input : ", inputAndCursorPos.input);
   console.log("CursorPosition : ", myText[2].CursorPosition);
-  const handleWordsAndChars = () => {
-    for (let j = 0; j < myText[0].length; j++) {}
-  };
-  const space = " ";
   return (
     <div className="bg-AAprimary h-screen w-full flex items-center">
       <main className="w-full 2xl:px-96 xl:px-80 lg:px-64 md:px-28 px-12 flex flex-col space-y-12">
@@ -197,7 +191,7 @@ export default function Home() {
                                 transition={{
                                   opacity: { duration: 0.8, repeat: Infinity },
                                 }}
-                                className="absolute left-0 w-[3px] lg:h-8 sm:bottom-0 sm:h-5 h-4 rounded bg-AAsecondary "
+                                className="absolute left-0 w-[3px] lg:h-8 sm:bottom-0 top-1 sm:h-5 h-4 rounded bg-AAsecondary "
                               ></motion.span>
                             ) : (
                               <></>
@@ -215,7 +209,7 @@ export default function Home() {
                                 transition={{
                                   opacity: { duration: 0.8, repeat: Infinity },
                                 }}
-                                className="absolute left-0 w-[3px] lg:h-8 sm:bottom-0 sm:h-5 h-4 rounded bg-AAsecondary "
+                                className="absolute left-0 w-[3px] lg:h-8 sm:bottom-0 top-1 sm:h-5 h-4 rounded bg-AAsecondary "
                               ></motion.span>
                             ) : (
                               <></>
@@ -234,7 +228,7 @@ export default function Home() {
                                 transition={{
                                   opacity: { duration: 0.8, repeat: Infinity },
                                 }}
-                                className="absolute left-0 w-[3px] lg:h-8 sm:bottom-0 sm:h-6 h-4 rounded bg-AAsecondary "
+                                className="absolute left-0 w-[3px] lg:h-8 sm:bottom-0 top-1 sm:h-6 h-4 rounded bg-AAsecondary "
                               ></motion.div>
                             ) : (
                               <></>
@@ -272,7 +266,12 @@ export default function Home() {
         {isFinished && (
           <>
             <div className="flex items-center">
-              <div className="text-AAsecondary">You finished!!</div>
+              <div className="flex flex-col space-y-4">
+                <div className="text-AAsecondary">You finished!!</div>
+                <button onClick={() => {}} className="w-24 border-2 px-8 py-1 rounded text-sm text-white">
+                  Restart
+                </button>
+              </div>
             </div>
           </>
         )}
