@@ -1,287 +1,285 @@
-import React, { useEffect, useRef, useState } from "react";
-import { motion } from "framer-motion";
-type ActiveWordWithIndex = {
-  wordIndex: number;
-  wordDetail: {
-    word: ReturnType<() => string>;
-    typedStatus: boolean;
-    indexFrom: number;
-    indexTo: number;
-  };
-};
-type Data = [wordsStatus, [{ char: string; charColor: string }?], { CursorPosition: number }];
-type wordsStatus = [{ word: string; typedStatus: boolean; indexFrom: number; indexTo: number }?];
-type ActiveWordIndex = { index: number; word: string } | null;
-type InputAndCursorPos = { input: string; cursorPos: number };
-/**
- * @note use minLength & maxLength to limit the quote length
- * @default_URL : https://api.quotable.io/random?minLength=100&maxLength=140
- */
-const getData = async arg_state => {
-  fetch("/api/typing/300")
-    .then(response => response.json())
-    .then(data => {
-      console.log(data);
-      // data.content = "People.";
-      const wordsAndStatus: wordsStatus = []; // this aaay will hold the words and their status
-      data.quote.split(" ").forEach((item: string, index: number) => {
-        const word = () => {
-          if (data.quote.split(" ").length - 1 == index) {
-            return item;
-          } else {
-            return item + " ";
-          }
-        };
-        wordsAndStatus.push({
-          word: word(),
-          typedStatus: false,
-          indexFrom: 0,
-          indexTo: 0,
-        });
-      });
-      // getting index of the first char and last char in the text.
-      let LastIndex = 0;
-      wordsAndStatus.forEach((item, index) => {
-        if (index == 0) {
-          item.indexFrom = 0;
-          item.indexTo = item.word.length - 1;
-          LastIndex = item.indexTo;
-        } else {
-          item.indexFrom = LastIndex + 1;
-          item.indexTo = item.indexFrom + item.word.length - 1;
-          LastIndex = item.indexTo;
-        }
-      });
-      const temArray: Data = [wordsAndStatus, [], { CursorPosition: 0 }];
+import React, { useCallback, useEffect, useRef, useState,useContext } from "react";
+import TimerSpan from "../../components/TypingProject/timer/TimerSpan";
+import Footer from "../../components/TypingProject/Footer/Footer";
+import TypingStatistics from "../../components/TypingProject/Statistics/TypingStatistics";
+import { getData, calculateWpm, calculateAccuracy, handleOnChangeInput } from "../../components/TypingProject/Functions/functions";
+import CursorCarrotComp from "../../components/TypingProject/CursorCarotComp/CursorCarotComp";
+import {ActiveWordWithIndex, Data, Statistics} from "../../components/TypingProject/Types/types";
+import AppContext from "../../components/AppContextFolder/AppContext";
 
-      /**
-       * @@explanation for the following action
-       * this will will convert data to array of char then push each char to the tempArray second Array
-       * as objects with background default value ""
-       */
-      data.quote.split("").forEach((item: string, index: number) => {
-        // pushing the char to the tempArray second Array
-        temArray[1].push({
-          char: item,
-          charColor: "text-gray-500",
-        });
-      });
 
-      arg_state(temArray); // ? this will set the state as an array of characters
-    })
-    .catch(err => console.error(err));
-};
-
-// verify if key is a character
-
+// let keyboardEvent; // this variable will hold the keyboard event callback function;
+let eventInputLostFocus; //  this variable will hold the event callback function that will be fired when window is resizing & input lost focus
 export default function Home() {
-  /**
-   * the follwwing state will is type of
-   * @type [[string[]],[{char:string,charColor:string}]]
-   */
-  // ? this will be an array of characters for now
+  //  this general state will hold the data
   const [myText, setMyText] = React.useState<Data>([[], [], { CursorPosition: 0 }]);
-  const [activeWordWithIndex, setActiveWordWithIndex] = useState<ActiveWordWithIndex>(null);
-  const [inputAndCursorPos, setInputAndCursorPos] = useState<InputAndCursorPos>(
-    { input: "", cursorPos: 0 } // if input is "abc" cursorPos is 3, so to remove b index is 1 that means cursorPos - 2
-  );
-  const [isFinished, setIsFinished] = useState(false);
-  const inputRef = useRef<HTMLInputElement>(null);
+  // this state will hold the active word index and the word details
+  const [activeWordWithIndex, setActiveWordWithIndex] = useState<ActiveWordWithIndex>(null); // this state will hold the active word with its index in the quote
+  const [roundCounter, setRoundCounter] = useState<number>(0); // this state will hold the round counter
+  const [isFinished, setIsFinished] = useState(false);// this state will hold when user finished typing
+  const inputRef = useRef<HTMLInputElement>(null);// user input Ref
+  const textInputRef = useRef<HTMLDivElement>(null);
+  const absoluteTextINputRef = useRef<HTMLDivElement>(null);// absolute div Ref when input Lost focus
+  const [inputLostFocus, setInputLostFocus] = useState(false);
+  const timeToType: number = 180; // default time to type
+  const seconds = useRef<number>(timeToType); // this useRef will hold the remaining seconds to type
+  const timerCountingInterval = useRef(); // this useRef will hold the interval used in TimerSpan Component
+  const [statistics, setStatistics] = useState<Statistics>([]); // this state will hold the statistics after user finish typing
+  const [isStartedTyping,seIsStartedTyping] = useState<boolean>(false); // this state will hold if user started typing
+  const context = useContext(AppContext);
+
+  //  this restart will be assigned again in each render only when roundCounter increase
+  const restart = useCallback(() => {
+    document.removeEventListener("keydown", context.sharedState.typing.keyboardEvent);
+    console.log("event Listener is Removed!!!!!!!!!!");
+    seconds.current = timeToType; // update the seconds to default value again
+    getData(setMyText, setActiveWordWithIndex, setRoundCounter, roundCounter);
+    setActiveWordWithIndex(null);
+    seIsStartedTyping(false);
+    if (inputRef.current?.value) {
+      inputRef.current.value = "";
+    }
+  }, [context.sharedState.typing.keyboardEvent, roundCounter]);
+
+  // update Statistics state
+  const updateStatistics = useCallback(() => {
+    statistics.push({
+      round: roundCounter,
+      wpm: calculateWpm(myText[1], timeToType - seconds.current),
+      accuracy: calculateAccuracy(myText[1]),
+    });
+    setStatistics([...statistics]);
+  }, [myText, roundCounter, statistics]);
+
+  // add event listener to track window size to change inputLostFocus Element height
   useEffect(() => {
-    if (myText[0].length === 0) {
-      getData(setMyText); // setMyText is the callback function
-    } else if (activeWordWithIndex === null) {
-      setActiveWordWithIndex({ wordIndex: 0, wordDetail: myText[0][0] }); // set the first active word as active after Data is loaded
-      inputRef.current.focus();
+    if (inputLostFocus) {
+      context.sharedState.typing.eventInputLostFocus = () => {
+        console.log("window is resized..Changing inputLostFocus height");
+        if (absoluteTextINputRef.current?.style && inputLostFocus) {
+          absoluteTextINputRef.current.style.height = textInputRef.current.clientHeight + "px";
+        }
+      };
+      window.addEventListener("resize", context.sharedState.typing.eventInputLostFocus);
+    } else {
+      // delete event listener when it's Focused
+      window.removeEventListener("resize", context.sharedState.typing.eventInputLostFocus);
     }
-    console.log("useEffect executed...")
-  }, [myText, activeWordWithIndex]);
+  }, [context.sharedState.typing, inputLostFocus]);
 
-  const handleOnChangeInput = (input: string, event: React.ChangeEvent<HTMLInputElement>) => {
-    /**
-     * @nextForLoop
-     * this for loop to give the char its default color back, starting from activeWord first char index
-     * this for loop will help  when user delete a character
-     */
-    for (let j = activeWordWithIndex.wordDetail.indexFrom; j < myText[1].length; j++) {
-      myText[1][j].charColor = "text-gray-500";
+  // this useEffect will be called when the component is rendered for the first time and will keep focus on input
+  useEffect(() => {
+    if (myText[0].length == 0) {
+      console.log("#useEffect Getting Data.......");
+      getData(setMyText, setActiveWordWithIndex, setRoundCounter, roundCounter); // setMyText is the callback function
     }
-
-    // start validating from this index CharIndex initial
-    let targetWordIndexIncrement = activeWordWithIndex.wordDetail.indexFrom;
-    for (let i = 0; i < input.length; i++) {
-      if (input[i] === myText[1][targetWordIndexIncrement].char) {
-        myText[1][targetWordIndexIncrement].charColor = "text-AAsecondary";
-      } else {
-        myText[1][targetWordIndexIncrement].charColor = "text-AAError";
+    inputRef.current?.focus();
+    console.log("useEffect executed...");
+  }, [myText, activeWordWithIndex, isFinished, roundCounter]);
+  // this useEffect will be called each time restart is changed, it will initialize the keyboard event
+  useEffect(() => {
+    inputRef.current?.focus();
+    context.sharedState.typing.keyboardEvent = (e: KeyboardEvent) => {
+      console.log("KeyDown Detected : ", e.code);
+      if ((e.metaKey || e.ctrlKey) && e.code === "Slash") {
+        restart();
+        console.log("Restarted By Shortcut!!!!");
       }
-      targetWordIndexIncrement++;
-    }
-    // checks if input is equal to the active word ( true => set inputValue to "" )
-    if (
-      input.localeCompare(activeWordWithIndex.wordDetail.word) == 0 &&
-      input[input.length - 1].localeCompare(" ") == 0
-    ) {
-      const nextWordIndex = activeWordWithIndex.wordIndex + 1;
-      setActiveWordWithIndex({
-        wordIndex: nextWordIndex,
-        wordDetail: myText[0][nextWordIndex],
-      });
-      event.target.value = "";
-    }
+    };
+  }, [context.sharedState.typing, restart]);
 
-    //? INFORMATIONAL : this will set the ActiveWordIndex to next word if user typed last two words incorrectly
-    // if (
-    //   input.length == activeWordWithIndex.wordDetail.word.length + myText[0][activeWordWithIndex.wordIndex+1].word.length
-    // ) {
-    //   const nextWordIndex = activeWordWithIndex.wordIndex + 1;
-    //   setActiveWordWithIndex({
-    //     wordIndex: nextWordIndex,
-    //     wordDetail: myText[0][nextWordIndex],
-    //   });
-    //   event.target.value = "";
-    // }
+  // add event listener when the user finished typing
+  useEffect(() => {
+    if (isFinished) {
+      console.log("event Listener added!!!");
+      document.addEventListener("keydown", context.sharedState.typing.keyboardEvent);
+    }
+  }, [context.sharedState.typing.keyboardEvent, isFinished]);
 
-    // set the cursor position to next target Char that will be typed of the active word
-    for (let i = 0; i < myText[1].length; i++) {
-      if (myText[1][i].charColor.localeCompare("text-gray-500") == 0) {
-        console.log("not typed index : ", i);
-        myText[2].CursorPosition = i;
-        break;
+  // this will handle new round conditions.
+  useEffect(() => {
+    console.log("event Listener is Removed!!!!!!!!!!");
+    document.removeEventListener("keydown", context.sharedState.typing.keyboardEvent);
+    if (inputRef.current?.value) {
+      inputRef.current.value = "";
+    }
+    setIsFinished(false); // set isFinished to false each time roundCounter changes that means each new round
+    console.log("useEffect RoundCounter executed...");
+  }, [context.sharedState.typing.keyboardEvent, roundCounter]);
+
+  // this useEffect will handle inputLostFocus state
+  useEffect(() => {
+    if (inputLostFocus) {
+      if (absoluteTextINputRef.current?.style && inputLostFocus) {
+        absoluteTextINputRef.current.style.height = textInputRef.current.clientHeight + "px";
       }
+    } else {
+      inputRef.current?.focus();
     }
-    setMyText([...myText]); // update the state
-    // Checking if the user finished typing by checking if the last char gray color is changed!
-    if (!(myText[1][myText[1].length - 1].charColor === "text-gray-500")) {
-      console.log("Player Finished typing!!");
-      setIsFinished(true);
-    }
-  };
+  }, [inputLostFocus]);
 
-  console.log("page re-rendered...");
-  console.log("data : ", myText);
-  console.log("Active Word : ", activeWordWithIndex);
-  console.log("input : ", inputAndCursorPos.input);
-  console.log("CursorPosition : ", myText[2].CursorPosition);
+  // useEffect to clear EventListener of others projects
+  useEffect(() => {
+  // remove the interval Cookie timer setter when
+  if (typeof window !== "undefined") {
+    // remove the interval cookie timer setter of UserDataPuller
+    clearInterval(context.sharedState.userdata.timerCookieRef.current);
+    // remove UserDataPuller project EventListeners
+    window.removeEventListener("resize", context.sharedState.userdata.windowSizeTracker.current);
+    window.removeEventListener("mousemove", context.sharedState.userdata.mousePositionTracker.current, false);
+  }
+  }, [context.sharedState]);
+
+  // console.log("rounded Count : ", roundCounter);
+  // console.log("page re-rendered...");
+  // console.log("data : ", myText);
+  // console.log("Active Word : ", activeWordWithIndex);
+  // console.log("CursorPosition : ", myText[2].CursorPosition);
+  // console.log("rendering Finished-----------------------------");
+
   return (
-    <div className="bg-AAprimary h-screen w-full flex items-center">
-      <main className="w-full 2xl:px-96 xl:px-80 lg:px-64 md:px-28 px-12 flex flex-col space-y-12">
-        {!isFinished && (
-          <>
-            {" "}
-            <div
-              key={987987}
-              className="lg:text-3xl md:text-xl sm:text-xl hover:cursor-pointer  flex flex-wrap"
-              onClick={() => inputRef.current.focus()}
-            >
-              {myText[0].map((word, index) => {
-                return (
-                  <div key={index} className="flex ">
-                    {word.word.split("").map((char, i) => {
-                      if (
-                        char.localeCompare(" ") == 0 &&
-                        myText[1][word.indexFrom + i].charColor.localeCompare("text-AAError") == 0
-                      ) {
-                        return (
-                          <div key={i} className={`relative text-AAError`}>
-                            {i + word.indexFrom == myText[2].CursorPosition ? (
-                              <motion.span
-                                initial={{ opacity: 0, x: 0 }}
-                                animate={{ opacity: [1, 0] }}
-                                transition={{
-                                  opacity: { duration: 0.8, repeat: Infinity },
-                                }}
-                                className="absolute left-0 w-[3px] lg:h-8 sm:bottom-0 top-1 sm:h-5 h-4 rounded bg-AAsecondary "
-                              ></motion.span>
-                            ) : (
-                              <></>
-                            )}
-                            _
-                          </div>
-                        );
-                      } else if (char.localeCompare(" ") == 0) {
-                        return (
-                          <div key={i} className="relative ">
-                            {i + word.indexFrom == myText[2].CursorPosition ? (
-                              <motion.span
-                                initial={{ opacity: 0, x: 0 }}
-                                animate={{ opacity: [1, 0] }}
-                                transition={{
-                                  opacity: { duration: 0.8, repeat: Infinity },
-                                }}
-                                className="absolute left-0 w-[3px] lg:h-8 sm:bottom-0 top-1 sm:h-5 h-4 rounded bg-AAsecondary "
-                              ></motion.span>
-                            ) : (
-                              <></>
-                            )}
-                            &nbsp;
-                          </div>
-                        );
-                      } else {
-                        return (
-                          <div key={i} className={`relative ${myText[1][word.indexFrom + i].charColor}`}>
-                            {char}
-                            {i + word.indexFrom == myText[2].CursorPosition ? (
-                              <motion.div
-                                initial={{ opacity: 0, x: 0 }}
-                                animate={{ opacity: [1, 0] }}
-                                transition={{
-                                  opacity: { duration: 0.8, repeat: Infinity },
-                                }}
-                                className="absolute left-0 w-[3px] lg:h-8 sm:bottom-0 top-1 sm:h-6 h-4 rounded bg-AAsecondary "
-                              ></motion.div>
-                            ) : (
-                              <></>
-                            )}
-                          </div>
-                        );
-                      }
-                    })}
-                  </div>
-                );
-              })}
-            </div>
-            {/**
-             * @textInput
-             */}
-            <input
-              ref={inputRef}
-              type="text"
-              className="w-52 bg-AAprimary text-xl text-center text-gray-600 border-b-2 border-b-gray-600 
-              py-2 px-4 focus:outline-none "
-              onChange={e => {
-                handleOnChangeInput(e.target.value, e);
-                console.log("passed input : ", e.target.value);
-              }}
-              onKeyDownCapture={e => {
-                // prevent cursor in input from jumping two characters
-                if (e.key === "ArrowLeft" || e.key === "ArrowRight") {
-                  inputRef.current.setSelectionRange(inputRef.current.value.length, inputRef.current.value.length + 1);
-                  inputRef.current.focus();
-                }
-              }}
-            />
-          </>
-        )}
-        {isFinished && (
-          <>
-            <div className="flex items-center">
-              <div className="flex flex-col space-y-4">
-                <div className="text-AAsecondary">You finished!!</div>
-                <button onClick={() => {}} className="w-24 border-2 px-8 py-1 rounded text-sm text-white">
-                  Restart
-                </button>
+    <div
+      className={` bg-AAprimary min-h-screen  w-full flex flex-col justify-center items-center ${
+        isFinished ? "pt-48" : ""
+      }`}
+    >
+      {!isFinished && !(myText[1].length == 0) && (
+        <>
+          {/* Main page / Typing page */}
+          <main className="w-full 2xl:px-96 xl:px-80 lg:px-64 md:px-28 px-12 flex flex-col justify-center items-center space-y-12">
+            <div ref={textInputRef} className="relative w-full h-full flex flex-col space-y-8  ">
+              {inputLostFocus && (
+                <div
+                  onClick={() => {
+                    setInputLostFocus(false);
+                  }}
+                  ref={absoluteTextINputRef}
+                  className="absolute w-full z-10 bg-AAprimary opacity-90 rounded border-[0.5px] border-gray-700 flex justify-center items-center
+                          hover:cursor-pointer"
+                >
+                  <span className="text-gray-400 font-mono">Click to continue..</span>
+                </div>
+              )}
+              {/* Text : Wpm & Timer */}
+              {isStartedTyping && <div className="w-full flex justify-between pb-8">
+                <span className="text-gray-400 md:text-xl text-sm ">
+                  {seconds.current == timeToType ? "0" : calculateWpm(myText[1], timeToType - seconds.current)} wpm
+                </span>
+                <TimerSpan
+                  setIsFinished={setIsFinished}
+                  inputLostFocus={inputLostFocus}
+                  seconds={seconds}
+                  timerCountingInterval={timerCountingInterval}
+                  updateStatistics={updateStatistics}
+                />
+              </div>}
+              
+              <div
+                className="lg:text-3xl md:text-xl sm:text-xl hover:cursor-pointer flex flex-wrap px-2 "
+                onClick={() => inputRef.current.focus()}
+              >
+                {myText[0].map((item, index) => {
+                  // console.log("DOM Showing words......");
+                  return (
+                    <div key={index} className="flex ">
+                      {item.word.split("").map((char, i) => {
+                        if (
+                          char.localeCompare(" ") == 0 &&
+                          myText[1][item.indexFrom + i].charColor.localeCompare("text-AAError") == 0
+                        ) {
+                          return (
+                            <div key={i} className={`relative text-AAError`}>
+                              {i + item.indexFrom == myText[2].CursorPosition ? <CursorCarrotComp /> : <></>}
+                              <div className="relative">
+                                &nbsp; <div className="absolute bottom-0 h-[3px] w-full bg-AAError"></div>
+                              </div>
+                            </div>
+                          );
+                        } else if (char.localeCompare(" ") == 0) {
+                          return (
+                            <div key={i} className="relative ">
+                              {i + item.indexFrom == myText[2].CursorPosition ? <CursorCarrotComp /> : <></>}
+                              &nbsp;
+                            </div>
+                          );
+                        } else {
+                          return (
+                            <div key={i} className={`relative ${myText[1][item.indexFrom + i].charColor}`}>
+                              {char}
+                              {i + item.indexFrom == myText[2].CursorPosition ? <CursorCarrotComp /> : <></>}
+                            </div>
+                          );
+                        }
+                      })}
+                    </div>
+                  );
+                })}
+              </div>
+              {/**
+               * @textInput : this is the input that the user will type on it, it's hidden and it's used to get the user input
+               */}
+              <div className="w-full flex justify-center">
+                <input
+                  onBlur={() => {
+                    console.log("input lost focus!!");
+                    setInputLostFocus(true);
+                  }}
+                  ref={inputRef}
+                  type="text"
+                  // ?INFORMATIONAL : uncomment the following line to see the input
+                  // className="w-52 bg-AAprimary text-xl text-center text-gray-600 border-b-2 border-b-gray-600
+                  //           py-2 px-4 focus:outline-none "
+
+                  className="w-0 h-0 bg-AAprimary text-xl text-center text-gray-600  border-b-gray-600
+                  py-2 px-4 focus:outline-none "
+                  
+                  onChange={e => {
+                    if(isStartedTyping==false){
+                      seIsStartedTyping(true);
+                    }
+                    handleOnChangeInput(
+                      e.target.value,
+                      e,
+                      activeWordWithIndex,
+                      setActiveWordWithIndex,
+                      myText,
+                      setMyText,
+                      setIsFinished,
+                      timerCountingInterval,
+                      updateStatistics
+                    );
+                  }}
+                  onKeyDownCapture={e => {
+                    // prevent cursor in input from jumping two characters
+                    if (e.key === "ArrowLeft" || e.key === "ArrowRight") {
+                      inputRef.current.setSelectionRange(
+                        inputRef.current.value.length,
+                        inputRef.current.value.length + 1
+                      );
+
+                    }
+                  }}
+                />
               </div>
             </div>
-          </>
-        )}
+          </main>
+          <Footer className="absolute bottom-0" link="https://github.com/hktitof/Typing" />
+        </>
+      )}
 
-        <div className="w-full flex justify-center flex-col">
-          <button onClick={() => {}} className="w-24 border-2 px-8 py-1 rounded text-sm text-white">
-            Test 1
-          </button>
-        </div>
-      </main>
+      {/* Finished Typing Section */}
+      {isFinished && (
+        <>
+          <TypingStatistics
+            restart={restart}
+            roundCounter={roundCounter}
+            seconds={seconds}
+            statistics={statistics}
+            timeToType={timeToType}
+          />
+          <Footer className="pt-16" link="https://github.com/hktitof/Typing" />
+        </>
+      )}
     </div>
   );
 }

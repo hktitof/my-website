@@ -13,6 +13,10 @@ function MyApp({ Component, pageProps }) {
       windowSizeTracker: windowSizeTrackerRef,
       mousePositionTracker: mousePositionRef,
     },
+    typing:{
+      keyboardEvent:null,
+      eventInputLostFocus:null
+    }
   });
   return (
     <AppContext.Provider value={{ sharedState, setSharedState }}>

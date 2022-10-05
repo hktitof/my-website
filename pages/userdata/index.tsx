@@ -82,6 +82,16 @@ export default function Page() {
     });
   }, [context]);
 
+  // useEffect to clear others projects
+  useEffect(() => {
+  // remove the interval Cookie timer setter when
+  if (typeof window !== "undefined") {
+    // remove Typing project EventListeners
+    window.removeEventListener("resize", context.sharedState.typing.eventInputLostFocus);
+    document.removeEventListener("keydown", context.sharedState.typing.keyboardEvent);
+  }
+  }, [context.sharedState]);
+
   // import Dynamically the Map component from the DataPuller package, cus it's using some client side objects
   const Map = dynamic(
     () => import("../../components/DataPullerProject/Map"),

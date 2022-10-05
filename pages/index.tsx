@@ -18,19 +18,15 @@ export default function Home() {
   const context = useContext(AppContext);
 
   useEffect(() => {
-    // remove the interval Cookie timer setter when 
+    // remove the interval Cookie timer setter when
     clearInterval(context.sharedState.userdata.timerCookieRef.current);
     if (typeof window !== "undefined") {
-      // 
-      window.removeEventListener(
-        "resize",
-        context.sharedState.userdata.windowSizeTracker.current
-      );
-      window.removeEventListener(
-        "mousemove",
-        context.sharedState.userdata.mousePositionTracker.current,
-        false
-      );
+      // remove UserDataPuller project EventListeners
+      window.removeEventListener("resize", context.sharedState.userdata.windowSizeTracker.current);
+      window.removeEventListener("mousemove", context.sharedState.userdata.mousePositionTracker.current, false);
+      // remove Typing project EventListeners
+      window.removeEventListener("resize", context.sharedState.typing.eventInputLostFocus);
+      document.removeEventListener("keydown", context.sharedState.typing.keyboardEvent);
     }
     setTimeout(() => {
       setShowElement(true);
@@ -45,9 +41,7 @@ export default function Home() {
     setTimeout(() => {
       setShowMe(true);
     }, 10400);
-  }, [
-    context.sharedState
-  ]);
+  }, [context.sharedState]);
   return (
     // ? h-screen is changed to be deleted
     // ? because it's making it fixed for the whole page
