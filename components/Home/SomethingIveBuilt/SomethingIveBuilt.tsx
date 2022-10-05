@@ -1,35 +1,34 @@
 import Link from "next/link";
-import { useRouter } from "next/router";
+import { NextRouter, useRouter } from "next/router";
 import React from "react";
 import ArrowIcon from "../../Icons/ArrowIcon";
 import Img from "../../smallComp/image/Img";
-const GithubIcon = (props) => {
+const GithubIcon = props => {
   return (
-    <a href={props.link} target="_blank" rel="noreferrer" >
-       <svg
-      xmlns="http://www.w3.org/2000/svg"
-      role="img"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className="w-6 h-6 text-gray-300 hover:text-AAsecondary hover:cursor-pointer 
+    <a href={props.link} target="_blank" rel="noreferrer">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        role="img"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        className="w-6 h-6 text-gray-300 hover:text-AAsecondary hover:cursor-pointer 
  transition ease-in-out delay-50 hover:-translate-y-1 
 hover:scale-110 duration-200"
-    >
-      <title>GitHub</title>
-      <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-    </svg>
+      >
+        <title>GitHub</title>
+        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+      </svg>
     </a>
-   
   );
 };
-const ExternalLink = (props) => {
+const ExternalLink = (props: { router: NextRouter; url: string }) => {
   return (
     <svg
-      onClick={()=>props.router.push("/userdata")}
+      onClick={() => props.router.push(props.url)}
       xmlns="http://www.w3.org/2000/svg"
       role="img"
       viewBox="0 0 24 24"
@@ -51,7 +50,7 @@ const ExternalLink = (props) => {
 };
 
 export default function SomethingIveBuilt() {
-  const router = useRouter()
+  const router = useRouter();
   return (
     <>
       <div
@@ -60,14 +59,9 @@ export default function SomethingIveBuilt() {
       >
         {/* // ? Title  */}
         <div className=" flex flex-row  items-center md:px-0">
-          <ArrowIcon
-            className={"flex-none h-5 md:h-6 w-5 md:w-5 text-AAsecondary"}
-          />
+          <ArrowIcon className={"flex-none h-5 md:h-6 w-5 md:w-5 text-AAsecondary"} />
           <div className="flex-none flex-row space-x-2 items-center pr-2">
-            <span className="text-AAsecondary font-sans text-sm  sm:text-xl">
-              {" "}
-              03.
-            </span>
+            <span className="text-AAsecondary font-sans text-sm  sm:text-xl"> 03.</span>
             <span className=" font-semibold text-gray-200 text-xl md:text-2xl w-44 md:w-56">
               {" "}
               Something I&apos;ve Built
@@ -86,19 +80,15 @@ export default function SomethingIveBuilt() {
           absolute md:grid grid-cols-12 w-full h-full  content-center"
             >
               <div className="relative rounded w-full h-full col-span-7 ">
-                <Link href={"/userdata"}>
-                <div
-                  // onClick={}
-                  className="absolute w-full h-full rounded bg-AAsecondary 
+                <Link href={"/typing"}>
+                  <div
+                    // onClick={}
+                    className="absolute w-full h-full rounded bg-AAsecondary 
            transition-opacity opacity-20 hover:opacity-0 hover:cursor-pointer duration-300"
-                ></div>
+                  ></div>
                 </Link>
-                
-                <Img
-                  src={"/hackme.jpg"}
-                  alt={"Project Screen shot"}
-                  className={`w-full rounded h-full `}
-                />
+
+                <Img src={"/typing.png"} alt={"Project Screen shot"} className={`w-full rounded h-full `} />
               </div>
             </div>
 
@@ -109,11 +99,7 @@ export default function SomethingIveBuilt() {
                 <div className="relative w-full h-full">
                   <div className="absolute w-full h-full bg-AAsecondary opacity-10 z-10"></div>
                   <div className="absolute w-full h-full bg-AAprimary opacity-80 z-10"></div>
-                  <Img
-                    src={"/hackme.jpg"}
-                    alt={"Project Screen shot"}
-                    className={`w-full h-full `}
-                  />
+                  <Img src={"/typing.png"} alt={"Project Screen shot"} className={`w-full h-full `} />
                 </div>
               </div>
               <div
@@ -121,39 +107,33 @@ export default function SomethingIveBuilt() {
             col-span-8 flex flex-col items-start md:items-end space-y-3"
               >
                 <div className="flex flex-col space-y-1 md:items-end z-10">
-                  <span className="text-AAsecondary text-base">
-                    Recent Project
-                  </span>
-                  <span className=" md:text-gray-200 text-AAsecondary font-bold text-xl">
-                    Data puller
-                  </span>
+                  <span className="text-AAsecondary text-base">Recent Project</span>
+                  <Link href={"/typing"}>
+                    <span className=" md:text-gray-200 text-AAsecondary font-bold text-xl hover:cursor-pointer">
+                      Speed Typing
+                    </span>
+                  </Link>
                 </div>
                 <div className="w-full md:bg-AAtertiary rounded-md py-6 md:p-6  z-10">
                   <p className="text-gray-300 md:text-gray-400 text-left md:text-right">
-                    This project allows you to understand how easy it is to
-                    identify and track your browser based on how it appears to
-                    websites. Such as your
-                    <span className="text-AAsecondary"> location</span>,{" "}
-                    <span className="text-AAsecondary">IP Address</span>,{" "}
-                    <span className="text-AAsecondary">
-                      {","} software, Hardware 
-                    </span>
-                    {" "}and some additional information with the help of cookies.
+                    This project aim to help you to improve your <span className="text-AAsecondary"> typing </span> by
+                    tracking your progress in <span className="text-AAsecondary"> each round</span> and give you a{" "}
+                    <span className="text-AAsecondary"> score</span> based on your typing speed and accuracy through a
+                    table of <span className="text-AAsecondary"> statistics</span>.
                   </p>
                 </div>
                 <ul
                   className="flex flex-wrap w-full text-gray-300 md:text-gray-400
                text-sm font-Text2 md:justify-end"
                 >
-                  <h3 className="pr-4 z-10">Cookies</h3>
-                  <h3 className="pr-4 z-10">Google APi</h3>
-                  <h3 className="pr-4 z-10">Data collecting</h3>
-                  <h3 className="pr-4 z-10">IP Address</h3>
-                  <h3 className="pr-4 z-10">Location</h3>
+                  <h3 className="pr-4 z-10">Algorithms</h3>
+                  <h3 className="pr-4 z-10">Framer Motion</h3>
+                  <h3 className="pr-4 z-10">Tailwind CSS</h3>
+                  <h3 className="pr-4 z-10">TypeScript</h3>
                 </ul>
                 <div className="z-10 flex fle-row space-x-5 ">
-                  <GithubIcon  link="https://github.com/hktitof/DataPuller"/>
-                  <ExternalLink router={router}/>
+                  <GithubIcon link="https://github.com/hktitof/Typing" />
+                  <ExternalLink url={"typing"} router={router} />
                 </div>
               </div>
             </div>
@@ -167,15 +147,13 @@ export default function SomethingIveBuilt() {
           absolute md:grid grid-cols-12 w-full h-full  content-center "
             >
               <div className="relative rounded w-full h-full col-start-6 col-span-7 ">
-                <div
-                  className="absolute w-full h-full rounded bg-AAsecondary 
+                <Link href={"/userdatapuller"}>
+                  <div
+                    className="absolute w-full h-full rounded bg-AAsecondary 
            transition-opacity opacity-20 hover:opacity-0 hover:cursor-pointer duration-300"
-                ></div>
-                <Img
-                  src={"/image.jpg"}
-                  alt={"Project Screen shot"}
-                  className={`w-full rounded h-full `}
-                />
+                  ></div>
+                </Link>
+                <Img src={"/hackme.jpg"} alt={"Project Screen shot"} className={`w-full rounded h-full `} />
               </div>
             </div>
 
@@ -186,11 +164,7 @@ export default function SomethingIveBuilt() {
                 <div className="relative w-full h-full">
                   <div className="absolute w-full h-full bg-AAsecondary opacity-10 z-10"></div>
                   <div className="absolute w-full h-full bg-AAprimary opacity-80 z-10"></div>
-                  <Img
-                    src={"/image.jpg"}
-                    alt={"Project Screen shot"}
-                    className={`w-full h-full`}
-                  />
+                  <Img src={"/hackme.jpg"} alt={"Project Screen shot"} className={`w-full h-full`} />
                 </div>
               </div>
               <div
@@ -198,68 +172,36 @@ export default function SomethingIveBuilt() {
             col-span-8 flex flex-col items-start  space-y-3 md:order-1"
               >
                 <div className="flex flex-col space-y-1  z-10">
-                  <span className="text-AAsecondary text-base">
-                    Featured Project 1
-                  </span>
-                  <span className=" md:text-gray-200 text-AAsecondary font-bold text-xl">
-                    Halcyon
-                  </span>
+                  <span className="text-AAsecondary text-base">Recent Project</span>
+                  <Link href={"/userdatapuller"}>
+                    <span className=" md:text-gray-200 text-AAsecondary font-bold text-xl hover:cursor-pointer">
+                      User Data puller
+                    </span>
+                  </Link>
                 </div>
                 <div className="w-full md:bg-AAtertiary rounded-md py-6 md:p-6  z-10">
                   <p className="text-gray-300 md:text-gray-400 text-left ">
-                    A minimal, dark blue theme for VS Code, Sublime Text, Atom,
-                    iTerm, and more. Available on{" "}
-                    <a
-                      className="text-AAsecondary"
-                      href="https://marketplace.visualstudio.com/items?itemName=brittanychiang.halcyon-vscode"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Visual Studio Marketplace
-                    </a>
-                    ,{" "}
-                    <a
-                      className="text-AAsecondary"
-                      href="https://packagecontrol.io/packages/Halcyon%20Theme"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Package Control
-                    </a>
-                    ,{" "}
-                    <a
-                      className="text-AAsecondary"
-                      href="https://atom.io/themes/halcyon-syntax"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Atom Package Manager
-                    </a>
-                    , and{" "}
-                    <a
-                      className="text-AAsecondary"
-                      href="https://www.npmjs.com/package/hyper-halcyon-theme"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      npm
-                    </a>
-                    .
+                    This project allows you to understand how easy it is to identify and track your browser based on how
+                    it appears to websites. Such as your
+                    <span className="text-AAsecondary"> location</span>,{" "}
+                    <span className="text-AAsecondary">IP Address</span>,{" "}
+                    <span className="text-AAsecondary">{","} software, Hardware</span> and some additional information
+                    with the help of cookies.
                   </p>
                 </div>
                 <ul
                   className="flex flex-wrap w-full text-gray-300 md:text-gray-400
                text-sm font-Text2 md:justify-start"
                 >
-                  <span className="pr-4 z-10">VS Code</span>
-                  <span className="pr-4 z-10">Sublime Text</span>
-                  <span className="pr-4 z-10">Atom</span>
-                  <span className="pr-4 z-10">iTerm2</span>
-                  <span className="pr-4 z-10">Hyper</span>
+                  <h3 className="pr-4 z-10">Cookies</h3>
+                  <h3 className="pr-4 z-10">Google APi</h3>
+                  <h3 className="pr-4 z-10">Data collecting</h3>
+                  <h3 className="pr-4 z-10">IP Address</h3>
+                  <h3 className="pr-4 z-10">Location</h3>
                 </ul>
                 <div className="z-10 flex fle-row space-x-5 ">
-                  <GithubIcon />
-                  <ExternalLink />
+                  <GithubIcon link="https://github.com/hktitof/DataPuller" />
+                  <ExternalLink url={"/userdatapuller"} router={router} />
                 </div>
               </div>
             </div>
