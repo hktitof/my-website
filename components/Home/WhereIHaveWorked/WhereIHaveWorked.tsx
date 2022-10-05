@@ -1,21 +1,21 @@
 import React from "react";
 import { motion } from "../../../node_modules/framer-motion/dist/framer-motion";
 import ArrowIcon from "../../Icons/ArrowIcon";
-import GoogleDesc from "./Descriptions/GoogleDesc";
-import FacebookDesc from "./Descriptions/FacebookDesc";
+import TrouveTavoie from "./Descriptions/TrouveTavoie";
+import FeverTokens from "./Descriptions/FeverTokens";
 export default function WhereIHaveWorked() {
   const barRef = React.useRef<HTMLDivElement>(null);
   // ? INFORMATIONAL control the green position using px,
   // ? INFORMATIONAL the default value of barRef's class should be at the beginning translate-y-[0px]
   const GetDescription = () => {
     switch (DescriptionJob) {
-      case "Google":
-        return <GoogleDesc />;
-      case "Facebook":
-        return <FacebookDesc />;
+      case "TrouveTavoie":
+        return <TrouveTavoie />;
+      case "FeverTokens":
+        return <FeverTokens />;
     }
   };
-  const [DescriptionJob, setDescriptionJob] = React.useState("Google");
+  const [DescriptionJob, setDescriptionJob] = React.useState("TrouveTavoie");
   return (
     <div className="flex flex-col items-center justify-center py-24 space-y-12 bg-AAprimary">
       {/* // ? Title "Where I've Worked" */}
@@ -96,19 +96,19 @@ const CompaniesBar = props => {
           <div className="flex flex-row md:flex-col">
             <CompanyButton
               ButtonOrderOfcompanyNameBackgroundColorGreen={0}
-              CompanyName="Google"
+              CompanyName="TrouveTavoie"
               BarPosition={-2}
               BarAvobePosition={1}
-              DescriptionJob="Google"
+              DescriptionJob="TrouveTavoie"
               CompanyNameBackgroundColorGreen={[true, false, false, false]}
               setDescriptionJob={props.setDescriptionJob}
             />
             <CompanyButton
               ButtonOrderOfcompanyNameBackgroundColorGreen={1}
-              CompanyName="Facebook"
+              CompanyName="FeverTokens"
               BarPosition={34}
               BarAvobePosition={129}
-              DescriptionJob="Facebook"
+              DescriptionJob="FeverTokens"
               CompanyNameBackgroundColorGreen={[false, true, false, false]}
               setDescriptionJob={props.setDescriptionJob}
             />

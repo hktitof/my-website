@@ -54,10 +54,10 @@ export default function Home() {
       {ShowMe?<AboutMe />:<></>}
       {ShowMe? <WhereIHaveWorked />:<></>}
       {ShowMe? <SomethingIveBuilt/>:<></>}
-      {ShowMe? <GetInTouch/>:<></>}
-      {ShowMe? <Footer />:<></>} */}
+      {ShowMe? <GetInTouch/>:<></>} */}
+      {/* {ShowMe? <Footer />:<></>} */}
 
-      <SomethingIveBuilt />
+      <WhereIHaveWorked />
     </div>
   );
 }
