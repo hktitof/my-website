@@ -2,8 +2,8 @@ import React from "react";
 import ArrowIcon from "../../../Icons/ArrowIcon";
 
 export default function Fantasia() {
+    const tasks=["k"];
   return (
-    <>
       <div className="flex flex-col space-y-5 max-w-xl px-4 md:px-0">
         <div className="flex flex-col spacey-y-2">
           {/* Title */}
@@ -40,6 +40,5 @@ export default function Fantasia() {
           </div>
         </div>
       </div>
-    </>
   );
 }

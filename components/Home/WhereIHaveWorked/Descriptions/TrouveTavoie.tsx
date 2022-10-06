@@ -1,7 +1,24 @@
 import React from "react";
 import ArrowIcon from "../../../Icons/ArrowIcon";
+import {getTasksTextWithHighlightedKeyword} from "./taskAndType";
 
 export default function TrouveTavoie() {
+  const tasks = [
+    {
+      text: "Spearhead & implemented a new design user workflow system for the Frond-End Architecture of a NFT Marketplace.",
+      keywords: ["NFT Marketplace"],
+    },
+    {
+      text: "Work with a variety of different languages, platforms, frameworks, and content management systems such as JavaScript, TypeScript, Next.js/React, AWS and Vercel.",
+      keywords: ["Next.js/React", "AWS", "Vercel"],
+    },
+    {
+      text: "Interfaced with developers on a daily basis, providing technological expertise.",
+      keywords: [],
+    },
+  ];
+
+
   return (
     <>
       <div className="flex flex-col space-y-5 max-w-xl px-4 md:px-0">
@@ -15,29 +32,19 @@ export default function TrouveTavoie() {
         </div>
         <div className="flex flex-col space-y-4 sm:text-sm text-xs">
           {/* Desctiption 1 */}
-          <div className="flex flex-row space-x-2">
-            <ArrowIcon className={" h-5 w-8 text-AAsecondary flex-none"} />
-            <span className="text-gray-500 sm:text-sm text-xs">
-              Spearhead & implemented a new design user workflow system for the Frond-End Architecture of a{" "}
-              <span className="text-AAsecondary">NFT Marketplace</span>.
-            </span>
-          </div>
-          {/* Desctiption 2 */}
-          <div className="flex flex-row space-x-2">
-            <ArrowIcon className={" h-5 w-8 text-AAsecondary flex-none"} />
-            <span className="text-gray-500 ">
-              Work with a variety of different languages, platforms, frameworks, and content management systems such as
-              JavaScript, TypeScript, <span className="text-AAsecondary">Next.js/React</span> ,
-              <span className="text-AAsecondary">AWS</span> and <span className="text-AAsecondary">Vercel</span>.
-            </span>
-          </div>
-          {/* Desctiption 3 */}
-          <div className="flex flex-row space-x-2">
-            <ArrowIcon className={" h-5 w-8 text-AAsecondary flex-none"} />
-            <span className="text-gray-500 ">
-              Interfaced with developers on a daily basis, providing technological expertise.
-            </span>
-          </div>
+          {tasks.map((item, index) => {
+            return (
+              <div key={index} className="flex flex-row space-x-2">
+                <ArrowIcon className={" h-5 w-8 text-AAsecondary flex-none"} />
+                <span
+                  className="text-gray-500 sm:text-sm text-xs"
+                  dangerouslySetInnerHTML={{
+                    __html: getTasksTextWithHighlightedKeyword(item.text, item.keywords),
+                  }}
+                ></span>
+              </div>
+            );
+          })}
         </div>
       </div>
     </>
