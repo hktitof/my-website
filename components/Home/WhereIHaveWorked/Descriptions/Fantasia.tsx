@@ -1,41 +1,41 @@
 import React from "react";
 import ArrowIcon from "../../../Icons/ArrowIcon";
 
-export default function IdealFresh() {
+export default function Fantasia() {
   return (
     <>
       <div className="flex flex-col space-y-5 max-w-xl px-4 md:px-0">
         <div className="flex flex-col spacey-y-2">
           {/* Title */}
           <span className="text-gray-100 text-lg font-mono">
-            Software Developer <span className="text-AAsecondary">@ JavaFX</span>
+            Server Manager Assistant <span className="text-AAsecondary">@ Windows Server</span>
           </span>
           {/* Date */}
-          <span className="font-mono text-xs text-gray-500">June - August 2021</span>
+          <span className="font-mono text-xs text-gray-500">June - July 2018</span>
         </div>
         <div className="flex flex-col space-y-4">
           {/* Desctiption 1 */}
           <div className="flex flex-row space-x-2">
             <ArrowIcon className={" h-5 w-8 text-AAsecondary flex-none"} />
             <span className="text-gray-500 text-sm">
-              Designed and Built a Desktop app for IdealFresh that manage billings, client circumstances using{" "}
-              <span className="text-AAsecondary">Apache POI</span> with Microsoft Office Excel.
+              Responsible for Windows Server 2008 r2 installs, configuration and support Active Directory, DNS, DHCP,
+              WINS..
             </span>
           </div>
           {/* Desctiption 2 */}
           <div className="flex flex-row space-x-2">
             <ArrowIcon className={" h-5 w-8 text-AAsecondary flex-none"} />
             <span className="text-gray-500 text-sm">
-              Creating customized <span className="text-AAsecondary">scripts</span> for pulling, managing and
-              refactoring files from Clouds.
+              <span className="text-AAsecondary">Migration</span> of Windows 2008 to Windows Server 2012 .
             </span>
           </div>
           {/* Desctiption 3 */}
           <div className="flex flex-row space-x-2">
             <ArrowIcon className={" h-5 w-8 text-AAsecondary flex-none"} />
             <span className="text-gray-500 text-sm">
-              Daily communications and interactions with a <span className="text-AAsecondary">non-developers</span> to
-              solve their problems by providing technological solutions and expertise.
+              Responsible for Server full, differential and incremental backups using{" "}
+              <span className="text-AAsecondary">Veeam Endpoint Backup</span> with{" "}
+              <span className="text-AAsecondary">SQL Server 2012.</span> .
             </span>
           </div>
         </div>

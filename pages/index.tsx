@@ -57,8 +57,7 @@ export default function Home() {
       {ShowMe? <GetInTouch/>:<></>} */}
       {/* {ShowMe? <Footer />:<></>} */}
 
-      {/* <WhereIHaveWorked /> */}
-      <div className="w-full h-full flex justify-center items-center text-lg text-AAsecondary">Currently in the development...</div>
+      <WhereIHaveWorked />
     </div>
   );
 }

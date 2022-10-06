@@ -18,7 +18,8 @@ export default function TrouveTavoie() {
           <div className="flex flex-row space-x-2">
             <ArrowIcon className={" h-5 w-8 text-AAsecondary flex-none"} />
             <span className="text-gray-500 text-sm">
-              Spearhead & implemented a new brand design system for the <span className="text-AAsecondary">Frond-End</span> Architecture of a NFT Marketplace.
+              Spearhead & implemented a new design user workflow system for the Frond-End Architecture of a{" "}
+              <span className="text-AAsecondary">NFT Marketplace</span>.
             </span>
           </div>
           {/* Desctiption 2 */}
@@ -26,7 +27,8 @@ export default function TrouveTavoie() {
             <ArrowIcon className={" h-5 w-8 text-AAsecondary flex-none"} />
             <span className="text-gray-500 text-sm">
               Work with a variety of different languages, platforms, frameworks, and content management systems such as
-              JavaScript, TypeScript, Next.js/React,AWS and Vercel.
+              JavaScript, TypeScript, <span className="text-AAsecondary">Next.js/React</span> ,
+              <span className="text-AAsecondary">AWS</span> and <span className="text-AAsecondary">Vercel</span>.
             </span>
           </div>
           {/* Desctiption 3 */}

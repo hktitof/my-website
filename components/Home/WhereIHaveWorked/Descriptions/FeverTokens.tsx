@@ -7,7 +7,7 @@ export default function FeverTokens() {
         <div className="flex flex-col spacey-y-2">
           {/* Title */}
           <span className="text-gray-100 text-lg font-mono">
-            Software Developer <span className="text-AAsecondary">@ FeverTokens Platform</span>
+            Software Engineer <span className="text-AAsecondary">@ web3</span>
           </span>
           {/* Date */}
           <span className="font-mono text-xs text-gray-500">Mars - August 2022</span>
