@@ -8,7 +8,7 @@ export default function TrouveTavoie() {
         <div className="flex flex-col spacey-y-2">
           {/* Title */}
           <span className="text-gray-100 text-lg font-mono">
-            Software Developer <span className="text-AAsecondary">@ Blockchain</span>
+            Software Engineer <span className="text-AAsecondary">@ Blockchain</span>
           </span>
           {/* Date */}
           <span className="font-mono text-xs text-gray-500">Mars - August 2022</span>
@@ -18,7 +18,7 @@ export default function TrouveTavoie() {
           <div className="flex flex-row space-x-2">
             <ArrowIcon className={" h-5 w-8 text-AAsecondary flex-none"} />
             <span className="text-gray-500 text-sm">
-              Spearhead & implemented a new brand design system for the Frond-End Architecture of a NFT Marketplace.
+              Spearhead & implemented a new brand design system for the <span className="text-AAsecondary">Frond-End</span> Architecture of a NFT Marketplace.
             </span>
           </div>
           {/* Desctiption 2 */}

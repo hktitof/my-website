@@ -3,6 +3,7 @@ import { motion } from "../../../node_modules/framer-motion/dist/framer-motion";
 import ArrowIcon from "../../Icons/ArrowIcon";
 import TrouveTavoie from "./Descriptions/TrouveTavoie";
 import FeverTokens from "./Descriptions/FeverTokens";
+import IdealFresh from "./Descriptions/IdealFresh";
 export default function WhereIHaveWorked() {
   const barRef = React.useRef<HTMLDivElement>(null);
   // ? INFORMATIONAL control the green position using px,
@@ -13,6 +14,8 @@ export default function WhereIHaveWorked() {
         return <TrouveTavoie />;
       case "FeverTokens":
         return <FeverTokens />;
+        case "IdealFresh":
+        return <IdealFresh />;
     }
   };
   const [DescriptionJob, setDescriptionJob] = React.useState("TrouveTavoie");
@@ -114,10 +117,10 @@ const CompaniesBar = props => {
             />
             <CompanyButton
               ButtonOrderOfcompanyNameBackgroundColorGreen={2}
-              CompanyName="Twitter"
+              CompanyName="IdealFresh"
               BarPosition={70}
               BarAvobePosition={257}
-              DescriptionJob="Twitter"
+              DescriptionJob="IdealFresh"
               CompanyNameBackgroundColorGreen={[false, false, true, false]}
               setDescriptionJob={props.setDescriptionJob}
             />
