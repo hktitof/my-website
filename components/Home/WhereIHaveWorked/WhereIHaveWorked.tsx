@@ -69,7 +69,7 @@ const CompaniesBar = props => {
           props.setDescriptionJob(props.DescriptionJob);
           setCompanyNameBackgroundColorGreen(props.CompanyNameBackgroundColorGreen);
         }}
-        className={`flex-none text-sm text-center md:text-left  hover:text-AAsecondary
+        className={`flex-none sm:text-sm text-xs text-center md:text-left  hover:text-AAsecondary
              hover:bg-ResumeButtonHover rounded  font-mono  
              py-2 md:pl-6 md:px-4 md:w-44 w-32 duration-500
              ${
@@ -150,7 +150,7 @@ const CompaniesBar = props => {
               setDescriptionJob={props.setDescriptionJob}
             />
           </div>
-          <div className="block md:hidden w-[515px] h-0.5 rounded bg-gray-500">
+          <div className="block md:hidden w-[640px] h-0.5 rounded bg-gray-500">
             <motion.div
               animate={{ x: barAbovePosition }}
               className="w-[128px] h-0.5 rounded bg-AAsecondary"

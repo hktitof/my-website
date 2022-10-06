@@ -7,17 +7,17 @@ export default function AdvancedAgroManagement() {
       <div className="flex flex-col space-y-5 max-w-xl px-4 md:px-0">
         <div className="flex flex-col spacey-y-2">
           {/* Title */}
-          <span className="text-gray-100 text-lg font-mono">
+          <span className="text-gray-100 sm:text-lg text-sm font-mono">
             Software Developer <span className="text-AAsecondary">@ Wordpress</span>
           </span>
           {/* Date */}
           <span className="font-mono text-xs text-gray-500">june - August 2019</span>
         </div>
-        <div className="flex flex-col space-y-4">
+        <div className="flex flex-col space-y-4 sm:text-sm text-xs">
           {/* Desctiption 1 */}
-          <div className="flex flex-row space-x-2">
+          <div className="flex flex-row space-x-2 ">
             <ArrowIcon className={" h-5 w-8 text-AAsecondary flex-none"} />
-            <span className="text-gray-500 text-sm">
+            <span className="text-gray-500 ">
               Developed and Build a new version customizable website for{" "}
               <span className="text-AAsecondary">Advanced Agro Management</span>.
             </span>
@@ -25,14 +25,14 @@ export default function AdvancedAgroManagement() {
           {/* Desctiption 2 */}
           <div className="flex flex-row space-x-2">
             <ArrowIcon className={" h-5 w-8 text-AAsecondary flex-none"} />
-            <span className="text-gray-500 text-sm">
+            <span className="text-gray-500 ">
             Monitored website performance and handled troubleshooting and WordPress issues.
             </span>
           </div>
           {/* Desctiption 3 */}
           <div className="flex flex-row space-x-2">
             <ArrowIcon className={" h-5 w-8 text-AAsecondary flex-none"} />
-            <span className="text-gray-500 text-sm">
+            <span className="text-gray-500 ">
             Managed company WordPress website back-end with <span className="text-AAsecondary">Oracle Database</span> including plugins, tools, and themes.
             </span>
           </div>
