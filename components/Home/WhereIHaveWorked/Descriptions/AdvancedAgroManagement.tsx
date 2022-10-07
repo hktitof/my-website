@@ -1,7 +1,22 @@
 import React from "react";
 import ArrowIcon from "../../../Icons/ArrowIcon";
+import { getTasksTextWithHighlightedKeyword } from "./taskAndType";
 
 export default function AdvancedAgroManagement() {
+  const tasks = [
+    {
+      text: "Developed and Build a new version customizable website for Advanced Agro Management.",
+      keywords: ["Advanced Agro Management"],
+    },
+    {
+      text: "Monitored website performance and handled troubleshooting and WordPress issues.",
+      keywords: ["scripts"],
+    },
+    {
+      text: "Managed company WordPress website back-end with Oracle Database including plugins, tools, and themes.",
+      keywords: ["Oracle Database"],
+    },
+  ];
   return (
     <>
       <div className="flex flex-col space-y-5 max-w-xl px-4 md:px-0">
@@ -14,28 +29,20 @@ export default function AdvancedAgroManagement() {
           <span className="font-mono text-xs text-gray-500">june - August 2019</span>
         </div>
         <div className="flex flex-col space-y-4 sm:text-sm text-xs">
-          {/* Desctiption 1 */}
-          <div className="flex flex-row space-x-2 ">
-            <ArrowIcon className={" h-5 w-8 text-AAsecondary flex-none"} />
-            <span className="text-gray-500 ">
-              Developed and Build a new version customizable website for{" "}
-              <span className="text-AAsecondary">Advanced Agro Management</span>.
-            </span>
-          </div>
-          {/* Desctiption 2 */}
-          <div className="flex flex-row space-x-2">
-            <ArrowIcon className={" h-5 w-8 text-AAsecondary flex-none"} />
-            <span className="text-gray-500 ">
-            Monitored website performance and handled troubleshooting and WordPress issues.
-            </span>
-          </div>
-          {/* Desctiption 3 */}
-          <div className="flex flex-row space-x-2">
-            <ArrowIcon className={" h-5 w-8 text-AAsecondary flex-none"} />
-            <span className="text-gray-500 ">
-            Managed company WordPress website back-end with <span className="text-AAsecondary">Oracle Database</span> including plugins, tools, and themes.
-            </span>
-          </div>
+          {/* Tasks Description 1 */}
+          {tasks.map((item, index) => {
+            return (
+              <div key={index} className="flex flex-row space-x-2">
+                <ArrowIcon className={" h-5 w-4 text-AAsecondary flex-none"} />
+                <span
+                  className="text-gray-500 sm:text-sm text-xs"
+                  dangerouslySetInnerHTML={{
+                    __html: getTasksTextWithHighlightedKeyword(item.text, item.keywords),
+                  }}
+                ></span>
+              </div>
+            );
+          })}
         </div>
       </div>
     </>

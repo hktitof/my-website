@@ -1,6 +1,21 @@
 import React from "react";
 import ArrowIcon from "../../../Icons/ArrowIcon";
+import { getTasksTextWithHighlightedKeyword } from "./taskAndType";
 export default function FeverTokens() {
+  const tasks = [
+    {
+      text: "Leading the development of the NFT Marketplace v2 for the Platform FeverTokens.",
+      keywords: ["NFT Marketplace v2"],
+    },
+    {
+      text: "Worked with a team of six developers to build a temporary NFT Marketplace platform for VivaTech2022 event, an ambitious startup originating from France,Paris.",
+      keywords: ["VivaTech2022 event"],
+    },
+    {
+      text: "Interacted with the blockchain & Smart Contracts to build the new FeverTokens Platform.",
+      keywords: ["blockchain & Smart Contracts"],
+    },
+  ];
   return (
     <>
       <div className="flex flex-col space-y-5 max-w-xl px-4 md:px-0">
@@ -13,35 +28,20 @@ export default function FeverTokens() {
           <span className="font-mono text-xs text-gray-500">Mars - August 2022</span>
         </div>
         <div className="flex flex-col space-y-4 sm:text-sm text-xs">
-          {/* Desctiption 1 */}
-          <div className="flex flex-row space-x-2 ">
-            <ArrowIcon className={" h-5 w-8 text-AAsecondary flex-none"} />
-            <div className="">
-              <span className="text-gray-500 ">
-                Leading the development of the <span className="text-AAsecondary">NFT Marketplace v2</span> for the
-                Platform FeverTokens.
-              </span>
-            </div>
-          </div>
-
-          {/* Desctiption 2 */}
-          <div className="flex flex-row space-x-2">
-            <ArrowIcon className={" h-5 w-8 text-AAsecondary flex-none"} />
-            <div className="">
-              <span className="text-gray-500 ">
-                Worked with a team of six developers to build a temporary NFT Marketplace platform for{" "}
-                <span className="text-AAsecondary">VivaTech2022 event</span>, an ambitious startup originating from
-                France,Paris.
-              </span>
-            </div>
-          </div>
-          {/* Desctiption 1 */}
-          <div className="flex flex-row space-x-2">
-            <ArrowIcon className={" h-5 w-8 text-AAsecondary flex-none"} />
-            <span className="text-gray-500 ">
-              Interacted with the <span className="text-AAsecondary">blockchain & Smart Contracts</span> to build the new FeverTokens Platform.
-            </span>
-          </div>
+            {/* Tasks Description 1 */}
+            {tasks.map((item, index) => {
+            return (
+              <div key={index} className="flex flex-row space-x-2">
+                <ArrowIcon className={" h-5 w-4 text-AAsecondary flex-none"} />
+                <span
+                  className="text-gray-500 sm:text-sm text-xs"
+                  dangerouslySetInnerHTML={{
+                    __html: getTasksTextWithHighlightedKeyword(item.text, item.keywords),
+                  }}
+                ></span>
+              </div>
+            );
+          })}
         </div>
       </div>
     </>

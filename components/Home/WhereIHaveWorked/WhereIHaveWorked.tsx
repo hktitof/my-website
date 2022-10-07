@@ -20,7 +20,7 @@ export default function WhereIHaveWorked() {
         return <IdealFresh />;
       case "Advanced Agro Management":
         return <AdvancedAgroManagement />;
-        case "Fantasia":
+      case "Fantasia":
         return <Fantasia />;
     }
   };
@@ -52,10 +52,11 @@ export default function WhereIHaveWorked() {
 }
 
 const CompaniesBar = props => {
-  const [barPosition, setBarPosition] = React.useState<Number>(0);
+  const [barPosition, setBarPosition] = React.useState<Number>(-20); // Green bar position by the default it's -20px
   const [barAbovePosition, setBarAbovePosition] = React.useState<Number>(0);
   const [companyNameBackgroundColorGreen, setCompanyNameBackgroundColorGreen] = React.useState<boolean[]>([
     true,
+    false,
     false,
     false,
     false,
@@ -82,6 +83,7 @@ const CompaniesBar = props => {
       </button>
     );
   };
+
   return (
     <>
       <div
@@ -116,7 +118,7 @@ const CompaniesBar = props => {
             <CompanyButton
               ButtonOrderOfcompanyNameBackgroundColorGreen={1}
               CompanyName="FeverTokens"
-              BarPosition={34-18}
+              BarPosition={34 - 18}
               BarAvobePosition={129}
               DescriptionJob="FeverTokens"
               CompanyNameBackgroundColorGreen={[false, true, false, false]}
@@ -125,7 +127,7 @@ const CompaniesBar = props => {
             <CompanyButton
               ButtonOrderOfcompanyNameBackgroundColorGreen={2}
               CompanyName="IdealFresh"
-              BarPosition={70-18}
+              BarPosition={70 - 18}
               BarAvobePosition={257}
               DescriptionJob="IdealFresh"
               CompanyNameBackgroundColorGreen={[false, false, true, false]}
@@ -134,7 +136,7 @@ const CompaniesBar = props => {
             <CompanyButton
               ButtonOrderOfcompanyNameBackgroundColorGreen={3}
               CompanyName="AA Management"
-              BarPosition={107-18}
+              BarPosition={107 - 18}
               BarAvobePosition={385}
               DescriptionJob="Advanced Agro Management"
               CompanyNameBackgroundColorGreen={[false, false, false, true]}
@@ -143,10 +145,10 @@ const CompaniesBar = props => {
             <CompanyButton
               ButtonOrderOfcompanyNameBackgroundColorGreen={4}
               CompanyName="Fantasia SME"
-              BarPosition={143-18}
+              BarPosition={143 - 18}
               BarAvobePosition={513}
               DescriptionJob="Fantasia"
-              CompanyNameBackgroundColorGreen={[false, false, false, false,true]}
+              CompanyNameBackgroundColorGreen={[false, false, false, false, true]}
               setDescriptionJob={props.setDescriptionJob}
             />
           </div>

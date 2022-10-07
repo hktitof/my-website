@@ -1,6 +1,6 @@
 import React from "react";
 import ArrowIcon from "../../../Icons/ArrowIcon";
-import {getTasksTextWithHighlightedKeyword} from "./taskAndType";
+import { getTasksTextWithHighlightedKeyword } from "./taskAndType";
 
 export default function TrouveTavoie() {
   const tasks = [
@@ -18,7 +18,6 @@ export default function TrouveTavoie() {
     },
   ];
 
-
   return (
     <>
       <div className="flex flex-col space-y-5 max-w-xl px-4 md:px-0">
@@ -31,11 +30,11 @@ export default function TrouveTavoie() {
           <span className="font-mono text-xs text-gray-500">Mars - August 2022</span>
         </div>
         <div className="flex flex-col space-y-4 sm:text-sm text-xs">
-          {/* Desctiption 1 */}
+          {/* Tasks Description 1 */}
           {tasks.map((item, index) => {
             return (
-              <div key={index} className="flex flex-row space-x-2">
-                <ArrowIcon className={" h-5 w-8 text-AAsecondary flex-none"} />
+              <div key={index} className="flex flex-row space-x-1">
+                <ArrowIcon className={" h-5 w-4 text-AAsecondary flex-none"} />
                 <span
                   className="text-gray-500 sm:text-sm text-xs"
                   dangerouslySetInnerHTML={{
