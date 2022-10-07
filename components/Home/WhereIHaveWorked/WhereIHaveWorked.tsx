@@ -6,6 +6,7 @@ import FeverTokens from "./Descriptions/FeverTokens";
 import IdealFresh from "./Descriptions/IdealFresh";
 import AdvancedAgroManagement from "./Descriptions/AdvancedAgroManagement";
 import Fantasia from "./Descriptions/Fantasia";
+import SuperBerry from "./Descriptions/SuperBerry";
 export default function WhereIHaveWorked() {
   const barRef = React.useRef<HTMLDivElement>(null);
   // ? INFORMATIONAL control the green position using px,
@@ -22,6 +23,8 @@ export default function WhereIHaveWorked() {
         return <AdvancedAgroManagement />;
       case "Fantasia":
         return <Fantasia />;
+      case "SuperBerry":
+        return <SuperBerry />;
     }
   };
   const [DescriptionJob, setDescriptionJob] = React.useState("TrouveTavoie");
@@ -60,6 +63,7 @@ const CompaniesBar = props => {
     false,
     false,
     false,
+    ,false
   ]);
   const CompanyButton = props => {
     return (
@@ -109,46 +113,55 @@ const CompaniesBar = props => {
             <CompanyButton
               ButtonOrderOfcompanyNameBackgroundColorGreen={0}
               CompanyName="TrouveTavoie"
-              BarPosition={-20}
+              BarPosition={-20-18}
               BarAvobePosition={1}
               DescriptionJob="TrouveTavoie"
-              CompanyNameBackgroundColorGreen={[true, false, false, false]}
+              CompanyNameBackgroundColorGreen={[true, false, false, false,false]}
               setDescriptionJob={props.setDescriptionJob}
             />
             <CompanyButton
               ButtonOrderOfcompanyNameBackgroundColorGreen={1}
               CompanyName="FeverTokens"
-              BarPosition={34 - 18}
+              BarPosition={34 - 18-18}
               BarAvobePosition={129}
               DescriptionJob="FeverTokens"
-              CompanyNameBackgroundColorGreen={[false, true, false, false]}
+              CompanyNameBackgroundColorGreen={[false, true, false, false,false]}
               setDescriptionJob={props.setDescriptionJob}
             />
             <CompanyButton
               ButtonOrderOfcompanyNameBackgroundColorGreen={2}
               CompanyName="IdealFresh"
-              BarPosition={70 - 18}
+              BarPosition={70 - 18-18}
               BarAvobePosition={257}
               DescriptionJob="IdealFresh"
-              CompanyNameBackgroundColorGreen={[false, false, true, false]}
+              CompanyNameBackgroundColorGreen={[false, false, true, false,false]}
               setDescriptionJob={props.setDescriptionJob}
             />
             <CompanyButton
               ButtonOrderOfcompanyNameBackgroundColorGreen={3}
-              CompanyName="AA Management"
-              BarPosition={107 - 18}
+              CompanyName="SuperBerry"
+              BarPosition={107 - 18-18}
               BarAvobePosition={385}
-              DescriptionJob="Advanced Agro Management"
-              CompanyNameBackgroundColorGreen={[false, false, false, true]}
+              DescriptionJob="SuperBerry"
+              CompanyNameBackgroundColorGreen={[false, false, false, true,false]}
               setDescriptionJob={props.setDescriptionJob}
             />
             <CompanyButton
               ButtonOrderOfcompanyNameBackgroundColorGreen={4}
+              CompanyName="AA Management"
+              BarPosition={143 - 18-18}
+              BarAvobePosition={513}
+              DescriptionJob="Advanced Agro Management"
+              CompanyNameBackgroundColorGreen={[false, false, false, false,true]}
+              setDescriptionJob={props.setDescriptionJob}
+            />
+            <CompanyButton
+              ButtonOrderOfcompanyNameBackgroundColorGreen={5}
               CompanyName="Fantasia SME"
-              BarPosition={143 - 18}
+              BarPosition={179 - 18-18}
               BarAvobePosition={513}
               DescriptionJob="Fantasia"
-              CompanyNameBackgroundColorGreen={[false, false, false, false, true]}
+              CompanyNameBackgroundColorGreen={[false, false, false, false, false,true]}
               setDescriptionJob={props.setDescriptionJob}
             />
           </div>
