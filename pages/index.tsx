@@ -57,7 +57,7 @@ export default function Home() {
       {ShowMe? <GetInTouch/>:<></>} */}
       {/* {ShowMe? <Footer />:<></>} */}
 
-      <WhereIHaveWorked />
+      <SomethingIveBuilt/>
     </div>
   );
 }
