@@ -76,7 +76,7 @@ const CompaniesBar = props => {
         }}
         className={`flex-none sm:text-sm text-xs text-center md:text-left  hover:text-AAsecondary
              hover:bg-ResumeButtonHover rounded  font-mono  
-             py-2 md:pl-6 md:px-4 md:w-44 w-32 duration-500
+             py-3 md:pl-6 md:px-4 md:w-44 w-32 duration-500
              ${
                companyNameBackgroundColorGreen[props.ButtonOrderOfcompanyNameBackgroundColorGreen]
                  ? "bg-ResumeButtonHover text-AAsecondary"
@@ -97,14 +97,14 @@ const CompaniesBar = props => {
       >
         {/* // ? left bar Holder */}
         <div
-          className="hidden md:block relative h-0.5 w-34 md:h-36 md:w-0.5  
+          className="hidden md:block relative h-0.5 w-34 md:h-48 md:w-0.5  
         rounded md:order-1 order-2 "
         >
           {/* // ? animated left bar */}
           <motion.div
             animate={{ y: barPosition }}
             // ref={barRef}
-            className={`absolute w-10 h-0.5 md:w-0.5 md:h-10 rounded bg-AAsecondary `}
+            className={`absolute w-10 h-0.5 md:w-0.5 md:h-12 rounded bg-AAsecondary `}
           ></motion.div>
         </div>
         {/* // ? Companies name as buttons */}
@@ -113,7 +113,7 @@ const CompaniesBar = props => {
             <CompanyButton
               ButtonOrderOfcompanyNameBackgroundColorGreen={0}
               CompanyName="TrouveTavoie"
-              BarPosition={-20-18}
+              BarPosition={-37}
               BarAvobePosition={1}
               DescriptionJob="TrouveTavoie"
               CompanyNameBackgroundColorGreen={[true, false, false, false,false]}
@@ -122,7 +122,7 @@ const CompaniesBar = props => {
             <CompanyButton
               ButtonOrderOfcompanyNameBackgroundColorGreen={1}
               CompanyName="FeverTokens"
-              BarPosition={34 - 18-18}
+              BarPosition={6}
               BarAvobePosition={129}
               DescriptionJob="FeverTokens"
               CompanyNameBackgroundColorGreen={[false, true, false, false,false]}
@@ -131,7 +131,7 @@ const CompaniesBar = props => {
             <CompanyButton
               ButtonOrderOfcompanyNameBackgroundColorGreen={2}
               CompanyName="IdealFresh"
-              BarPosition={70 - 18-18}
+              BarPosition={50}
               BarAvobePosition={257}
               DescriptionJob="IdealFresh"
               CompanyNameBackgroundColorGreen={[false, false, true, false,false]}
@@ -140,7 +140,7 @@ const CompaniesBar = props => {
             <CompanyButton
               ButtonOrderOfcompanyNameBackgroundColorGreen={3}
               CompanyName="SuperBerry"
-              BarPosition={107 - 18-18}
+              BarPosition={94}
               BarAvobePosition={385}
               DescriptionJob="SuperBerry"
               CompanyNameBackgroundColorGreen={[false, false, false, true,false]}
@@ -149,7 +149,7 @@ const CompaniesBar = props => {
             <CompanyButton
               ButtonOrderOfcompanyNameBackgroundColorGreen={4}
               CompanyName="AA Management"
-              BarPosition={143 - 18-18}
+              BarPosition={138}
               BarAvobePosition={513}
               DescriptionJob="Advanced Agro Management"
               CompanyNameBackgroundColorGreen={[false, false, false, false,true]}
@@ -158,7 +158,7 @@ const CompaniesBar = props => {
             <CompanyButton
               ButtonOrderOfcompanyNameBackgroundColorGreen={5}
               CompanyName="Fantasia SME"
-              BarPosition={179 - 18-18}
+              BarPosition={182}
               BarAvobePosition={641}
               DescriptionJob="Fantasia"
               CompanyNameBackgroundColorGreen={[false, false, false, false, false,true]}
