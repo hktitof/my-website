@@ -56,10 +56,11 @@ export default function Home() {
       {ShowMe? <SomethingIveBuilt/>:<></>}
       {ShowMe? <GetInTouch/>:<></>} */}
       {/* {ShowMe? <Footer />:<></>} */}
-      <MyName/>
+      {/* <MyName/> */}
       <AboutMe />
       <WhereIHaveWorked/>
       <SomethingIveBuilt/>
+      <GetInTouch/>
     </div>
   );
 }

@@ -13,7 +13,7 @@ export default function AboutMe() {
           <div className="flex flex-row items-center ">
             <div className="flex flex-row  items-center mr-4">
               <ArrowIcon className={"flex-none h-5 md:h-6 w-5 md:w-5 text-AAsecondary"} />
-              <span className="text-AAsecondary font-Arimo text-sm  sm:text-xl"> 01.</span>
+              <span className="text-AAsecondary font-Header text-sm  sm:text-xl"> 01.</span>
               <span className="flex-none text-gray-300 font-semibold text-xl sm:text-2xl pl-4">About Me</span>
             </div>
             <div className="bg-gray-400 h-[0.2px] w-full sm:w-72 ml-4"></div>
@@ -22,7 +22,7 @@ export default function AboutMe() {
 
           <div className="w-full flex flex-col md:flex-row space-y-8 md:space-y-0 md:space-x-8 sm:space-x-2 ">
             <div className="w-full md:w-7/12 space-y-4 sm:text-base text-sm ">
-              <div className="font-Arimo ">
+              <div className="font-Header ">
                 <span className="text-gray-400  tracking-wide">
                   Hello! My name is Abdellatif and I enjoy solving problems and creating codes that live on the
                   internet. My interest in computer science started back in 2009 when I decided to try learning{" "}
@@ -30,7 +30,7 @@ export default function AboutMe() {
                   programming skills are essential to achieve that, my journey with programming started from that time!
                 </span>
               </div>
-              <div className="font-Arimo tracking-wide">
+              <div className="font-Header tracking-wide">
                 <span className="text-gray-400  ">
                   Fast-forward to today, I&apos;ve had the privilege of working at
                   <span className="text-AAsecondary"> a huge manufacturing company</span>,
@@ -41,17 +41,17 @@ export default function AboutMe() {
                   <span className="text-AAsecondary">Smart Contracts</span> with Hardhat.
                 </span>
               </div>
-              {/* <div className="font-Arimo tracking-wide">
+              {/* <div className="font-Header tracking-wide">
                 <span className="text-gray-400 ">
                   I also recently Developed these Four projects that you&apos;ll find below using Node & Next js.
                 </span>
               </div> */}
-              <div className="font-Arimo tracking-wide">
+              <div className="font-Header tracking-wide">
                 <span className="text-gray-400  ">
                   Here are a few technologies I&apos;ve been working with recently:
                 </span>
               </div>
-              <div className="font-Arimo tracking-wide flex flex-row space-x-16">
+              <div className="font-Header tracking-wide flex flex-row space-x-16">
                 <div className="flex flex-row space-x-2 items-center">
                   <div className="flex flex-col space-y-4 sm:text-base text-sm">
                     <div className="flex flex-row items-center space-x-2">

@@ -20,9 +20,9 @@ export default function GetInTouch() {
       <span className="text-gray-300 text-3xl sm:text-4xl font-bold">
         Get In Touch
       </span>
-      <p className="flex font-sans text-gray-400 text-center px-6 sm:px-16 md:px-0 md:w-[600px]">
-        Although I’m not currently looking for any new opportunities, my inbox
-        is always open. Whether you have a question or just want to say hi, I’ll
+      <p className="flex font-Header tracking-wider text-gray-400 text-center px-6 sm:px-16 md:px-0 md:w-[600px]">
+        Although I’m currently looking for any new opportunities, my inbox
+        is always open. Whether you have a question or just want to say hi, I&apos;ll
         try my best to get back to you!
       </p>
       <div className="pt-4">
