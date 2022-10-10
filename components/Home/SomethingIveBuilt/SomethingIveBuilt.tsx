@@ -59,12 +59,12 @@ export default function SomethingIveBuilt() {
       >
         {/* // ? Title  */}
         <div className=" flex flex-row  items-center md:px-0">
-          <ArrowIcon className={"flex-none h-5 md:h-6 w-5 md:w-5 text-AAsecondary"} />
+          <ArrowIcon className={"flex-none h-5 md:h-6 w-5 md:w-5 translate-y-[2px] text-AAsecondary"} />
           <div className="flex-none flex-row space-x-2 items-center pr-2">
             <span className="text-AAsecondary font-sans text-sm  sm:text-xl"> 03.</span>
-            <span className=" font-semibold text-gray-200 text-xl md:text-2xl w-44 md:w-56">
+            <span className=" font-bold tracking-wider text-gray-200 text-lg md:text-2xl w-44 md:w-56 opacity-85">
               {" "}
-              Something I&apos;ve Built
+              Some Things I&apos;ve Built
             </span>
           </div>
           <div className="bg-gray-400 h-[0.2px] w-full xl:w-1/3 md:w-1/2"></div>

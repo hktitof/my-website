@@ -12,9 +12,11 @@ export default function AboutMe() {
         >
           <div className="flex flex-row items-center ">
             <div className="flex flex-row  items-center mr-4">
-              <ArrowIcon className={"flex-none h-5 md:h-6 w-5 md:w-5 text-AAsecondary"} />
+              <ArrowIcon className={"flex-none h-4 md:h-6 w-4 md:w-5 translate-y-[0.5px] text-AAsecondary"} />
               <span className="text-AAsecondary font-Header text-sm  sm:text-xl"> 01.</span>
-              <span className="flex-none text-gray-300 font-semibold text-xl sm:text-2xl pl-4">About Me</span>
+              <span className="flex-none text-gray-200 opacity-85 font-bold tracking-wider text-lg sm:text-2xl pl-4">
+                About Me
+              </span>
             </div>
             <div className="bg-gray-400 h-[0.2px] w-full sm:w-72 ml-4"></div>
           </div>
