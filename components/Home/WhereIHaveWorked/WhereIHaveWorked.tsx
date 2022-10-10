@@ -55,7 +55,7 @@ export default function WhereIHaveWorked() {
 }
 
 const CompaniesBar = props => {
-  const [barPosition, setBarPosition] = React.useState<Number>(-20); // Green bar position by the default it's -20px
+  const [barPosition, setBarPosition] = React.useState<Number>(-38); // Green bar position by the default it's -20px
   const [barAbovePosition, setBarAbovePosition] = React.useState<Number>(0);
   const [companyNameBackgroundColorGreen, setCompanyNameBackgroundColorGreen] = React.useState<boolean[]>([
     true,
@@ -159,13 +159,13 @@ const CompaniesBar = props => {
               ButtonOrderOfcompanyNameBackgroundColorGreen={5}
               CompanyName="Fantasia SME"
               BarPosition={179 - 18-18}
-              BarAvobePosition={513}
+              BarAvobePosition={641}
               DescriptionJob="Fantasia"
               CompanyNameBackgroundColorGreen={[false, false, false, false, false,true]}
               setDescriptionJob={props.setDescriptionJob}
             />
           </div>
-          <div className="block md:hidden w-[640px] h-0.5 rounded bg-gray-500">
+          <div className="block md:hidden w-[760px] h-0.5 rounded bg-gray-500">
             <motion.div
               animate={{ x: barAbovePosition }}
               className="w-[128px] h-0.5 rounded bg-AAsecondary"

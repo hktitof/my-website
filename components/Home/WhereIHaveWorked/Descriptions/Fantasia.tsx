@@ -21,7 +21,7 @@ export default function Fantasia() {
     <div className="flex flex-col space-y-5 max-w-xl px-4 md:px-0">
       <div className="flex flex-col spacey-y-2">
         {/* Title */}
-        <span className="text-gray-100 sm:text-lg text-sm font-mono">
+        <span className="text-gray-100 sm:text-lg text-sm font-Arimo tracking-wide">
           Server Manager Assistant <span className="text-AAsecondary">@ Windows Server</span>
         </span>
         {/* Date */}

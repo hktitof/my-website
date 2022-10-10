@@ -22,7 +22,7 @@ export default function IdealFresh() {
       <div className="flex flex-col space-y-5 max-w-xl px-4 md:px-0">
         <div className="flex flex-col spacey-y-2">
           {/* Title */}
-          <span className="text-gray-100 sm:text-lg text-sm font-mono">
+          <span className="text-gray-100 sm:text-lg text-sm font-Arimo tracking-wide">
             Software Developer <span className="text-AAsecondary">@ JavaFX</span>
           </span>
           {/* Date */}

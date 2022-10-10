@@ -2,6 +2,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Lato&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,400&display=swap");
 
+
+@import url('https://fonts.googleapis.com/css2?family=Arimo&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
