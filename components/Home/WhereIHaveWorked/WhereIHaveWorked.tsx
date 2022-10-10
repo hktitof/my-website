@@ -55,7 +55,7 @@ export default function WhereIHaveWorked() {
 }
 
 const CompaniesBar = props => {
-  const [barPosition, setBarPosition] = React.useState<Number>(-38); // Green bar position by the default it's -20px
+  const [barPosition, setBarPosition] = React.useState<Number>(-8); // Green bar position by the default it's -20px
   const [barAbovePosition, setBarAbovePosition] = React.useState<Number>(0);
   const [companyNameBackgroundColorGreen, setCompanyNameBackgroundColorGreen] = React.useState<boolean[]>([
     true,
@@ -80,7 +80,7 @@ const CompaniesBar = props => {
              ${
                companyNameBackgroundColorGreen[props.ButtonOrderOfcompanyNameBackgroundColorGreen]
                  ? "bg-ResumeButtonHover text-AAsecondary"
-                 : "text-gray-400"
+                 : "text-gray-500"
              }`}
       >
         {props.CompanyName}
@@ -97,8 +97,8 @@ const CompaniesBar = props => {
       >
         {/* // ? left bar Holder */}
         <div
-          className="hidden md:block relative h-0.5 w-34 md:h-48 md:w-0.5  
-        rounded md:order-1 order-2 "
+          className=" hidden md:block bg-gray-500 relative h-0.5 w-34 md:h-64 translate-y-1 md:w-0.5  
+        rounded md:order-1 order-2  "
         >
           {/* // ? animated left bar */}
           <motion.div
@@ -113,7 +113,7 @@ const CompaniesBar = props => {
             <CompanyButton
               ButtonOrderOfcompanyNameBackgroundColorGreen={0}
               CompanyName="TrouveTavoie"
-              BarPosition={-37}
+              BarPosition={-8}
               BarAvobePosition={1}
               DescriptionJob="TrouveTavoie"
               CompanyNameBackgroundColorGreen={[true, false, false, false,false]}
@@ -122,7 +122,7 @@ const CompaniesBar = props => {
             <CompanyButton
               ButtonOrderOfcompanyNameBackgroundColorGreen={1}
               CompanyName="FeverTokens"
-              BarPosition={6}
+              BarPosition={36}
               BarAvobePosition={129}
               DescriptionJob="FeverTokens"
               CompanyNameBackgroundColorGreen={[false, true, false, false,false]}
@@ -131,7 +131,7 @@ const CompaniesBar = props => {
             <CompanyButton
               ButtonOrderOfcompanyNameBackgroundColorGreen={2}
               CompanyName="IdealFresh"
-              BarPosition={50}
+              BarPosition={80}
               BarAvobePosition={257}
               DescriptionJob="IdealFresh"
               CompanyNameBackgroundColorGreen={[false, false, true, false,false]}
@@ -140,7 +140,7 @@ const CompaniesBar = props => {
             <CompanyButton
               ButtonOrderOfcompanyNameBackgroundColorGreen={3}
               CompanyName="SuperBerry"
-              BarPosition={94}
+              BarPosition={122}
               BarAvobePosition={385}
               DescriptionJob="SuperBerry"
               CompanyNameBackgroundColorGreen={[false, false, false, true,false]}
@@ -149,7 +149,7 @@ const CompaniesBar = props => {
             <CompanyButton
               ButtonOrderOfcompanyNameBackgroundColorGreen={4}
               CompanyName="AA Management"
-              BarPosition={138}
+              BarPosition={166}
               BarAvobePosition={513}
               DescriptionJob="Advanced Agro Management"
               CompanyNameBackgroundColorGreen={[false, false, false, false,true]}
@@ -158,7 +158,7 @@ const CompaniesBar = props => {
             <CompanyButton
               ButtonOrderOfcompanyNameBackgroundColorGreen={5}
               CompanyName="Fantasia SME"
-              BarPosition={182}
+              BarPosition={210}
               BarAvobePosition={641}
               DescriptionJob="Fantasia"
               CompanyNameBackgroundColorGreen={[false, false, false, false, false,true]}
