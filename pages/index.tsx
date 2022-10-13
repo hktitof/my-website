@@ -31,36 +31,33 @@ export default function Home() {
     setTimeout(() => {
       setShowElement(true);
     }, 4500);
-    setTimeout(() => {
-      setShowElement(false);
-    }, 10400);
+  
     setTimeout(() => {
       setShowThisCantBeReached(false);
     }, 5400);
     // ? INFORMATIONAL next function will show the component after changing the state of ShowMe
     setTimeout(() => {
+      setShowElement(false);
       setShowMe(true);
+      context.sharedState.finishedLoading = true;
+      context.setSharedState(context.sharedState);
     }, 10400);
-  }, [context.sharedState]);
+  }, [context, context.sharedState]);
   return (
     // ? h-screen is changed to be deleted
     // ? because it's making it fixed for the whole page
     <div className="relative h-screen bg-AAprimary w-full ">
-      {/* {ShowThisCantBeReached?<ThisCantBeReached/>:<></>}
-      {ShowElement ? <Startup/>:<></>}
-      <Header />
-      <MyName />
-      <SocialMediaArround />
-      {ShowMe?<AboutMe />:<></>}
-      {ShowMe? <WhereIHaveWorked />:<></>}
-      {ShowMe? <SomethingIveBuilt/>:<></>}
-      {ShowMe? <GetInTouch/>:<></>} */}
+      {context.sharedState.finishedLoading?<></> :ShowThisCantBeReached?<ThisCantBeReached/>:<></>}
+      {context.sharedState.finishedLoading?<></> :ShowElement ? <Startup/>:<></>}
+      <Header finishedLoading={context.sharedState.finishedLoading} />
+      <MyName finishedLoading={context.sharedState.finishedLoading}/>
+      <SocialMediaArround finishedLoading={context.sharedState.finishedLoading}/>
+      {context.sharedState.finishedLoading?<AboutMe /> :ShowMe?<AboutMe />:<></>}
+      {context.sharedState.finishedLoading?<WhereIHaveWorked /> :ShowMe? <WhereIHaveWorked />:<></>}
+      {context.sharedState.finishedLoading?<SomethingIveBuilt/> :ShowMe? <SomethingIveBuilt/>:<></>}
+      {context.sharedState.finishedLoading?<GetInTouch/> :ShowMe? <GetInTouch/>:<></>}
       {/* {ShowMe? <Footer />:<></>} */}
-      {/* <MyName/> */}
-      {/* <AboutMe /> */}
-      <WhereIHaveWorked/>
-      {/* <SomethingIveBuilt/>
-      <GetInTouch/> */}
+      
     </div>
   );
 }

@@ -16,7 +16,8 @@ function MyApp({ Component, pageProps }) {
     typing:{
       keyboardEvent:null,
       eventInputLostFocus:null
-    }
+    },
+    finishedLoading: false,
   });
   return (
     <AppContext.Provider value={{ sharedState, setSharedState }}>

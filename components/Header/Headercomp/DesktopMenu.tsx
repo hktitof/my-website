@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "../../../node_modules/framer-motion/dist/framer-motion";
 
-export default function DesktopMenu() {
+export default function DesktopMenu(props: { finishedLoading: boolean }) {
   return (
     <div className="font-mono text-xs md:flex hidden flex-row items-center space-x-8 ">
       <motion.span
@@ -15,8 +15,8 @@ export default function DesktopMenu() {
         }}
         transition={{
           type: "spring",
-          duration: 1.2,
-          delay:9.4
+          duration: props.finishedLoading?0: 1.2,
+          delay:props.finishedLoading?0:9.4
         }}
         className=" text-AAsecondary"
       >
@@ -36,8 +36,8 @@ export default function DesktopMenu() {
         }}
         transition={{
           type: "spring",
-          duration: 1.2,
-          delay: 9.7,
+          duration: props.finishedLoading?0:1.2,
+          delay: props.finishedLoading?0:9.7,
         }}
         className="text-AAsecondary"
       >
@@ -57,8 +57,8 @@ export default function DesktopMenu() {
         }}
         transition={{
           type: "spring",
-          duration: 1.2,
-          delay: 9.8,
+          duration: props.finishedLoading?0:1.2,
+          delay:props.finishedLoading?0: 9.8,
         }}
         className="text-AAsecondary"
       >
@@ -78,8 +78,8 @@ export default function DesktopMenu() {
         }}
         transition={{
           type: "spring",
-          duration: 1.2,
-          delay:10,
+          duration: props.finishedLoading?0:1.2,
+          delay:props.finishedLoading?0:10,
         }}
         className="text-AAsecondary"
       >
@@ -99,8 +99,8 @@ export default function DesktopMenu() {
         }}
         transition={{
           type: "spring",
-          duration: 1.2,
-          delay: 10.2,
+          duration: props.finishedLoading?0:1.2,
+          delay: props.finishedLoading?0:10.2,
         }}
         className="text-AAsecondary border border-spacing-2 py-2 px-3 rounded-sm border-AAsecondary hover:bg-ResumeButtonHover"
       >
