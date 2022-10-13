@@ -32,7 +32,7 @@ export default function Fotter(props:{githubUrl:string,hideSocialsInDesktop:bool
             Icon={InstagramIcon}
           />
           <ClickableIcon
-            href={"https://www.youtube.com/c/NTTFT"}
+            href={"https://www.youtube.com/@abdellatif_anaflous"}
             Icon={YoutubeIcon}
           />
         </div>
