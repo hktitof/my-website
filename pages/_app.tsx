@@ -8,6 +8,9 @@ function MyApp({ Component, pageProps }) {
   const windowSizeTrackerRef = useRef(null);
   const mousePositionRef = useRef(null);
   const [sharedState, setSharedState] = useState({
+    portfolio:{
+      scrolling:null,
+    },
     userdata: {
       timerCookieRef: timerCookie,
       windowSizeTracker: windowSizeTrackerRef,

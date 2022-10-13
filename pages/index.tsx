@@ -43,6 +43,10 @@ export default function Home() {
       context.setSharedState(context.sharedState);
     }, 10400);
   }, [context, context.sharedState]);
+
+  
+
+
   return (
     // ? h-screen is changed to be deleted
     // ? because it's making it fixed for the whole page

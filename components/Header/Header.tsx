@@ -1,24 +1,28 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect,useContext } from "react";
 import Logo from "./Headercomp/Logo";
 import DesktopMenu from "./Headercomp/DesktopMenu";
 import IconMenu from "./Headercomp/IconMenu";
 import MobileMenu from "./Headercomp/MobileMenu";
-import { motion } from "../../node_modules/framer-motion/dist/framer-motion";
+import { motion } from "framer-motion"
+import AppContext from "../AppContextFolder/AppContext";
+
+
 const addClass = (ref: any, myclass: string) => {
   ref.current?.classLIst.add(myclass);
 };
 const Header = (props:{finishedLoading:boolean}) => {
   const RefNavBar = useRef<HTMLDivElement>(null);
   const [ShowElement, setShowElement] = useState(false);
+  const [rotate, setRotate] = useState<boolean>(false);
+  const context = useContext(AppContext);
+
   useEffect(() => {
-    setTimeout(() => {
-      setShowElement(true);
-    }, 10400);
-  }, []);
-  let scrollSizeY = 0;
+
+    let scrollSizeY = 0;
   //Hide when scroll down & show when scroll up
   if (typeof window !== "undefined") {
-    window.addEventListener("scroll", e => {
+    window.addEventListener("scroll", (e) => {
+      
       if (scrollSizeY == 0) {
         scrollSizeY = window.scrollY;
       } else {
@@ -38,7 +42,15 @@ const Header = (props:{finishedLoading:boolean}) => {
       console.log("Windows is scrolling scrollY = ", scrollSizeY);
     });
   }
-  const [rotate, setRotate] = useState<boolean>(false);
+
+    setTimeout(() => {
+      setShowElement(true);
+    }, 10400);
+
+  }, []);
+
+  
+
   console.log("rotate from header : ", rotate);
   //veify document for serverSide rendering
   if (typeof document !== "undefined") {
