@@ -27,11 +27,14 @@ export default function Home() {
       // remove Typing project EventListeners
       window.removeEventListener("resize", context.sharedState.typing.eventInputLostFocus);
       document.removeEventListener("keydown", context.sharedState.typing.keyboardEvent);
+
+      // remove the Interval of Scrolling for the navBar
+      
     }
     setTimeout(() => {
       setShowElement(true);
     }, 4500);
-  
+
     setTimeout(() => {
       setShowThisCantBeReached(false);
     }, 5400);
@@ -44,24 +47,35 @@ export default function Home() {
     }, 10400);
   }, [context, context.sharedState]);
 
-  
+  // !TODO : reteste NavBar
 
+  useEffect(() => {
+    // if (!context.sharedState.finishedLoading) {
+    //   if(typeof window !== "undefined"){
+    //     window.addEventListener("scroll", ()=>{
+
+    //       console.log("Scrolling here, ",window.scrollY);
+    //     });
+
+    //   }
+    // }
+    console.log("context.sharedState.finishedLoading", context.sharedState.finishedLoading);
+  }, [context.sharedState.finishedLoading]);
 
   return (
     // ? h-screen is changed to be deleted
     // ? because it's making it fixed for the whole page
     <div className="relative h-screen bg-AAprimary w-full ">
-      {context.sharedState.finishedLoading?<></> :ShowThisCantBeReached?<ThisCantBeReached/>:<></>}
-      {context.sharedState.finishedLoading?<></> :ShowElement ? <Startup/>:<></>}
+      {context.sharedState.finishedLoading ? <></> : ShowThisCantBeReached ? <ThisCantBeReached /> : <></>}
+      {context.sharedState.finishedLoading ? <></> : ShowElement ? <Startup /> : <></>}
       <Header finishedLoading={context.sharedState.finishedLoading} />
-      <MyName finishedLoading={context.sharedState.finishedLoading}/>
-      <SocialMediaArround finishedLoading={context.sharedState.finishedLoading}/>
-      {context.sharedState.finishedLoading?<AboutMe /> :ShowMe?<AboutMe />:<></>}
-      {context.sharedState.finishedLoading?<WhereIHaveWorked /> :ShowMe? <WhereIHaveWorked />:<></>}
-      {context.sharedState.finishedLoading?<SomethingIveBuilt/> :ShowMe? <SomethingIveBuilt/>:<></>}
-      {context.sharedState.finishedLoading?<GetInTouch/> :ShowMe? <GetInTouch/>:<></>}
+      <MyName finishedLoading={context.sharedState.finishedLoading} />
+      <SocialMediaArround finishedLoading={context.sharedState.finishedLoading} />
+      {context.sharedState.finishedLoading ? <AboutMe /> : <></>}
+      {context.sharedState.finishedLoading ? <WhereIHaveWorked /> : <></>}
+      {context.sharedState.finishedLoading ? <SomethingIveBuilt /> : <></>}
+      {context.sharedState.finishedLoading ? <GetInTouch /> : <></>}
       {/* {ShowMe? <Footer />:<></>} */}
-      
     </div>
   );
 }

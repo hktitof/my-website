@@ -127,6 +127,11 @@ export default function Home() {
     // remove UserDataPuller project EventListeners
     window.removeEventListener("resize", context.sharedState.userdata.windowSizeTracker.current);
     window.removeEventListener("mousemove", context.sharedState.userdata.mousePositionTracker.current, false);
+    // remove Portfolio project NavBar EventListeners
+    window.removeEventListener("scroll", context.sharedState.portfolio.NavBar.IntervalEvent);
+    context.sharedState.portfolio.NavBar.IntervalEvent = null;
+    context.sharedState.portfolio.NavBar.scrolling = null;
+    context.sharedState.portfolio.NavBar.scrollSizeY = null;
   }
   }, [context.sharedState]);
 

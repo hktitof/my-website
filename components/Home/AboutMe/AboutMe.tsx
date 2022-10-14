@@ -4,7 +4,7 @@ import ArrowIcon from "../../../components/Icons/ArrowIcon";
 export default function AboutMe() {
   return (
     <>
-      <div className="flex flex-col  items-center py-24 bg-AAprimary">
+      <div className="flex flex-col  items-center py-20 bg-AAprimary">
         {/* // ? 0.1 About Me */}
         <div
           className="flex flex-col space-y-8 px-4 sm:px-0 w-full sm:w-[500px] 
