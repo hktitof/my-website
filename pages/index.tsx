@@ -10,6 +10,8 @@ import SomethingIveBuilt from "../components/Home/SomethingIveBuilt/SomethingIve
 import GetInTouch from "../components/Home/GetInTouch/GetInTouch";
 import Footer from "../components/Footer/Footer";
 import AppContext from "../components/AppContextFolder/AppContext";
+import Aos from "aos";
+import "aos/dist/aos.css"
 export default function Home() {
   const [ShowElement, setShowElement] = useState(false);
   const [ShowThisCantBeReached, setShowThisCantBeReached] = useState(true);
@@ -50,6 +52,10 @@ export default function Home() {
     }, 10400);
   }, [context, context.sharedState]);
 
+  useEffect(()=>{
+    Aos.init({duration:2000})
+  },[])
+
 
   // !TODO: add the EventListener for Scrolling and show elements when scrolling
   // useEffect(() => {
@@ -76,7 +82,7 @@ export default function Home() {
   return (
     // ? h-screen is changed to be deleted
     // ? because it's making it fixed for the whole page
-    <div ref={homeRef}  className="relative snap-mandatory h-screen bg-AAprimary w-full ">
+    <div ref={homeRef}  className="relative snap-mandatory min-h-screen bg-AAprimary w-full ">
       {context.sharedState.finishedLoading ? <></> : ShowThisCantBeReached ? <ThisCantBeReached /> : <></>}
       {context.sharedState.finishedLoading ? <></> : ShowElement ? <Startup /> : <></>}
       <Header finishedLoading={context.sharedState.finishedLoading} />
@@ -86,7 +92,7 @@ export default function Home() {
       {context.sharedState.finishedLoading ? <WhereIHaveWorked /> : <></>}
       {context.sharedState.finishedLoading ? <SomethingIveBuilt /> : <></>}
       {context.sharedState.finishedLoading ? <GetInTouch /> : <></>}
-      {/* {ShowMe? <Footer />:<></>} */}
+      {ShowMe? <Footer githubUrl={"https://github.com/hktitof/my-website"} hideSocialsInDesktop={true} />:<></>}
     </div>
   );
 }

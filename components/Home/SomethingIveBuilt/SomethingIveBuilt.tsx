@@ -58,7 +58,7 @@ export default function SomethingIveBuilt() {
      2xl:px-72 lg:px-24 md:px-16 sm:px-16 py-32 px-4"
       >
         {/* // ? Title  */}
-        <div className=" flex flex-row  items-center md:px-0">
+        <div data-aos="fade-up" className=" flex flex-row  items-center md:px-0">
           <ArrowIcon className={"flex-none h-5 md:h-6 w-5 md:w-5 translate-y-[2px] text-AAsecondary"} />
           <div className="flex-none flex-row space-x-2 items-center pr-2">
             <span className="text-AAsecondary font-sans text-sm  sm:text-xl"> 03.</span>
@@ -72,7 +72,7 @@ export default function SomethingIveBuilt() {
 
         <div className="flex flex-col space-y-8 md:space-y-28">
           {/* // ?  Project  1*/}
-          <div className="relative md:grid md:grid-cols-12 w-full md:h-96 ">
+          <div data-aos="fade-up" className="relative md:grid md:grid-cols-12 w-full md:h-96 ">
             {/* Left image */}
             <div
               className="hidden bg-AAprimary z-10  py-4 
@@ -140,7 +140,7 @@ export default function SomethingIveBuilt() {
           </div>
 
           {/* // ?  Project 2 */}
-          <div className="relative md:grid md:grid-cols-12 w-full md:h-96  ">
+          <div data-aos="fade-up" className="relative md:grid md:grid-cols-12 w-full md:h-96  ">
             {/* Left image */}
             <div
               className="hidden bg-AAprimary z-10  py-4 
@@ -209,7 +209,7 @@ export default function SomethingIveBuilt() {
           </div>
 
           {/* // ? Project 3 */}
-          <div className="relative md:grid md:grid-cols-12 w-full md:h-96">
+          <div  data-aos="fade-up" className="relative md:grid md:grid-cols-12 w-full md:h-96">
             {/* Left image */}
             <div
               className="hidden bg-AAprimary z-10  py-4 
@@ -275,7 +275,7 @@ export default function SomethingIveBuilt() {
                   <h3 className="pr-4 z-10">Scheduling</h3>
                   <h3 className="pr-4 z-10">Booking</h3>
                 </ul>
-                <div className="z-10 flex fle-row space-x-5 ">
+                <div className="z-10 flex fle-row space-x-5 sm:pt-0 pt-2">
                   <GithubIcon link="https://github.com/hktitof/haircut" />
                   <a href="https://www.haircut.ma" target={"_blank"} rel="noreferrer">
                     <ExternalLink url={""} router={router} />
@@ -286,7 +286,7 @@ export default function SomethingIveBuilt() {
           </div>
 
           {/* // ?  Project 4 */}
-          <div className="relative md:grid md:grid-cols-12 w-full md:h-96  ">
+          <div data-aos="fade-up" className="relative md:grid md:grid-cols-12 w-full md:h-96  ">
             {/* Left image */}
             <div
               className="hidden bg-AAprimary z-10  py-4 
@@ -309,7 +309,7 @@ export default function SomethingIveBuilt() {
               {/* background for text in mobile responsive */}
               <div className="absolute w-full h-full bg-opacity-70 z-0 md:order-2">
                 <div className="relative w-full h-full">
-                  <div className="absolute w-full h-full bg-AAsecondary opacity-20 z-10"></div>
+                  <div className="absolute w-full h-full bg-AAprimary opacity-50 z-10"></div>
                   <div className="absolute w-full h-full bg-AAprimary opacity-80 z-10"></div>
                   <Img src={"/CallCenter.png"} alt={"Project Screen shot"} className={`w-full h-full`} />
                 </div>
@@ -344,7 +344,7 @@ export default function SomethingIveBuilt() {
                   <h3 className="pr-4 z-10">MultiThreading</h3>
                   <h3 className="pr-4 z-10">MySQL</h3>
                 </ul>
-                <div className="z-10 flex fle-row space-x-5 ">
+                <div className="z-10 flex fle-row space-x-5 sm:pt-0 pt-2">
                   <GithubIcon link="https://github.com/hktitof/CallCenter" />
                   {/* <ExternalLink url={"/userdatapuller"} router={router} /> */}
                 </div>

@@ -3,7 +3,7 @@ import Img from "../../../components/smallComp/image/Img";
 import ArrowIcon from "../../../components/Icons/ArrowIcon";
 export default function AboutMe(props:{ref}) {
   return (
-      <div ref={props.ref} className="snap-start flex flex-col  items-center py-20 bg-AAprimary">
+      <div ref={props.ref} data-aos="fade-up" className="snap-start flex flex-col  items-center py-20 bg-AAprimary">
         {/* // ? 0.1 About Me */}
         <div
           className="flex flex-col space-y-8 px-4 sm:px-0 w-full sm:w-[500px] 

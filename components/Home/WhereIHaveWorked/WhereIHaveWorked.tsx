@@ -29,7 +29,7 @@ export default function WhereIHaveWorked() {
   };
   const [DescriptionJob, setDescriptionJob] = React.useState("TrouveTavoie");
   return (
-    <div className="flex flex-col items-center justify-center py-24 space-y-12 bg-AAprimary">
+    <div data-aos="fade-up" className="flex flex-col items-center justify-center py-24 space-y-12 bg-AAprimary">
       {/* // ? Title "Where I've Worked" */}
       <section className="flex flex-row items-center">
         <div className="flex flex-row items-center">
@@ -37,7 +37,9 @@ export default function WhereIHaveWorked() {
           <span className="text-AAsecondary font-sans text-sm  sm:text-xl"> 02.</span>
         </div>
 
-        <span className="text-gray-200 opacity-85 font-bold tracking-wider text-lg md:text-2xl px-3">Where I&apos;ve Worked</span>
+        <span className="text-gray-200 opacity-85 font-bold tracking-wider text-lg md:text-2xl px-3">
+          Where I&apos;ve Worked
+        </span>
         <div className="bg-gray-400 h-[0.2px] w-16 sm:w-44 md:w-80"></div>
       </section>
       {/* // ? Where I've Worked Content section */}
@@ -63,7 +65,8 @@ const CompaniesBar = props => {
     false,
     false,
     false,
-    ,false
+    ,
+    false,
   ]);
   const CompanyButton = props => {
     return (
@@ -89,88 +92,86 @@ const CompaniesBar = props => {
   };
 
   return (
-      <div
-        className=" flex flex-col md:flex-row  w-screen md:w-auto 
+    <div
+
+      className=" flex flex-col md:flex-row  w-screen md:w-auto 
       overflow-auto scrollbar-hide md:overflow-hidden pb-4 md:pb-0 justify-start
        sm:justify-center items-start sm:items-center"
-      >
-        {/* // ? left bar Holder */}
-        <div
-          className=" hidden md:block bg-gray-500 relative h-0.5 w-34 md:h-64 translate-y-1 md:w-0.5  
+    >
+      {/* // ? left bar Holder */}
+      <div
+        className=" hidden md:block bg-gray-500 relative h-0.5 w-34 md:h-64 translate-y-1 md:w-0.5  
         rounded md:order-1 order-2  "
-        >
-          {/* // ? animated left bar */}
-          <motion.div
-            animate={{ y: barPosition }}
-            // ref={barRef}
-            className={`absolute w-10 h-0.5 md:w-0.5 md:h-12 rounded bg-AAsecondary `}
-          ></motion.div>
+      >
+        {/* // ? animated left bar */}
+        <motion.div
+          animate={{ y: barPosition }}
+          // ref={barRef}
+          className={`absolute w-10 h-0.5 md:w-0.5 md:h-12 rounded bg-AAsecondary `}
+        ></motion.div>
+      </div>
+      {/* // ? Companies name as buttons */}
+      <div className="flex flex-col md:order-2 order-1 space-y-1 pl-8 md:pl-0 ">
+        <div className="flex flex-row md:flex-col">
+          <CompanyButton
+            ButtonOrderOfcompanyNameBackgroundColorGreen={0}
+            CompanyName="TrouveTavoie"
+            BarPosition={-8}
+            BarAvobePosition={1}
+            DescriptionJob="TrouveTavoie"
+            CompanyNameBackgroundColorGreen={[true, false, false, false, false]}
+            setDescriptionJob={props.setDescriptionJob}
+          />
+          <CompanyButton
+            ButtonOrderOfcompanyNameBackgroundColorGreen={1}
+            CompanyName="FeverTokens"
+            BarPosition={36}
+            BarAvobePosition={129}
+            DescriptionJob="FeverTokens"
+            CompanyNameBackgroundColorGreen={[false, true, false, false, false]}
+            setDescriptionJob={props.setDescriptionJob}
+          />
+          <CompanyButton
+            ButtonOrderOfcompanyNameBackgroundColorGreen={2}
+            CompanyName="IdealFresh"
+            BarPosition={80}
+            BarAvobePosition={257}
+            DescriptionJob="IdealFresh"
+            CompanyNameBackgroundColorGreen={[false, false, true, false, false]}
+            setDescriptionJob={props.setDescriptionJob}
+          />
+          <CompanyButton
+            ButtonOrderOfcompanyNameBackgroundColorGreen={3}
+            CompanyName="SuperBerry"
+            BarPosition={122}
+            BarAvobePosition={385}
+            DescriptionJob="SuperBerry"
+            CompanyNameBackgroundColorGreen={[false, false, false, true, false]}
+            setDescriptionJob={props.setDescriptionJob}
+          />
+          <CompanyButton
+            ButtonOrderOfcompanyNameBackgroundColorGreen={4}
+            CompanyName="AA Management"
+            BarPosition={166}
+            BarAvobePosition={513}
+            DescriptionJob="Advanced Agro Management"
+            CompanyNameBackgroundColorGreen={[false, false, false, false, true]}
+            setDescriptionJob={props.setDescriptionJob}
+          />
+          <CompanyButton
+            ButtonOrderOfcompanyNameBackgroundColorGreen={5}
+            CompanyName="Fantasia SME"
+            BarPosition={210}
+            BarAvobePosition={641}
+            DescriptionJob="Fantasia"
+            CompanyNameBackgroundColorGreen={[false, false, false, false, false, true]}
+            setDescriptionJob={props.setDescriptionJob}
+          />
         </div>
-        {/* // ? Companies name as buttons */}
-        <div className="flex flex-col md:order-2 order-1 space-y-1 pl-8 md:pl-0 ">
-          <div className="flex flex-row md:flex-col">
-            <CompanyButton
-              ButtonOrderOfcompanyNameBackgroundColorGreen={0}
-              CompanyName="TrouveTavoie"
-              BarPosition={-8}
-              BarAvobePosition={1}
-              DescriptionJob="TrouveTavoie"
-              CompanyNameBackgroundColorGreen={[true, false, false, false,false]}
-              setDescriptionJob={props.setDescriptionJob}
-            />
-            <CompanyButton
-              ButtonOrderOfcompanyNameBackgroundColorGreen={1}
-              CompanyName="FeverTokens"
-              BarPosition={36}
-              BarAvobePosition={129}
-              DescriptionJob="FeverTokens"
-              CompanyNameBackgroundColorGreen={[false, true, false, false,false]}
-              setDescriptionJob={props.setDescriptionJob}
-            />
-            <CompanyButton
-              ButtonOrderOfcompanyNameBackgroundColorGreen={2}
-              CompanyName="IdealFresh"
-              BarPosition={80}
-              BarAvobePosition={257}
-              DescriptionJob="IdealFresh"
-              CompanyNameBackgroundColorGreen={[false, false, true, false,false]}
-              setDescriptionJob={props.setDescriptionJob}
-            />
-            <CompanyButton
-              ButtonOrderOfcompanyNameBackgroundColorGreen={3}
-              CompanyName="SuperBerry"
-              BarPosition={122}
-              BarAvobePosition={385}
-              DescriptionJob="SuperBerry"
-              CompanyNameBackgroundColorGreen={[false, false, false, true,false]}
-              setDescriptionJob={props.setDescriptionJob}
-            />
-            <CompanyButton
-              ButtonOrderOfcompanyNameBackgroundColorGreen={4}
-              CompanyName="AA Management"
-              BarPosition={166}
-              BarAvobePosition={513}
-              DescriptionJob="Advanced Agro Management"
-              CompanyNameBackgroundColorGreen={[false, false, false, false,true]}
-              setDescriptionJob={props.setDescriptionJob}
-            />
-            <CompanyButton
-              ButtonOrderOfcompanyNameBackgroundColorGreen={5}
-              CompanyName="Fantasia SME"
-              BarPosition={210}
-              BarAvobePosition={641}
-              DescriptionJob="Fantasia"
-              CompanyNameBackgroundColorGreen={[false, false, false, false, false,true]}
-              setDescriptionJob={props.setDescriptionJob}
-            />
-          </div>
-          <div className="block md:hidden w-[760px] h-0.5 rounded bg-gray-500">
-            <motion.div
-              animate={{ x: barAbovePosition }}
-              className="w-[128px] h-0.5 rounded bg-AAsecondary"
-            ></motion.div>
-          </div>
+        <div className="block md:hidden w-[760px] h-0.5 rounded bg-gray-500">
+          <motion.div animate={{ x: barAbovePosition }} className="w-[128px] h-0.5 rounded bg-AAsecondary"></motion.div>
         </div>
       </div>
+    </div>
   );
 };
