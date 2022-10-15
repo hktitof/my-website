@@ -14,16 +14,17 @@ const Header = (props: { finishedLoading: boolean }) => {
   const [ShowElement, setShowElement] = useState(false);
   const [rotate, setRotate] = useState<boolean>(false);
   const context = useContext(AppContext);
+  const scrollSizeY=useRef<number>(0);
 
   // Define the EventListener for the NavBar
   useEffect(() => {
     if (context.sharedState.portfolio.NavBar.IntervalEvent == null) {
       context.sharedState.portfolio.NavBar.IntervalEvent=() => {
-        if (context.sharedState.portfolio.NavBar.scrollSizeY == 0) {
-          context.sharedState.portfolio.NavBar.scrollSizeY = window.scrollY;
+        if (scrollSizeY.current == 0) {
+          scrollSizeY.current = window.scrollY;
         } else {
           if (window.scrollY > 50) {
-            if (window.scrollY > context.sharedState.portfolio.NavBar.scrollSizeY) {
+            if (window.scrollY > scrollSizeY.current) {
               if (RefNavBar) {
                 RefNavBar.current?.classList.remove("translate-y-0");
                 RefNavBar.current?.classList.add("-translate-y-full");
@@ -32,10 +33,10 @@ const Header = (props: { finishedLoading: boolean }) => {
               RefNavBar.current?.classList.add("translate-y-0");
               RefNavBar.current?.classList.remove("-translate-y-full");
             }
-            context.sharedState.portfolio.NavBar.scrollSizeY = window.scrollY;
+            scrollSizeY.current = window.scrollY;
           }
         }
-        console.log("Scrolling checking for NavBar ", context.sharedState.portfolio.NavBar.scrollSizeY);
+        console.log("Scrolling checking for NavBar ", scrollSizeY.current);
       }
     }
   }, [context.sharedState.portfolio.NavBar, context.sharedState.portfolio.NavBar.IntervalEvent]);
@@ -44,7 +45,7 @@ const Header = (props: { finishedLoading: boolean }) => {
   useEffect(() => {
     if (context.sharedState.portfolio.NavBar.scrolling == null) {
       context.sharedState.portfolio.NavBar.scrolling = true;
-      context.sharedState.portfolio.NavBar.scrollSizeY = 0;
+      scrollSizeY.current = 0;
       //Hide when scroll down & show when scroll up
       if (typeof window !== "undefined") {
         window.addEventListener("scroll", context.sharedState.portfolio.NavBar.IntervalEvent);

@@ -1,7 +1,7 @@
 import Header from "../components/Header/Header";
 import Startup from "../components/Header/StartupLogo/Startup";
 import MyName from "../components/Home/MyName/MyName";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState, useRef } from "react";
 import SocialMediaArround from "../components/Home/SocialMediaArround/SocialMediaArround";
 import AboutMe from "../components/Home/AboutMe/AboutMe";
 import ThisCantBeReached from "../components/Home/ThisSiteCantBeReached/ThisCantBeReached";
@@ -16,6 +16,10 @@ export default function Home() {
   const [ShowMe, setShowMe] = useState(false);
   // context Variable to clearInterval
   const context = useContext(AppContext);
+  const aboutRef = useRef<HTMLDivElement>(null);
+  const myNameRef = useRef<HTMLDivElement>(null);
+  const homeRef=useRef<HTMLDivElement>(null);
+
 
   useEffect(() => {
     // remove the interval Cookie timer setter when
@@ -29,7 +33,6 @@ export default function Home() {
       document.removeEventListener("keydown", context.sharedState.typing.keyboardEvent);
 
       // remove the Interval of Scrolling for the navBar
-      
     }
     setTimeout(() => {
       setShowElement(true);
@@ -47,31 +50,39 @@ export default function Home() {
     }, 10400);
   }, [context, context.sharedState]);
 
-  // !TODO : reteste NavBar
 
-  useEffect(() => {
-    // if (!context.sharedState.finishedLoading) {
-    //   if(typeof window !== "undefined"){
-    //     window.addEventListener("scroll", ()=>{
+  // !TODO: add the EventListener for Scrolling and show elements when scrolling
+  // useEffect(() => {
+  //   if (context.sharedState.finishedLoading && context.sharedState.portfolio.Scrolling.IntervalEvent == null) {
+  //     if (typeof window !== "undefined") {
+  //       window.addEventListener("scroll", () => {
+  //         // if (!MyNameRef.current == null) {
+  //         //   const AboutRestHeight = MyNameRef.current.clientHeight - window.scrollY;
+  //         // }
+  //         // if (window.innerHeight) {
+  //         // }
+  //         if(homeRef.current!=null){
+  //           console.log("MyName Height ", homeRef.current.clientHeight);
+  //         }
+  //         console.log("Scrolling here...", window.scrollY);
+  //       });
+  //     }
+  //   }
+  //   console.log("context.sharedState.finishedLoading", context.sharedState.finishedLoading);
+  // }, [context.sharedState.finishedLoading, context.sharedState.portfolio.Scrolling.IntervalEvent]);
 
-    //       console.log("Scrolling here, ",window.scrollY);
-    //     });
-
-    //   }
-    // }
-    console.log("context.sharedState.finishedLoading", context.sharedState.finishedLoading);
-  }, [context.sharedState.finishedLoading]);
+  console.log("Portfolio Rendered...")
 
   return (
     // ? h-screen is changed to be deleted
     // ? because it's making it fixed for the whole page
-    <div className="relative h-screen bg-AAprimary w-full ">
+    <div ref={homeRef}  className="relative snap-mandatory h-screen bg-AAprimary w-full ">
       {context.sharedState.finishedLoading ? <></> : ShowThisCantBeReached ? <ThisCantBeReached /> : <></>}
       {context.sharedState.finishedLoading ? <></> : ShowElement ? <Startup /> : <></>}
       <Header finishedLoading={context.sharedState.finishedLoading} />
-      <MyName finishedLoading={context.sharedState.finishedLoading} />
+      <MyName ref={myNameRef} finishedLoading={context.sharedState.finishedLoading} />
       <SocialMediaArround finishedLoading={context.sharedState.finishedLoading} />
-      {context.sharedState.finishedLoading ? <AboutMe /> : <></>}
+      {context.sharedState.finishedLoading ? <AboutMe ref={aboutRef} /> : <></>}
       {context.sharedState.finishedLoading ? <WhereIHaveWorked /> : <></>}
       {context.sharedState.finishedLoading ? <SomethingIveBuilt /> : <></>}
       {context.sharedState.finishedLoading ? <GetInTouch /> : <></>}

@@ -14,6 +14,9 @@ function MyApp({ Component, pageProps }) {
         scrolling: null,
         scrollSizeY: null,
       },
+      Scrolling:{
+        IntervalEvent:null
+      }
     },
     userdata: {
       timerCookieRef: timerCookie,
