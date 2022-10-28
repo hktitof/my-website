@@ -54,7 +54,7 @@ export default function Home() {
   }, [context, context.sharedState]);
 
   useEffect(()=>{
-    Aos.init({duration:2000})
+    Aos.init({duration:2000,once:true})
   },[])
 
 
@@ -124,7 +124,7 @@ export default function Home() {
       {context.sharedState.finishedLoading ? <WhereIHaveWorked /> : <></>}
       {context.sharedState.finishedLoading ? <SomethingIveBuilt /> : <></>}
       {context.sharedState.finishedLoading ? <GetInTouch /> : <></>}
-      {ShowMe? <Footer githubUrl={"https://github.com/hktitof/my-website"} hideSocialsInDesktop={true} />:<></>}
+      {context.sharedState.finishedLoading? <Footer githubUrl={"https://github.com/hktitof/my-website"} hideSocialsInDesktop={true} />:<></>}
     </div>
   </>
 

@@ -51,7 +51,7 @@ export default function Fotter(props:{githubUrl:string,hideSocialsInDesktop:bool
                   "w-4 h-4 text-gray-400 fill-current group-hover:text-AAsecondary"
                 }
               />
-              <span className="">Github</span>
+              <span className="">Source code - Github</span>
             </span>
           </div>
         </a>

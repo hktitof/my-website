@@ -53,7 +53,7 @@ export default function Fotter(props:{link:string,className:string}) {
                   "w-4 h-4 text-gray-400 fill-current group-hover:text-AAsecondary duration-800"
                 }
               />
-              <span className="">Github</span>
+              <span className="">Source code - Github</span>
             </span>
           </div>
         </a>
