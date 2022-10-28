@@ -57,8 +57,13 @@ export default function Home() {
     Aos.init({duration:2000,once:true})
   },[])
 
+  useEffect(()=>{
+    if(context.sharedState.finishedLoading){
+        console.log("ref value ----------------------- : ",homeRef.current)
+    }
+  },[ context.sharedState.finishedLoading])
 
-  // !TODO: add the EventListener for Scrolling and show elements when scrolling
+  // !TODO: Add Scroll to a Section in Mobile Menu
   // useEffect(() => {
   //   if (context.sharedState.finishedLoading && context.sharedState.portfolio.Scrolling.IntervalEvent == null) {
   //     if (typeof window !== "undefined") {
@@ -114,10 +119,10 @@ export default function Home() {
       </Head>
     {/* // ? h-screen is changed to be deleted */}
     {/* // ? because it's making it fixed for the whole page */}
-    <div ref={homeRef}  className="relative snap-mandatory min-h-screen bg-AAprimary w-full ">
+    <div   className="relative snap-mandatory min-h-screen bg-AAprimary w-full ">
       {context.sharedState.finishedLoading ? <></> : ShowThisCantBeReached ? <ThisCantBeReached /> : <></>}
       {context.sharedState.finishedLoading ? <></> : ShowElement ? <Startup /> : <></>}
-      <Header finishedLoading={context.sharedState.finishedLoading} />
+      <Header finishedLoading={context.sharedState.finishedLoading} sectionsRef={homeRef}/>
       <MyName ref={myNameRef} finishedLoading={context.sharedState.finishedLoading} />
       <SocialMediaArround finishedLoading={context.sharedState.finishedLoading} />
       {context.sharedState.finishedLoading ? <AboutMe ref={aboutRef} /> : <></>}

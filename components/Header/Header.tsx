@@ -9,7 +9,7 @@ import AppContext from "../AppContextFolder/AppContext";
 const addClass = (ref: any, myclass: string) => {
   ref.current?.classLIst.add(myclass);
 };
-const Header = (props: { finishedLoading: boolean }) => {
+const Header = (props: { finishedLoading: boolean,sectionsRef }) => {
   const RefNavBar = useRef<HTMLDivElement>(null);
   const [ShowElement, setShowElement] = useState(false);
   const [rotate, setRotate] = useState<boolean>(false);
@@ -99,7 +99,7 @@ const Header = (props: { finishedLoading: boolean }) => {
         />
 
         {/* ? Desktop Menu by Titof */}
-        <DesktopMenu finishedLoading={props.finishedLoading} />
+        <DesktopMenu finishedLoading={props.finishedLoading} sectionsRef={props.sectionsRef}/>
       </motion.div>
     </>
   );

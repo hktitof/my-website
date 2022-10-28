@@ -93,7 +93,7 @@ const CompaniesBar = props => {
 
   return (
     <div
-
+      id="WhereIhaveWorkedSection"
       className=" flex flex-col md:flex-row  w-screen md:w-auto 
       overflow-auto scrollbar-hide md:overflow-hidden pb-4 md:pb-0 justify-start
        sm:justify-center items-start sm:items-center"
