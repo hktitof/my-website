@@ -23,7 +23,7 @@ export default function Home() {
   const [inputLostFocus, setInputLostFocus] = useState(false);
   const timeToType: number = 180; // default time to type
   const seconds = useRef<number>(timeToType); // this useRef will hold the remaining seconds to type
-  const timerCountingInterval = useRef(); // this useRef will hold the interval used in TimerSpan Component
+  const timerCountingInterval = useRef(); // this useRef will hold the interval that is used in TimerSpan Component
   const [statistics, setStatistics] = useState<Statistics>([]); // this state will hold the statistics after user finish typing
   const [isStartedTyping,seIsStartedTyping] = useState<boolean>(false); // this state will hold if user started typing
   const context = useContext(AppContext);

@@ -49,7 +49,7 @@ export default function DesktopMenu(props: { finishedLoading: boolean; sectionsR
         //   console.log("ref value : ", props.sectionsRef.current);
         // }}
       >
-        <Link to="WhereIhaveWorkedSection" spy={true} smooth={true} offset={-150} duration={500}>
+        <Link to="WhereIhaveWorkedSection" spy={true} smooth={true} offset={-300} duration={200}>
           &gt; 02.{" "}
           <span className="text-white  hover:cursor-pointer hover:text-AAsecondary duration-300">Experience</span>
         </Link>
@@ -70,7 +70,7 @@ export default function DesktopMenu(props: { finishedLoading: boolean; sectionsR
         }}
         className="text-AAsecondary"
       >
-        <Link to="SomethingIveBuiltSection" spy={true} smooth={true} offset={-100} duration={500}>
+        <Link to="SomethingIveBuiltSection" spy={true} smooth={true} offset={-100} duration={200}>
         &gt; 03. <span className="text-white  hover:cursor-pointer hover:text-AAsecondary duration-300">Work</span>
 
         </Link>
@@ -92,7 +92,7 @@ export default function DesktopMenu(props: { finishedLoading: boolean; sectionsR
         }}
         className="text-AAsecondary"
       >
-         <Link to="GetInTouchSection" spy={true} smooth={true} offset={-100} duration={500}>
+         <Link to="GetInTouchSection" spy={true} smooth={true} offset={-100} duration={200}>
          &gt; 04. <span className="text-white  hover:cursor-pointer hover:text-AAsecondary duration-300">Contact</span>
         </Link>
       </motion.span>

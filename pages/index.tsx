@@ -63,7 +63,7 @@ export default function Home() {
     }
   },[ context.sharedState.finishedLoading])
 
-  // !TODO: Add Scroll to a Section in Mobile Menu
+  // !TODO: Add Scroll to a Section in Mobile Menu & remove unecessary refs
   // useEffect(() => {
   //   if (context.sharedState.finishedLoading && context.sharedState.portfolio.Scrolling.IntervalEvent == null) {
   //     if (typeof window !== "undefined") {
