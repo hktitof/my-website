@@ -149,13 +149,30 @@ example :
 ```api
     /api/userInfoByIP/159.89.173.104
 ```
-###### ***Get Request to above endpoint the zipcode of the lat and long provided :***
+###### ***Get Request to above endpoint will return the zipcode of the lat and long provided :***
 ```JavaScript
     {"zipcode" : "56998"}
 ```
-###### ***the Response below is returned if the lat and long provided has no zip code in Google maps :***
+###### ***the Response below is returned if the lat and long provided has no zip code in Google maps, like lat & long in positioned in the ocean :***
 ```JavaScript
     {"zipcode" : "00000"}
+```
+
+##### Endpoint 3 :
+the following endpoint will return a json object contains "quote" and "author", for SpeedTyping project i displayed only the quote, **minLength** is considered as the minimum of characters.  
+
+```api
+    /api/typing/[minLength]
+```
+##### notes : 
+- ***minLength*** should be between 10 - 300.
+- the returned quote is a chain of 
+- i costumized the original Endpoint using The API Route of Nextjs, here is the Original Endpoint.
+
+##### Original Endpiont :
+###### URL : 
+```api
+    https://api.quotable.io/random?minLength=[minLength]
 ```
 ---
 
