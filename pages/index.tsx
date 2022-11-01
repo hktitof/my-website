@@ -89,14 +89,7 @@ export default function Home() {
     image: "/titofCercle.png",
     type: "website",
   };
-  return (
-    <>
-      <div className="h-screen w-full bg-AAprimary flex justify-center items-center text-AAsecondary">
-        <span className="">Currently in the development...</span>
-      </div>
-    </>
-  );
-
+ 
   return (
     <>
       <Head>
