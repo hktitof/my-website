@@ -1,34 +1,210 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<div align="center">
+  <img alt="Logo" src="https://user-images.githubusercontent.com/62770500/199333052-3cd38b31-7e77-4883-a1ff-a037afcc0492.png" width="100" />
+</div>
+<h1 align="center">
+  anaflous.com - v1
+</h1>
+<p align="center">
+  The first iteration of <a href="https://anaflous.com" target="_blank">anaflous.com</a> built with <a href="https://nextjs.org/" target="_blank">Nextjs</a> and hosted with <a href="https://vercel.com/" target="_blank">Vercel</a>
+</p>
 
-## Getting Started
+<p align="center">
+  <a href="https://my-website-ten-sage.vercel.app/" target="_blank">
+    <img src="https://raw.githubusercontent.com/DataDog/integrations-extras/master/vercel/images/logo-full-black.png" width="100" alt="Vercel Status" />
+  </a>
+</p>
 
-First, run the development server:
+![demo](https://user-images.githubusercontent.com/62770500/199337431-d632cc3c-12fb-40db-8f96-0d5e55555579.png)
+---
+## 🚨 Forking this repo (please read!)
 
+Many people have contacted me asking me if they can use this code for their own website, and the answer to that question is usually **yes, with attribution**.
+
+I value keeping my site open source, but as you all know, _**plagiarism is bad**_. It's always disheartening whenever I find that someone has copied my site without giving me credit. I spent a non-trivial amount of effort building and designing this iteration of my website, and I am proud of it! All I ask of you all is to not claim this effort as your own.
+
+Please note that i build my portfolio from scratch and also I did not build this site with the intention of it being a starter theme, so if you have questions about implementation, please refer to the [Next.js DOCS](https://nextjs.org/docs).
+
+---
+### Table of Contents
+
+- [Description](#description)
+- [How To Use](#how-to-use)
+- [🎨 Color Reference](#references)
+- [License](#license)
+- [Author Info](#author-info)
+
+---
+## Description
+
+Without a doubt a portfolio website is a unique way to showcase your work and let others know about yourself. It’s like an evergreen platform for your projects, case studies, and information about you. However, Why why did i choose Next.js? Because it is a React framework with Server-Side Rendering, which is good for SEO (Good for us if we get found on Google, right?).
+
+Also, Next.js helps us build blazing-fast websites along with benefits such as Image optimization.
+
+Why tailwindcss? Because TailwindCSS is a framework which reduces a lot of styling efforts. It has low level CSS classes that you can directly embed into the HTML code.
+---
+## Technologies & libraries
+
+Since i integrated some of my project into my website i'll i mention most of technologies & libraries that i used.
+
+- Next.js
+- Nodejs
+- TypeScript
+- Tailwind CSS
+- framer-motion
+- Google API
+- cookie-cutter
+- react-leaflet
+- Vercel Analytics
+
+##### Note : 
+##### You can find the rest of packages in the file ```/package.json```
+---
+
+### How To Use
+
+Yes, you can fork this repo. Please give me proper credit by linking back to [anaflous.com](https://anaflous.com). Thanks!
+
+## 🛠 Installation & Set Up
+
+1. Clone the repo CLI
+
+   ```sh
+   git clone https://github.com/hktitof/my-website.git
+   ```
+
+2. Install and use the correct version of Node using [NVM](https://github.com/nvm-sh/nvm)
+
+   ```sh
+   nvm install
+   ```
+
+3. Install dependencies
+
+   ```sh
+   yarn
+   ```
+   
+4. (OPTIONAL) : Add .env file to the root project 
+ 
 ```bash
-npm run dev
-# or
-yarn dev
+    touch .env
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+5.  (OPTIONAL) : Add your Google API key inside .env file.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+###### ***Note :***
+###### not Adding Google API to the project will cause not returning the correct zip code, it might be always "00000"
+###### make sure you enabled Geolocation to this API
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+```Javascript
+    NEXT_PUBLIC_KEY_GOOGLE_API="your API key"
+```
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+6. Start the development server
 
-## Learn More
+   ```sh
+   yarn dev
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+## 🚀 Building and Running for Production
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Generate a full static production build
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+   ```sh
+   yarn build
+   ```
 
-## Deploy on Vercel
+1. Preview the site as it will appear once deployed
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+   ```sh
+   yarn run serve
+   ```
+---
+## API Description :
+##### Endpoint 1 :
+the following endpoint will return a json object contains a bunch of information about the ip address  
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+```api
+    /api/userInfoByIP/[IP-Address]
+```
+example :
+
+```api
+    /api/userInfoByIP/159.89.173.104
+```
+###### ***Get Request to above endpoint will return the following json data :***
+```JavaScript
+    {"zip":"560002","country":"India","countryCode":"IN","region":"KA","regionName":"Karnataka","city":"Bengaluru","datetime":"9/6/2022, 1:24:30 AM","lat":12.9634,"lon":77.5855,"timezone":"Asia/Kolkata","isp":"DigitalOcean, LLC","org":"Digital Ocean","as":"AS14061 DigitalOcean, LLC","query":"159.89.173.104"}
+```
+
+##### Endpoint 2 :
+the following endpoint will return a json object contains the zip code for the latitude and logitude
+
+```api
+    "/api/userInfoByLatLon/" + lat + "/" + lon
+```
+example :
+
+```api
+    /api/userInfoByIP/159.89.173.104
+```
+###### ***Get Request to above endpoint the zipcode of the lat and long provided :***
+```JavaScript
+    {"zipcode" : "56998"}
+```
+###### ***the Response below is returned if the lat and long provided has no zip code in Google maps :***
+```JavaScript
+    {"zipcode" : "00000"}
+```
+---
+
+## References
+
+| Color          | Hex                                                                |
+| -------------- | ------------------------------------------------------------------ |
+| Navy           | ![#0a192f](https://via.placeholder.com/10/0a192f?text=+) `#0a192f` |
+| Light Navy     | ![#112240](https://via.placeholder.com/10/0a192f?text=+) `#112240` |
+| Lightest Navy  | ![#233554](https://via.placeholder.com/10/303C55?text=+) `#233554` |
+| Slate          | ![#8892b0](https://via.placeholder.com/10/8892b0?text=+) `#8892b0` |
+| Light Slate    | ![#a8b2d1](https://via.placeholder.com/10/a8b2d1?text=+) `#a8b2d1` |
+| Lightest Slate | ![#ccd6f6](https://via.placeholder.com/10/ccd6f6?text=+) `#ccd6f6` |
+| White          | ![#e6f1ff](https://via.placeholder.com/10/e6f1ff?text=+) `#e6f1ff` |
+| Green          | ![#64ffda](https://via.placeholder.com/10/64ffda?text=+) `#64ffda` |
+
+---
+
+## License
+
+MIT License
+
+Copyright (c) [2022] [Abdellatif Anaflous]
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+
+
+---
+
+## Author Info
+
+- Linkedin - [@abdellatif-anaflous](https://www.linkedin.com/in/abdellatif-anaflous/)
+- Website - [Abdellatif Anaflous](https://anaflous.com)
+
+[Back To The Top](#description) :
+
