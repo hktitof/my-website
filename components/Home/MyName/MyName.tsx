@@ -69,12 +69,14 @@ export default function MyName(props: { finishedLoading: boolean,ref }) {
           }}
           className="mt-12"
         >
+          <a href={"/resume.pdf"} target={"_blank"} rel="noreferrer">
+
           <button
-            onClick={() => router.push("/userdata")}
             className="bg-AAprimary text-AAsecondary border rounded px-4 sm:px-8 py-3 sm:py-4 border-AAsecondary"
           >
             Check out my resume!
           </button>
+          </a>
         </motion.div>
       </>
     </div>

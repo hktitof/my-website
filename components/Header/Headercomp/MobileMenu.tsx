@@ -89,12 +89,14 @@ const MobileMenu = props => {
               Contact
             </span>
           </Link>
-          <button
-            className="rounded border font-Text2  border-AAsecondary
+          <a href={"/resume.pdf"} target={"_blank"} rel="noreferrer">
+            <button
+              className="rounded border font-Text2  border-AAsecondary
            hover:bg-ResumeButtonHover py-2 sm:py-4 px-5 sm:px-10 text-xs text-AAsecondary"
-          >
-            Resume
-          </button>
+            >
+              Resume
+            </button>
+          </a>
         </div>
       </motion.div>
     </>
