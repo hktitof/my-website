@@ -99,7 +99,7 @@ const Header = (props: { finishedLoading: boolean,sectionsRef }) => {
         />
 
         {/* ? Desktop Menu by Titof */}
-        <DesktopMenu finishedLoading={props.finishedLoading} sectionsRef={props.sectionsRef}/>
+        <DesktopMenu finishedLoading={props.finishedLoading} />
       </motion.div>
     </>
   );
