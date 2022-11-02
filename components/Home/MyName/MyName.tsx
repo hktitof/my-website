@@ -2,15 +2,15 @@ import React from "react";
 import { motion } from "../../../node_modules/framer-motion/dist/framer-motion";
 import Link from "next/link";
 import { useRouter } from "next/router";
-export default function MyName(props: { finishedLoading: boolean,ref }) {
+export default function MyName(props: { finishedLoading: boolean }) {
   const router = useRouter();
   return (
     <div
-      ref={props.ref}
+      
       className="h-full flex flex-col justify-center
       px-8 2xl:px-72 xl:px-56 lg:px-32  md:px-28 sm:px-8 py-32 sm:py-52  "
     >
-      <>
+      
         <motion.span
           initial={{ y: 10, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
@@ -78,7 +78,7 @@ export default function MyName(props: { finishedLoading: boolean,ref }) {
           </button>
           </a>
         </motion.div>
-      </>
+      
     </div>
   );
 }

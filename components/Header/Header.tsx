@@ -53,11 +53,7 @@ const Header = (props: { finishedLoading: boolean,sectionsRef }) => {
     }
   }, [context.sharedState.portfolio.NavBar, context.sharedState.portfolio.NavBar.scrolling]);
 
-  // useEffect(()=>{
-  //   if (typeof window !== "undefined" && context.sharedState.portfolio.NavBar.scrolling) {
-  //     window.addEventListener("scroll", context.sharedState.portfolio.NavBar.IntervalEvent);
-  //   }
-  // },[context.sharedState.portfolio.NavBar.IntervalEvent, context.sharedState.portfolio.NavBar.scrolling])
+  
 
   useEffect(() => {
     setTimeout(() => {

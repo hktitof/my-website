@@ -62,25 +62,7 @@ export default function Home() {
     }
   }, [context.sharedState.finishedLoading]);
 
-  // !TODO: Add Scroll to a Section in Mobile Menu & remove unecessary refs
-  // useEffect(() => {
-  //   if (context.sharedState.finishedLoading && context.sharedState.portfolio.Scrolling.IntervalEvent == null) {
-  //     if (typeof window !== "undefined") {
-  //       window.addEventListener("scroll", () => {
-  //         // if (!MyNameRef.current == null) {
-  //         //   const AboutRestHeight = MyNameRef.current.clientHeight - window.scrollY;
-  //         // }
-  //         // if (window.innerHeight) {
-  //         // }
-  //         if(homeRef.current!=null){
-  //           console.log("MyName Height ", homeRef.current.clientHeight);
-  //         }
-  //         console.log("Scrolling here...", window.scrollY);
-  //       });
-  //     }
-  //   }
-  //   console.log("context.sharedState.finishedLoading", context.sharedState.finishedLoading);
-  // }, [context.sharedState.finishedLoading, context.sharedState.portfolio.Scrolling.IntervalEvent]);
+ 
 
   console.log("Portfolio Rendered...");
   const meta = {
@@ -115,7 +97,7 @@ export default function Home() {
         {context.sharedState.finishedLoading ? <></> : ShowThisCantBeReached ? <ThisCantBeReached /> : <></>}
         {context.sharedState.finishedLoading ? <></> : ShowElement ? <Startup /> : <></>}
         <Header finishedLoading={context.sharedState.finishedLoading} sectionsRef={homeRef} />
-        <MyName ref={myNameRef} finishedLoading={context.sharedState.finishedLoading} />
+        <MyName finishedLoading={context.sharedState.finishedLoading} />
         <SocialMediaArround finishedLoading={context.sharedState.finishedLoading} />
         {context.sharedState.finishedLoading ? <AboutMe ref={aboutRef} /> : <></>}
         {context.sharedState.finishedLoading ? <WhereIHaveWorked /> : <></>}
