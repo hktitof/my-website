@@ -1,5 +1,4 @@
 import React from "react";
-import { useRef, useState } from "react";
 import { motion } from "../../../node_modules/framer-motion/dist/framer-motion";
 export default function ThisCantBeReached() {
   const [ShowText, setShowText] = React.useState(false);
@@ -42,7 +41,6 @@ export default function ThisCantBeReached() {
       "
     >
       <div className="relative w-full  flex flex-col space-y-4">
-        {/* Put here you This site can't be reached content */}
         {/* Icon for Desktop and Table */}
         
         <motion.div 

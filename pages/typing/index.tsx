@@ -9,7 +9,6 @@ import AppContext from "../../components/AppContextFolder/AppContext";
 
 
 // let keyboardEvent; // this variable will hold the keyboard event callback function;
-let eventInputLostFocus; //  this variable will hold the event callback function that will be fired when window is resizing & input lost focus
 export default function Home() {
   //  this general state will hold the data
   const [myText, setMyText] = React.useState<Data>([[], [], { CursorPosition: 0 }]);
@@ -140,7 +139,6 @@ export default function Home() {
   // console.log("data : ", myText);
   // console.log("Active Word : ", activeWordWithIndex);
   // console.log("CursorPosition : ", myText[2].CursorPosition);
-  // console.log("rendering Finished-----------------------------");
 
   return (
     <div

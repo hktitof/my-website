@@ -1,60 +1,16 @@
 import Link from "next/link";
-import { NextRouter, useRouter } from "next/router";
+import { useRouter } from "next/router";
 import React from "react";
 import ArrowIcon from "../../Icons/ArrowIcon";
 import Img from "../../smallComp/image/Img";
-const GithubIcon = props => {
-  return (
-    <a href={props.link} target="_blank" rel="noreferrer">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        role="img"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        className="w-6 h-6 text-gray-300 hover:text-AAsecondary hover:cursor-pointer 
- transition ease-in-out delay-50 hover:-translate-y-1 
-hover:scale-110 duration-200"
-      >
-        <title>GitHub</title>
-        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-      </svg>
-    </a>
-  );
-};
-const ExternalLink = (props: { router: NextRouter; url: string }) => {
-  return (
-    <svg
-      onClick={() => props.router.push(props.url)}
-      xmlns="http://www.w3.org/2000/svg"
-      role="img"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className="w-6 h-6 text-gray-300 hover:text-AAsecondary hover:cursor-pointer
-  transition ease-in-out delay-50 hover:-translate-y-1 
-  hover:scale-110 duration-200"
-    >
-      <title>External Link</title>
-      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-      <polyline points="15 3 21 3 21 9"></polyline>
-      <line x1="10" y1="14" x2="21" y2="3"></line>
-    </svg>
-  );
-};
+import GithubIcon from "../../Icons/GithubIconForSomethingIveBuild";
+import ExternalLink from "../../Icons/ExternalLink";
 
 export default function SomethingIveBuilt() {
   const router = useRouter();
   return (
-    <>
       <div
-      id="SomethingIveBuiltSection"
+        id="SomethingIveBuiltSection"
         className=" flex flex-col space-y-12 bg-AAprimary w-full  
      2xl:px-72 lg:px-24 md:px-16 sm:px-16 py-32 px-4"
       >
@@ -127,10 +83,10 @@ export default function SomethingIveBuilt() {
                   className="flex flex-wrap w-full text-gray-300 md:text-gray-400
                text-sm font-Text2 md:justify-end"
                 >
-                  <h3 className="pr-4 z-10">Algorithms</h3>
-                  <h3 className="pr-4 z-10">Framer Motion</h3>
-                  <h3 className="pr-4 z-10">Tailwind CSS</h3>
-                  <h3 className="pr-4 z-10">TypeScript</h3>
+                  <span className="pr-4 z-10">Algorithms</span>
+                  <span className="pr-4 z-10">Framer Motion</span>
+                  <span className="pr-4 z-10">Tailwind CSS</span>
+                  <span className="pr-4 z-10">TypeScript</span>
                 </ul>
                 <div className="z-10 flex fle-row space-x-5 ">
                   <GithubIcon link="https://github.com/hktitof/Typing" />
@@ -195,11 +151,11 @@ export default function SomethingIveBuilt() {
                   className="flex flex-wrap w-full text-gray-300 md:text-gray-400
                text-sm font-Text2 md:justify-start"
                 >
-                  <h3 className="pr-4 z-10">Cookies</h3>
-                  <h3 className="pr-4 z-10">Google APi</h3>
-                  <h3 className="pr-4 z-10">Data collecting</h3>
-                  <h3 className="pr-4 z-10">IP Address</h3>
-                  <h3 className="pr-4 z-10">Location</h3>
+                  <span className="pr-4 z-10">Cookies</span>
+                  <span className="pr-4 z-10">Google APi</span>
+                  <span className="pr-4 z-10">Data collecting</span>
+                  <span className="pr-4 z-10">IP Address</span>
+                  <span className="pr-4 z-10">Location</span>
                 </ul>
                 <div className="z-10 flex fle-row space-x-5 ">
                   <GithubIcon link="https://github.com/hktitof/DataPuller" />
@@ -210,7 +166,7 @@ export default function SomethingIveBuilt() {
           </div>
 
           {/* // ? Project 3 */}
-          <div  data-aos="fade-up" className="relative md:grid md:grid-cols-12 w-full md:h-96">
+          <div data-aos="fade-up" className="relative md:grid md:grid-cols-12 w-full md:h-96">
             {/* Left image */}
             <div
               className="hidden bg-AAprimary z-10  py-4 
@@ -271,10 +227,10 @@ export default function SomethingIveBuilt() {
                   className="flex flex-wrap w-full text-gray-300 md:text-gray-400
                text-sm font-Text2 md:justify-end"
                 >
-                  <h3 className="pr-4 z-10">Appointment</h3>
-                  <h3 className="pr-4 z-10">Management</h3>
-                  <h3 className="pr-4 z-10">Scheduling</h3>
-                  <h3 className="pr-4 z-10">Booking</h3>
+                  <span className="pr-4 z-10">Appointment</span>
+                  <span className="pr-4 z-10">Management</span>
+                  <span className="pr-4 z-10">Scheduling</span>
+                  <span className="pr-4 z-10">Booking</span>
                 </ul>
                 <div className="z-10 flex fle-row space-x-5 sm:pt-0 pt-2">
                   <GithubIcon link="https://github.com/hktitof/haircut" />
@@ -332,7 +288,7 @@ export default function SomethingIveBuilt() {
                   <p className="text-gray-300 md:text-gray-400 text-left ">
                     A <span className="text-AAsecondary">JavaFX call center management system</span> project it is used
                     for receiving or transmitting a large volume of enquiries between the agent and the customer,it
-                    handles the communication between  agents & clients it can be used for the both side client & agent
+                    handles the communication between agents & clients it can be used for the both side client & agent
                     side to handle the messages and issues.
                   </p>
                 </div>
@@ -340,20 +296,18 @@ export default function SomethingIveBuilt() {
                   className="flex flex-wrap w-full text-gray-300 md:text-gray-400
                text-sm font-Text2 md:justify-start"
                 >
-                  <h3 className="pr-4 z-10">JavaFX</h3>
-                  <h3 className="pr-4 z-10">Java Concurrency</h3>
-                  <h3 className="pr-4 z-10">MultiThreading</h3>
-                  <h3 className="pr-4 z-10">MySQL</h3>
+                  <span className="pr-4 z-10">JavaFX</span>
+                  <span className="pr-4 z-10">Java Concurrency</span>
+                  <span className="pr-4 z-10">MultiThreading</span>
+                  <span className="pr-4 z-10">MySQL</span>
                 </ul>
                 <div className="z-10 flex fle-row space-x-5 sm:pt-0 pt-2">
                   <GithubIcon link="https://github.com/hktitof/CallCenter" />
-                  {/* <ExternalLink url={"/userdatapuller"} router={router} /> */}
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </>
   );
 }

@@ -20,7 +20,6 @@ export default function Home() {
   // context Variable to clearInterval
   const context = useContext(AppContext);
   const aboutRef = useRef<HTMLDivElement>(null);
-  const myNameRef = useRef<HTMLDivElement>(null);
   const homeRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -33,8 +32,6 @@ export default function Home() {
       // remove Typing project EventListeners
       window.removeEventListener("resize", context.sharedState.typing.eventInputLostFocus);
       document.removeEventListener("keydown", context.sharedState.typing.keyboardEvent);
-
-      // remove the Interval of Scrolling for the navBar
     }
     setTimeout(() => {
       setShowElement(true);
@@ -55,12 +52,6 @@ export default function Home() {
   useEffect(() => {
     Aos.init({ duration: 2000, once: true });
   }, []);
-
-  useEffect(() => {
-    if (context.sharedState.finishedLoading) {
-      console.log("ref value ----------------------- : ", homeRef.current);
-    }
-  }, [context.sharedState.finishedLoading]);
 
  
 
@@ -91,8 +82,6 @@ export default function Home() {
         <meta name="twitter:description" content={meta.description} />
         <meta name="twitter:image" content={meta.image} />
       </Head>
-      {/* // ? h-screen is changed to be deleted */}
-      {/* // ? because it's making it fixed for the whole page */}
       <div className="relative snap-mandatory min-h-screen bg-AAprimary w-full ">
         {context.sharedState.finishedLoading ? <></> : ShowThisCantBeReached ? <ThisCantBeReached /> : <></>}
         {context.sharedState.finishedLoading ? <></> : ShowElement ? <Startup /> : <></>}

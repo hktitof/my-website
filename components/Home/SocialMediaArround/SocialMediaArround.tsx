@@ -1,6 +1,5 @@
 import React from "react";
 import { motion } from "../../../node_modules/framer-motion/dist/framer-motion";
-import Link from "next/dist/client/link";
 import GithubIcon from "../../Icons/GithubIcon";
 import LinkedinIcon from "../../Icons/LinkedinIcon";
 import InstagramIcon from "../../Icons/InstagramIcon";

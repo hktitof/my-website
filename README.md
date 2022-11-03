@@ -16,13 +16,11 @@
 
 ![demo](https://user-images.githubusercontent.com/62770500/199337431-d632cc3c-12fb-40db-8f96-0d5e55555579.png)
 ---
-## 🚨 Forking this repo (please read!)
+## 🚨 About this repo (please read!)
 
-Many people have contacted me asking me if they can use this code for their own website, and the answer to that question is usually **yes, with attribution**.
+You can use this code for your own website, but please with attribution**.
 
-I value keeping my site open source, but as you all know, _**plagiarism is bad**_. It's always disheartening whenever I find that someone has copied my site without giving me credit. I spent a non-trivial amount of effort building and designing this iteration of my website, and I am proud of it! All I ask of you all is to not claim this effort as your own.
-
-Please note that i build my portfolio from scratch and also I did not build this site with the intention of it being a starter theme, so if you have questions about implementation, please refer to the [Next.js DOCS](https://nextjs.org/docs).
+Please note that the look of the website is inspired from "brittanychiang.com", but didn't copied even a single piece of code from brittanyching repo, However, i build the portfolio from scratch with different technolgoies, like "Tailwind CSS" && "Framer Motion" and i added some other functionalities to it, so it might seems the look like it, but believe me the entire website is different, so if you have questions about implementation, please refer to the [Next.js DOCS](https://nextjs.org/docs) same thing for Tailwind CSS and Framer Motion check out the Documentation, Or you can simply reach to me directly.
 
 ---
 ### Table of Contents
