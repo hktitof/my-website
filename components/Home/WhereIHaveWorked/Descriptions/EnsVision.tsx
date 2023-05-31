@@ -10,7 +10,7 @@ export default function EnsVision() {
     },
     {
       text: "Conducted testing tasks to ensure website functionality and quality. Managed a large user base on the website",
-      keywords: ["quality", "testing"],
+      keywords: ["quality", "testing", "user base"],
     },
     {
       text: "Implemented website design and enhanced interactivity.",
@@ -32,6 +32,14 @@ export default function EnsVision() {
           </span>
           {/* Date */}
           <span className="font-mono text-xs text-gray-500">Dec 2022 - Present</span>
+          <span
+            className="font-mono text-xs text-AAsecondary hover:cursor-pointer"
+            style={{ fontSize: "0.6rem" }}
+            // set on click to open the website
+            onClick={() => window.open("https://www.ens.vision/", "_blank")}
+          >
+            www.ens.vision
+          </span>
         </div>
         <div className="flex flex-col space-y-4 sm:text-sm text-xs">
           {/* Tasks Description 1 */}

@@ -28,6 +28,12 @@ export default function TrouveTavoie() {
           </span>
           {/* Date */}
           <span className="font-mono text-xs text-gray-500">Mars - August 2022</span>
+          <span className="font-mono text-xs text-AAsecondary hover:cursor-pointer" style={{ fontSize: "0.6rem" }}
+           // set on click to open the website
+           onClick={() => window.open("https://www.trouvetavoie.io/", "_blank")}
+          >
+            www.trouvetavoie.io
+          </span>
         </div>
         <div className="flex flex-col space-y-4 sm:text-sm text-xs">
           {/* Tasks Description 1 */}

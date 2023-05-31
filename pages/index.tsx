@@ -53,8 +53,6 @@ export default function Home() {
     Aos.init({ duration: 2000, once: true });
   }, []);
 
- 
-
   console.log("Portfolio Rendered...");
   const meta = {
     title: "Abdellatif Anaflous - Software Engineer",
@@ -62,7 +60,7 @@ export default function Home() {
     image: "/titofCercle.png",
     type: "website",
   };
- 
+
   return (
     <>
       <Head>
@@ -97,6 +95,19 @@ export default function Home() {
         ) : (
           <></>
         )}
+        <div
+          className="z-10 fixed bottom-10 left-0  "
+          // make this div on the top of everything
+          style={{ zIndex: 1000 }}
+        >
+          <div className="h-6 w-6 rounded-r-md bg-yellow-400 flex justify-center items-center text-black text-xs p-1">
+            <span className="xl:block lg:hidden md:hidden sm:hidden hidden">2XL</span>
+            <span className="xl:hidden lg:block md:hidden sm:hidden hidden">XL</span>
+            <span className=" xl:hidden lg:hidden md:block sm:hidden hidden ">Lg</span>
+            <span className="xl:hidden lg:hidden md:hidden sm:block hidden ">md</span>
+            <span className="xl:hidden lg:hidden md:hidden sm:hidden block">sm</span>
+          </div>
+        </div>
       </div>
     </>
   );

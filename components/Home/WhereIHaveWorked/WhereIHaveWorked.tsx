@@ -14,7 +14,7 @@ export default function WhereIHaveWorked() {
   // ? INFORMATIONAL the default value of barRef's class should be at the beginning translate-y-[0px]
   const GetDescription = () => {
     switch (DescriptionJob) {
-      case "ENS Vision Ltd":
+      case "ENSVision":
         return <EnsVision />;
       case "TrouveTavoie":
         return <TrouveTavoie />;
@@ -30,7 +30,7 @@ export default function WhereIHaveWorked() {
         return <SuperBerry />;
     }
   };
-  const [DescriptionJob, setDescriptionJob] = React.useState("TrouveTavoie");
+  const [DescriptionJob, setDescriptionJob] = React.useState("ENSVision");
   return (
     <div data-aos="fade-up" className="flex flex-col items-center justify-center py-24 space-y-12 bg-AAprimary">
       {/* // ? Title "Where I've Worked" */}
@@ -119,16 +119,16 @@ const CompaniesBar = props => {
         <CompanyButton
             ButtonOrderOfcompanyNameBackgroundColorGreen={0}
             CompanyName="ENS Vision"
-            BarPosition={-17}
+            BarPosition={-12}
             BarAvobePosition={1}
-            DescriptionJob="ENS Vision Ltd"
+            DescriptionJob="ENSVision"
             CompanyNameBackgroundColorGreen={[true,false, false, false, false, false]}
             setDescriptionJob={props.setDescriptionJob}
           />
           <CompanyButton
             ButtonOrderOfcompanyNameBackgroundColorGreen={1}
             CompanyName="TrouveTavoie"
-            BarPosition={29}
+            BarPosition={32}
             BarAvobePosition={129}
             DescriptionJob="TrouveTavoie"
             CompanyNameBackgroundColorGreen={[false,true, false, false, false, false]}
@@ -137,7 +137,7 @@ const CompaniesBar = props => {
           <CompanyButton
             ButtonOrderOfcompanyNameBackgroundColorGreen={2}
             CompanyName="FeverTokens"
-            BarPosition={72}
+            BarPosition={76}
             BarAvobePosition={257}
             DescriptionJob="FeverTokens"
             CompanyNameBackgroundColorGreen={[false,false, true, false, false, false]}
@@ -146,7 +146,7 @@ const CompaniesBar = props => {
           <CompanyButton
             ButtonOrderOfcompanyNameBackgroundColorGreen={3}
             CompanyName="IdealFresh"
-            BarPosition={116}
+            BarPosition={120}
             BarAvobePosition={385}
             DescriptionJob="IdealFresh"
             CompanyNameBackgroundColorGreen={[false, false, false, true, false, false]}
@@ -155,7 +155,7 @@ const CompaniesBar = props => {
           <CompanyButton
             ButtonOrderOfcompanyNameBackgroundColorGreen={4}
             CompanyName="SuperBerry"
-            BarPosition={160}
+            BarPosition={164}
             BarAvobePosition={513}
             DescriptionJob="SuperBerry"
             CompanyNameBackgroundColorGreen={[false, false, false, false, true, false]}
@@ -164,7 +164,7 @@ const CompaniesBar = props => {
           <CompanyButton
             ButtonOrderOfcompanyNameBackgroundColorGreen={5}
             CompanyName="AA Management"
-            BarPosition={204}
+            BarPosition={208}
             BarAvobePosition={641}
             DescriptionJob="Advanced Agro Management"
             CompanyNameBackgroundColorGreen={[false, false, false, false, false, true]}
@@ -173,7 +173,7 @@ const CompaniesBar = props => {
           <CompanyButton
             ButtonOrderOfcompanyNameBackgroundColorGreen={6}
             CompanyName="Fantasia SME"
-            BarPosition={248}
+            BarPosition={252}
             BarAvobePosition={769}
             DescriptionJob="Fantasia"
             CompanyNameBackgroundColorGreen={[false, false, false, false, false, false, true]}
