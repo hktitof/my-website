@@ -13,6 +13,7 @@ import AppContext from "../components/AppContextFolder/AppContext";
 import Aos from "aos";
 import "aos/dist/aos.css";
 import Head from "next/head";
+import ScreenSizeDetector from "../components/CustomComponents/ScreenSizeDetector";
 export default function Home() {
   const [ShowElement, setShowElement] = useState(false);
   const [ShowThisCantBeReached, setShowThisCantBeReached] = useState(true);
@@ -60,6 +61,7 @@ export default function Home() {
     image: "/titofCercle.png",
     type: "website",
   };
+  const isProd = process.env.NODE_ENV === "production";
 
   return (
     <>
@@ -95,19 +97,7 @@ export default function Home() {
         ) : (
           <></>
         )}
-        <div
-          className="z-10 fixed bottom-10 left-0  "
-          // make this div on the top of everything
-          style={{ zIndex: 1000 }}
-        >
-          <div className="h-6 w-6 rounded-r-md bg-yellow-400 flex justify-center items-center text-black text-xs p-1">
-            <span className="xl:block lg:hidden md:hidden sm:hidden hidden">2XL</span>
-            <span className="xl:hidden lg:block md:hidden sm:hidden hidden">XL</span>
-            <span className=" xl:hidden lg:hidden md:block sm:hidden hidden ">Lg</span>
-            <span className="xl:hidden lg:hidden md:hidden sm:block hidden ">md</span>
-            <span className="xl:hidden lg:hidden md:hidden sm:hidden block">sm</span>
-          </div>
-        </div>
+        {!isProd && <ScreenSizeDetector />}
       </div>
     </>
   );
