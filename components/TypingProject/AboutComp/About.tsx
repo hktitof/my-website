@@ -11,7 +11,7 @@ export default function About() {
       // opacity-10   hover:opacity-100 duration-500
     >
       <div className="flex-none  w-32 lg:w-44 flex justify-center items-center">
-        <Img src="titofCercle.png" alt="About picture" className="opacity-80" />
+        <Img src="gdscCercle.png" alt="About picture" className="opacity-80" />
       </div>
       <div className="flex flex-col space-y-8  items-center">
         <span className="font-extrabold lg:text-5xl md:text-4xl text-2xl sm:text-3xl text-gray-300 text-center">
