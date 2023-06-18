@@ -5,7 +5,7 @@ export default function About() {
     <div className="w-full h-full py-8 md:px-8 flex md:flex-row flex-col md:space-x-12 items-center space-y-4">
           <div className="flex-none  w-32 lg:w-44 flex justify-center items-center">
             <Img
-              src="titofCercle.png"
+              src="gdscCercle.png"
               alt="About picture"
               className="opacity-80"
             />
