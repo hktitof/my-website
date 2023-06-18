@@ -1,4 +1,3 @@
-
 import Img from "..//Image/Img";
 export default function About() {
   return (
