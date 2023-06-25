@@ -5,8 +5,8 @@ import { getTasksTextWithHighlightedKeyword } from "./taskAndType";
 export default function EnsVision() {
   const tasks = [
     {
-      text: "Worked on the front-end development in the web3 domain using Next.js, Alchemy, Tailwind CSS, Wagmi, Web3, Moralis, ethers.js",
-      keywords: ["Alchemy", "Wagmi", "Web3", "Moralis", "ethers.js"],
+      text: "Worked on the front-end development in the web3 domain using Next.js, Alchemy, Tailwind CSS, Wagmi, Web3.js, Moralis, Ethers.js",
+      keywords: ["Alchemy", "Wagmi", "Web3.js", "Moralis", "Ethers.js"],
     },
     {
       text: "Conducted testing tasks to ensure website functionality and quality. Managed a large user base on the website",

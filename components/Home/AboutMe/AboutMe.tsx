@@ -38,10 +38,12 @@ export default function AboutMe(props) {
             <div className="font-Header ">
               <span className="text-gray-400 ">
                 Since pursuing my engineering degree, my career has taken me through diverse industries, allowing me to
-                refine my expertise in desktop and web development. In the realm of web3, I am dedicated to pushing
-                boundaries and driving advancements. With experience working alongside esteemed organizations like ENS
-                Vision, where I played a key role in releasing v2 of ENS Vision Marketplace, my passion for web3 and
-                continuous learning drives me to make a positive impact and advance technology.
+                refine my expertise in desktop and web development. In the realm of{" "}
+                <span className="text-AAsecondary">web3</span>, I am dedicated to pushing boundaries and driving
+                advancements. With experience working alongside esteemed organizations like{" "}
+                <span className="text-AAsecondary">ENS Vision</span>, where I played a key role in releasing v2 of ENS
+                Vision Marketplace, my passion for web3 and continuous learning drives me to make a positive impact and
+                advance technology.
               </span>
             </div>
             {/* <div className="font-Header tracking-wide">
@@ -58,7 +60,9 @@ export default function AboutMe(props) {
             </div> */}
 
             <div className="font-Header tracking-wide">
-              <span className="text-gray-400  ">Here are a few technologies I&apos;ve been working with recently :</span>
+              <span className="text-gray-400  ">
+                Here are a few technologies I&apos;ve been working with recently :
+              </span>
             </div>
             <div className="font-Header tracking-wide flex flex-row space-x-16">
               <div className="flex flex-row space-x-2 items-center">

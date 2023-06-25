@@ -82,20 +82,22 @@ export default function SomethingIveBuilt() {
               <div className="w-full md:bg-AAtertiary rounded-md py-6 md:p-6  z-10">
                 <p className="text-gray-300 md:text-gray-400 text-left md:text-right ">
                   At <span className="text-AAsecondary">ENS Vision</span>, I played a crucial role in developing web3
-                  components for their <span className="text-AAsecondary">web3 application</span> using Next.js and web3 libraries. Our focus was on integrating
-                  new features and improving the user interface. One notable achievement was the release of NameWrapper
-                  with <span className="text-AAsecondary">ERC72</span> support, enabling users to create subdomains.
-                  This showcased our commitment to delivering innovative solutions.
+                  components for their <span className="text-AAsecondary">web3 application</span> using Next.js and web3
+                  libraries. Our focus was on integrating new features and improving the user interface. One notable
+                  achievement was the release of NameWrapper with <span className="text-AAsecondary">ERC72</span>{" "}
+                  support, enabling users to create <span className="text-AAsecondary">subdomains</span>. This showcased
+                  our commitment to delivering innovative solutions.
                 </p>
               </div>
               <ul
                 className="flex flex-wrap w-full text-gray-300 md:text-gray-400
                text-sm font-Text2 md:justify-end"
               >
-                <span className="pr-4 z-10">ENS domain</span>
+                <span className="pr-4 z-10">ENS domains</span>
                 <span className="pr-4 z-10">ENS names</span>
                 <span className="pr-4 z-10">web3</span>
                 <span className="pr-4 z-10">NFT</span>
+                <span className="pr-4 z-10">ERC72</span>
               </ul>
               <div className="z-10 flex fle-row space-x-5 ">
                 <a href="https://www.ens.vision/" target={"_blank"} rel="noreferrer">
@@ -162,10 +164,10 @@ export default function SomethingIveBuilt() {
                text-sm font-Text2 md:justify-start"
               >
                 <span className="pr-4 z-10">Token</span>
+                <span className="pr-4 z-10">ERC20</span>
+                <span className="pr-4 z-10">Nextjs</span>
                 <span className="pr-4 z-10">Smart contract</span>
                 <span className="pr-4 z-10">Blockchain</span>
-                <span className="pr-4 z-10">Nextjs</span>
-                <span className="pr-4 z-10">Token tracking</span>
               </ul>
               <div className="z-10 flex fle-row space-x-5 ">
                 <GithubIcon link="https://github.com/hktitof/Ypredict" />
