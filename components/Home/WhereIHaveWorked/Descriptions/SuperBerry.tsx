@@ -14,7 +14,7 @@ export default function SuperBerry() {
     },
     {
       text: "Provided technical support and troubleshoots errors and/or problems with web based applications.",
-      keywords: [],
+      keywords: ["technical support","troubleshoots"],
     },
   ];
 

@@ -10,7 +10,7 @@ export default function EnsVision() {
     },
     {
       text: "Conducted testing tasks to ensure website functionality and quality. Managed a large user base on the website",
-      keywords: ["quality", "testing", "user base"],
+      keywords: ["quality", "testing tasks", "user base"],
     },
     {
       text: "Implemented website design and enhanced interactivity.",
@@ -31,7 +31,7 @@ export default function EnsVision() {
             Software Engineer <span className="text-AAsecondary">@ web3</span>
           </span>
           {/* Date */}
-          <span className="font-mono text-xs text-gray-500">Dec 2022 - Present</span>
+          <span className="font-mono text-xs text-gray-500">Dec 2022 - Jun 2023</span>
           <span
             className="font-mono text-xs text-AAsecondary hover:cursor-pointer"
             style={{ fontSize: "0.6rem" }}

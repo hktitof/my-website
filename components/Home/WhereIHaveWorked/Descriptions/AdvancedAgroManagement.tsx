@@ -10,7 +10,7 @@ export default function AdvancedAgroManagement() {
     },
     {
       text: "Monitored website performance and handled troubleshooting and WordPress issues.",
-      keywords: ["scripts"],
+      keywords: ["MOnitored","WordPress issues"],
     },
     {
       text: "Managed company WordPress website back-end with Oracle Database including plugins, tools, and themes.",

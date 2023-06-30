@@ -41,9 +41,9 @@ export default function AboutMe(props) {
                 refine my expertise in desktop and web development. In the realm of{" "}
                 <span className="text-AAsecondary">web3</span>, I am dedicated to pushing boundaries and driving
                 advancements. With experience working alongside esteemed organizations like{" "}
-                <span className="text-AAsecondary">ENS Vision</span>, where I played a key role in releasing v2 of ENS
-                Vision Marketplace, my passion for web3 and continuous learning drives me to make a positive impact and
-                advance technology.
+                <span className="text-AAsecondary">ENS Vision</span>, where I played a key role in releasing v2 of{" "}
+                <span className="text-AAsecondary">ENS Vision Marketplace</span> , my passion for web3 and continuous
+                learning drives me to make a positive impact and advance technology.
               </span>
             </div>
             {/* <div className="font-Header tracking-wide">
@@ -118,7 +118,7 @@ export default function AboutMe(props) {
                 alt="My Image Not Found"
               />
             </div>
-            <div className="absolute w-48 h-full  bg-AAsecondary opacity-60  rounded overflow-hidden"></div>
+            <div className="absolute w-48 h-full  bg-AAsecondary opacity-10 md:opacity-60  rounded overflow-hidden"></div>
           </div>
         </div>
       </div>
