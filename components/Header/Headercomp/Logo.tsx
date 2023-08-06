@@ -17,7 +17,7 @@ export default function Logo(props: { finishedLoading: boolean }) {
           initial={{ x: 1 }}
           className="absolute h-full w-full flex justify-center items-center text-lg font-Header text-AAsecondary"
         >
-          A
+          MH
         </motion.span>
 
         <motion.div animate={{ rotate: -30, y: 5 }} className="h-1 w-6 rounded bg-AAsecondary"></motion.div>

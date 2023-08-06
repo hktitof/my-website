@@ -436,7 +436,7 @@ export default function SomethingIveBuilt() {
               </div>
               <div className="w-full md:bg-AAtertiary rounded-md py-6 md:p-6  z-10">
                 <p className="text-gray-300 md:text-gray-400 text-left ">
-                  A <span className="text-AAsecondary">JavaFX call center management system</span> project it is used
+                  MH <span className="text-AAsecondary">JavaFX call center management system</span> project it is used
                   for receiving or transmitting a large volume of enquiries between the agent and the customer,it
                   handles the communication between agents & clients it can be used for the both side client & agent
                   side to handle the messages and issues.

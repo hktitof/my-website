@@ -3,7 +3,7 @@ import Img from "../../../components/smallComp/image/Img";
 import ArrowIcon from "../../../components/Icons/ArrowIcon";
 export default function AboutMe(props) {
   const technologies = [
-    ["Next.js", "JavaScript (ES6+)", "Tailwind CSS", "Ether.js", "Solidity"],
+    ["Next.js", "JavaScript (ES6+)", "Tailwind CSS", "Express.js", ""],
     ["Node.js", "TypeScript", "Framer Motion", "react-moralis", "web3.js"],
   ];
   return (
@@ -29,35 +29,9 @@ export default function AboutMe(props) {
           <div className="w-full md:w-7/12 space-y-4 sm:text-base text-sm ">
             <div className="font-Header ">
               <span className="text-gray-400 ">
-                Hello! My name is Abdellatif, and I am a passionate software engineer and problem solver, dedicated to
-                creating impactful codes that thrive on the internet. My journey in computer science began in 2009 when
-                I delved into the world of Ethical Hacking using BackTrack OS. Little did I know that programming skills
-                would become essential in pursuing this interest, marking the start of my programming journey.
+                Hello! My name is Habil, As a Full Stack Developer, I have developed expertise in various programming languages, including JavaScript and TypeScript. My experience includes building web applications and web services using modern technologies and frameworks. I also have experience working with databases, particularly Redis and MySQL. Throughout my career, I have focused on creating scalable and maintainable code, utilizing agile development methodologies to deliver high-quality software. Additionally, I have collaborated with cross-functional teams, including product managers, designers, and QA engineers, to ensure that software development projects meet the needs of the business and users. I am passionate about learning new technologies and applying them to solve real-world problems.
               </span>
             </div>
-            <div className="font-Header ">
-              <span className="text-gray-400 ">
-                Since pursuing my engineering degree, my career has taken me through diverse industries, allowing me to
-                refine my expertise in desktop and web development. In the realm of{" "}
-                <span className="text-AAsecondary">web3</span>, I am dedicated to pushing boundaries and driving
-                advancements. With experience working alongside esteemed organizations like{" "}
-                <span className="text-AAsecondary">ENS Vision</span>, where I played a key role in releasing v2 of{" "}
-                <span className="text-AAsecondary">ENS Vision Marketplace</span> , my passion for web3 and continuous
-                learning drives me to make a positive impact and advance technology.
-              </span>
-            </div>
-            {/* <div className="font-Header tracking-wide">
-              <span className="text-gray-400  ">
-                Fast-forward to today, I&apos;ve had the privilege of working at
-                <span className="text-AAsecondary"> a huge manufacturing company</span>,
-                <span className="text-AAsecondary"> a start-up</span>,{" "}
-                <span className="text-AAsecondary">export-import companies</span>, also
-                <span className="text-AAsecondary"> freelancing</span> and recently as Lead for the{" "}
-                <span className="text-AAsecondary">Google Developer Student club</span>. Experienced in Desktop & Web
-                Development, lately with Arduino Development. My main focus these days is creating and testing{" "}
-                <span className="text-AAsecondary">Smart Contracts</span> with Hardhat.
-              </span>
-            </div> */}
 
             <div className="font-Header tracking-wide">
               <span className="text-gray-400  ">

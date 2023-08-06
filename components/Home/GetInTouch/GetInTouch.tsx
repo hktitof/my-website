@@ -22,7 +22,7 @@ export default function GetInTouch() {
         want to say hi, I&apos;ll try my best to get back to you!
       </p>
       <div className="pt-4">
-        <a href="mailto:abdellatif@anaflous.com" target={"_blank"} rel="noreferrer">
+        <a href="mailto:habilmuhammad20@gmail.com" target={"_blank"} rel="noreferrer">
           <button
             className="font-mono text-sm text-AAsecondary border-AAsecondary 
                             px-8 py-4 border-[1.5px] rounded "

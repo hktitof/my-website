@@ -2,7 +2,6 @@ import React from "react";
 import GithubIcon from "../../Icons/GithubIcon";
 import LinkedinIcon from "../../Icons/LinkedinIcon";
 import InstagramIcon from "../../Icons/InstagramIcon";
-import YoutubeIcon from "../../Icons/YoutubeIcon";
 type Props={href:string,Icon:React.FC<{className:string}>}
 const ClickableIcon = (props:Props) => {
   return (
@@ -22,20 +21,16 @@ export default function Fotter(props:{link:string,className:string}) {
         {/* // ? Reach me at */}
         <div className="flex flex-row space-x-8">
           <ClickableIcon
-            href={"https://github.com/hktitof"}
+            href={"https://github.com/mhhabil"}
             Icon={GithubIcon}
           />
           <ClickableIcon
-            href={"https://www.linkedin.com/in/abdellatif-anaflous/"}
+            href={"https://www.linkedin.com/in/muhammad-habil/"}
             Icon={LinkedinIcon}
           />
           <ClickableIcon
-            href={"https://www.instagram.com/xredme/"}
+            href={"https://www.instagram.com/mhhabil/"}
             Icon={InstagramIcon}
-          />
-          <ClickableIcon
-            href={"https://www.youtube.com/c/NTTFT"}
-            Icon={YoutubeIcon}
           />
         </div>
         <a href={props.link} className="" target={"_blank"} rel="noreferrer">
@@ -44,7 +39,7 @@ export default function Fotter(props:{link:string,className:string}) {
     text-sm  space-y-2  "
           >
             <span className="group-hover:text-AAsecondary sm:text-sm text-xs">
-              Designed & Built by Anaflous Abdellatif
+              Designed & Built by Muhammad Habil
             </span>
 
             <span className="text-xs flex flex-row items-center space-x-2 group-hover:text-AAsecondary">
