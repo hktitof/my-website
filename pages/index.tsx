@@ -1,7 +1,6 @@
 import Header from "../components/Header/Header";
 import Startup from "../components/Header/StartupLogo/Startup";
 import MyName from "../components/Home/MyName/MyName";
-import ZoomEffect from "../components/Home/MyName/ZoomEffect";
 import { useContext, useEffect, useState, useRef } from "react";
 import SocialMediaArround from "../components/Home/SocialMediaArround/SocialMediaArround";
 import AboutMe from "../components/Home/AboutMe/AboutMe";
@@ -126,7 +125,7 @@ export default function Home() {
           <Startup />
           <div className="h-full"></div>
         </div>
-      ) : isZoomed ? (
+      ) : ( isZoomed ? (
         <div className="relative snap-mandatory min-h-screen bg-AAprimary w-full">
           <Header finishedLoading={context.sharedState.finishedLoading} sectionsRef={homeRef} />
           <MyName finishedLoading={context.sharedState.finishedLoading} />
@@ -140,7 +139,7 @@ export default function Home() {
           ) : null}
           {!isProd && <ScreenSizeDetector />}
         </div>
-      ) : <Try />
+      ) : context.sharedState.finishedLoading ? <Try />: null)
       }
 
     </>

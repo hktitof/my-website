@@ -21,7 +21,7 @@ export default function SomethingIveBuilt() {
           <span className="text-AAsecondary font-sans text-sm  sm:text-xl"> 03.</span>
           <span className=" font-bold tracking-wider text-gray-200 text-lg md:text-2xl w-44 md:w-56 opacity-85">
             {" "}
-            Some Things I&apos;ve Built
+            Research and Projects
           </span>
         </div>
         <div className="bg-gray-400 h-[0.2px] w-full xl:w-1/3 md:w-1/2"></div>
@@ -44,7 +44,7 @@ export default function SomethingIveBuilt() {
                 ></div>
               </Link> */}
 
-              <a href="https://www.ens.vision" target={"_blank"} rel="noreferrer">
+              <a href="https://ieeexplore.ieee.org/document/10429991" target={"_blank"} rel="noreferrer">
                 <div
                   // onClick={}
                   className="absolute w-full h-full rounded bg-AAprimary 
@@ -52,7 +52,7 @@ export default function SomethingIveBuilt() {
                 ></div>
               </a>
 
-              <Img src={"/ensvision.jpg"} alt={"Project Screen shot"} className={`w-full rounded h-full `} />
+              <Img src={"/ResearchPaper.png"} alt={"ResearchPaper Screen shot"} className={`w-full rounded h-full `} />
             </div>
           </div>
 
@@ -63,7 +63,7 @@ export default function SomethingIveBuilt() {
               <div className="relative w-full h-full">
                 <div className="absolute w-full h-full bg-AAsecondary opacity-10 z-10"></div>
                 <div className="absolute w-full h-full bg-AAprimary opacity-80 z-10"></div>
-                <Img src={"/ensvision.jpg"} alt={"Project Screen shot"} className={`w-full h-full `} />
+                <Img src={"/ResearchPaper.png"} alt={"ResearchPaper Screen shot"} className={`w-full h-full `} />
               </div>
             </div>
 
@@ -72,35 +72,36 @@ export default function SomethingIveBuilt() {
             col-span-8 flex flex-col items-start md:items-end space-y-3"
             >
               <div className="flex flex-col space-y-1 md:items-end z-10">
-                <span className="text-AAsecondary text-base">ENS Vision </span>
-                <a href="https://ens.vision" target="_blank" rel="noopener noreferrer">
+                <span className="text-AAsecondary text-base">Using Deep Reinforcement Learning And Formal Verification in Safety Critical Systems</span>
+                <a href="https://ieeexplore.ieee.org/document/10429991" target="_blank" rel="noopener noreferrer">
                   <span className=" md:text-gray-200 text-AAsecondary font-bold text-xl hover:cursor-pointer">
-                    ENS names Marketplace
+                    CSULB Research Foundation
                   </span>
                 </a>
               </div>
               <div className="w-full md:bg-AAtertiary rounded-md py-6 md:p-6  z-10">
                 <p className="text-gray-300 md:text-gray-400 text-left md:text-right ">
-                  At <span className="text-AAsecondary">ENS Vision</span>, I played a crucial role in developing web3
-                  components for their <span className="text-AAsecondary">web3 application</span> using Next.js and web3
-                  libraries. Our focus was on integrating new features and improving the user interface. One notable
-                  achievement was the release of NameWrapper with <span className="text-AAsecondary">ERC72</span>{" "}
-                  support, enabling users to create <span className="text-AAsecondary">subdomains</span>. This showcased
-                  our commitment to delivering innovative solutions.
+                  In my research paper published by <span className="text-AAsecondary">IEEE</span>
+                    , I explored the intricate world of <span className="text-AAsecondary">Deep Reinforcement Learning (DRL)</span> and its pivotal role in modern Artificial Intelligence.
+                   The paper delves into various DRL techniques and the real-life challenges they face, alongside a comprehensive analysis of formal verification techniques.
+                    Our study provides a systematic review of methodologies, tools, and frameworks employed in DRL and formal verification, aiming to enhance the 
+                    decision-making process in <span className="text-AAsecondary">Safety Critical Systems</span>. This research is anticipated to contribute significantly to the field,
+                     fostering a deeper understanding of the processes involved.
                 </p>
+
               </div>
               <ul
                 className="flex flex-wrap w-full text-gray-300 md:text-gray-400
                text-sm font-Text2 md:justify-end"
               >
-                <span className="pr-4 z-10">ENS domains</span>
-                <span className="pr-4 z-10">ENS names</span>
-                <span className="pr-4 z-10">web3</span>
-                <span className="pr-4 z-10">NFT</span>
-                <span className="pr-4 z-10">ERC72</span>
+                <span className="pr-4 z-10">Reinforcement Learning</span>
+                <span className="pr-4 z-10">Formal Methods</span>
+                <span className="pr-4 z-10">Safety Critical Systems</span>
+                <span className="pr-4 z-10">Deep Reinforcement Learning</span>
+                <span className="pr-4 z-10">Formal Verification</span>
               </ul>
               <div className="z-10 flex fle-row space-x-5 ">
-                <a href="https://www.ens.vision/" target={"_blank"} rel="noreferrer">
+                <a href="https://ieeexplore.ieee.org/document/10429991" target={"_blank"} rel="noreferrer">
                   <ExternalLink url={""} router={router} />
                 </a>
               </div>
