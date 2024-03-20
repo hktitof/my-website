@@ -1,0 +1,172 @@
+.App {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .layer {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+  
+  .first-layer {
+    z-index: 1;
+  }
+  
+  .second-layer {
+    z-index: 2;
+    /* border: 2px solid black; */
+    width: 10%;
+    height: 10%;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    transition: width 0.3s ease, height 0.3s ease, border-radius 0.3s ease;
+  }
+  
+  .laptop-screen-container {
+    position: absolute;
+    top: 9vh;
+    left: 4vh;
+    transform: translate(-50%, -50%);
+    width: 30vh;
+    height: 30vh;
+    z-index: 1;
+  }
+  
+  .zoomed-out-display-container {
+    position: absolute;
+    top: 2vh;
+    left: 5vh;
+    transform: translate(-50%, -50%);
+    width: 24vh;
+    height: 15vh;
+    z-index: 1;
+  }
+  
+  .zoomed-out-display {
+    width: 90%;
+    height: 90%;
+    /* object-fit: contain; */
+  }
+  @keyframes OvalButtonAnimation {
+    0% {
+      transform: translate(0, 0);
+      opacity: 0;
+    }
+    40% {
+      opacity: 1;
+    }
+    80% {
+      transform: translate(0, 20px);
+      opacity: 0;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+  
+  .ovalButton {
+    position: absolute;
+    height: 50px;
+    width: 30px;
+    bottom: 10vh;
+    left: 50vw;
+    right: 0;
+    background-color: transparent;
+    border: 2px solid black;
+    border-radius: 20px;
+    cursor: pointer;
+    outline: none;
+  }
+  
+  .ovalButton::before {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    content: "";
+    width: 6px;
+    height: 6px;
+    margin-left: -3px;
+    background-color: #000;
+    border-radius: 100%;
+    animation: OvalButtonAnimation 2s infinite;
+    box-sizing: border-box;
+  }
+  
+  .arrowContainer {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    height: 50px;
+    width: 30px;
+    left: 50.4vw;
+    right: 0;
+    bottom: 4vh;
+    cursor: pointer;
+  }
+  
+  @keyframes ChevronAnimation {
+    25% {
+      opacity: 1;
+    }
+    33% {
+      opacity: 1;
+      transform: translateY(30px);
+    }
+    67% {
+      opacity: 1;
+      transform: translateY(40px);
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(55px) scale3d(0.5, 0.5, 0.5);
+    }
+  }
+  
+  .chevron {
+    position: absolute;
+    width: 28px;
+    height: 8px;
+    opacity: 0;
+    transform: scale3d(0.5, 0.5, 0.5);
+    animation: ChevronAnimation 3s ease-out infinite;
+  }
+  
+  .chevron:first-child {
+    animation: ChevronAnimation 3s ease-out 1s infinite;
+  }
+  
+  .chevron:nth-child(2) {
+    animation: ChevronAnimation 3s ease-out 2s infinite;
+  }
+  
+  .chevron::before,
+  .chevron::after {
+    content: " ";
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 51%;
+    background: #000;
+  }
+  
+  .chevron::before {
+    left: 0;
+    transform: skew(0deg, 30deg);
+  }
+  
+  .chevron::after {
+    right: 0;
+    width: 50%;
+    transform: skew(0deg, -30deg);
+  }
+  

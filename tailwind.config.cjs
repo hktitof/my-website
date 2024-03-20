@@ -22,7 +22,7 @@ module.exports = {
       },
       colors: {
         AAprimary: "#010306",
-        AAsecondary: "#007ac0",
+        AAsecondary: "#808080",
         AAError: "#ff6489",
         AAtertiary: "#112340",
         ResumeButtonHover: "#153040",

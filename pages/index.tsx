@@ -1,6 +1,7 @@
 import Header from "../components/Header/Header";
 import Startup from "../components/Header/StartupLogo/Startup";
 import MyName from "../components/Home/MyName/MyName";
+import ZoomEffect from "../components/Home/MyName/ZoomEffect";
 import { useContext, useEffect, useState, useRef } from "react";
 import SocialMediaArround from "../components/Home/SocialMediaArround/SocialMediaArround";
 import AboutMe from "../components/Home/AboutMe/AboutMe";
@@ -14,15 +15,44 @@ import Aos from "aos";
 import "aos/dist/aos.css";
 import Head from "next/head";
 import ScreenSizeDetector from "../components/CustomComponents/ScreenSizeDetector";
+import Try from "./Try";
 
 export default function Home() {
   const [ShowElement, setShowElement] = useState(false);
   const [ShowThisCantBeReached, setShowThisCantBeReached] = useState(true);
   const [ShowMe, setShowMe] = useState(false);
+  const [isZoomed, setIsZoomed] = useState(false); // New state to manage zoom
+  const [scrollDownCounter, setScrollDownCounter] = useState(0); // New state to count wheel-down actions
+  const debounceTimer = useRef(null); // For debouncing
+
   // context Variable to clearInterval
   const context = useContext(AppContext);
   const aboutRef = useRef<HTMLDivElement>(null);
   const homeRef = useRef<HTMLDivElement>(null);
+  const handleWheel = (event) => {
+    // Clear the existing timer on a new wheel event, if it exists
+    if (debounceTimer.current) {
+      clearTimeout(debounceTimer.current);
+    }
+  
+    // Set up a new timer
+    debounceTimer.current = setTimeout(() => {
+      if (event.deltaY > 0) { // Check if the wheel event is a scroll down
+        setScrollDownCounter(prevCount => {
+          const newCount = prevCount + 1;
+          if (newCount >= 10) { // Adjust your threshold as necessary
+            setIsZoomed(true); // Trigger the switch
+            // Optionally: clear the timer here to prevent further execution
+            // clearTimeout(debounceTimer.current);
+            // debounceTimer.current = null;
+            // setPermanentlySwitched(true); // If you decide to use a permanentlySwitched state
+          }
+          return newCount; // Update the counter
+        });
+      }
+    }, 50); // 200ms debounce time, adjust as needed
+  };
+  
   useEffect(() => {
     // remove the interval Cookie timer setter when
     clearInterval(context.sharedState.userdata.timerCookieRef.current);
@@ -48,7 +78,16 @@ export default function Home() {
       context.sharedState.finishedLoading = true;
       context.setSharedState(context.sharedState);
     }, 10400);
-  }, [context, context.sharedState]);
+    window.addEventListener('wheel', handleWheel);
+  
+  return () => {
+    window.removeEventListener('wheel', handleWheel);
+    // Also clear the timer when the component unmounts
+    if (debounceTimer.current) {
+      clearTimeout(debounceTimer.current);
+    }
+  };
+    }, [context, context.sharedState]);
 
   useEffect(() => {
     Aos.init({ duration: 2000, once: true });
@@ -69,8 +108,8 @@ export default function Home() {
         <title>{meta.title}</title>
         <meta name="robots" content="follow, index" />
         <meta content={meta.description} name="description" />
-        <meta property="og:url" content={`https://anaflous.com`} />
-        <link rel="canonical" href={`https://anaflous.com`} />
+        <meta property="og:url" content={`https://satyamsharma.com`} />
+        <link rel="canonical" href={`https://satyamsharma.com`} />
         <meta property="og:type" content={meta.type} />
         <meta property="og:site_name" content="Satyam Sharma" />
         <meta property="og:description" content={meta.description} />
@@ -84,26 +123,26 @@ export default function Home() {
       </Head>
       {ShowElement ? (
         <div className="relative snap-mandatory min-h-screen bg-AAprimary w-full">
-        <Startup />
-        <div className="h-full"></div>
+          <Startup />
+          <div className="h-full"></div>
         </div>
-      ) : (
+      ) : isZoomed ? (
         <div className="relative snap-mandatory min-h-screen bg-AAprimary w-full">
           <Header finishedLoading={context.sharedState.finishedLoading} sectionsRef={homeRef} />
           <MyName finishedLoading={context.sharedState.finishedLoading} />
           <SocialMediaArround finishedLoading={context.sharedState.finishedLoading} />
-          {context.sharedState.finishedLoading ? <AboutMe ref={aboutRef}/> : <></>}
-          {context.sharedState.finishedLoading ? <WhereIHaveWorked /> : <></>}
-          {context.sharedState.finishedLoading ? <SomethingIveBuilt /> : <></>}
-          {context.sharedState.finishedLoading ? <GetInTouch /> : <></>}
+          {context.sharedState.finishedLoading ? <AboutMe ref={aboutRef}/> : null}
+          {context.sharedState.finishedLoading ? <WhereIHaveWorked /> : null}
+          {context.sharedState.finishedLoading ? <SomethingIveBuilt /> : null}
+          {context.sharedState.finishedLoading ? <GetInTouch /> : null}
           {context.sharedState.finishedLoading ? (
-            <Footer githubUrl={"https://github.com/hktitof/my-website"} hideSocialsInDesktop={true} />
-          ) : (
-            <></>
-          )}
+            <Footer githubUrl={"https://github.com/satyam04sharma/Portfolio24"} hideSocialsInDesktop={true} />
+          ) : null}
           {!isProd && <ScreenSizeDetector />}
         </div>
-      )}
+      ) : <Try />
+      }
+
     </>
   );  
 }
