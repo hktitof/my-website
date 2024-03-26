@@ -1,0 +1,15 @@
+.splineContainer {
+    height: 100%;
+    overflow: hidden;
+  }
+  
+  /* Rotate the Spline component on screens narrower than 768px */
+  @media (max-width: 768px) {
+    .splineContainer {
+      transform: rotate(-90deg) translateX(-100%);
+      transform-origin: top left;
+      width: 100vh; /* Set the width to the viewport height */
+      height: 100vw; /* Set the height to the viewport width */
+    }
+  }
+  
