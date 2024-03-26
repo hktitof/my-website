@@ -15,6 +15,8 @@ import "aos/dist/aos.css";
 import Head from "next/head";
 import ScreenSizeDetector from "../components/CustomComponents/ScreenSizeDetector";
 import Try from "./Try";
+import Script from 'next/script';
+
 
 export default function Home() {
   const [ShowElement, setShowElement] = useState(false);
@@ -119,7 +121,13 @@ export default function Home() {
         <meta name="twitter:title" content={meta.title} />
         <meta name="twitter:description" content={meta.description} />
         <meta name="twitter:image" content={meta.image} />
+        {/* <!-- Google tag (gtag.js) --> */}
       </Head>
+      <Script
+        strategy="afterInteractive"
+        src="./_document.js"
+      />
+      
       {ShowElement ? (
         <div className="relative snap-mandatory min-h-screen bg-AAprimary w-full">
           <Startup />
