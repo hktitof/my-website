@@ -104,6 +104,7 @@ export default function SomethingIveBuilt() {
                 <a href="https://ieeexplore.ieee.org/document/10429991" target={"_blank"} rel="noreferrer">
                   <ExternalLink url={""} router={router} />
                 </a>
+                <GithubIcon link="https://pack-lab.github.io/" />
               </div>
             </div>
           </div>
@@ -179,12 +180,12 @@ export default function SomethingIveBuilt() {
           absolute md:grid grid-cols-12 w-full h-full  content-center"
           >
             <div className="relative rounded w-full h-full col-span-7 ">
-              <Link href={"https://devpost.com/software/aimagine"}>
+              <a href="https://devpost.com/software/aimagine" target="_blank" rel="noopener noreferrer">
                 <div
                   className="absolute w-full h-full rounded bg-AAsecondary 
           transition-opacity opacity-10 hover:opacity-0 hover:cursor-pointer duration-300"
                 ></div>
-              </Link>
+              </a>
               <Img src={"/img/aimagine.jpg"} alt={"Aimagine Screen shot"} className={`w-full rounded h-full `} />
             </div>
           </div>
@@ -206,11 +207,11 @@ export default function SomethingIveBuilt() {
             >
               <div className="flex flex-col space-y-1 md:items-end z-10">
                 <span className="text-AAsecondary text-base">Recent Project</span>
-                <Link href={"https://devpost.com/software/aimagine"}>
+                <a href="https://devpost.com/software/aimagine" target="_blank" rel="noopener noreferrer">
                   <span className=" md:text-gray-200 text-AAsecondary font-bold text-xl hover:cursor-pointer">
                     Aimagine: An AI-powered sketch-to-image tool
                   </span>
-                </Link>
+                </a>
               </div>
               <div className="w-full md:bg-AAtertiary rounded-md py-6 md:p-6  z-10">
                 <p className="text-gray-300 md:text-gray-400 text-left md:text-right">
@@ -245,12 +246,12 @@ export default function SomethingIveBuilt() {
           absolute md:grid grid-cols-12 w-full h-full  content-center "
           >
             <div className="relative rounded w-full h-full col-start-6 col-span-7 ">
-              <Link href={"/findyopassion"}>
+              <a href="https://github.com/satyam04sharma/CareerCompass" target="_blank" rel="noopener noreferrer">
                 <div
                   className="absolute w-full h-full rounded bg-AAsecondary 
           transition-opacity opacity-10 hover:opacity-0 hover:cursor-pointer duration-300"
                 ></div>
-              </Link>
+              </a>
               <Img src={"/img/Findyopassion.png"} alt={"Find Yo Passion Screen shot"} className={`w-full rounded h-full `} />
             </div>
           </div>
@@ -272,11 +273,11 @@ export default function SomethingIveBuilt() {
             >
               <div className="flex flex-col space-y-1  z-10">
                 <span className="text-AAsecondary text-base">Recent Project</span>
-                <Link href={"/findyopassion"}>
+                <a href="https://github.com/satyam04sharma/CareerCompass" target="_blank" rel="noopener noreferrer">
                   <span className=" md:text-gray-200 text-AAsecondary font-bold text-xl hover:cursor-pointer">
                     Find Yo Passion
                   </span>
-                </Link>
+                </a>
               </div>
               <div className="w-full md:bg-AAtertiary rounded-md py-6 md:p-6  z-10">
                 <p className="text-gray-300 md:text-gray-400 text-left ">
@@ -342,7 +343,7 @@ export default function SomethingIveBuilt() {
             col-span-8 flex flex-col items-start md:items-end sm:space-y-3 space-y-1"
             >
               <div className="flex flex-col space-y-1 md:items-end z-10">
-                <span className="text-AAsecondary text-base">Recent Project</span>
+                <span className="text-AAsecondary text-base">Upcoming Project</span>
                 <a href="https://interviewio.netlify.app" target={"_blank"} rel="noreferrer">
                   <span className=" md:text-gray-200 text-AAsecondary font-bold text-xl hover:cursor-pointer">
                     Interview.IO
@@ -351,7 +352,7 @@ export default function SomethingIveBuilt() {
               </div>
               <div className="w-full md:bg-AAtertiary rounded-md py-6 md:p-6  z-10">
                 <p className="text-gray-300 md:text-gray-400 text-left md:text-right">
-                  Interview.IO uses GPT3.5 to give you AI-powered interviews. This app uses GPT.3.5 with custom prompts to give you an analysis of your interviews and helps you prepare for real ones. Our plan is to navigate this experience to a Lamma model fine-tuned for tech interviews.
+                  Interview.IO uses audio and video to give you AI-powered interviews. This app uses GPT.3.5 with custom prompts to give you an analysis of your interviews and helps you prepare for real ones. Our plan is to navigate this experience to a Lamma model fine-tuned for tech interviews.
                 </p>
               </div>
               <ul
