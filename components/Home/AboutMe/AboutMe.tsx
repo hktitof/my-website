@@ -39,7 +39,7 @@ export default function AboutMe(props) {
               <span className="text-gray-400 ">
                 Since then, my career has taken me through various roles in the industry, from a Full-Stack Developer at
                 Tata Consultancy Services to a Senior Full-Stack Developer at EXL Services, and currently as an
-                Application Developer at Associated Students, Inc. (ASI) at CSULB. In each role, I've had the opportunity
+                Application Developer at Associated Students, Inc. (ASI) at CSULB. In each role, I&apos;ve had the opportunity
                 to refine my expertise in both desktop and web development, contributing to projects that enhance user
                 experiences and streamline processes.
               </span>

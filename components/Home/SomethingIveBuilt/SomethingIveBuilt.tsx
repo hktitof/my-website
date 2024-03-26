@@ -282,7 +282,7 @@ export default function SomethingIveBuilt() {
                 <p className="text-gray-300 md:text-gray-400 text-left ">
                   Find Yo Passion is an AI based interactive web application designed to help users identify potential career paths based on their interests and preferences.
 
-        After the user has completed the questionnaire, the application processes the user's answers and recommends 3 potential career paths based on the options that the user selected. 
+        After the user has completed the questionnaire, the application processes the user&apos;s answers and recommends 3 potential career paths based on the options that the user selected. 
         Built with Da vinci model to get the most accurate prediction. It uses js, and material -UI and Figma. Built at Beach Hacks, California State University - Long Beach, BeachHacks 7.0.
                 </p>
               </div>
@@ -333,7 +333,7 @@ export default function SomethingIveBuilt() {
               <div className="relative w-full h-full">
                 <div className="absolute w-full h-full bg-AAsecondary opacity-10 z-10"></div>
                 <div className="absolute w-full h-full bg-AAprimary opacity-80 z-10"></div>
-                <Img src={"/interviewio-background.png"} alt={"Interview.IO Background"} className={`w-full h-full `} />
+                <Img src={"/img/Interviewio.png"} alt={"Interview.IO Background"} className={`w-full h-full `} />
               </div>
             </div>
 
