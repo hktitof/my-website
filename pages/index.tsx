@@ -125,7 +125,7 @@ export default function Home() {
           <Startup />
           <div className="h-full"></div>
         </div>
-      ) : ( isZoomed ? (
+      ) : (
         <div className="relative snap-mandatory min-h-screen bg-AAprimary w-full">
           <Header finishedLoading={context.sharedState.finishedLoading} sectionsRef={homeRef} />
           <MyName finishedLoading={context.sharedState.finishedLoading} />
@@ -139,7 +139,7 @@ export default function Home() {
           ) : null}
           {!isProd && <ScreenSizeDetector />}
         </div>
-      ) : context.sharedState.finishedLoading ? <Try />: null)
+      )
       }
 
     </>
