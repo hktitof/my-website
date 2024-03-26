@@ -1,6 +1,6 @@
 import "../styles/globals.css";
 import "../styles/Try.css"
-import { Analytics } from '@vercel/analytics/react';
+import { GoogleAnalytics } from "nextjs-google-analytics";
 import AppContext from "../components/AppContextFolder/AppContext";
 import { useRef, useState } from "react";
 
@@ -32,8 +32,8 @@ function MyApp({ Component, pageProps }) {
   });
   return (
     <AppContext.Provider value={{ sharedState, setSharedState }}>
+      <GoogleAnalytics trackPageViews />
       <Component {...pageProps} />
-      <Analytics />
     </AppContext.Provider>
   );
 }

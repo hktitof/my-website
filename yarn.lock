@@ -1894,7 +1894,7 @@ negotiator@0.6.3:
   resolved "https://registry.npmjs.org/negotiator/-/negotiator-0.6.3.tgz"
   integrity sha512-+EUsqGPLsM+j/zdChZjsnX51g4XrHFOIXwfnCVPGlQk/k5giakcKsuxCObBRu6DSm9opw/O6slWbJdghQM4bBg==
 
-next@12.2.2:
+next@>=11.0.0, next@12.2.2:
   version "12.2.2"
   resolved "https://registry.npmjs.org/next/-/next-12.2.2.tgz"
   integrity sha512-zAYFY45aBry/PlKONqtlloRFqU/We3zWYdn2NoGvDZkoYUYQSJC8WMcalS5C19MxbCZLUVCX7D7a6gTGgl2yLg==
@@ -1919,6 +1919,13 @@ next@12.2.2:
     "@next/swc-win32-arm64-msvc" "12.2.2"
     "@next/swc-win32-ia32-msvc" "12.2.2"
     "@next/swc-win32-x64-msvc" "12.2.2"
+
+nextjs-google-analytics@^2.3.3:
+  version "2.3.3"
+  resolved "https://registry.npmjs.org/nextjs-google-analytics/-/nextjs-google-analytics-2.3.3.tgz"
+  integrity sha512-Y6sI6A7wt5dji8hYBnVkOh9LTyImSLFZXx3FpyQgVW7W4b4qEFHjH2u3fhDJsrRZeLlUGM8/RuHD/mhHc2Axfg==
+  optionalDependencies:
+    fsevents "^2.3.2"
 
 node-releases@^2.0.6:
   version "2.0.6"

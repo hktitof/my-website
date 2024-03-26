@@ -15,7 +15,7 @@ import "aos/dist/aos.css";
 import Head from "next/head";
 import ScreenSizeDetector from "../components/CustomComponents/ScreenSizeDetector";
 import Try from "./Try";
-import Script from 'next/script';
+// import Script from 'next/script';
 
 
 export default function Home() {
@@ -123,10 +123,6 @@ export default function Home() {
         <meta name="twitter:image" content={meta.image} />
         {/* <!-- Google tag (gtag.js) --> */}
       </Head>
-      <Script
-        strategy="afterInteractive"
-        src="./_document.js"
-      />
       
       {ShowElement ? (
         <div className="relative snap-mandatory min-h-screen bg-AAprimary w-full">
