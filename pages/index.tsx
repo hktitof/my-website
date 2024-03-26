@@ -22,38 +22,12 @@ export default function Home() {
   const [ShowElement, setShowElement] = useState(false);
   const [ShowThisCantBeReached, setShowThisCantBeReached] = useState(true);
   const [ShowMe, setShowMe] = useState(false);
-  const [isZoomed, setIsZoomed] = useState(false); // New state to manage zoom
-  const [scrollDownCounter, setScrollDownCounter] = useState(0); // New state to count wheel-down actions
   const debounceTimer = useRef(null); // For debouncing
 
   // context Variable to clearInterval
   const context = useContext(AppContext);
   const aboutRef = useRef<HTMLDivElement>(null);
   const homeRef = useRef<HTMLDivElement>(null);
-  const handleWheel = (event) => {
-    // Clear the existing timer on a new wheel event, if it exists
-    if (debounceTimer.current) {
-      clearTimeout(debounceTimer.current);
-    }
-  
-    // Set up a new timer
-    debounceTimer.current = setTimeout(() => {
-      if (event.deltaY > 0) { // Check if the wheel event is a scroll down
-        setScrollDownCounter(prevCount => {
-          const newCount = prevCount + 1;
-          if (newCount >= 10) { // Adjust your threshold as necessary
-            setIsZoomed(true); // Trigger the switch
-            // Optionally: clear the timer here to prevent further execution
-            // clearTimeout(debounceTimer.current);
-            // debounceTimer.current = null;
-            // setPermanentlySwitched(true); // If you decide to use a permanentlySwitched state
-          }
-          return newCount; // Update the counter
-        });
-      }
-    }, 50); // 200ms debounce time, adjust as needed
-  };
-  
   useEffect(() => {
     // remove the interval Cookie timer setter when
     clearInterval(context.sharedState.userdata.timerCookieRef.current);
@@ -79,10 +53,7 @@ export default function Home() {
       context.sharedState.finishedLoading = true;
       context.setSharedState(context.sharedState);
     }, 10400);
-    window.addEventListener('wheel', handleWheel);
-  
   return () => {
-    window.removeEventListener('wheel', handleWheel);
     // Also clear the timer when the component unmounts
     if (debounceTimer.current) {
       clearTimeout(debounceTimer.current);
@@ -98,7 +69,7 @@ export default function Home() {
   const meta = {
     title: "Satyam Sharma - Software Engineer",
     description: `I've been working on Software development for 5 years straight. Get in touch with me to know more.`,
-    image: "/titofCercle.png",
+    image: "/WebLogo.png",
     type: "website",
   };
   const isProd = process.env.NODE_ENV === "production";
@@ -117,7 +88,7 @@ export default function Home() {
         <meta property="og:title" content={meta.title} />
         <meta property="og:image" content={meta.image} />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:site" content="@titofabdo" />
+        <meta name="twitter:site" content="@satyamstar1996" />
         <meta name="twitter:title" content={meta.title} />
         <meta name="twitter:description" content={meta.description} />
         <meta name="twitter:image" content={meta.image} />
