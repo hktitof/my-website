@@ -80,8 +80,8 @@ export default function Logo(props: { finishedLoading: boolean }) {
         variants={containerVariants}
         transition={{
           type: "spring",
-          y: { delay: props.finishedLoading ? 0 : 1, duration: 1 },
-          opacity: { delay: props.finishedLoading ? 0 : 1, duration: 1 },
+          delay: props.finishedLoading ? 0 : 1,
+          duration: 1
         }}
         className="relative h-20 w-20 flex justify-center items-center"
       >
