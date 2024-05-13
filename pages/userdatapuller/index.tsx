@@ -1,4 +1,4 @@
-import React, { useContext,useState, useEffect, useRef } from "react";
+import React, { useContext, useState, useEffect, useRef } from "react";
 import Head from "next/head";
 import dynamic from "next/dynamic";
 import cookieCutter from "cookie-cutter";
@@ -84,18 +84,26 @@ export default function Page() {
 
   // useEffect to clear others projects
   useEffect(() => {
-  // remove the interval Cookie timer setter when
-  if (typeof window !== "undefined") {
-    // remove Typing project EventListeners
-    window.removeEventListener("resize", context.sharedState.typing.eventInputLostFocus);
-    document.removeEventListener("keydown", context.sharedState.typing.keyboardEvent);
-    // remove Portfolio project NavBar EventListeners
-    window.removeEventListener("scroll", context.sharedState.portfolio.NavBar.IntervalEvent);
-    context.sharedState.portfolio.NavBar.IntervalEvent = null;
-    context.sharedState.portfolio.NavBar.scrolling = null;
-    context.sharedState.portfolio.NavBar.scrollSizeY = null;
-
-  }
+    // remove the interval Cookie timer setter when
+    if (typeof window !== "undefined") {
+      // remove Typing project EventListeners
+      window.removeEventListener(
+        "resize",
+        context.sharedState.typing.eventInputLostFocus
+      );
+      document.removeEventListener(
+        "keydown",
+        context.sharedState.typing.keyboardEvent
+      );
+      // remove Portfolio project NavBar EventListeners
+      window.removeEventListener(
+        "scroll",
+        context.sharedState.portfolio.NavBar.IntervalEvent
+      );
+      context.sharedState.portfolio.NavBar.IntervalEvent = null;
+      context.sharedState.portfolio.NavBar.scrolling = null;
+      context.sharedState.portfolio.NavBar.scrollSizeY = null;
+    }
   }, [context.sharedState]);
 
   // import Dynamically the Map component from the DataPuller package, cus it's using some client side objects
@@ -302,7 +310,7 @@ export default function Page() {
         {/* // ? About */}
         <About />
       </div>
-      <Footer githubUrl="https://github.com/hktitof/DataPuller" hideSocialsInDesktop={false} />
+      <Footer hideSocialsInDesktop={false} />
     </>
   );
 }

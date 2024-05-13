@@ -1,0 +1,6 @@
+This favicon was generated using the following font:
+
+- Font Title: Open Sans
+- Font Author: Copyright 2020 The Open Sans Project Authors (https://github.com/googlefonts/opensans)
+- Font Source: https://fonts.gstatic.com/s/opensans/v40/memSYaGs126MiZpBA-UvWbX2vVnXBbObj2OVZyOOSr4dVJWUgsjZ0C4nY1M2xLER.ttf
+- Font License: SIL Open Font License, 1.1 (http://scripts.sil.org/OFL))

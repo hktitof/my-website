@@ -1,6 +1,6 @@
 import { motion } from "../../../node_modules/framer-motion/dist/framer-motion";
 import { Link } from "react-scroll";
-const MobileMenu = props => {
+const MobileMenu = (props) => {
   const closeMenu = () => {
     props.setRotate(!props.rotate);
     props.setShowElement(!props.ShowElement);
@@ -47,7 +47,9 @@ const MobileMenu = props => {
             onClick={() => closeMenu()}
             className="flex flex-col text-center space-y-2"
           >
-            <span className="text-AAsecondary text-xs font-mono hover:cursor-pointer">02.</span>
+            <span className="text-AAsecondary text-xs font-mono hover:cursor-pointer">
+              02.
+            </span>
             <span
               className="text-white font-Text2 text-sm sm:text-base
              hover:text-AAsecondary hover:cursor-pointer duration-300"
@@ -55,7 +57,7 @@ const MobileMenu = props => {
               Experience
             </span>
           </Link>
-          <Link
+          {/* <Link
             to="SomethingIveBuiltSection"
             spy={true}
             smooth={true}
@@ -71,7 +73,7 @@ const MobileMenu = props => {
             >
               Work
             </span>
-          </Link>
+          </Link> */}
           <Link
             to="GetInTouchSection"
             spy={true}

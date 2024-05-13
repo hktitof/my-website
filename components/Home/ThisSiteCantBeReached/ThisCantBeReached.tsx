@@ -10,30 +10,29 @@ export default function ThisCantBeReached() {
     }, 1000);
   }, []);
   if (typeof window !== "undefined") {
-    if(window.innerHeight>640){
-      CenterHeight = (window.innerHeight)/2-160-20;
-    }else{
-      CenterHeight = (window.innerHeight)/2-64-20;
+    if (window.innerHeight > 640) {
+      CenterHeight = window.innerHeight / 2 - 160 - 20;
+    } else {
+      CenterHeight = window.innerHeight / 2 - 64 - 20;
     }
-    if(window.innerWidth>1280){
-      CenterWidth = (window.innerWidth)/2-384-18;
-    }else if(window.innerWidth>1024){
-      CenterWidth = (window.innerWidth)/2-192-18;
-    }else if(window.innerWidth>768){
-      CenterWidth = (window.innerWidth)/2-144-18;
-    }else if(window.innerWidth>640){
-      CenterWidth = (window.innerWidth)/2-96-18;
-    }else{
-      CenterWidth = (window.innerWidth)/2-16-18;
+    if (window.innerWidth > 1280) {
+      CenterWidth = window.innerWidth / 2 - 384 - 18;
+    } else if (window.innerWidth > 1024) {
+      CenterWidth = window.innerWidth / 2 - 192 - 18;
+    } else if (window.innerWidth > 768) {
+      CenterWidth = window.innerWidth / 2 - 144 - 18;
+    } else if (window.innerWidth > 640) {
+      CenterWidth = window.innerWidth / 2 - 96 - 18;
+    } else {
+      CenterWidth = window.innerWidth / 2 - 16 - 18;
     }
-    
   }
- 
+
   return (
     <motion.div
       initial={{ opacity: 1 }}
-      animate={{opacity:0}}
-      transition={{ delay:4,duration: 0.5 }}
+      animate={{ opacity: 0 }}
+      transition={{ delay: 4, duration: 0.5 }}
       className="absolute h-screen w-full bg-white 
       py-16 sm:py-40 
       px-4 sm:px-24 md:px-36 lg:px-48 xl:px-96 
@@ -42,11 +41,12 @@ export default function ThisCantBeReached() {
     >
       <div className="relative w-full  flex flex-col space-y-4">
         {/* Icon for Desktop and Table */}
-        
-        <motion.div 
-        animate={{y:CenterHeight,x:CenterWidth,scale:2}}
-        transition={{delay:2,duration:1}}
-        className="relative w-9 h-10 ">
+
+        <motion.div
+          animate={{ y: CenterHeight, x: CenterWidth, scale: 2 }}
+          transition={{ delay: 2, duration: 1 }}
+          className="relative w-9 h-10 "
+        >
           <div className="absolute h-1 w-1/2 bg-gray-600"></div>
           <div className="absolute h-full w-1 bg-gray-600"></div>
           <div className="absolute bottom-0 h-1 w-full bg-gray-600"></div>
@@ -144,33 +144,36 @@ export default function ThisCantBeReached() {
 
           <div className="absolute left-3 bottom-[10px] w-3 h-[3px] bg-gray-600"></div>
           <motion.div
-            animate={{ y: [0, -5, 0, -5, 0, -5,  ] }}
+            animate={{ y: [0, -5, 0, -5, 0, -5] }}
             transition={{ y: { delay: 3, duration: 0.5 } }}
             className="absolute left-[9px] bottom-[7px] w-[3px] h-[3px] bg-gray-600"
           ></motion.div>
           <motion.div
             animate={{
-              y: [0, -5, 0, -5, 0, -5, 0, -5, ],
+              y: [0, -5, 0, -5, 0, -5, 0, -5],
             }}
             transition={{ y: { delay: 3, duration: 0.5 } }}
             className="absolute right-[9px] bottom-[7px] w-[3px] h-[3px] bg-gray-600"
           ></motion.div>
-        {/* ! Hello animation text */}
+          {/* ! Hello animation text */}
         </motion.div>
-            <motion.span
-            initial={{y:CenterHeight+50-20,x:CenterWidth-13,opacity:0}}
-            animate={{y:CenterHeight+50,opacity:1}}
-            transition={{delay:3.5,duration:0.3}}
-            className="absolute font-bold text-gray-600 text-2xl">
-              Hello!
-            </motion.span>
+        <motion.span
+          initial={{
+            y: CenterHeight + 50 - 20,
+            x: CenterWidth - 13,
+            opacity: 0,
+          }}
+          animate={{ y: CenterHeight + 50, opacity: 1 }}
+          transition={{ delay: 3.5, duration: 0.3 }}
+          className="absolute font-bold text-gray-600 text-2xl"
+        >
+          Hello!
+        </motion.span>
 
-        
-        
         {/* Text start from here */}
 
         <motion.div
-          initial={{opacity:1}}
+          initial={{ opacity: 1 }}
           animate={{ opacity: 0 }}
           transition={{ opacity: { delay: 2, duration: 0.5 } }}
           className="w-full  flex flex-col space-y-8"
@@ -191,7 +194,7 @@ export default function ThisCantBeReached() {
             be reached
           </span>
           <span className="text-gray-500 text-md">
-            <span className="font-bold">www.anaflous.com </span>
+            <span className="font-bold">www.portfolio.shuvrasish.com </span>
             unexpectedly{" "}
             {ShowText ? (
               <motion.span
@@ -239,7 +242,7 @@ export default function ThisCantBeReached() {
         </motion.div>
       </div>
       <motion.div
-        initial={{opacity:1}}
+        initial={{ opacity: 1 }}
         animate={{ opacity: 0 }}
         transition={{ opacity: { delay: 2, duration: 0.5 } }}
         className=""

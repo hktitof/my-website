@@ -43,11 +43,13 @@ export default function Home() {
         try {
           const IP_Address = async () => {
             return fetch("https://api.ipify.org/?format=json")
-              .then(res => res.json())
-              .then(data => data.ip);
+              .then((res) => res.json())
+              .then((data) => data.ip);
           };
 
-          const response = await fetch("/api/userInfoByIP/" + (await IP_Address())); // Replace with your actual API endpoint
+          const response = await fetch(
+            "/api/userInfoByIP/" + (await IP_Address())
+          ); // Replace with your actual API endpoint
           const data = await response.json();
           setUserData(data);
         } catch (error) {
@@ -66,7 +68,9 @@ export default function Home() {
     if (!IsBlackListEmpty) {
       if (userData) {
         // check if the user country is in the blackList
-        if (process.env.NEXT_PUBLIC_BLACKLIST_COUNTRIES.includes(userData.country)) {
+        if (
+          process.env.NEXT_PUBLIC_BLACKLIST_COUNTRIES.includes(userData.country)
+        ) {
           // set isBlackListed to true
           setIsBlackListed(true);
         }
@@ -79,11 +83,24 @@ export default function Home() {
     clearInterval(context.sharedState.userdata.timerCookieRef.current);
     if (typeof window !== "undefined") {
       // remove UserDataPuller project EventListeners
-      window.removeEventListener("resize", context.sharedState.userdata.windowSizeTracker.current);
-      window.removeEventListener("mousemove", context.sharedState.userdata.mousePositionTracker.current, false);
+      window.removeEventListener(
+        "resize",
+        context.sharedState.userdata.windowSizeTracker.current
+      );
+      window.removeEventListener(
+        "mousemove",
+        context.sharedState.userdata.mousePositionTracker.current,
+        false
+      );
       // remove Typing project EventListeners
-      window.removeEventListener("resize", context.sharedState.typing.eventInputLostFocus);
-      document.removeEventListener("keydown", context.sharedState.typing.keyboardEvent);
+      window.removeEventListener(
+        "resize",
+        context.sharedState.typing.eventInputLostFocus
+      );
+      document.removeEventListener(
+        "keydown",
+        context.sharedState.typing.keyboardEvent
+      );
     }
     setTimeout(() => {
       setShowElement(true);
@@ -107,7 +124,7 @@ export default function Home() {
 
   console.log("website is rendering...");
   const meta = {
-    title: "Abdellatif Anaflous - Software Engineer",
+    title: "Shuvrasish Roy - Full-stack Developer",
     description: `I've been working on Software development for 5 years straight. Get in touch with me to know more.`,
     image: "/titofCercle.png",
     type: "website",
@@ -120,8 +137,8 @@ export default function Home() {
         <title>{meta.title}</title>
         <meta name="robots" content="follow, index" />
         <meta content={meta.description} name="description" />
-        <meta property="og:url" content={`https://anaflous.com`} />
-        <link rel="canonical" href={`https://anaflous.com`} />
+        <meta property="og:url" content={`https://portfolio.shuvrasish.com`} />
+        <link rel="canonical" href={`https://portfolio.shuvrasish.com`} />
         <meta property="og:type" content={meta.type} />
         <meta property="og:site_name" content="Manu Arora" />
         <meta property="og:description" content={meta.description} />
@@ -136,17 +153,38 @@ export default function Home() {
 
       {!isBlackListed ? (
         <div className="relative snap-mandatory min-h-screen bg-AAprimary w-full ">
-          {context.sharedState.finishedLoading ? <></> : ShowThisCantBeReached ? <ThisCantBeReached /> : <></>}
-          {context.sharedState.finishedLoading ? <></> : ShowElement ? <Startup /> : <></>}
-          <Header finishedLoading={context.sharedState.finishedLoading} sectionsRef={homeRef} />
+          {context.sharedState.finishedLoading ? (
+            <></>
+          ) : ShowThisCantBeReached ? (
+            <ThisCantBeReached />
+          ) : (
+            <></>
+          )}
+          {context.sharedState.finishedLoading ? (
+            <></>
+          ) : ShowElement ? (
+            <Startup />
+          ) : (
+            <></>
+          )}
+          <Header
+            finishedLoading={context.sharedState.finishedLoading}
+            sectionsRef={homeRef}
+          />
           <MyName finishedLoading={context.sharedState.finishedLoading} />
-          <SocialMediaArround finishedLoading={context.sharedState.finishedLoading} />
-          {context.sharedState.finishedLoading ? <AboutMe ref={aboutRef} /> : <></>}
+          <SocialMediaArround
+            finishedLoading={context.sharedState.finishedLoading}
+          />
+          {context.sharedState.finishedLoading ? (
+            <AboutMe ref={aboutRef} />
+          ) : (
+            <></>
+          )}
           {context.sharedState.finishedLoading ? <WhereIHaveWorked /> : <></>}
-          {context.sharedState.finishedLoading ? <SomethingIveBuilt /> : <></>}
+          {/* {context.sharedState.finishedLoading ? <SomethingIveBuilt /> : <></>} */}
           {context.sharedState.finishedLoading ? <GetInTouch /> : <></>}
           {context.sharedState.finishedLoading ? (
-            <Footer githubUrl={"https://github.com/hktitof/my-website"} hideSocialsInDesktop={true} />
+            <Footer hideSocialsInDesktop={true} />
           ) : (
             <></>
           )}
