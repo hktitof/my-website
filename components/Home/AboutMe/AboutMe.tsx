@@ -51,24 +51,25 @@ export default function AboutMe(props) {
           <div className="w-full md:w-7/12 space-y-4 sm:text-base text-sm ">
             <div className="font-Header ">
               <span className="text-gray-400 ">
-                Hey there! I'm Shuvrasish, a seasoned software engineer with a
-                knack for crafting robust solutions that excel in the digital
-                realm. My journey began with a profound interest in technology
-                during my college days, which led me to explore programming and
-                problem-solvin. Over the years, I've honed my skills and
-                expertise to become proficient in a variety of domains,
-                specializing in web development and system architecture.
+                Hey there! I&apos;m Shuvrasish, a seasoned software engineer
+                with a knack for crafting robust solutions that excel in the
+                digital realm. My journey began with a profound interest in
+                technology during my college days, which led me to explore
+                programming and problem-solvin. Over the years, I&apos;ve honed
+                my skills and expertise to become proficient in a variety of
+                domains, specializing in web development and system
+                architecture.
               </span>
             </div>
             <div className="font-Header ">
               <span className="text-gray-400 ">
-                Throughout my career, I've spearheaded numerous projects, each
-                presenting unique challenges and opportunities for innovation.
-                From designing and implementing Role-Based Access Control (RBAC)
-                systems to engineering scalable email notification services
-                using cutting-edge technologies like Amazon SES, SNS, and
-                Celery, I've consistently delivered high-impact solutions that
-                exceed expectations.
+                Throughout my career, I&apos;ve spearheaded numerous projects,
+                each presenting unique challenges and opportunities for
+                innovation. From designing and implementing Role-Based Access
+                Control (RBAC) systems to engineering scalable email
+                notification services using cutting-edge technologies like
+                Amazon SES, SNS, and Celery, I&apos;ve consistently delivered
+                high-impact solutions that exceed expectations.
               </span>
             </div>
             <div className="font-Header ">
@@ -79,7 +80,7 @@ export default function AboutMe(props) {
                 can leverage my skills to drive meaningful advancements and
                 solve complex problems. With a strong foundation in languages
                 like Python, JavaScript, and C++, coupled with proficiency in
-                frameworks such as Django, ReactJS, and Next.js, I'm
+                frameworks such as Django, ReactJS, and Next.js, I&apos;m
                 well-equipped to tackle any challenge that comes my way.
               </span>
             </div>
