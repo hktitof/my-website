@@ -72,8 +72,8 @@ export default function SomethingIveBuilt() {
             col-span-8 flex flex-col items-start md:items-end space-y-3"
             >
               <div className="flex flex-col space-y-1 md:items-end z-10">
-                <span className="text-AAsecondary text-base">ENS Vision </span>
-                <a href="https://ens.vision" target="_blank" rel="noopener noreferrer">
+                <span className="text-AAsecondary text-base">Vision</span>
+                <a href="https://www.vision.io" target="_blank" rel="noopener noreferrer">
                   <span className=" md:text-gray-200 text-AAsecondary font-bold text-xl hover:cursor-pointer">
                     ENS names Marketplace
                   </span>
@@ -81,7 +81,7 @@ export default function SomethingIveBuilt() {
               </div>
               <div className="w-full md:bg-AAtertiary rounded-md py-6 md:p-6  z-10">
                 <p className="text-gray-300 md:text-gray-400 text-left md:text-right ">
-                  At <span className="text-AAsecondary">ENS Vision</span>, I played a crucial role in developing web3
+                  At <span className="text-AAsecondary">Vision</span>, I played a crucial role in developing web3
                   components for their <span className="text-AAsecondary">web3 application</span> using Next.js and web3
                   libraries. Our focus was on integrating new features and improving the user interface. One notable
                   achievement was the release of NameWrapper with <span className="text-AAsecondary">ERC72</span>{" "}

@@ -36,9 +36,9 @@ export default function EnsVision() {
             className="font-mono text-xs text-AAsecondary hover:cursor-pointer"
             style={{ fontSize: "0.6rem" }}
             // set on click to open the website
-            onClick={() => window.open("https://www.ens.vision/", "_blank")}
+            onClick={() => window.open("https://www.vision.io/", "_blank")}
           >
-            www.ens.vision
+            www.vision.io
           </span>
         </div>
         <div className="flex flex-col space-y-4 sm:text-sm text-xs">
