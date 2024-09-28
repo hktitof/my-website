@@ -3,8 +3,8 @@ import Img from "../../../components/smallComp/image/Img";
 import ArrowIcon from "../../../components/Icons/ArrowIcon";
 export default function AboutMe(props) {
   const technologies = [
-    ["Next.js", "JavaScript (ES6+)", "Tailwind CSS", "Ether.js", "Solidity"],
-    ["Node.js", "TypeScript", "Framer Motion", "react-moralis", "web3.js"],
+    ["Nextjs/React", "TypeScript/JavaScript", "Tailwind CSS", "Ether.js/web3.js", "AWS/Google Cloud"],
+    ["Node.js", "Java", "Solidity", "Mongodb", "graphQL/RESTful APIs"],
   ];
   return (
     <div id="aboutSection" data-aos="fade-up" className="snap-start flex flex-col  items-center py-20 bg-AAprimary">
@@ -27,44 +27,38 @@ export default function AboutMe(props) {
 
         <div className="w-full flex flex-col md:flex-row space-y-8 md:space-y-0  md:space-x-8 sm:space-x-2 ">
           <div className="w-full md:w-7/12 space-y-4 sm:text-base text-sm ">
-            <div className="font-Header ">
+            <div className="font-Header text-justify">
               <span className="text-gray-400 ">
-                Hello! My name is Abdellatif, and I am a passionate software engineer and problem solver, dedicated to
-                creating impactful codes that thrive on the internet. My journey in computer science began in 2009 when
-                I delved into the world of Ethical Hacking using BackTrack OS. Little did I know that programming skills
-                would become essential in pursuing this interest, marking the start of my programming journey.
+                Hello! My name is Abdellatif, and I&apos;m a passionate{" "}
+                <span className="text-AAsecondary">software engineer</span> with strong
+                problem-solving skills. My journey in computer science started at 11 years old when I explored Ethical
+                Hacking using BackTrack OS, which started my interest in programming. Over the years, I continued to
+                teach myself coding, which led me to pursue an{" "}
+                <span className="text-AAsecondary">engineering degree</span> and afterward a second degree in{" "}
+                <span className="text-AAsecondary">Master of Computer Science</span>, making me a professional in this
+                field.
               </span>
             </div>
-            <div className="font-Header ">
+            <div className="font-Header text-justify">
               <span className="text-gray-400 ">
-                Since pursuing my engineering degree, my career has taken me through diverse industries, allowing me to
-                refine my expertise in desktop and web development. In the realm of{" "}
-                <span className="text-AAsecondary">web3</span>, I am dedicated to pushing boundaries and driving
-                advancements. With experience working alongside esteemed organizations like{" "}
-                <span className="text-AAsecondary">ENS Vision</span>, where I played a key role in releasing v2 of{" "}
-                <span className="text-AAsecondary">ENS Vision Marketplace</span> , my passion for web3 and continuous
-                learning drives me to make a positive impact and advance technology.
+                Throughout my education and career, from my self-learning days to earning my degrees, I&apos;ve gained
+                experience in various industries. I have had the opportunity to work with companies and startups,
+                including <span className="text-AAsecondary">Vision</span>Vision,{" "}
+                <span className="text-AAsecondary">FeverTokens</span>,{" "}
+                <span className="text-AAsecondary">TrouveTavoi</span>, and many others, including transportation and
+                international companies. At FeverTokens, I led the development of an innovative NFT marketplace, and at
+                Vision, which is the second-largest market in the world for{" "}
+                <span className="text-AAsecondary">ENS</span>, I contributed to key projects.
               </span>
             </div>
-            {/* <div className="font-Header tracking-wide">
-              <span className="text-gray-400  ">
-                Fast-forward to today, I&apos;ve had the privilege of working at
-                <span className="text-AAsecondary"> a huge manufacturing company</span>,
-                <span className="text-AAsecondary"> a start-up</span>,{" "}
-                <span className="text-AAsecondary">export-import companies</span>, also
-                <span className="text-AAsecondary"> freelancing</span> and recently as Lead for the{" "}
-                <span className="text-AAsecondary">Google Developer Student club</span>. Experienced in Desktop & Web
-                Development, lately with Arduino Development. My main focus these days is creating and testing{" "}
-                <span className="text-AAsecondary">Smart Contracts</span> with Hardhat.
-              </span>
-            </div> */}
 
-            <div className="font-Header tracking-wide">
+            <div className="font-Header tracking-wide text-justify ">
               <span className="text-gray-400  ">
-                Here are a few technologies I&apos;ve been working with recently :
+                I&apos;m always interested to keep learning and improve my skills to make a positive impact in the tech
+                world. Here are some of the technologies I&apos;ve been working with recently:{" "}
               </span>
             </div>
-            <div className="font-Header tracking-wide flex flex-row space-x-16">
+            <div className="font-Header tracking-wide flex flex-row space-x-16  justify-center lg:justify-start">
               <div className="flex flex-row space-x-2 items-center">
                 <div className="flex flex-col space-y-4 sm:text-base text-sm">
                   {technologies[0].map((tech, index) => {
