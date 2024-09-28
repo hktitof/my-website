@@ -32,7 +32,7 @@ export default function ThisCantBeReached() {
   return (
     <motion.div
       initial={{ opacity: 1 }}
-      animate={{opacity:0}}
+      // animate={{opacity:0}}
       transition={{ delay:4,duration: 0.5 }}
       className="absolute h-screen w-full bg-white 
       py-16 sm:py-40 
@@ -111,13 +111,13 @@ export default function ThisCantBeReached() {
           {/* Corner */}
 
           <motion.div
-            animate={{ rotate: -90, x: 9, y: -7 }}
+            animate={{ rotate: -90, x: 8, y: -7 }}
             transition={{
               rotate: { delay: 0.5, duration: 0.5 },
               x: { delay: 0.5, duration: 0.5 },
               y: { delay: 0.5, duration: 0.5 },
             }}
-            className="absolute right-4 top-0 h-[18px] w-1 bg-gray-600"
+            className="absolute right-4 top-0 h-[19px] w-[4px] bg-gray-600"
           ></motion.div>
           <motion.div
             animate={{ rotate: 90, x: 6, y: -7 }}
@@ -126,7 +126,7 @@ export default function ThisCantBeReached() {
               x: { delay: 0.5, duration: 0.5 },
               y: { delay: 0.5, duration: 0.5 },
             }}
-            className="absolute right-0 top-[14px] h-1 w-4 bg-gray-600"
+            className="absolute right-0 top-[13.8px] h-[3.2px] w-4 bg-gray-600"
           ></motion.div>
           <motion.div
             initial={{ opacity: "100%" }}
