@@ -30,24 +30,23 @@ export default function AboutMe(props) {
             <div className="font-Header text-justify">
               <span className="text-gray-400 ">
                 Hello! My name is Abdellatif, and I&apos;m a passionate{" "}
-                <span className="text-AAsecondary">software engineer</span> with strong
-                problem-solving skills. My journey in computer science started at 11 years old when I explored Ethical
-                Hacking using BackTrack OS, which started my interest in programming. Over the years, I continued to
-                teach myself coding, which led me to pursue an{" "}
-                <span className="text-AAsecondary">engineering degree</span> and afterward a second degree in{" "}
-                <span className="text-AAsecondary">Master of Computer Science</span>, making me a professional in this
-                field.
+                <span className="text-AAsecondary">software engineer</span> with strong problem-solving skills. My
+                journey in computer science started at 11 years old when I explored Ethical Hacking using BackTrack OS,
+                which started my interest in programming. Over the years, I continued to teach myself coding, which led
+                me to pursue an <span className="text-AAsecondary">engineering degree</span> and afterward a second
+                degree in <span className="text-AAsecondary">Master of Computer Science</span>, making me a professional
+                in this field.
               </span>
             </div>
             <div className="font-Header text-justify">
               <span className="text-gray-400 ">
                 Throughout my education and career, from my self-learning days to earning my degrees, I&apos;ve gained
                 experience in various industries. I have had the opportunity to work with companies and startups,
-                including <span className="text-AAsecondary">Vision</span>Vision,{" "}
+                including <span className="text-AAsecondary">Vision</span>,{" "}
                 <span className="text-AAsecondary">FeverTokens</span>,{" "}
                 <span className="text-AAsecondary">TrouveTavoi</span>, and many others, including transportation and
                 international companies. At FeverTokens, I led the development of an innovative NFT marketplace, and at
-                Vision, which is the second-largest market in the world for{" "}
+                Vision, which is the <span className="text-AAsecondary">second-largest market</span> in the world for{" "}
                 <span className="text-AAsecondary">ENS</span>, I contributed to key projects.
               </span>
             </div>
@@ -55,7 +54,7 @@ export default function AboutMe(props) {
             <div className="font-Header tracking-wide text-justify ">
               <span className="text-gray-400  ">
                 I&apos;m always interested to keep learning and improve my skills to make a positive impact in the tech
-                world. Here are some of the technologies I&apos;ve been working with recently:{" "}
+                world. Here are some of the technologies I&apos;ve been working with :{" "}
               </span>
             </div>
             <div className="font-Header tracking-wide flex flex-row space-x-16  justify-center lg:justify-start">

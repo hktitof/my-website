@@ -40,7 +40,7 @@ export default function MyName(props: { finishedLoading: boolean }) {
         }}
         className="text-gray-400 font-bold text-3xl lg:text-7xl sm:text-5xl md:text-6xl mt-4"
       >
-        I make ideas & things alive.
+        I turn ideas into reality.
       </motion.h2>
 
       {/* <motion.h3
@@ -68,14 +68,15 @@ export default function MyName(props: { finishedLoading: boolean }) {
         }}
         className="text-gray-400 font-Header text-sm md:text-lg sm:text-md mt-10 tracking-wider "
       >
-        I&apos;m a <span className="text-AAsecondary">software engineer</span> with strong problem-solving skills,
-        specializing in creating exceptional digital experiences.
+        I&apos;m a <span className="text-AAsecondary">software engineer</span> with strong{" "}
+        <span className="text-AAsecondary">problem-solving skills</span>, specializing in creating exceptional digital
+        experiences.
         <br className="3xl:block hidden" /> With expertise in both <span className="text-AAsecondary">front-end</span>{" "}
-        and <span className="text-AAsecondary">back-end </span>
-        development, I work with a diverse range of technologies, including{" "}
+        and <span className="text-AAsecondary">back-end development</span>
+        , I work with a diverse range of technologies, including{" "}
         <span className="text-AAsecondary"> web3</span>
         <br className="3xl:block hidden" /> and traditional web applications. I enjoy solving challenging projects that
-        drive innovation and deliver high-quality results.
+        drive <span className="text-AAsecondary"> innovation</span> and deliver high-quality results.
         <br className="3xl:block hidden" /> My experience in{" "}
         <span className="text-AAsecondary">leading development teams</span> has honed my ability to collaborate
         effectively and translate ideas into functional solutions.
