@@ -27,7 +27,7 @@ export default function TrouveTavoie() {
             Software Engineer <span className="text-AAsecondary">@ Blockchain</span>
           </span>
           {/* Date */}
-          <span className="font-mono text-xs text-gray-500">Mars - August 2022</span>
+          <span className="font-mono text-xs text-gray-500">Feb - Aug 2022</span>
           <span className="font-mono text-xs text-AAsecondary hover:cursor-pointer" style={{ fontSize: "0.6rem" }}
            // set on click to open the website
            onClick={() => window.open("https://www.trouvetavoie.io/", "_blank")}

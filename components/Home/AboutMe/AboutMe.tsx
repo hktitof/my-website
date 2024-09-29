@@ -4,7 +4,7 @@ import ArrowIcon from "../../../components/Icons/ArrowIcon";
 export default function AboutMe(props) {
   const technologies = [
     ["Nextjs/React", "TypeScript/JavaScript", "Tailwind CSS", "Ether.js/web3.js", "AWS/Google Cloud"],
-    ["Node.js", "Java", "Solidity", "Mongodb", "graphQL/RESTful APIs"],
+    ["Node.js", "Java", "Solidity", "Mongodb", "GraphQL/RESTful APIs"],
   ];
   return (
     <div id="aboutSection" data-aos="fade-up" className="snap-start flex flex-col  items-center py-20 bg-AAprimary">

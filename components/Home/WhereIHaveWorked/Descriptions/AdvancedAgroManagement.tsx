@@ -26,7 +26,7 @@ export default function AdvancedAgroManagement() {
             Software Developer <span className="text-AAsecondary">@ Wordpress</span>
           </span>
           {/* Date */}
-          <span className="font-mono text-xs text-gray-500">june - August 2019</span>
+          <span className="font-mono text-xs text-gray-500">June - Aug 2019</span>
         </div>
         <div className="flex flex-col space-y-4 sm:text-sm text-xs">
           {/* Tasks Description 1 */}

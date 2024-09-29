@@ -25,7 +25,7 @@ export default function Fantasia() {
           Server Manager Assistant <span className="text-AAsecondary">@ Windows Server</span>
         </span>
         {/* Date */}
-        <span className="font-mono text-xs text-gray-500">June - July 2018</span>
+        <span className="font-mono text-xs text-gray-500">June - Aug 2018</span>
       </div>
       <div className="flex flex-col space-y-4 sm:text-sm text-xs">
       {tasks.map((item, index) => {
