@@ -8,6 +8,7 @@ import AdvancedAgroManagement from "./Descriptions/AdvancedAgroManagement";
 import Fantasia from "./Descriptions/Fantasia";
 import SuperBerry from "./Descriptions/SuperBerry";
 import EnsVision from "./Descriptions/EnsVision";
+import YpredictAI from "./Descriptions/YpredictAI";
 export default function WhereIHaveWorked() {
   const barRef = React.useRef<HTMLDivElement>(null);
   // ? INFORMATIONAL control the green position using px,
@@ -16,6 +17,8 @@ export default function WhereIHaveWorked() {
     switch (DescriptionJob) {
       case "Vision":
         return <EnsVision />;
+      case "YpredictAI":
+        return <YpredictAI />;
       case "TrouveTavoie":
         return <TrouveTavoie />;
       case "FeverTokens":
@@ -70,6 +73,7 @@ const CompaniesBar = props => {
     false,
     false,
     false,
+    false,
   ]);
   const CompanyButton = props => {
     return (
@@ -103,7 +107,7 @@ const CompaniesBar = props => {
     >
       {/* // ? left bar Holder */}
       <div
-        className=" hidden md:block bg-gray-500 relative h-0.5 w-34 md:h-[297px] translate-y-1 md:w-0.5  
+        className=" hidden md:block bg-gray-500 relative h-0.5 w-34 md:h-[352px] translate-y-1 md:w-0.5  
         rounded md:order-1 order-2  "
       >
         {/* // ? animated left bar */}
@@ -116,67 +120,76 @@ const CompaniesBar = props => {
       {/* // ? Companies name as buttons */}
       <div className="flex flex-col md:order-2 order-1 space-y-1 pl-8 md:pl-0 ">
         <div className="flex flex-row md:flex-col">
-        <CompanyButton
+          <CompanyButton
             ButtonOrderOfcompanyNameBackgroundColorGreen={0}
             CompanyName="Vision"
-            BarPosition={-12}
+            BarPosition={-10}
             BarAvobePosition={1}
             DescriptionJob="Vision"
-            CompanyNameBackgroundColorGreen={[true,false, false, false, false, false]}
+            CompanyNameBackgroundColorGreen={[true, false, false, false, false, false,false,false]}
             setDescriptionJob={props.setDescriptionJob}
           />
           <CompanyButton
             ButtonOrderOfcompanyNameBackgroundColorGreen={1}
-            CompanyName="TrouveTavoie"
-            BarPosition={32}
+            CompanyName="Ypredict.io"
+            BarPosition={40}
             BarAvobePosition={129}
-            DescriptionJob="TrouveTavoie"
-            CompanyNameBackgroundColorGreen={[false,true, false, false, false, false]}
+            DescriptionJob="YpredictAI"
+            CompanyNameBackgroundColorGreen={[false, true, false, false, false, false, false,false]}
             setDescriptionJob={props.setDescriptionJob}
           />
           <CompanyButton
             ButtonOrderOfcompanyNameBackgroundColorGreen={2}
-            CompanyName="FeverTokens"
-            BarPosition={76}
+            CompanyName="TrouveTavoie"
+            BarPosition={83}
             BarAvobePosition={257}
-            DescriptionJob="FeverTokens"
-            CompanyNameBackgroundColorGreen={[false,false, true, false, false, false]}
+            DescriptionJob="TrouveTavoie"
+            CompanyNameBackgroundColorGreen={[false, false, true, false, false, false,false,false]}
             setDescriptionJob={props.setDescriptionJob}
           />
           <CompanyButton
             ButtonOrderOfcompanyNameBackgroundColorGreen={3}
-            CompanyName="IdealFresh"
-            BarPosition={120}
+            CompanyName="FeverTokens"
+            BarPosition={126}
             BarAvobePosition={385}
-            DescriptionJob="IdealFresh"
-            CompanyNameBackgroundColorGreen={[false, false, false, true, false, false]}
+            DescriptionJob="FeverTokens"
+            CompanyNameBackgroundColorGreen={[false, false, false, true, false, false,false,false]}
             setDescriptionJob={props.setDescriptionJob}
           />
           <CompanyButton
             ButtonOrderOfcompanyNameBackgroundColorGreen={4}
-            CompanyName="SuperBerry"
-            BarPosition={164}
+            CompanyName="IdealFresh"
+            BarPosition={170}
             BarAvobePosition={513}
-            DescriptionJob="SuperBerry"
-            CompanyNameBackgroundColorGreen={[false, false, false, false, true, false]}
+            DescriptionJob="IdealFresh"
+            CompanyNameBackgroundColorGreen={[false, false, false, false, true, false,false,false]}
             setDescriptionJob={props.setDescriptionJob}
           />
           <CompanyButton
             ButtonOrderOfcompanyNameBackgroundColorGreen={5}
-            CompanyName="AA Management"
-            BarPosition={208}
+            CompanyName="SuperBerry"
+            BarPosition={213}
             BarAvobePosition={641}
-            DescriptionJob="Advanced Agro Management"
-            CompanyNameBackgroundColorGreen={[false, false, false, false, false, true]}
+            DescriptionJob="SuperBerry"
+            CompanyNameBackgroundColorGreen={[false, false, false, false, false, true,false,false]}
             setDescriptionJob={props.setDescriptionJob}
           />
           <CompanyButton
             ButtonOrderOfcompanyNameBackgroundColorGreen={6}
-            CompanyName="Fantasia SME"
-            BarPosition={252}
+            CompanyName="AA Management"
+            BarPosition={258}
             BarAvobePosition={769}
+            DescriptionJob="Advanced Agro Management"
+            CompanyNameBackgroundColorGreen={[false, false, false, false, false, false,true,false]}
+            setDescriptionJob={props.setDescriptionJob}
+          />
+          <CompanyButton
+            ButtonOrderOfcompanyNameBackgroundColorGreen={7}
+            CompanyName="Fantasia SME"
+            BarPosition={302}
+            BarAvobePosition={897}
             DescriptionJob="Fantasia"
-            CompanyNameBackgroundColorGreen={[false, false, false, false, false, false, true]}
+            CompanyNameBackgroundColorGreen={[false, false, false, false, false, false, false,true]}
             setDescriptionJob={props.setDescriptionJob}
           />
         </div>
