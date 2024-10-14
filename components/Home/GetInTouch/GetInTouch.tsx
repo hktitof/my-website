@@ -1,6 +1,15 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ArrowIcon from "../../Icons/ArrowIcon";
 export default function GetInTouch() {
+  const [isAndroidWebView, setIsAndroidWebView] = useState(false);
+
+  useEffect(() => {
+    const userAgent = navigator.userAgent || navigator.vendor;
+    // Check for Android WebView by inspecting the user agent
+    if (/android/i.test(userAgent) && /wv/.test(userAgent)) {
+      setIsAndroidWebView(true);
+    }
+  }, []);
   return (
     <div
       id="GetInTouchSection"
@@ -22,14 +31,23 @@ export default function GetInTouch() {
         want to say hi, I&apos;ll try my best to get back to you!
       </p>
       <div className="pt-4">
-        <a href="mailto:abdellatif@anaflous.com" target={"_blank"} rel="noreferrer">
+        {isAndroidWebView ? (
           <button
             className="font-mono text-sm text-AAsecondary border-AAsecondary 
                             px-8 py-4 border-[1.5px] rounded "
           >
-            Say Hello
+            abdellatif@anaflous.com
           </button>
-        </a>
+        ) : (
+          <a href="mailto:abdellatif@anaflous.com" target={"_blank"} rel="noreferrer">
+            <button
+              className="font-mono text-sm text-AAsecondary border-AAsecondary 
+                            px-8 py-4 border-[1.5px] rounded "
+            >
+              Say Hello
+            </button>
+          </a>
+        )}
       </div>
     </div>
   );
