@@ -4,25 +4,26 @@ import { getTasksTextWithHighlightedKeyword } from "./taskAndType";
 export default function FeverTokens() {
   const tasks = [
     {
-      text: "Leading the development of the NFT Marketplace v2 for the Platform FeverTokens.",
-      keywords: ["NFT Marketplace v2"],
+      text: "Managed the development of NFT Marketplace v2 for the FeverTokens platform, ensuring high-quality deliverables and successful project execution.",
+      keywords: ["NFT Marketplace v2", "project management", "high-quality deliverables"],
     },
     {
-      text: "Worked with a team of six developers to build a temporary NFT Marketplace platform for VivaTech2022 event, an ambitious startup originating from France,Paris.",
-      keywords: ["VivaTech2022 event"],
+      text: "Collaborated with a team of six developers to build a temporary NFT Marketplace for the VivaTech2022 event in Paris, utilizing Next.js, Ether.js, Tailwind CSS, AWS Lambda, and Hardhat.",
+      keywords: ["VivaTech2022", "Next.js", "Ether.js", "Tailwind CSS", "AWS Lambda", "Hardhat"],
     },
     {
-      text: "Interacted with the blockchain & Smart Contracts to build the new FeverTokens Platform.",
-      keywords: ["blockchain & Smart Contracts"],
+      text: "Interacted with blockchain and smart contracts to build and enhance the FeverTokens platform, achieving recognition from Binance and securing a one-million-dollar investment.",
+      keywords: ["blockchain", "smart contracts", "Binance", "investment", "platform development"],
     },
   ];
+
   return (
     <>
       <div className="flex flex-col space-y-5 max-w-xl px-4 md:px-0">
         <div className="flex flex-col spacey-y-2">
           {/* Title */}
           <span className="text-gray-100 sm:text-lg text-sm font-Arimo tracking-wide">
-            Software Engineer <span className="text-AAsecondary">@ web3</span>
+          Lead Full Stack Engineer <span className="text-AAsecondary">@ web3</span>
           </span>
           {/* Date */}
           <span className="font-mono text-xs text-gray-500">Jan - Sept 2022</span>

@@ -5,18 +5,19 @@ import { getTasksTextWithHighlightedKeyword } from "./taskAndType";
 export default function TrouveTavoie() {
   const tasks = [
     {
-      text: "Spearhead & implemented a new design user workflow system for the Frond-End Architecture of a NFT Marketplace.",
-      keywords: ["NFT Marketplace"],
+      text: "Led front-end and back-end development to implement a new user workflow system for an NFT marketplace, enhancing the purchasing experience and contributing to a successful marketplace launch.",
+      keywords: ["NFT Marketplace", "user workflow", "purchasing experience"],
     },
     {
-      text: "Worked with a variety of different languages, platforms, frameworks, and content management systems such as JavaScript, TypeScript, Next.js/React, AWS and Vercel.",
-      keywords: ["Next.js/React", "AWS", "Vercel"],
+      text: "Worked extensively with JavaScript, TypeScript, Next.js, React, AWS, and Vercel to optimize system performance, achieving a 30% improvement in transaction speed and increased user engagement.",
+      keywords: ["JavaScript", "TypeScript", "Next.js", "React", "AWS", "Vercel", "system performance"],
     },
     {
-      text: "Interfaced with developers on a daily basis, providing technological expertise.",
-      keywords: [],
+      text: "Collaborated closely with developers, providing technical expertise and insights to enhance the overall system architecture.",
+      keywords: ["team collaboration", "technical expertise", "system architecture"],
     },
-  ];
+];
+
 
   return (
     <>
@@ -24,10 +25,10 @@ export default function TrouveTavoie() {
         <div className="flex flex-col spacey-y-2">
           {/* Title */}
           <span className="text-gray-100 sm:text-lg text-sm font-Arimo tracking-wide">
-            Software Engineer <span className="text-AAsecondary">@ Blockchain</span>
+          Lead Full Stack Software Engineer <span className="text-AAsecondary">@ Blockchain</span>
           </span>
           {/* Date */}
-          <span className="font-mono text-xs text-gray-500">Feb - Aug 2022</span>
+          <span className="font-mono text-xs text-gray-500">Jan - Sept 2022</span>
           <span className="font-mono text-xs text-AAsecondary hover:cursor-pointer" style={{ fontSize: "0.6rem" }}
            // set on click to open the website
            onClick={() => window.open("https://www.trouvetavoie.io/", "_blank")}

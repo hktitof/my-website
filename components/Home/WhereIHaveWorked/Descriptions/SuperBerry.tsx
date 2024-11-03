@@ -5,18 +5,19 @@ import { getTasksTextWithHighlightedKeyword } from "./taskAndType";
 export default function SuperBerry() {
   const tasks = [
     {
-      text: "Designed and Built user-friendly customizable static web application using ReactJS, TailwindCSS v1, and TypeScript.",
-      keywords: ["ReactJS", "TailwindCSS v1", "TypeScript"],
+      text: "Designed and developed a customizable static web application using ReactJS, Tailwind CSS v1, and TypeScript, focusing on user-friendliness and customization.",
+      keywords: ["ReactJS", "TailwindCSS v1", "TypeScript", "customizable", "user-friendly"],
     },
     {
-      text: "upgraded the web application for better SEO with Next.js and exploiting the server-side rendering benefits.",
-      keywords: ["Next.js"],
+      text: "Upgraded the application to enhance SEO and performance by migrating to Next.js, utilizing server-side rendering for faster load times and improved visibility.",
+      keywords: ["Next.js", "SEO", "server-side rendering", "performance"],
     },
     {
-      text: "Provided technical support and troubleshoots errors and/or problems with web based applications.",
-      keywords: ["technical support","troubleshoots"],
+      text: "Provided technical support for web applications, troubleshooting errors and problems, and transformed a PHP website into a high-performance static site on Next.js, enhancing Google Lighthouse scores.",
+      keywords: ["technical support", "troubleshooting", "PHP", "high-performance", "Google Lighthouse"],
     },
-  ];
+];
+
 
   return (
     <>
@@ -24,10 +25,10 @@ export default function SuperBerry() {
         <div className="flex flex-col spacey-y-2">
           {/* Title */}
           <span className="text-gray-100 sm:text-lg text-sm font-Arimo tracking-wide">
-            Software Engineer <span className="text-AAsecondary">@ Web App</span>
+          Full Stack Engineer <span className="text-AAsecondary">@ Web App</span>
           </span>
           {/* Date */}
-          <span className="font-mono text-xs text-gray-500">June - August 2020</span>
+          <span className="font-mono text-xs text-gray-500">June - Dec 2020</span>
         </div>
         <div className="flex flex-col space-y-4 sm:text-sm text-xs">
           {/* Tasks Description 1 */}

@@ -30,7 +30,7 @@ export default function AboutMe(props) {
             <div className="font-Header text-justify">
               <span className="text-gray-400 ">
                 Hello! My name is Abdellatif, and I&apos;m a passionate{" "}
-                <span className="text-AAsecondary">software engineer</span> with strong problem-solving skills. My
+                <span className="text-AAsecondary">Full Stack Software Engineer</span> with strong problem-solving skills. My
                 journey in computer science started at 11 years old when I explored Ethical Hacking using BackTrack OS,
                 which started my interest in programming. Over the years, I continued to teach myself coding, which led
                 me to pursue an <span className="text-AAsecondary">engineering degree</span> and afterward a second
@@ -47,7 +47,7 @@ export default function AboutMe(props) {
                 <span className="text-AAsecondary">TrouveTavoi</span>, and many others, including transportation and
                 international companies. At FeverTokens, I led the development of an innovative NFT marketplace, and at
                 Vision, which is the <span className="text-AAsecondary">second-largest market</span> in the world for{" "}
-                <span className="text-AAsecondary">ENS</span>, I contributed to key projects.
+                <span className="text-AAsecondary">ENS</span>, I led the development of their new NameWrapper release.
               </span>
             </div>
 

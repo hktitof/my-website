@@ -68,7 +68,7 @@ export default function MyName(props: { finishedLoading: boolean }) {
         }}
         className="text-gray-400 font-Header text-sm md:text-lg sm:text-md mt-10 tracking-wider "
       >
-        I&apos;m a <span className="text-AAsecondary">software engineer</span> with strong{" "}
+        I&apos;m a <span className="text-AAsecondary">Full Stack Software Engineer</span> with strong{" "}
         <span className="text-AAsecondary">problem-solving skills</span>, specializing in creating exceptional digital
         experiences.
         <br className="3xl:block hidden" /> With expertise in both <span className="text-AAsecondary">front-end</span>{" "}

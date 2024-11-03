@@ -5,20 +5,20 @@ import { getTasksTextWithHighlightedKeyword } from "./taskAndType";
 export default function YpredictAI() {
   const tasks = [
     {
-      text: "Led the development of an ERC20 token platform using Next.js, managing the full project lifecycle and ensuring timely delivery.",
-      keywords: ["Next.js", "ERC20", "project lifecycle", "timely delivery"],
+      text: "Led the development of an ERC20 token platform using Next.js and AWS Lambda for serverless computing, managing the full project lifecycle and achieving timely delivery.",
+      keywords: ["Next.js", "ERC20", "AWS Lambda", "project lifecycle", "timely delivery"],
     },
     {
-      text: "Developed the frontend for decentralized peer-to-peer transactions and fixed smart contract issues to improve blockchain integration and security.",
-      keywords: ["peer-to-peer", "frontend", "smart contracts", "blockchain integration"],
+      text: "Developed and optimized the frontend for decentralized peer-to-peer transactions, resolving smart contract issues to enhance blockchain integration and security.",
+      keywords: ["peer-to-peer", "frontend", "smart contracts", "blockchain integration", "security"],
     },
     {
-      text: "Integrated Solidity-based smart contracts and ensured proper interaction with blockchain protocols.",
-      keywords: ["Solidity", "smart contracts", "blockchain protocols"],
+      text: "Integrated Solidity-based smart contracts and MongoDB for effective data management, ensuring seamless interaction with blockchain protocols.",
+      keywords: ["Solidity", "smart contracts", "MongoDB", "blockchain protocols", "data management"],
     },
     {
-      text: "Collaborated with the team to deploy the platform and delivered the project on GitHub for public access.",
-      keywords: ["collaboration", "GitHub", "deployment"],
+      text: "Focused on SEO and tracking metrics with Google Analytics, resulting in a successful private sale that sold out within 24 hours. Made the project publicly accessible on GitHub.",
+      keywords: ["SEO", "Google Analytics", "private sale", "GitHub", "public access"],
     },
   ];
 
@@ -28,10 +28,10 @@ export default function YpredictAI() {
         <div className="flex flex-col spacey-y-2">
           {/* Title */}
           <span className="text-gray-100 sm:text-lg text-sm font-Arimo tracking-wide">
-            Project Manager <span className="text-AAsecondary">@ Blockchain</span>
+          Lead Full Stack Engineer <span className="text-AAsecondary">@ YPredict</span>
           </span>
           {/* Date */}
-          <span className="font-mono text-xs text-gray-500">Aug - Dec 2022</span>
+          <span className="font-mono text-xs text-gray-500">Oct - Dec 2022</span>
           <span
             className="font-mono text-xs text-AAsecondary hover:cursor-pointer"
             style={{ fontSize: "0.6rem" }}
