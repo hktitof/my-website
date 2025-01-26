@@ -1,5 +1,7 @@
 import "../styles/globals.css";
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
+
 import AppContext from "../components/AppContextFolder/AppContext";
 import { useRef, useState, useEffect } from "react";
 // import NEXT_PUBLIC_GA_TRACKING_ID form .env
@@ -8,8 +10,8 @@ const GA_TRACKING_ID = process.env.NEXT_PUBLIC_GA_TRACKING_ID;
 declare global {
   interface Window {
     gtag: (...args: any[]) => void;
-  dataLayer: any[];
-}
+    dataLayer: any[];
+  }
 }
 // import useRouter
 import { useRouter } from "next/router";
@@ -40,9 +42,9 @@ function MyApp({ Component, pageProps }) {
         page_path: url,
       });
     };
-    
+
     router.events.on("routeChangeComplete", handleRouteChange);
-    
+
     return () => {
       router.events.off("routeChangeComplete", handleRouteChange);
     };
@@ -74,6 +76,7 @@ function MyApp({ Component, pageProps }) {
   });
   return (
     <AppContext.Provider value={{ sharedState, setSharedState }}>
+      <SpeedInsights />
       <Component {...pageProps} />
       <Analytics />
     </AppContext.Provider>
