@@ -19,7 +19,7 @@
     "detect-gpu": "^4.0.36",
     "framer-motion": "^4.1.17",
     "leaflet": "^1.8.0",
-    "next": "14.0.3",
+    "next": "14.2.21",
     "react": "^18.2.0",
     "react-cookie": "^4.1.1",
     "react-dom": "^18.2.0",
