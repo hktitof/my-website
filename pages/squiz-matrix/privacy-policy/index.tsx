@@ -37,7 +37,7 @@ const PrivacyPolicyPage = () => {
             <section>
               <h2 className="text-2xl font-semibold text-gray-900 mb-4">2. Data Collection and Usage</h2>
               <div className="space-y-4">
-                <h3 className="text-lg font-medium text-gray-900">2.1 Website URLs</h3>
+                <h3 className="text-lg font-medium text-gray-900">2.1 URL Analysis</h3>
                 <p className="text-gray-600">
                   The Extension examines URLs of web pages you visit solely to determine if you are on a Squiz Matrix
                   admin page. This detection is based on identifying specific patterns in the URL path (such as
@@ -45,17 +45,37 @@ const PrivacyPolicyPage = () => {
                   pages.
                 </p>
 
-                <h3 className="text-lg font-medium text-gray-900">2.2 Clipboard Data</h3>
-                <p className="text-gray-600">
-                  When you use the designated keyboard shortcut while on a Squiz Matrix admin page, the Extension reads
-                  the &quot;asset ID&quot; of the selected element and copies it to your clipboard. This happens only at
-                  your explicit request through the keyboard shortcut.
-                </p>
+               
               </div>
+            </section>
+            <section>
+              <h2 className="text-2xl font-semibold text-gray-900 mb-4">3. Clipboard Interaction</h2>
+              <p className="text-gray-600">
+                When you use the designated keyboard shortcut while on a Squiz Matrix admin page, the extension performs
+                the following actions:
+              </p>
+              <ul className="list-disc pl-6 space-y-2 text-gray-600">
+                <li>
+                  <strong>Identifies the Selected Element:</strong> The extension locates the element you have selected
+                  on the page.
+                </li>
+                <li>
+                  <strong>Extracts Asset ID:</strong> It extracts the value of the{" "}
+                  <code className="bg-gray-100 px-1 py-0.5 rounded text-sm font-mono">data-assetid</code> attribute from
+                  the selected element.
+                </li>
+                <li>
+                  <strong>Copies to Clipboard:</strong> This value is then copied to your clipboard, making it available
+                  for pasting.
+                </li>
+              </ul>
+              <p className="text-gray-600 mt-2">
+                This process happens only at your explicit request through the keyboard shortcut.
+              </p>
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold text-gray-900 mb-4">3. Data Storage and Transmission</h2>
+              <h2 className="text-2xl font-semibold text-gray-900 mb-4">4. Data Storage and Transmission</h2>
               <div className="bg-green-50 border-l-4 border-green-400 p-4 mb-4">
                 <p className="text-green-700">
                   <strong>Important:</strong> The Extension does not collect, store, or transmit any personal data to
@@ -70,32 +90,57 @@ const PrivacyPolicyPage = () => {
               </ul>
             </section>
 
-            <section>
-              <h2 className="text-2xl font-semibold text-gray-900 mb-4">4. Required Permissions</h2>
-              <div className="bg-gray-50 rounded-lg p-6 space-y-4">
-                <div>
-                  <h3 className="text-lg font-medium text-gray-900">storage</h3>
-                  <p className="text-gray-600">Required to save your keyboard shortcut preferences locally</p>
-                </div>
-                <div>
-                  <h3 className="text-lg font-medium text-gray-900">activeTab</h3>
-                  <p className="text-gray-600">
-                    Required to access the current tab&apos;s URL for Squiz Matrix admin page detection
+            <section className="max-w-3xl mx-auto p-6">
+              <h2 className="text-2xl font-bold text-gray-900 mb-6 border-b pb-4">5. Required Permissions</h2>
+
+              <div className="bg-gray-50 rounded-xl p-6 space-y-6 shadow-sm">
+                <div className="bg-white rounded-lg p-4 transition-all duration-200 hover:shadow-md border border-gray-100">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center">
+                    <span className="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
+                    storage
+                  </h3>
+                  <p className="text-gray-600 ml-4">
+                    This allows the extension to save your preferred keyboard shortcut so you don&apos;t have to set it
+                    every time.
                   </p>
                 </div>
-                <div>
-                  <h3 className="text-lg font-medium text-gray-900">scripting</h3>
-                  <p className="text-gray-600">Required to copy asset IDs from the page when requested</p>
+
+                <div className="bg-white rounded-lg p-4 transition-all duration-200 hover:shadow-md border border-gray-100">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center">
+                    <span className="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
+                    activeTab
+                  </h3>
+                  <p className="text-gray-600 ml-4">
+                    This is necessary to check the URL of the current tab to determine if it&apos;s a Squiz Matrix admin
+                    page, ensuring the extension only functions when needed.
+                  </p>
                 </div>
-                <div>
-                  <h3 className="text-lg font-medium text-gray-900">tabs</h3>
-                  <p className="text-gray-600">Required to communicate with the active tab for copying functionality</p>
+
+                <div className="bg-white rounded-lg p-4 transition-all duration-200 hover:shadow-md border border-gray-100">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center">
+                    <span className="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
+                    scripting
+                  </h3>
+                  <p className="text-gray-600 ml-4">
+                    This permission enables the extension to interact with the webpage to find and copy the asset ID
+                    when you activate the shortcut.
+                  </p>
+                </div>
+
+                <div className="bg-white rounded-lg p-4 transition-all duration-200 hover:shadow-md border border-gray-100">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center">
+                    <span className="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
+                    tabs
+                  </h3>
+                  <p className="text-gray-600 ml-4">
+                    This allows the extension to communicate with the active tab to perform the copy action.
+                  </p>
                 </div>
               </div>
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold text-gray-900 mb-4">5. Data Deletion</h2>
+              <h2 className="text-2xl font-semibold text-gray-900 mb-4">6. Data Deletion</h2>
               <p className="text-gray-600">
                 All Extension data (including your keyboard shortcut preference) is automatically removed when you
                 uninstall the Extension from your browser. You can also reset your shortcut settings at any time through
@@ -104,7 +149,15 @@ const PrivacyPolicyPage = () => {
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold text-gray-900 mb-4">6. Contact Information</h2>
+              <h2 className="text-2xl font-semibold text-gray-900 mb-4">7. Legal Compliance</h2>
+              <p className="text-gray-600">
+                This Privacy Policy is provided for informational purposes only and does not constitute legal advice. If
+                you have specific questions about data privacy or compliance, please consult with a legal professional.
+              </p>
+            </section>
+
+            <section>
+              <h2 className="text-2xl font-semibold text-gray-900 mb-4">8. Contact Information</h2>
               <p className="text-gray-600">
                 For questions or concerns about this Privacy Policy or the Extension&apos;s data practices, please
                 contact:
@@ -121,7 +174,7 @@ const PrivacyPolicyPage = () => {
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold text-gray-900 mb-4">7. Updates to This Policy</h2>
+              <h2 className="text-2xl font-semibold text-gray-900 mb-4">9. Updates to This Policy</h2>
               <p className="text-gray-600">
                 This Privacy Policy may be updated periodically. Any changes will be reflected on this page and, if
                 significant changes are made, we will provide a more prominent notice.
