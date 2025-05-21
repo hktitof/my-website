@@ -64,6 +64,7 @@ Since i integrated some of my project into my website i'll i mention most of tec
 - cookie-cutter
 - react-leaflet
 - Vercel Analytics
+- Google Analytics
 
 ##### Note : 
 ##### You can find the rest of packages in the file ```/package.json```
