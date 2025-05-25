@@ -7,29 +7,25 @@ import { getTasksTextWithHighlightedKeyword } from "./taskAndType"; // Adjust pa
 export default function EnergyInstitute() {
   const tasks = [
     {
-      text: "Leading the development and optimization of the Statistical Review of World Energy (web & app) – EI's largest and most impactful project.",
-      keywords: ["Leading", "Statistical Review of World Energy", "development", "optimization", "impactful project"],
+      text: "Leading the development of the Statistical Review of World Energy (EI's largest project) and the upcoming Powerful Women initiative.",
+      keywords: ["Leading", "Statistical Review of World Energy", "development", "PowerFul women"],
     },
     {
       text: "Guiding the overall technical strategy, managing the Azure-based DevOps pipeline, and spearheading the creation of its globally-renowned annual data visualizations.",
-      keywords: ["technical strategy", "Azure", "DevOps", "data visualizations", "globally-renowned"],
+      keywords: ["technical strategy", "Azure-based DevOps", "data visualizations", "globally-renowned"],
     },
     {
       text: "Overseeing the full Azure environment, including hosting, resource allocation, and providing critical support for Power Platform developers.",
       keywords: ["Azure Management", "hosting", "Power Platform", "resource allocation"],
     },
     {
-      text: "Pioneering innovative digital tools, such as an AI-powered news automation agent (Next.js, GPT-4o, Azure), to significantly enhance operational efficiency.",
-      keywords: ["AI", "Automation", "Next.js", "GPT-4o", "Innovation", "operational efficiency"],
+      text: "Pioneering innovative digital tools, such as an AI-powered automation agent, to significantly enhance operational efficiency.",
+      keywords: ["AI-powered automation agent", "Next.js", "GPT-4o", "Innovation", "operational efficiency"],
     },
     {
       text: "Implementing crucial security and functionality enhancements like SSO (Auth0/Okta) within the Squiz Matrix CMS and proactively conducting penetration testing.",
       keywords: ["SSO", "Auth0", "Okta", "Squiz Matrix CMS", "Penetration Testing", "Security"],
-    },
-    {
-      text: "Championing new technologies, fostering a knowledge-sharing culture, and preparing to lead the upcoming redevelopment of PowerfulWomen.co.uk.",
-      keywords: ["Technical Leadership", "Mentorship", "PowerfulWomen.co.uk", "new technologies"],
-    },
+    }
   ];
 
   return (

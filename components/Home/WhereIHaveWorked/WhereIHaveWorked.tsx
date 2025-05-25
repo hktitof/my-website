@@ -137,7 +137,7 @@ const CompaniesBar = props => {
             ButtonOrderOfcompanyNameBackgroundColorGreen={1}
             CompanyName="Vision"
             BarPosition={36}
-            BarAvobePosition={1}
+            BarAvobePosition={128}
             DescriptionJob="Vision"
             CompanyNameBackgroundColorGreen={[false, true, false, false, false, false, false, false, false]}
             setDescriptionJob={props.setDescriptionJob}
@@ -146,7 +146,7 @@ const CompaniesBar = props => {
             ButtonOrderOfcompanyNameBackgroundColorGreen={2}
             CompanyName="Ypredict.io"
             BarPosition={80}
-            BarAvobePosition={129}
+            BarAvobePosition={256}
             DescriptionJob="YpredictAI"
             CompanyNameBackgroundColorGreen={[false, false, true, false, false, false, false, false, false]}
             setDescriptionJob={props.setDescriptionJob}
@@ -155,7 +155,7 @@ const CompaniesBar = props => {
             ButtonOrderOfcompanyNameBackgroundColorGreen={3}
             CompanyName="TrouveTavoie"
             BarPosition={125}
-            BarAvobePosition={257}
+            BarAvobePosition={384}
             DescriptionJob="TrouveTavoie"
             CompanyNameBackgroundColorGreen={[false, false, false, true, false, false, false, false, false]}
             setDescriptionJob={props.setDescriptionJob}
@@ -164,7 +164,7 @@ const CompaniesBar = props => {
             ButtonOrderOfcompanyNameBackgroundColorGreen={4}
             CompanyName="FeverTokens"
             BarPosition={168}
-            BarAvobePosition={385}
+            BarAvobePosition={512}
             DescriptionJob="FeverTokens"
             CompanyNameBackgroundColorGreen={[false, false, false, false, true, false, false, false, false]}
             setDescriptionJob={props.setDescriptionJob}
@@ -173,7 +173,7 @@ const CompaniesBar = props => {
             ButtonOrderOfcompanyNameBackgroundColorGreen={5}
             CompanyName="IdealFresh"
             BarPosition={212}
-            BarAvobePosition={513}
+            BarAvobePosition={640}
             DescriptionJob="IdealFresh"
             CompanyNameBackgroundColorGreen={[false, false, false, false, false, true, false, false, false]}
             setDescriptionJob={props.setDescriptionJob}
@@ -182,7 +182,7 @@ const CompaniesBar = props => {
             ButtonOrderOfcompanyNameBackgroundColorGreen={6}
             CompanyName="SuperBerry"
             BarPosition={255}
-            BarAvobePosition={641}
+            BarAvobePosition={768}
             DescriptionJob="SuperBerry"
             CompanyNameBackgroundColorGreen={[false, false, false, false, false, false, true, false, false]}
             setDescriptionJob={props.setDescriptionJob}
@@ -191,7 +191,7 @@ const CompaniesBar = props => {
             ButtonOrderOfcompanyNameBackgroundColorGreen={7}
             CompanyName="AA Management"
             BarPosition={299}
-            BarAvobePosition={769}
+            BarAvobePosition={896}
             DescriptionJob="Advanced Agro Management"
             CompanyNameBackgroundColorGreen={[false, false, false, false, false, false, false, true, false]}
             setDescriptionJob={props.setDescriptionJob}
@@ -200,7 +200,7 @@ const CompaniesBar = props => {
             ButtonOrderOfcompanyNameBackgroundColorGreen={8}
             CompanyName="Fantasia SME"
             BarPosition={342}
-            BarAvobePosition={897}
+            BarAvobePosition={1024}
             DescriptionJob="Fantasia"
             CompanyNameBackgroundColorGreen={[false, false, false, false, false, false, false, false, true]}
             setDescriptionJob={props.setDescriptionJob}
