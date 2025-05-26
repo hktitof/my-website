@@ -25,7 +25,7 @@ export default function EnergyInstitute() {
     {
       text: "Implementing crucial security and functionality enhancements like SSO (Auth0/Okta) within the Squiz Matrix CMS and proactively conducting penetration testing.",
       keywords: ["SSO", "Auth0", "Okta", "Squiz Matrix CMS", "Penetration Testing", "Security"],
-    }
+    },
   ];
 
   return (
@@ -38,7 +38,15 @@ export default function EnergyInstitute() {
             {/* Or your preferred color */}
           </span>
           {/* Date */}
-          <span className="font-mono text-xs text-gray-500">Feb 2025 - Present</span> {/* Adjust date if needed */}
+          <span className="font-mono text-xs text-gray-500">Feb 2025 - Present</span>
+          <span
+            className="font-mono text-xs text-AAsecondary hover:cursor-pointer"
+            style={{ fontSize: "0.6rem" }}
+            // set on click to open the website
+            onClick={() => window.open("https://www.energyinst.org/", "_blank")}
+          >
+            www.energyinst.org
+          </span>
         </div>
         <div className="flex flex-col space-y-4 sm:text-sm text-xs">
           {tasks.map((item, index) => {
