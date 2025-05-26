@@ -1,14 +1,13 @@
 import React from "react";
 import Img from "../../../components/smallComp/image/Img"; // Assuming this path is correct for your project
 import ArrowIcon from "../../../components/Icons/ArrowIcon"; // Assuming this path is correct for your project
-
-// Optional: Define props type if using TypeScript (even if props are not currently used)
+import { forwardRef } from "react";
 interface AboutMeProps {
   // Define any props you might pass to AboutMe here
   // For example: profileImageUrl?: string;
 }
 
-const AboutMe: React.FC<AboutMeProps> = props => {
+const AboutMe = forwardRef<HTMLDivElement, AboutMeProps>((props, ref) => {
   const technologies = [
     ["Next.js/React", "TypeScript/JavaScript", "Tailwind CSS", "Azure DevOps", "AWS/Google Cloud"],
     ["Node.js", "Solidity/Web3.js", "Squiz Matrix CMS", "MongoDB/SQL Server", "AI Agents/Automation"],
@@ -108,6 +107,6 @@ const AboutMe: React.FC<AboutMeProps> = props => {
       </div>
     </div>
   );
-};
-
+});
+AboutMe.displayName = "AboutMe";
 export default AboutMe; // Changed to a const for functional component definition with type
