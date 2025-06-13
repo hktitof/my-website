@@ -107,8 +107,8 @@ export default function Home() {
 
   console.log("website is rendering...");
   const meta = {
-    title: "Abdellatif Anaflous - Software Engineer",
-    description: `I've been working on Software development for 5 years straight. Get in touch with me to know more.`,
+    title: "Abdellatif Anaflous - Lead Full Stack Software Engineer",
+    description: `I've been working on Software development for more than 7 years. Get in touch with me to know more.`,
     image: "/titofCercle.png",
     type: "website",
   };
